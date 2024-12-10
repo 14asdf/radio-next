@@ -40,19 +40,17 @@ export const ColorModeButton = React.forwardRef(function ColorModeButton(
 ) {
   const { toggleColorMode } = useColorMode();
   return (
-    <ClientOnly fallback={<Skeleton boxSize="8" />}>
-      <IconButton
-        onClick={toggleColorMode}
-        variant="subtle"
-        colorPalette="yellow"
-        aria-label="Toggle color mode"
-        size="xl"
-        rounded={'full'}
-        ref={ref}
-        {...props}
-      >
-        <ColorModeIcon />
-      </IconButton>
-    </ClientOnly>
+    <IconButton
+      onClick={toggleColorMode}
+      variant="subtle"
+      colorPalette="yellow"
+      aria-label="Toggle color mode"
+      size="xl"
+      rounded={'full'}
+      ref={ref}
+      {...props}
+    >
+      <ColorModeIcon />
+    </IconButton>
   );
 });

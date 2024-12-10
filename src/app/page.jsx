@@ -1,90 +1,25 @@
-'use client';
+import { findStation, decodeUrl } from '../utils';
+import s from '../stations.json';
+import HomeClient from './HomeClient';
 
-import { Box, Text, IconButton } from '@chakra-ui/react';
-import { BsChevronLeft } from 'react-icons/bs';
-import { Toaster } from '../components/ui/toaster';
-import Player from '../components/Player';
-import Author from '../components/Author';
-import StationSelect from '../components/StationSelect';
-import { ColorModeProvider } from '../components/ui/color-mode';
-import { ColorModeButton } from '../components/ui/color-mode';
-import Share from '../components/Share';
-import { useSearchParams } from 'next/navigation';
+export async function generateMetadata({ searchParams }) {
+  const audioId = searchParams.id;
+  const audioSrc = audioId ? decodeUrl(audioId) : null;
+  const station = audioSrc ? findStation(audioId, s) : null;
 
-const Home = () => {
-  const searchParams = useSearchParams();
-  const audioId = searchParams.get('id');
+  return {
+    title: station ? `${station.title} | Radio Online` : 'Radio Online',
+    openGraph: {
+      title: station ? `${station.title} | Radio Online` : 'Radio Online',
+      images: [station?.img || '/default-image.jpg'],
+    },
+    twitter: {
+      title: station ? `${station.title} | Radio Online` : 'Radio Online',
+      images: [station?.img || '/default-image.jpg'],
+    },
+  };
+}
 
-  return (
-    <>
-      <ColorModeProvider>
-        <Toaster />
-        <Box
-          height={{ base: '100dvh', md: '100vh' }}
-          display="flex"
-          flexDirection="column"
-          _dark={{ color: '#ffffff' }}
-        >
-          {/* Header */}
-          <Box as="header" p={4} borderBottomWidth="0">
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              {/* Left Section */}
-              <Box flex="1" display="flex" justifyContent="center">
-                {audioId && (
-                  <IconButton
-                    as="a"
-                    href="/"
-                    variant="subtle"
-                    colorPalette="yellow"
-                    size="xl"
-                    rounded={'full'}
-                  >
-                    <BsChevronLeft />
-                  </IconButton>
-                )}
-              </Box>
-              {/* Center Section */}
-              <Box flex="1" display="flex" justifyContent="center"></Box>
-
-              {/* Right Section */}
-              <Box flex="1" display="flex" justifyContent="center"></Box>
-            </Box>
-          </Box>
-
-          {/* Main Content - Scrollable */}
-          <Box flex="1" overflow="auto" p={4} justifyContent="center">
-            {audioId ? <Player audioId={audioId} /> : <StationSelect />}
-          </Box>
-
-          {/* Footer */}
-          <Box as="footer" p={4} borderTopWidth="0">
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              {/* Left Section */}
-              <Box flex="1" display="flex" justifyContent="center"></Box>
-
-              {/* Center Section */}
-              <Box flex="1" display="flex" justifyContent="center">
-                <ColorModeButton />
-              </Box>
-
-              {/* Right Section */}
-              <Box flex="1" display="flex" justifyContent="center">
-                <Author />
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      </ColorModeProvider>
-    </>
-  );
-};
-
-export default Home;
+export default function Home({ searchParams }) {
+  return <HomeClient initialId={searchParams.id} />;
+}
