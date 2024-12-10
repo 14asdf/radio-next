@@ -80,7 +80,7 @@ const StationSelect = () => {
       return tags.split(',').map((tag) => {
         const trimmedTag = tag.trim();
         return (
-          <Badge key={generateUUID()} colorPalette={getTagColor(trimmedTag)}>
+          <Badge key={trimmedTag} colorPalette={getTagColor(trimmedTag)}>
             {trimmedTag}
           </Badge>
         );
@@ -109,7 +109,7 @@ const StationSelect = () => {
           return (
             <Box
               as="a"
-              key={generateUUID()}
+              key={station.streamUrl}
               href={`/?id=${encodeUrl(station.streamUrl)}`}
               display="flex"
               flexDirection="column"
