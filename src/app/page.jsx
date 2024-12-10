@@ -11,11 +11,11 @@ export async function generateMetadata({ searchParams }) {
     title: station ? `${station.title} | Radio Online` : 'Radio Online',
     openGraph: {
       title: station ? `${station.title} | Radio Online` : 'Radio Online',
-      images: [station?.img || '/default-image.jpg'],
+      images: [station?.img || '/android-chrome-512x512.png'],
     },
     twitter: {
       title: station ? `${station.title} | Radio Online` : 'Radio Online',
-      images: [station?.img || '/default-image.jpg'],
+      images: [station?.img || '/android-chrome-512x512.png'],
     },
   };
 }
