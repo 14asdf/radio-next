@@ -23,15 +23,15 @@ const HomeClient = ({ initialId }) => {
         _dark={{ color: '#ffffff' }}
       >
         {/* Header */}
-        <Box as="header" p={4} borderBottomWidth="0">
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            {/* Left Section */}
-            <Box flex="1" display="flex" justifyContent="center">
-              {audioId && (
+        {audioId && (
+          <Box as="header" p={4} borderBottomWidth="0">
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              {/* Left Section */}
+              <Box flex="1" display="flex" justifyContent="center">
                 <IconButton
                   as="a"
                   href="/"
@@ -42,18 +42,24 @@ const HomeClient = ({ initialId }) => {
                 >
                   <BsChevronLeft />
                 </IconButton>
-              )}
-            </Box>
-            {/* Center Section */}
-            <Box flex="1" display="flex" justifyContent="center"></Box>
+              </Box>
+              {/* Center Section */}
+              <Box flex="1" display="flex" justifyContent="center"></Box>
 
-            {/* Right Section */}
-            <Box flex="1" display="flex" justifyContent="center"></Box>
+              {/* Right Section */}
+              <Box flex="1" display="flex" justifyContent="center"></Box>
+            </Box>
           </Box>
-        </Box>
+        )}
 
         {/* Main Content - Scrollable */}
-        <Box flex="1" overflow="auto" p={4} justifyContent="center">
+        <Box
+          flex="1"
+          overflow="auto"
+          p={4}
+          pt={audioId ? 4 : 0}
+          justifyContent="center"
+        >
           {audioId ? <Player audioId={audioId} /> : <StationSelect />}
         </Box>
 
