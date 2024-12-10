@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Box,
   Image,
@@ -7,6 +7,7 @@ import {
   Badge,
   IconButton,
   Separator,
+  Spinner,
 } from '@chakra-ui/react';
 import { InputGroup, InputRightElement } from '@chakra-ui/input';
 import { generateUUID, encodeUrl, decodeUrl } from '../utils'; // Import necessary utilities
@@ -42,11 +43,108 @@ const getTagColor = (() => {
   };
 })();
 
+// Move StationRow outside and memoize it
+const StationRow = React.memo(({ station }) => {
+  const colorPalette = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+  const pickPalette = (name) => {
+    const index = name.charCodeAt(0) % colorPalette.length;
+    return colorPalette[index];
+  };
+
+  return (
+    <Box
+      as="a"
+      href={`/?id=${encodeUrl(station.streamUrl)}`}
+      display="flex"
+      flexDirection="column"
+      gap="2"
+      p="2"
+      minW="200px"
+      maxW="200px"
+      _hover={{
+        cursor: 'pointer',
+      }}
+    >
+      <Avatar
+        colorPalette={pickPalette(station.title)}
+        src={station.img}
+        name={station.title}
+        shape="rounded"
+        boxSize="200px"
+        alt={station.title}
+      />
+      <Text
+        overflow="hidden"
+        textOverflow="ellipsis"
+        textWrap="nowrap"
+        maxW="100%"
+      >
+        {station.title}
+      </Text>
+    </Box>
+  );
+});
+
+// Create a separate row component
+const StationGroupRow = React.memo(
+  ({ tag, stations, visibleItems, isLoading, onScroll }) => {
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+      const container = scrollRef.current;
+      if (container) {
+        const handleScrollEvent = (e) => onScroll(e, tag, stations);
+        container.addEventListener('scroll', handleScrollEvent);
+        return () => container.removeEventListener('scroll', handleScrollEvent);
+      }
+    }, [tag, stations, onScroll]);
+
+    return (
+      <Box
+        ref={scrollRef}
+        position="relative"
+        display="flex"
+        overflowX="auto"
+        gap={4}
+        css={{
+          '&::-webkit-scrollbar': { height: '8px' },
+          '&::-webkit-scrollbar-track': { background: 'rgba(0, 0, 0, 0.1)' },
+          '&::-webkit-scrollbar-thumb': {
+            background: 'rgba(0, 0, 0, 0.2)',
+            borderRadius: '4px',
+          },
+        }}
+      >
+        {stations.slice(0, visibleItems).map((station) => (
+          <StationRow key={station.streamUrl} station={station} />
+        ))}
+        {stations.length > visibleItems && (
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            minW="200px"
+            h="200px"
+          >
+            {isLoading ? (
+              <Spinner size="md" color="gray.500" />
+            ) : (
+              <Text color="gray.500">Scroll for more</Text>
+            )}
+          </Box>
+        )}
+      </Box>
+    );
+  }
+);
+
 const StationSelect = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [visibleItemsMap, setVisibleItemsMap] = useState(new Map());
   const containerRef = useRef(null);
 
-  // Group stations by tags, ensuring each station appears only once
+  // Group stations by tags first
   const groupedStations = React.useMemo(() => {
     const groups = new Map();
     const usedStations = new Set(); // Track which stations have been assigned
@@ -82,46 +180,38 @@ const StationSelect = () => {
       );
   }, [searchTerm]);
 
-  const StationRow = ({ station }) => {
-    const colorPalette = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
-    const pickPalette = (name) => {
-      const index = name.charCodeAt(0) % colorPalette.length;
-      return colorPalette[index];
-    };
+  // Initialize visibleItemsMap for new tags
+  useEffect(() => {
+    groupedStations.forEach(({ tag }) => {
+      if (!visibleItemsMap.has(tag)) {
+        setVisibleItemsMap((prev) => new Map(prev).set(tag, 10));
+      }
+    });
+  }, [groupedStations]);
 
-    return (
-      <Box
-        as="a"
-        href={`/?id=${encodeUrl(station.streamUrl)}`}
-        display="flex"
-        flexDirection="column"
-        gap="2"
-        p="2"
-        minW="200px"
-        maxW="200px"
-        _hover={{
-          cursor: 'pointer',
-        }}
-      >
-        <Avatar
-          colorPalette={pickPalette(station.title)}
-          src={station.img}
-          name={station.title}
-          shape="rounded"
-          boxSize="200px"
-          alt={station.title}
-        />
-        <Text
-          overflow="hidden"
-          textOverflow="ellipsis"
-          textWrap="nowrap"
-          maxW="100%"
-        >
-          {station.title}
-        </Text>
-      </Box>
-    );
-  };
+  const handleScroll = useCallback(
+    (event, tag, stations) => {
+      const container = event.target;
+      const isNearEnd =
+        container.scrollLeft + container.clientWidth >=
+        container.scrollWidth - 50;
+
+      if (
+        isNearEnd &&
+        !isLoading &&
+        stations.length > visibleItemsMap.get(tag)
+      ) {
+        setIsLoading(true);
+        setTimeout(() => {
+          setVisibleItemsMap((prev) =>
+            new Map(prev).set(tag, prev.get(tag) + 10)
+          );
+          setIsLoading(false);
+        }, 500);
+      }
+    },
+    [isLoading, visibleItemsMap]
+  );
 
   return (
     <Box mx="auto" ref={containerRef}>
@@ -172,27 +262,13 @@ const StationSelect = () => {
               <Text fontSize="2xl" mb={2} fontWeight="bold">
                 {tag.charAt(0).toUpperCase() + tag.slice(1)}
               </Text>
-              <Box
-                display="flex"
-                overflowX="auto"
-                gap={4}
-                css={{
-                  '&::-webkit-scrollbar': {
-                    height: '8px',
-                  },
-                  '&::-webkit-scrollbar-track': {
-                    background: 'rgba(0, 0, 0, 0.1)',
-                  },
-                  '&::-webkit-scrollbar-thumb': {
-                    background: 'rgba(0, 0, 0, 0.2)',
-                    borderRadius: '4px',
-                  },
-                }}
-              >
-                {stations.map((station) => (
-                  <StationRow key={station.streamUrl} station={station} />
-                ))}
-              </Box>
+              <StationGroupRow
+                tag={tag}
+                stations={stations}
+                visibleItems={visibleItemsMap.get(tag)}
+                isLoading={isLoading}
+                onScroll={handleScroll}
+              />
               {index < groupedStations.length - 1 && <Separator my={4} />}
             </Box>
           ))
