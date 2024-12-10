@@ -9,9 +9,8 @@ export async function generateMetadata({ searchParams }) {
 
   const title = station ? `${station.title} | Online Radio` : 'Online Radio';
   const image = station?.img || '/android-chrome-192x192.png';
-  const description = station
-    ? `Listen to ${station.title} live online - free streaming radio`
-    : 'Listen to your favorite radio stations live online - free streaming radio';
+  const description =
+    'Listen to your favorite radio stations live online - free streaming radio';
 
   return {
     title,
