@@ -8,10 +8,15 @@ export const viewport = {
   userScalable: false,
 };
 
-// Static metadata configuration
+// Updated metadata configuration
 export const metadata = {
   title: 'Online Radio',
   description: 'Listen to your favorite radio stations',
+  icons: {
+    icon: 'favicon.ico',
+    apple: 'apple-touch-icon.png',
+  },
+  manifest: 'site.webmanifest.json',
 };
 
 export default function RootLayout({ children }) {
