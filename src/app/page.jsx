@@ -1,6 +1,6 @@
 import { findStation, decodeUrl } from '../utils';
 import s from '../stations.json';
-import HomeClient from './HomeClient';
+import HomeClient from '../components/HomeClient';
 
 export async function generateMetadata({ searchParams }) {
   const audioId = searchParams.id;

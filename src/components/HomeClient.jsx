@@ -2,11 +2,11 @@
 
 import { Box, Text, IconButton } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
-import { Toaster } from '../components/ui/toaster';
-import Player from '../components/Player';
-import Author from '../components/Author';
-import StationSelect from '../components/StationSelect';
-import { ColorModeButton } from '../components/ui/color-mode';
+import { Toaster } from './ui/toaster';
+import Player from './Player';
+import Author from './Author';
+import StationSelect from './StationSelect';
+import { ColorModeButton } from './ui/color-mode';
 import { useSearchParams } from 'next/navigation';
 
 const HomeClient = ({ initialId }) => {
