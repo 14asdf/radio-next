@@ -7,15 +7,34 @@ export async function generateMetadata({ searchParams }) {
   const audioSrc = audioId ? decodeUrl(audioId) : null;
   const station = audioSrc ? findStation(audioId, s) : null;
 
+  const title = station ? `${station.title} | Online Radio` : 'Online Radio';
+  const image =
+    station?.img ||
+    'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album';
+  const description = station
+    ? `Listen to ${station.title} live online - free streaming radio`
+    : 'Listen to your favorite radio stations live online - free streaming radio';
+
   return {
-    title: station ? `${station.title} | Radio Online` : 'Radio Online',
+    title,
+    description,
     openGraph: {
-      title: station ? `${station.title} | Radio Online` : 'Radio Online',
-      images: [station?.img || '/android-chrome-512x512.png'],
+      title,
+      description,
+      images: [image],
+      type: 'website',
+      siteName: 'Online Radio',
     },
     twitter: {
-      title: station ? `${station.title} | Radio Online` : 'Radio Online',
-      images: [station?.img || '/android-chrome-512x512.png'],
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+    other: {
+      'telegram-channel:image': image,
+      'telegram-channel:title': title,
+      'telegram-channel:description': description,
     },
   };
 }
