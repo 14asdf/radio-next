@@ -159,10 +159,26 @@ const Player = ({ audioId }) => {
       {station && (
         <Head>
           <title>{`${station.title} | Online radio`}</title>
+          {/* Open Graph / Facebook */}
+          <meta property="og:type" content="website" />
           <meta property="og:title" content={station.title} />
+          <meta
+            property="og:description"
+            content={`Listen to ${station.title} live online radio`}
+          />
           <meta property="og:image" content={station.img} />
+
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={station.title} />
+          <meta
+            name="twitter:description"
+            content={`Listen to ${station.title} live online radio`}
+          />
           <meta name="twitter:image" content={station.img} />
+
+          {/* Telegram */}
+          <meta property="telegram:image" content={station.img} />
         </Head>
       )}
       <DialogRoot
