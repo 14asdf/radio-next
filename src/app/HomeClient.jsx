@@ -7,16 +7,11 @@ import Player from '../components/Player';
 import Author from '../components/Author';
 import StationSelect from '../components/StationSelect';
 import { ColorModeButton } from '../components/ui/color-mode';
-import Share from '../components/Share';
 import { useSearchParams } from 'next/navigation';
-
-// ... other imports ...
 
 const HomeClient = ({ initialId }) => {
   const searchParams = useSearchParams();
   const audioId = searchParams.get('id');
-
-  console.log(audioId);
 
   return (
     <>

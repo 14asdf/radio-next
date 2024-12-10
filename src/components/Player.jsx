@@ -9,10 +9,6 @@ import {
   Separator,
   Badge,
   Stack,
-  Slider,
-  SliderTrack,
-  SliderRange,
-  SliderThumb,
   HStack,
 } from '@chakra-ui/react';
 import { IoPlayOutline } from 'react-icons/io5';
@@ -37,8 +33,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from './ui/dialog';
-
-import Head from 'next/head';
 
 const stations = _.uniqBy(s, 'title');
 
