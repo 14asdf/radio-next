@@ -16,7 +16,7 @@ const Share = () => {
       .writeText(currentUrl)
       .then(() => {
         toaster.create({
-          title: 'URL Copied.',
+          title: 'URL copied',
         });
       })
       .catch((err) => {
@@ -41,7 +41,7 @@ const Share = () => {
           as="a"
           variant="subtle"
           colorPalette="yellow"
-          size="xl"
+          size="lg"
           rounded={'full'}
           style={{ marginLeft: '1em' }}
           aria-label="Share this station"
@@ -54,7 +54,7 @@ const Share = () => {
           as="a"
           variant="ghost"
           colorPalette="yellow"
-          size="xl"
+          size="lg"
           rounded={'full'}
           onClick={() => handleShare('telegram')}
         >
@@ -65,7 +65,7 @@ const Share = () => {
           as="a"
           variant="ghost"
           colorPalette="yellow"
-          size="xl"
+          size="lg"
           rounded={'full'}
           onClick={() => handleShare('whatsapp')}
         >
@@ -76,7 +76,7 @@ const Share = () => {
           as="a"
           variant="ghost"
           colorPalette="yellow"
-          size="xl"
+          size="lg"
           rounded={'full'}
           onClick={() => handleShare('vk')}
         >
@@ -87,7 +87,7 @@ const Share = () => {
           as="a"
           variant="ghost"
           colorPalette="yellow"
-          size="xl"
+          size="lg"
           rounded={'full'}
           onClick={handleCopyUrl}
         >

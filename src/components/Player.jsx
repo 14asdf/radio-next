@@ -182,13 +182,19 @@ const Player = ({ audioId }) => {
         </DialogContent>
       </DialogRoot>
 
-      <Box display="flex" justifyContent="center" mb="1em">
+      <Box
+        display="flex"
+        justifyContent="center"
+        position="relative"
+        width="250px" // Match Avatar width
+        margin="0 auto" // Center the box
+        mb="1em"
+      >
         <Avatar
           src={station.img}
           shape="rounded"
           width="250px"
           height="250px"
-          marginRight="1em"
           name={station.title}
           cursor="pointer"
           onClick={() =>
@@ -196,6 +202,9 @@ const Player = ({ audioId }) => {
           }
           colorPalette={pickPalette(station.title)}
         />
+        <Box position="absolute" right="-1em" bottom="-1em">
+          <Share />
+        </Box>
       </Box>
       <Box
         display="flex"
@@ -215,8 +224,6 @@ const Player = ({ audioId }) => {
             {station.title}
           </Text>
         </Box>
-
-        <Share />
       </Box>
       <Box position="relative">
         <Stack
