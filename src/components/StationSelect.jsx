@@ -151,6 +151,12 @@ const StationGroupRow = React.memo(
 // New SearchResults component
 const SearchResults = React.memo(
   ({ stations, searchTerm }) => {
+    const colorPalette = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+    const pickPalette = (name) => {
+      const index = name.charCodeAt(0) % colorPalette.length;
+      return colorPalette[index];
+    };
+
     const [visibleItems, setVisibleItems] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
     const containerRef = useRef(null);
@@ -224,16 +230,12 @@ const SearchResults = React.memo(
                   as="a"
                   href={`/?id=${encodeUrl(station.streamUrl)}`}
                   display="flex"
-                  p={4}
                   gap={4}
+                  pt="6"
                   overflow="hidden"
                   textWrap="nowrap"
                   textOverflow="ellipsis"
                   maxW="100%"
-                  _hover={{
-                    bg: 'gray.100',
-                    _dark: { bg: 'gray.800' },
-                  }}
                 >
                   <Avatar
                     src={station.img}
@@ -241,6 +243,7 @@ const SearchResults = React.memo(
                     shape="rounded"
                     boxSize="80px"
                     alt={station.title}
+                    colorPalette={pickPalette(station.title)}
                   />
                   <Box>
                     <Text fontSize="lg" fontWeight="bold">
@@ -249,7 +252,12 @@ const SearchResults = React.memo(
                     {station.tags && (
                       <Box display="flex" gap="2" mt={2}>
                         {station.tags.split(',').map((tag) => (
-                          <Badge key={tag} colorScheme="gray" variant="subtle">
+                          <Badge
+                            key={tag}
+                            colorScheme="gray"
+                            variant="subtle"
+                            rounded={'full'}
+                          >
                             {tag.trim()}
                           </Badge>
                         ))}
