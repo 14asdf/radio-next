@@ -148,6 +148,70 @@ const StationGroupRow = React.memo(
   }
 );
 
+// New SearchResults component
+const SearchResults = React.memo(({ stations, searchTerm }) => {
+  if (!searchTerm) return null;
+
+  const filteredStations = stations.filter(
+    (station) =>
+      station.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      station.tags?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (filteredStations.length === 0) {
+    return (
+      <Text fontSize={25} textAlign="center" mt={4}>
+        No stations found for "{searchTerm}"
+      </Text>
+    );
+  }
+
+  return (
+    <Box>
+      {filteredStations.map((station) => (
+        <Box
+          key={station.streamUrl}
+          as="a"
+          href={`/?id=${encodeUrl(station.streamUrl)}`}
+          display="flex"
+          p={4}
+          gap={4}
+          _hover={{
+            bg: 'gray.100',
+            _dark: { bg: 'gray.800' },
+          }}
+        >
+          <Avatar
+            src={station.img}
+            name={station.title}
+            shape="rounded"
+            boxSize="80px"
+            alt={station.title}
+          />
+          <Box>
+            <Text fontSize="lg" fontWeight="bold">
+              {station.title}
+            </Text>
+            {station.tags && (
+              <Box display="flex" gap="2" mt={2}>
+                {station.tags
+                  .split(',')
+                  .filter((tag) => tag.trim().length <= 10)
+                  .slice(0, 3)
+                  .map((tag) => (
+                    <Badge key={tag} colorScheme="gray" variant="subtle">
+                      {tag.trim()}
+                    </Badge>
+                  ))}
+              </Box>
+            )}
+          </Box>
+        </Box>
+      ))}
+    </Box>
+  );
+});
+
 const StationSelect = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -156,41 +220,32 @@ const StationSelect = () => {
   const [visibleGroups, setVisibleGroups] = useState(3);
   const [isVerticalLoading, setIsVerticalLoading] = useState(false);
 
-  // Group stations by tags first
+  // Group stations by tags (without filtering)
   const groupedStations = React.useMemo(() => {
     const groups = new Map();
-    const usedStations = new Set(); // Track which stations have been assigned
+    const usedStations = new Set();
 
     stations.forEach((station) => {
       if (!station.tags) return;
 
-      // Only process station if it hasn't been used yet
       if (!usedStations.has(station.streamUrl)) {
         const tags = station.tags.split(',').map((tag) => tag.trim());
-
-        // Add station to its first matching tag group
         if (tags.length > 0) {
           const firstTag = tags[0];
           if (!groups.has(firstTag)) {
             groups.set(firstTag, []);
           }
           groups.get(firstTag).push(station);
-          usedStations.add(station.streamUrl); // Mark station as used
+          usedStations.add(station.streamUrl);
         }
       }
     });
 
-    return Array.from(groups.entries())
-      .map(([tag, stations]) => ({ tag, stations }))
-      .filter(
-        (group) =>
-          searchTerm === '' ||
-          group.tag.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          group.stations.some((s) =>
-            s.title.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-      );
-  }, [searchTerm]);
+    return Array.from(groups.entries()).map(([tag, stations]) => ({
+      tag,
+      stations,
+    }));
+  }, []);
 
   // Initialize visibleItemsMap for new tags
   useEffect(() => {
@@ -323,50 +378,46 @@ const StationSelect = () => {
         </InputGroup>
       </Box>
 
-      <Box overflow="auto">
-        {groupedStations.length === 0 ? (
-          <Text fontSize={25} textAlign="center" mt={4}>
-            No stations found for "{searchTerm}"
-          </Text>
-        ) : (
-          <>
-            {groupedStations
-              .slice(0, visibleGroups)
-              .map(({ tag, stations }, index) => (
-                <Box key={tag} mb={6}>
-                  <Text fontSize="2xl" mb={2} fontWeight="bold">
-                    {tag.charAt(0).toUpperCase() + tag.slice(1)}
-                  </Text>
-                  <StationGroupRow
-                    tag={tag}
-                    stations={stations}
-                    visibleItems={visibleItemsMap.get(tag)}
-                    isLoading={isLoading}
-                    onScroll={handleScroll}
-                    onLoadMore={handleLoadMore}
-                  />
-                  {index < groupedStations.length - 1 && <Separator my={4} />}
-                </Box>
-              ))}
-            {visibleGroups < groupedStations.length && (
-              <Box display="flex" justifyContent="center" my={4}>
-                {isVerticalLoading ? (
-                  <Spinner size="md" color="gray.500" />
-                ) : (
-                  <Button
-                    size="sm"
-                    colorScheme="black"
-                    borderRadius="full"
-                    onClick={loadMoreGroups}
-                  >
-                    Load More
-                  </Button>
-                )}
+      {searchTerm ? (
+        <SearchResults stations={stations} searchTerm={searchTerm} />
+      ) : (
+        <Box overflow="auto">
+          {groupedStations
+            .slice(0, visibleGroups)
+            .map(({ tag, stations }, index) => (
+              <Box key={tag} mb={6}>
+                <Text fontSize="2xl" mb={2} fontWeight="bold">
+                  {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                </Text>
+                <StationGroupRow
+                  tag={tag}
+                  stations={stations}
+                  visibleItems={visibleItemsMap.get(tag)}
+                  isLoading={isLoading}
+                  onScroll={handleScroll}
+                  onLoadMore={handleLoadMore}
+                />
+                {index < groupedStations.length - 1 && <Separator my={4} />}
               </Box>
-            )}
-          </>
-        )}
-      </Box>
+            ))}
+          {visibleGroups < groupedStations.length && (
+            <Box display="flex" justifyContent="center" my={4}>
+              {isVerticalLoading ? (
+                <Spinner size="md" color="gray.500" />
+              ) : (
+                <Button
+                  size="sm"
+                  colorScheme="black"
+                  borderRadius="full"
+                  onClick={loadMoreGroups}
+                >
+                  Load More
+                </Button>
+              )}
+            </Box>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };
