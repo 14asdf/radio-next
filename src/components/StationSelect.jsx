@@ -153,6 +153,8 @@ const StationSelect = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [visibleItemsMap, setVisibleItemsMap] = useState(new Map());
   const containerRef = useRef(null);
+  const [visibleGroups, setVisibleGroups] = useState(3);
+  const [isVerticalLoading, setIsVerticalLoading] = useState(false);
 
   // Group stations by tags first
   const groupedStations = React.useMemo(() => {
@@ -238,6 +240,50 @@ const StationSelect = () => {
     [isLoading, visibleItemsMap]
   );
 
+  // Modify loadMoreGroups to add more categories at once
+  const loadMoreGroups = useCallback(() => {
+    setIsVerticalLoading(true);
+    setTimeout(() => {
+      setVisibleGroups((prev) => prev + 10);
+      setIsVerticalLoading(false);
+    }, 500);
+  }, []);
+
+  // Update scroll handler with IntersectionObserver
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '100px',
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      const lastEntry = entries[0];
+      if (
+        lastEntry.isIntersecting &&
+        !isVerticalLoading &&
+        visibleGroups < groupedStations.length
+      ) {
+        loadMoreGroups();
+      }
+    }, options);
+
+    // Find the last visible group element
+    const lastGroupElement = containerRef.current?.querySelector(
+      `div:nth-child(${visibleGroups})`
+    );
+    if (lastGroupElement) {
+      observer.observe(lastGroupElement);
+    }
+
+    return () => observer.disconnect();
+  }, [
+    visibleGroups,
+    groupedStations.length,
+    isVerticalLoading,
+    loadMoreGroups,
+  ]);
+
   return (
     <Box mx="auto" ref={containerRef}>
       <Box
@@ -283,22 +329,42 @@ const StationSelect = () => {
             No stations found for "{searchTerm}"
           </Text>
         ) : (
-          groupedStations.map(({ tag, stations }, index) => (
-            <Box key={tag} mb={6}>
-              <Text fontSize="2xl" mb={2} fontWeight="bold">
-                {tag.charAt(0).toUpperCase() + tag.slice(1)}
-              </Text>
-              <StationGroupRow
-                tag={tag}
-                stations={stations}
-                visibleItems={visibleItemsMap.get(tag)}
-                isLoading={isLoading}
-                onScroll={handleScroll}
-                onLoadMore={handleLoadMore}
-              />
-              {index < groupedStations.length - 1 && <Separator my={4} />}
-            </Box>
-          ))
+          <>
+            {groupedStations
+              .slice(0, visibleGroups)
+              .map(({ tag, stations }, index) => (
+                <Box key={tag} mb={6}>
+                  <Text fontSize="2xl" mb={2} fontWeight="bold">
+                    {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                  </Text>
+                  <StationGroupRow
+                    tag={tag}
+                    stations={stations}
+                    visibleItems={visibleItemsMap.get(tag)}
+                    isLoading={isLoading}
+                    onScroll={handleScroll}
+                    onLoadMore={handleLoadMore}
+                  />
+                  {index < groupedStations.length - 1 && <Separator my={4} />}
+                </Box>
+              ))}
+            {visibleGroups < groupedStations.length && (
+              <Box display="flex" justifyContent="center" my={4}>
+                {isVerticalLoading ? (
+                  <Spinner size="md" color="gray.500" />
+                ) : (
+                  <Button
+                    size="sm"
+                    colorScheme="black"
+                    borderRadius="full"
+                    onClick={loadMoreGroups}
+                  >
+                    Load More
+                  </Button>
+                )}
+              </Box>
+            )}
+          </>
         )}
       </Box>
     </Box>
