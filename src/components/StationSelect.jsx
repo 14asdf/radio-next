@@ -35,6 +35,7 @@ const StationRow = React.memo(({ station }) => {
       flexDirection="column"
       gap="2"
       p="2"
+      pl="0"
       mr="8"
       minW="150px"
       maxW="150px"
@@ -262,7 +263,7 @@ const StationSelect = () => {
         ) : (
           groupedStations.map(({ tag, stations }, index) => (
             <Box key={tag} mb={6}>
-              <Text fontSize="2xl" mb={2} fontWeight="bold" ml="2">
+              <Text fontSize="2xl" mb={2} fontWeight="bold">
                 {tag.charAt(0).toUpperCase() + tag.slice(1)}
               </Text>
               <StationGroupRow

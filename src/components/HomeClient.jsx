@@ -56,7 +56,9 @@ const HomeClient = ({ initialId }) => {
         <Box
           flex="1"
           overflow="auto"
-          p={4}
+          pb="4"
+          pl={{ base: '6', md: '14' }}
+          pr={{ base: '6', md: '14' }}
           pt={audioId ? 4 : 0}
           justifyContent="center"
         >
