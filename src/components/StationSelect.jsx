@@ -233,6 +233,7 @@ const StationSelect = () => {
       >
         <InputGroup>
           <Input
+            variant="subtle"
             fontSize="xl"
             placeholder="Search..."
             value={searchTerm}
