@@ -7,7 +7,7 @@ export const Avatar = React.forwardRef(function Avatar(props, ref) {
   const { name, src, srcSet, loading, icon, fallback, children, ...rest } =
     props;
   return (
-    <ChakraAvatar.Root ref={ref} {...rest} boxShadow="sm">
+    <ChakraAvatar.Root ref={ref} {...rest}>
       <AvatarFallback name={name} icon={icon}>
         {fallback}
       </AvatarFallback>
