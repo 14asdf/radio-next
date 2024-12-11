@@ -141,7 +141,7 @@ const Player = ({ audioId }) => {
       usedColors.current.add(color);
 
       return (
-        <Badge key={tag} colorPalette={color}>
+        <Badge key={tag} colorPalette={color} borderRadius="full">
           {tag.trim()}
         </Badge>
       );
@@ -219,7 +219,7 @@ const Player = ({ audioId }) => {
             overflow="hidden"
             textOverflow="ellipsis"
             textWrap="nowrap"
-            maxW={{ base: '200px', md: '400px' }}
+            maxW={{ base: '250px', md: '400px' }}
           >
             {station.title}
           </Text>
