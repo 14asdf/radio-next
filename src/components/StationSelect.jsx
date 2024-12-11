@@ -56,9 +56,30 @@ const StationRow = React.memo(({ station }) => {
         textOverflow="ellipsis"
         textWrap="nowrap"
         maxW="100%"
+        fontSize="sm"
+        fontWeight="bold"
       >
         {station.title}
       </Text>
+      {station.tags && (
+        <Box display="flex" gap="2">
+          {station.tags
+            .split(',')
+            .filter((tag) => tag.trim().length <= 10)
+            .slice(0, 2)
+            .map((tag) => (
+              <Badge
+                key={tag}
+                colorScheme="gray"
+                variant="subtle"
+                fontSize="xs"
+                borderRadius="full"
+              >
+                {tag.trim()}
+              </Badge>
+            ))}
+        </Box>
+      )}
     </Box>
   );
 });
