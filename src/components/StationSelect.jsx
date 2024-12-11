@@ -149,68 +149,150 @@ const StationGroupRow = React.memo(
 );
 
 // New SearchResults component
-const SearchResults = React.memo(({ stations, searchTerm }) => {
-  if (!searchTerm) return null;
+const SearchResults = React.memo(
+  ({ stations, searchTerm }) => {
+    const [visibleItems, setVisibleItems] = useState(10);
+    const [isLoading, setIsLoading] = useState(false);
+    const containerRef = useRef(null);
 
-  const filteredStations = stations.filter(
-    (station) =>
-      station.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      station.tags?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    if (!searchTerm) return null;
 
-  if (filteredStations.length === 0) {
-    return (
-      <Text fontSize={25} textAlign="center" mt={4}>
-        No stations found for "{searchTerm}"
-      </Text>
+    const searchTermLower = searchTerm.toLowerCase().trim();
+
+    const filteredStations = React.useMemo(
+      () =>
+        stations.filter(
+          (station) =>
+            station.title.toLowerCase().includes(searchTermLower) ||
+            station.tags?.toLowerCase().includes(searchTermLower)
+        ),
+      [stations, searchTermLower]
     );
-  }
 
-  return (
-    <Box>
-      {filteredStations.map((station) => (
-        <Box
-          key={station.streamUrl}
-          as="a"
-          href={`/?id=${encodeUrl(station.streamUrl)}`}
-          display="flex"
-          p={4}
-          gap={4}
-          _hover={{
-            bg: 'gray.100',
-            _dark: { bg: 'gray.800' },
-          }}
-        >
-          <Avatar
-            src={station.img}
-            name={station.title}
-            shape="rounded"
-            boxSize="80px"
-            alt={station.title}
-          />
-          <Box>
-            <Text fontSize="lg" fontWeight="bold">
-              {station.title}
-            </Text>
-            {station.tags && (
-              <Box display="flex" gap="2" mt={2}>
-                {station.tags
-                  .split(',')
-                  .filter((tag) => tag.trim().length <= 10)
-                  .slice(0, 3)
-                  .map((tag) => (
-                    <Badge key={tag} colorScheme="gray" variant="subtle">
-                      {tag.trim()}
-                    </Badge>
-                  ))}
+    const handleLoadMore = useCallback(() => {
+      if (!isLoading && filteredStations.length > visibleItems) {
+        setIsLoading(true);
+        setTimeout(() => {
+          setVisibleItems((prev) => prev + 10);
+          setIsLoading(false);
+        }, 500);
+      }
+    }, [isLoading, filteredStations.length, visibleItems]);
+
+    // Add scroll observer
+    useEffect(() => {
+      const options = {
+        root: null,
+        rootMargin: '100px',
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        const lastEntry = entries[0];
+        if (
+          lastEntry.isIntersecting &&
+          !isLoading &&
+          filteredStations.length > visibleItems
+        ) {
+          handleLoadMore();
+        }
+      }, options);
+
+      // Create a dedicated element for observation
+      const loadingTriggerElement = containerRef.current?.querySelector(
+        '[data-loading-trigger]'
+      );
+      if (loadingTriggerElement) {
+        observer.observe(loadingTriggerElement);
+      }
+
+      return () => observer.disconnect();
+    }, [handleLoadMore, isLoading, filteredStations.length, visibleItems]);
+
+    return (
+      <Box key={searchTerm} ref={containerRef}>
+        {filteredStations.length === 0 ? (
+          <Text fontSize={25} textAlign="center" mt={4}>
+            No stations found for "{searchTerm}"
+          </Text>
+        ) : (
+          <>
+            <Box>
+              {filteredStations.slice(0, visibleItems).map((station) => (
+                <Box
+                  key={`${searchTerm}-${station.streamUrl}`}
+                  as="a"
+                  href={`/?id=${encodeUrl(station.streamUrl)}`}
+                  display="flex"
+                  p={4}
+                  gap={4}
+                  overflow="hidden"
+                  textWrap="nowrap"
+                  textOverflow="ellipsis"
+                  maxW="100%"
+                  _hover={{
+                    bg: 'gray.100',
+                    _dark: { bg: 'gray.800' },
+                  }}
+                >
+                  <Avatar
+                    src={station.img}
+                    name={station.title}
+                    shape="rounded"
+                    boxSize="80px"
+                    alt={station.title}
+                  />
+                  <Box>
+                    <Text fontSize="lg" fontWeight="bold">
+                      {station.title}
+                    </Text>
+                    {station.tags && (
+                      <Box display="flex" gap="2" mt={2}>
+                        {station.tags.split(',').map((tag) => (
+                          <Badge key={tag} colorScheme="gray" variant="subtle">
+                            {tag.trim()}
+                          </Badge>
+                        ))}
+                      </Box>
+                    )}
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+            {filteredStations.length > visibleItems && (
+              <Box
+                display="flex"
+                justifyContent="center"
+                my={4}
+                data-loading-trigger
+              >
+                {isLoading ? (
+                  <Spinner size="md" color="gray.500" />
+                ) : (
+                  <Button
+                    size="sm"
+                    colorScheme="black"
+                    borderRadius="full"
+                    onClick={handleLoadMore}
+                  >
+                    Load More
+                  </Button>
+                )}
               </Box>
             )}
-          </Box>
-        </Box>
-      ))}
-    </Box>
-  );
-});
+          </>
+        )}
+      </Box>
+    );
+  },
+  (prevProps, nextProps) => {
+    // Custom comparison function to ensure re-render on searchTerm change
+    return (
+      prevProps.searchTerm === nextProps.searchTerm &&
+      prevProps.stations === nextProps.stations
+    );
+  }
+);
 
 const StationSelect = () => {
   const [searchTerm, setSearchTerm] = useState('');
