@@ -35,7 +35,7 @@ const HomeClient = ({ initialId }) => {
                 <IconButton
                   as="a"
                   href="/"
-                  variant="subtle"
+                  variant="ghost"
                   colorPalette="yellow"
                   size="xl"
                   rounded={'full'}
