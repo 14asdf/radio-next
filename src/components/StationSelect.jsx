@@ -35,6 +35,7 @@ const StationRow = React.memo(({ station }) => {
       flexDirection="column"
       gap="2"
       p="2"
+      mr="8"
       minW="150px"
       maxW="150px"
       _hover={{
