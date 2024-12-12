@@ -244,6 +244,8 @@ const Player = ({ audioId }) => {
                 variant="subtle"
                 fontSize="xs"
                 borderRadius="full"
+                p={2}
+                fontWeight="bold"
               >
                 {tag.trim()}
               </Badge>

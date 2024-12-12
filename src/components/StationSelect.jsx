@@ -51,9 +51,9 @@ const StationRow = React.memo(({ station }) => {
       gap="2"
       p="2"
       pl="0"
-      mr="8"
-      minW="150px"
-      maxW="150px"
+      mr="1"
+      minW="160px"
+      maxW="160px"
       _hover={{
         cursor: 'pointer',
       }}
@@ -63,8 +63,8 @@ const StationRow = React.memo(({ station }) => {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          width="150px"
-          height="150px"
+          width="160px"
+          height="160px"
         >
           <Spinner size="md" color="gray.500" />
         </Box>
@@ -72,7 +72,7 @@ const StationRow = React.memo(({ station }) => {
         <Image
           src={imgSrc}
           borderRadius="md"
-          boxSize="150px"
+          boxSize="160px"
           alt={station.title}
           objectFit="cover"
         />
