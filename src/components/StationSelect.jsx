@@ -20,6 +20,23 @@ const stations = _.uniqBy(s, 'title');
 
 // Move StationRow outside and memoize it
 const StationRow = React.memo(({ station }) => {
+  const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
+
+  useEffect(() => {
+    if (station?.img) {
+      const img = new window.Image();
+      img.src = station.img;
+      img.onerror = () => {
+        setImgSrc(createAvatarUrl(station.title));
+      };
+      img.onload = () => {
+        setImgSrc(station.img);
+      };
+    } else {
+      setImgSrc(createAvatarUrl(station.title));
+    }
+  }, [station]);
+
   return (
     <Box
       as="a"
@@ -37,10 +54,7 @@ const StationRow = React.memo(({ station }) => {
       }}
     >
       <Image
-        src={station.img || createAvatarUrl(station.title)}
-        onError={(e) => {
-          e.target.src = createAvatarUrl(station.title);
-        }}
+        src={imgSrc}
         borderRadius="md"
         boxSize="150px"
         alt={station.title}
@@ -143,11 +157,74 @@ const StationGroupRow = React.memo(
   }
 );
 
-// New SearchResults component
+// Create a separate StationSearchRow component
+const StationSearchRow = React.memo(({ station, searchTerm }) => {
+  const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
+
+  useEffect(() => {
+    if (station?.img) {
+      const img = new window.Image();
+      img.src = station.img;
+      img.onerror = () => {
+        setImgSrc(createAvatarUrl(station.title));
+      };
+      img.onload = () => {
+        setImgSrc(station.img);
+      };
+    } else {
+      setImgSrc(createAvatarUrl(station.title));
+    }
+  }, [station]);
+
+  return (
+    <Box
+      key={`${searchTerm}-${station.streamUrl}`}
+      as="a"
+      href={`/?id=${encodeUrl(station.streamUrl)}`}
+      display="flex"
+      gap={4}
+      pt="6"
+      overflow="hidden"
+      textWrap="nowrap"
+      textOverflow="ellipsis"
+      maxW="100%"
+    >
+      <Image
+        src={imgSrc}
+        borderRadius="md"
+        boxSize="80px"
+        alt={station.title}
+        objectFit="cover"
+      />
+      <Box>
+        <Text fontSize="lg" fontWeight="bold">
+          {station.title}
+        </Text>
+        {station.tags && (
+          <Box display="flex" gap="2" mt={2}>
+            {station.tags.split(',').map((tag) => (
+              <Badge
+                key={tag}
+                colorScheme="gray"
+                variant="subtle"
+                rounded={'full'}
+              >
+                {tag.trim()}
+              </Badge>
+            ))}
+          </Box>
+        )}
+      </Box>
+    </Box>
+  );
+});
+
+// Update the SearchResults component to use StationSearchRow
 const SearchResults = React.memo(
   ({ stations, searchTerm }) => {
     const [visibleItems, setVisibleItems] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
+
     const containerRef = useRef(null);
 
     if (!searchTerm) return null;
@@ -214,48 +291,11 @@ const SearchResults = React.memo(
           <>
             <Box>
               {filteredStations.slice(0, visibleItems).map((station) => (
-                <Box
-                  key={`${searchTerm}-${station.streamUrl}`}
-                  as="a"
-                  href={`/?id=${encodeUrl(station.streamUrl)}`}
-                  display="flex"
-                  gap={4}
-                  pt="6"
-                  overflow="hidden"
-                  textWrap="nowrap"
-                  textOverflow="ellipsis"
-                  maxW="100%"
-                >
-                  <Image
-                    src={station.img || createAvatarUrl(station.title)}
-                    onError={(e) => {
-                      e.target.src = createAvatarUrl(station.title);
-                    }}
-                    borderRadius="md"
-                    boxSize="80px"
-                    alt={station.title}
-                    objectFit="cover"
-                  />
-                  <Box>
-                    <Text fontSize="lg" fontWeight="bold">
-                      {station.title}
-                    </Text>
-                    {station.tags && (
-                      <Box display="flex" gap="2" mt={2}>
-                        {station.tags.split(',').map((tag) => (
-                          <Badge
-                            key={tag}
-                            colorScheme="gray"
-                            variant="subtle"
-                            rounded={'full'}
-                          >
-                            {tag.trim()}
-                          </Badge>
-                        ))}
-                      </Box>
-                    )}
-                  </Box>
-                </Box>
+                <StationSearchRow
+                  key={station.streamUrl}
+                  station={station}
+                  searchTerm={searchTerm}
+                />
               ))}
             </Box>
             {filteredStations.length > visibleItems && (
