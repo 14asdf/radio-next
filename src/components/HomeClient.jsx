@@ -8,9 +8,23 @@ import Author from './Author';
 import StationSelect from './StationSelect';
 import { ColorModeButton } from './ui/color-mode';
 import { useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import StationSearch from './StationSearch';
+import {
+  RiHomeLine,
+  RiHomeFill,
+  RiSearchFill,
+  RiSearchLine,
+} from 'react-icons/ri';
+import Link from 'next/link';
+import s from '../stations.json';
+import _ from 'lodash';
+const stations = _.uniqBy(s, 'title');
 
 const HomeClient = ({ initialId }) => {
   const searchParams = useSearchParams();
+
+  const pathname = usePathname();
   const audioId = searchParams.get('id');
 
   return (
@@ -23,34 +37,21 @@ const HomeClient = ({ initialId }) => {
         _dark={{ color: '#ffffff' }}
       >
         {/* Header */}
-        {audioId && (
-          <Box as="header" p={4} borderBottomWidth="0">
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              {/* Left Section */}
-              <Box flex="1" display="flex" justifyContent="center">
-                <IconButton
-                  as="a"
-                  href="/"
-                  variant="ghost"
-                  colorPalette="yellow"
-                  size="xl"
-                  rounded={'full'}
-                >
-                  <BsChevronLeft />
-                </IconButton>
-              </Box>
-              {/* Center Section */}
-              <Box flex="1" display="flex" justifyContent="center"></Box>
+        <Box as="header" p={4} borderBottomWidth="0">
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            {/* Left Section */}
+            <Box flex="1" display="flex" justifyContent="center"></Box>
+            {/* Center Section */}
+            <Box flex="1" display="flex" justifyContent="center"></Box>
 
-              {/* Right Section */}
-              <Box flex="1" display="flex" justifyContent="center"></Box>
-            </Box>
+            {/* Right Section */}
+            <Box flex="1" display="flex" justifyContent="center"></Box>
           </Box>
-        )}
+        </Box>
 
         {/* Main Content - Scrollable */}
         <Box
@@ -62,7 +63,9 @@ const HomeClient = ({ initialId }) => {
           pt={audioId ? 4 : 0}
           justifyContent="center"
         >
-          {audioId ? <Player audioId={audioId} /> : <StationSelect />}
+          {pathname === '/' &&
+            (audioId ? <Player audioId={audioId} /> : <StationSelect />)}
+          {pathname === '/search' && <StationSearch stations={stations} />}
         </Box>
 
         {/* Footer */}
@@ -73,16 +76,40 @@ const HomeClient = ({ initialId }) => {
             alignItems="center"
           >
             {/* Left Section */}
-            <Box flex="1" display="flex" justifyContent="center"></Box>
+            <Box flex="1" display="flex" justifyContent="center">
+              <IconButton
+                as={Link}
+                href="/"
+                variant="subtle"
+                colorPalette="yellow"
+                size="lg"
+                rounded={'full'}
+              >
+                {pathname === '/' && !searchParams.get('id') ? (
+                  <RiHomeFill />
+                ) : (
+                  <RiHomeLine />
+                )}
+              </IconButton>
+            </Box>
 
             {/* Center Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <ColorModeButton />
+              <IconButton
+                as={Link}
+                href="/search"
+                variant="subtle"
+                colorPalette="yellow"
+                size="lg"
+                rounded={'full'}
+              >
+                {pathname === '/search' ? <RiSearchFill /> : <RiSearchLine />}
+              </IconButton>
             </Box>
 
             {/* Right Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <Author />
+              <ColorModeButton />
             </Box>
           </Box>
         </Box>
