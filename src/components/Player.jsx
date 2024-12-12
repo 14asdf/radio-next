@@ -10,6 +10,7 @@ import {
   Badge,
   Stack,
   HStack,
+  Spinner,
 } from '@chakra-ui/react';
 import { IoPlayOutline } from 'react-icons/io5';
 import { IoPauseOutline } from 'react-icons/io5';
@@ -25,7 +26,6 @@ import {
 import Share from './Share';
 import s from '../stations.json';
 import _ from 'lodash';
-import { VscRefresh } from 'react-icons/vsc';
 import { IoCloseOutline } from 'react-icons/io5';
 
 import {
@@ -55,11 +55,6 @@ const Player = ({ audioId }) => {
   });
 
   const audioRef = useRef(null);
-
-  const [avatarDimensions, setAvatarDimensions] = React.useState({
-    width: '100%',
-    height: 'auto',
-  });
 
   const currentIndex = React.useMemo(() => {
     return stations.findIndex((s) => decodeUrl(audioId) === s.streamUrl);
@@ -153,20 +148,25 @@ const Player = ({ audioId }) => {
     });
   }, [station.tags]);
 
-  const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
+  const [imgSrc, setImgSrc] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     if (station?.img) {
       const img = new window.Image();
       img.src = station.img;
       img.onerror = () => {
         setImgSrc(createAvatarUrl(station.title));
+        setIsLoading(false);
       };
       img.onload = () => {
         setImgSrc(station.img);
+        setIsLoading(false);
       };
     } else {
       setImgSrc(createAvatarUrl(station.title));
+      setIsLoading(false);
     }
   }, [station]);
 
@@ -186,17 +186,29 @@ const Player = ({ audioId }) => {
             </DialogCloseTrigger>
           </DialogHeader>
           <DialogBody>
-            <Image
-              src={imgSrc}
-              alt={station.title}
-              width="100%"
-              height="auto"
-              borderRadius="lg"
-              cursor="pointer"
-              onClick={() =>
-                setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
-              }
-            />
+            {isLoading ? (
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                width="100%"
+                height="250px"
+              >
+                <Spinner size="md" color="gray.500" />
+              </Box>
+            ) : (
+              <Image
+                src={imgSrc}
+                alt={station.title}
+                width="100%"
+                height="auto"
+                borderRadius="lg"
+                cursor="pointer"
+                onClick={() =>
+                  setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
+                }
+              />
+            )}
           </DialogBody>
         </DialogContent>
       </DialogRoot>
@@ -209,17 +221,29 @@ const Player = ({ audioId }) => {
         margin="0 auto"
         mb="1em"
       >
-        <Image
-          src={imgSrc}
-          alt={station.title}
-          width="250px"
-          height="250px"
-          borderRadius="lg"
-          cursor="pointer"
-          onClick={() =>
-            setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
-          }
-        />
+        {isLoading ? (
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            width="250px"
+            height="250px"
+          >
+            <Spinner size="md" color="gray.500" />
+          </Box>
+        ) : (
+          <Image
+            src={imgSrc}
+            alt={station.title}
+            width="250px"
+            height="250px"
+            borderRadius="lg"
+            cursor="pointer"
+            onClick={() =>
+              setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
+            }
+          />
+        )}
         <Box position="absolute" right="-1em" bottom="-1em">
           <Share />
         </Box>

@@ -21,19 +21,24 @@ const stations = _.uniqBy(s, 'title');
 // Move StationRow outside and memoize it
 const StationRow = React.memo(({ station }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     if (station?.img) {
       const img = new window.Image();
       img.src = station.img;
       img.onerror = () => {
         setImgSrc(createAvatarUrl(station.title));
+        setIsLoading(false);
       };
       img.onload = () => {
         setImgSrc(station.img);
+        setIsLoading(false);
       };
     } else {
       setImgSrc(createAvatarUrl(station.title));
+      setIsLoading(false);
     }
   }, [station]);
 
@@ -53,13 +58,25 @@ const StationRow = React.memo(({ station }) => {
         cursor: 'pointer',
       }}
     >
-      <Image
-        src={imgSrc}
-        borderRadius="md"
-        boxSize="150px"
-        alt={station.title}
-        objectFit="cover"
-      />
+      {isLoading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          width="150px"
+          height="150px"
+        >
+          <Spinner size="md" color="gray.500" />
+        </Box>
+      ) : (
+        <Image
+          src={imgSrc}
+          borderRadius="md"
+          boxSize="150px"
+          alt={station.title}
+          objectFit="cover"
+        />
+      )}
       <Text
         overflow="hidden"
         textOverflow="ellipsis"
@@ -160,19 +177,24 @@ const StationGroupRow = React.memo(
 // Create a separate StationSearchRow component
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     if (station?.img) {
       const img = new window.Image();
       img.src = station.img;
       img.onerror = () => {
         setImgSrc(createAvatarUrl(station.title));
+        setIsLoading(false);
       };
       img.onload = () => {
         setImgSrc(station.img);
+        setIsLoading(false);
       };
     } else {
       setImgSrc(createAvatarUrl(station.title));
+      setIsLoading(false);
     }
   }, [station]);
 
@@ -189,13 +211,25 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
       textOverflow="ellipsis"
       maxW="100%"
     >
-      <Image
-        src={imgSrc}
-        borderRadius="md"
-        boxSize="80px"
-        alt={station.title}
-        objectFit="cover"
-      />
+      {isLoading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          width="80px"
+          height="80px"
+        >
+          <Spinner size="md" color="gray.500" />
+        </Box>
+      ) : (
+        <Image
+          src={imgSrc}
+          borderRadius="md"
+          boxSize="80px"
+          alt={station.title}
+          objectFit="cover"
+        />
+      )}
       <Box>
         <Text fontSize="lg" fontWeight="bold">
           {station.title}
