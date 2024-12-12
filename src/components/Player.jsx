@@ -15,13 +15,18 @@ import { IoPlayOutline } from 'react-icons/io5';
 import { IoPauseOutline } from 'react-icons/io5';
 import { IoPlayBackOutline, IoPlayForwardOutline } from 'react-icons/io5';
 
-import { encodeUrl, decodeUrl, findStation, generateUUID } from '../utils'; // Assuming utility functions are in utils.js
+import {
+  encodeUrl,
+  decodeUrl,
+  findStation,
+  generateUUID,
+  createAvatarUrl,
+} from '../utils'; // Assuming utility functions are in utils.js
 import Share from './Share';
 import s from '../stations.json';
 import _ from 'lodash';
 import { VscRefresh } from 'react-icons/vsc';
 import { IoCloseOutline } from 'react-icons/io5';
-import { Avatar, AvatarGroup } from './ui/avatar';
 
 import {
   DialogBody,
@@ -164,18 +169,14 @@ const Player = ({ audioId }) => {
             </DialogCloseTrigger>
           </DialogHeader>
           <DialogBody>
-            <Avatar
-              name={station.title}
-              shape="rounded"
-              src={station.img}
+            <Image
+              src={station.img || createAvatarUrl(station.title)}
               alt={station.title}
-              colorPalette={pickPalette(station.title)}
               width={avatarDimensions.width}
               height={avatarDimensions.height}
-              onStatusChange={(e) => {
-                if (e.status === 'error') {
-                  setAvatarDimensions({ width: '100%', height: '512px' });
-                }
+              borderRadius="lg"
+              onError={(e) => {
+                e.target.src = createAvatarUrl(station.title);
               }}
             />
           </DialogBody>
@@ -186,21 +187,23 @@ const Player = ({ audioId }) => {
         display="flex"
         justifyContent="center"
         position="relative"
-        width="250px" // Match Avatar width
-        margin="0 auto" // Center the box
+        width="250px"
+        margin="0 auto"
         mb="1em"
       >
-        <Avatar
-          src={station.img}
-          shape="rounded"
+        <Image
+          src={station.img || createAvatarUrl(station.title)}
+          alt={station.title}
           width="250px"
           height="250px"
-          name={station.title}
+          borderRadius="lg"
           cursor="pointer"
           onClick={() =>
             setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
           }
-          colorPalette={pickPalette(station.title)}
+          onError={(e) => {
+            e.target.src = createAvatarUrl(station.title);
+          }}
         />
         <Box position="absolute" right="-1em" bottom="-1em">
           <Share />

@@ -11,22 +11,15 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { InputGroup, InputRightElement } from '@chakra-ui/input';
-import { generateUUID, encodeUrl, decodeUrl } from '../utils'; // Import necessary utilities
+import { generateUUID, encodeUrl, decodeUrl, createAvatarUrl } from '../utils'; // Update imports
 import s from '../stations.json';
 import _ from 'lodash';
 import { IoCloseOutline } from 'react-icons/io5';
-import { Avatar, AvatarGroup } from './ui/avatar';
 
 const stations = _.uniqBy(s, 'title');
 
 // Move StationRow outside and memoize it
 const StationRow = React.memo(({ station }) => {
-  const colorPalette = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
-  const pickPalette = (name) => {
-    const index = name.charCodeAt(0) % colorPalette.length;
-    return colorPalette[index];
-  };
-
   return (
     <Box
       as="a"
@@ -43,13 +36,15 @@ const StationRow = React.memo(({ station }) => {
         cursor: 'pointer',
       }}
     >
-      <Avatar
-        colorPalette={pickPalette(station.title)}
-        src={station.img}
-        name={station.title}
-        shape="rounded"
+      <Image
+        src={station.img || createAvatarUrl(station.title)}
+        onError={(e) => {
+          e.target.src = createAvatarUrl(station.title);
+        }}
+        borderRadius="md"
         boxSize="150px"
         alt={station.title}
+        objectFit="cover"
       />
       <Text
         overflow="hidden"
@@ -151,12 +146,6 @@ const StationGroupRow = React.memo(
 // New SearchResults component
 const SearchResults = React.memo(
   ({ stations, searchTerm }) => {
-    const colorPalette = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
-    const pickPalette = (name) => {
-      const index = name.charCodeAt(0) % colorPalette.length;
-      return colorPalette[index];
-    };
-
     const [visibleItems, setVisibleItems] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
     const containerRef = useRef(null);
@@ -237,13 +226,15 @@ const SearchResults = React.memo(
                   textOverflow="ellipsis"
                   maxW="100%"
                 >
-                  <Avatar
-                    src={station.img}
-                    name={station.title}
-                    shape="rounded"
+                  <Image
+                    src={station.img || createAvatarUrl(station.title)}
+                    onError={(e) => {
+                      e.target.src = createAvatarUrl(station.title);
+                    }}
+                    borderRadius="md"
                     boxSize="80px"
                     alt={station.title}
-                    colorPalette={pickPalette(station.title)}
+                    objectFit="cover"
                   />
                   <Box>
                     <Text fontSize="lg" fontWeight="bold">
