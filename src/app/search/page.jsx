@@ -1,5 +1,10 @@
-import HomeClient from '@/components/HomeClient';
+import { Suspense } from 'react';
+import StationSearch from '@/components/StationSearch';
 
 export default function SearchPage() {
-  return <HomeClient />;
+  return (
+    <Suspense>
+      <StationSearch />
+    </Suspense>
+  );
 }
