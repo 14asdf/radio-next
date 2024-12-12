@@ -57,8 +57,8 @@ const HomeClient = ({ initialId }) => {
           flex="1"
           overflow="auto"
           pb="4"
-          pl={{ base: '6', md: '14' }}
-          pr={{ base: '6', md: '14' }}
+          pl={{ base: '4', md: '14' }}
+          pr={{ base: '4', md: '14' }}
           pt={audioId ? 4 : 0}
           justifyContent="center"
         >

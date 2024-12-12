@@ -111,42 +111,6 @@ const Player = ({ audioId }) => {
       }
     }
   };
-  const colorPalette = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
-
-  const pickPalette = (name) => {
-    const index = name.charCodeAt(0) % colorPalette.length;
-    return colorPalette[index];
-  };
-
-  const badges = React.useMemo(() => {
-    return station.tags.split(',').map((tag) => {
-      let color;
-      if (usedColors.current.size === 9) {
-        usedColors.current.clear(); // Reset the used colors
-      }
-      do {
-        color = [
-          'red',
-          'orange',
-          'yellow',
-          'green',
-          'teal',
-          'blue',
-          'cyan',
-          'purple',
-          'pink',
-        ][Math.floor(Math.random() * 9)];
-      } while (usedColors.current.has(color));
-
-      usedColors.current.add(color);
-
-      return (
-        <Badge key={tag} colorPalette={color} borderRadius="full">
-          {tag.trim()}
-        </Badge>
-      );
-    });
-  }, [station.tags]);
 
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -268,19 +232,23 @@ const Player = ({ audioId }) => {
         </Box>
       </Box>
       <Box position="relative">
-        <Stack
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          direction="row"
-          maxW="100%"
-          spacing={2}
-          maxH="80px"
-          overflowX="auto"
-          flexWrap="nowrap"
-        >
-          {badges}
-        </Stack>
+        <Box display="flex" gap="2" justifyContent="center">
+          {station.tags
+            .split(',')
+            .filter((tag) => tag.trim().length <= 10)
+            .slice(0, 3)
+            .map((tag) => (
+              <Badge
+                key={tag}
+                colorScheme="gray"
+                variant="subtle"
+                fontSize="xs"
+                borderRadius="full"
+              >
+                {tag.trim()}
+              </Badge>
+            ))}
+        </Box>
 
         <audio
           ref={audioRef}

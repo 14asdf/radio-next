@@ -236,16 +236,20 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
         </Text>
         {station.tags && (
           <Box display="flex" gap="2" mt={2}>
-            {station.tags.split(',').map((tag) => (
-              <Badge
-                key={tag}
-                colorScheme="gray"
-                variant="subtle"
-                rounded={'full'}
-              >
-                {tag.trim()}
-              </Badge>
-            ))}
+            {station.tags
+              .split(',')
+              .filter((tag) => tag.trim().length <= 10)
+              .slice(0, 3)
+              .map((tag) => (
+                <Badge
+                  key={tag}
+                  colorScheme="gray"
+                  variant="subtle"
+                  rounded={'full'}
+                >
+                  {tag.trim()}
+                </Badge>
+              ))}
           </Box>
         )}
       </Box>
