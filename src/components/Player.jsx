@@ -153,6 +153,23 @@ const Player = ({ audioId }) => {
     });
   }, [station.tags]);
 
+  const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
+
+  useEffect(() => {
+    if (station?.img) {
+      const img = new window.Image();
+      img.src = station.img;
+      img.onerror = () => {
+        setImgSrc(createAvatarUrl(station.title));
+      };
+      img.onload = () => {
+        setImgSrc(station.img);
+      };
+    } else {
+      setImgSrc(createAvatarUrl(station.title));
+    }
+  }, [station]);
+
   return (
     <>
       <DialogRoot
@@ -170,14 +187,15 @@ const Player = ({ audioId }) => {
           </DialogHeader>
           <DialogBody>
             <Image
-              src={station.img || createAvatarUrl(station.title)}
+              src={imgSrc}
               alt={station.title}
-              width={avatarDimensions.width}
-              height={avatarDimensions.height}
+              width="100%"
+              height="auto"
               borderRadius="lg"
-              onError={(e) => {
-                e.target.src = createAvatarUrl(station.title);
-              }}
+              cursor="pointer"
+              onClick={() =>
+                setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
+              }
             />
           </DialogBody>
         </DialogContent>
@@ -192,7 +210,7 @@ const Player = ({ audioId }) => {
         mb="1em"
       >
         <Image
-          src={station.img || createAvatarUrl(station.title)}
+          src={imgSrc}
           alt={station.title}
           width="250px"
           height="250px"
@@ -201,9 +219,6 @@ const Player = ({ audioId }) => {
           onClick={() =>
             setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
           }
-          onError={(e) => {
-            e.target.src = createAvatarUrl(station.title);
-          }}
         />
         <Box position="absolute" right="-1em" bottom="-1em">
           <Share />
