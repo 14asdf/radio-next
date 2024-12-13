@@ -10,6 +10,7 @@ import {
   Button,
   Badge,
   Image,
+  Tabs,
 } from '@chakra-ui/react';
 import {
   InputGroup,
@@ -106,24 +107,30 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
 
 // Update the SearchResults component to use StationSearchRow
 const SearchResults = React.memo(
-  ({ stations, searchTerm }) => {
+  ({ stations, searchTerm, searchType }) => {
     const [visibleItems, setVisibleItems] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
     const containerRef = useRef(null);
 
     const searchTermLower = searchTerm.toLowerCase().trim();
 
-    const filteredStations = React.useMemo(
-      () =>
-        searchTerm
-          ? stations.filter(
-              (station) =>
-                station.title.toLowerCase().includes(searchTermLower) ||
-                station.tags?.toLowerCase().includes(searchTermLower)
-            )
-          : [],
-      [stations, searchTermLower]
-    );
+    const filteredStations = React.useMemo(() => {
+      if (!searchTerm) return [];
+
+      return stations.filter((station) => {
+        switch (searchType) {
+          case 'name':
+            return station.title.toLowerCase().includes(searchTermLower);
+          case 'genre':
+            return station.tags?.toLowerCase().includes(searchTermLower);
+          default: // 'all'
+            return (
+              station.title.toLowerCase().includes(searchTermLower) ||
+              station.tags?.toLowerCase().includes(searchTermLower)
+            );
+        }
+      });
+    }, [stations, searchTermLower, searchType]);
 
     const handleLoadMore = useCallback(() => {
       if (!isLoading && filteredStations.length > visibleItems) {
@@ -169,7 +176,13 @@ const SearchResults = React.memo(
       <Box key={searchTerm} ref={containerRef}>
         {!searchTerm ? null : filteredStations.length === 0 ? (
           <Text fontSize={25} textAlign="center" mt={4}>
-            No stations found for "{searchTerm}"
+            No{' '}
+            {searchType === 'all'
+              ? 'stations'
+              : searchType === 'name'
+              ? 'station names'
+              : 'genres'}{' '}
+            found for "{searchTerm}"
           </Text>
         ) : (
           <>
@@ -209,21 +222,19 @@ const SearchResults = React.memo(
     );
   },
   (prevProps, nextProps) => {
-    // Custom comparison function to ensure re-render on searchTerm change
+    // Update memo comparison to include searchType
     return (
       prevProps.searchTerm === nextProps.searchTerm &&
-      prevProps.stations === nextProps.stations
+      prevProps.stations === nextProps.stations &&
+      prevProps.searchType === nextProps.searchType
     );
   }
 );
 
 const StationSearch = ({ stations }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [visibleItems, setVisibleItems] = useState(10);
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchType, setSearchType] = useState('all');
   const containerRef = useRef(null);
-
-  // ... copy the SearchResults logic here ...
 
   return (
     <Box mx="auto" ref={containerRef}>
@@ -264,9 +275,62 @@ const StationSearch = ({ stations }) => {
             </InputRightElement>
           )}
         </InputGroup>
+
+        <Tabs.Root
+          defaultValue={searchType}
+          onValueChange={(e) => setSearchType(e.value)}
+          mt={4}
+          style={{ width: '100%' }}
+        >
+          <Tabs.List
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Tabs.Trigger
+              value="all"
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              All
+            </Tabs.Trigger>
+            <Tabs.Trigger
+              value="name"
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              Name
+            </Tabs.Trigger>
+            <Tabs.Trigger
+              value="genre"
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              Genre
+            </Tabs.Trigger>
+          </Tabs.List>
+        </Tabs.Root>
       </Box>
 
-      <SearchResults stations={stations} searchTerm={searchTerm} />
+      <SearchResults
+        stations={stations}
+        searchTerm={searchTerm}
+        searchType={searchType}
+      />
     </Box>
   );
 };

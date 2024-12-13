@@ -8,6 +8,7 @@ import {
   IconButton,
   HStack,
   Spinner,
+  Separator,
 } from '@chakra-ui/react';
 import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
@@ -49,13 +50,10 @@ const MiniPlayer = ({ audioId }) => {
   }, [station]);
 
   return (
-    <Box borderTop="1px solid" borderColor="gray.200" p={2}>
-      <HStack spacing={4} justify="space-between" align="center" px={4}>
-        <HStack
-          spacing={3}
-          as={Link}
-          href={`/?id=${encodeUrl(station.streamUrl)}`}
-        >
+    <Box>
+      <Separator mb="2" />
+      <HStack justify="space-between" align="center" mb="2">
+        <HStack as={Link} href={`/?id=${encodeUrl(station.streamUrl)}`}>
           {isLoading ? (
             <Box
               display="flex"
@@ -88,14 +86,17 @@ const MiniPlayer = ({ audioId }) => {
           </Text>
         </HStack>
 
-        <Box
+        <IconButton
+          variant="subtle"
+          colorPalette="yellow"
+          borderRadius="full"
           aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
           onClick={() => togglePlay(audioId)}
           size="sm"
           cursor="pointer"
         >
           {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
-        </Box>
+        </IconButton>
       </HStack>
     </Box>
   );
