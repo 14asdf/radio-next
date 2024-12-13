@@ -1,34 +1,42 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState, useRef } from "react";
-import { Box, Image, Text, IconButton, Separator, Badge, Stack, HStack, Spinner } from "@chakra-ui/react";
-import { IoPlayOutline } from "react-icons/io5";
-import { IoPauseOutline } from "react-icons/io5";
-import { IoPlayBackOutline, IoPlayForwardOutline } from "react-icons/io5";
-
-import { encodeUrl, decodeUrl, findStation, generateUUID, createAvatarUrl } from "../utils"; // Assuming utility functions are in utils.js
-import Share from "./Share";
-import s from "../stations.json";
-import _ from "lodash";
-import { IoCloseOutline } from "react-icons/io5";
+import React, { useEffect, useState, useRef } from 'react';
+import {
+  Box,
+  Image,
+  Text,
+  IconButton,
+  Separator,
+  Badge,
+  Stack,
+  HStack,
+  Spinner,
+} from '@chakra-ui/react';
+import { IoPlayOutline } from 'react-icons/io5';
+import { IoPauseOutline } from 'react-icons/io5';
+import { IoPlayBackOutline, IoPlayForwardOutline } from 'react-icons/io5';
 
 import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "./ui/dialog";
+  encodeUrl,
+  decodeUrl,
+  findStation,
+  generateUUID,
+  createAvatarUrl,
+} from '../utils'; // Assuming utility functions are in utils.js
+import Share from './Share';
+import s from '../stations.json';
+import _ from 'lodash';
 
-const stations = _.uniqBy(s, "title");
+import PlayerDialog from './PlayerDialog';
+
+const stations = _.uniqBy(s, 'title');
 
 const Player = ({ audioId }) => {
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
-  const station = React.useMemo(() => (audioSrc ? findStation(audioId, stations) : null), [audioId, audioSrc]);
-  const usedColors = React.useRef(new Set());
+  const station = React.useMemo(
+    () => (audioSrc ? findStation(audioId, stations) : null),
+    [audioId, audioSrc]
+  );
 
   const [playerState, setPlayerState] = React.useState({
     isDialogOpen: false,
@@ -38,12 +46,12 @@ const Player = ({ audioId }) => {
   const audioRef = useRef(null);
 
   const currentIndex = React.useMemo(() => {
-    return stations.findIndex(s => decodeUrl(audioId) === s.streamUrl);
+    return stations.findIndex((s) => decodeUrl(audioId) === s.streamUrl);
   }, [audioId]);
 
-  const navigate = direction => {
+  const navigate = (direction) => {
     let newIndex = currentIndex;
-    if (direction === "next") {
+    if (direction === 'next') {
       newIndex = (currentIndex + 1) % stations.length;
     } else {
       newIndex = (currentIndex - 1 + stations.length) % stations.length;
@@ -54,20 +62,20 @@ const Player = ({ audioId }) => {
   };
 
   const handlePlay = React.useCallback(() => {
-    setPlayerState(prev => ({ ...prev, isPlaying: true }));
+    setPlayerState((prev) => ({ ...prev, isPlaying: true }));
 
-    if ("mediaSession" in navigator) {
+    if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: station.title,
-        artist: "Online Radio",
-        album: "Live Streaming",
+        artist: 'Online Radio',
+        album: 'Live Streaming',
         artwork: [
           {
             src:
               station.img ||
-              "https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album",
-            sizes: "512x512",
-            type: "image/png",
+              'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album',
+            sizes: '512x512',
+            type: 'image/png',
           },
         ],
       });
@@ -75,12 +83,12 @@ const Player = ({ audioId }) => {
   }, [station]);
 
   const handlePause = () => {
-    setPlayerState(prev => ({ ...prev, isPlaying: false }));
+    setPlayerState((prev) => ({ ...prev, isPlaying: false }));
   };
 
-  const handleError = React.useCallback(e => {
-    console.error("Audio playback error:", e);
-    setPlayerState(prev => ({ ...prev, isPlaying: false }));
+  const handleError = React.useCallback((e) => {
+    console.error('Audio playback error:', e);
+    setPlayerState((prev) => ({ ...prev, isPlaying: false }));
   }, []);
 
   const togglePlay = () => {
@@ -93,7 +101,7 @@ const Player = ({ audioId }) => {
     }
   };
 
-  const [imgSrc, setImgSrc] = useState("");
+  const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -117,116 +125,132 @@ const Player = ({ audioId }) => {
 
   return (
     <>
-      <DialogRoot open={playerState.isDialogOpen} onOpenChange={e => setPlayerState(prev => ({ ...prev, isDialogOpen: e.open }))}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle _dark={{ color: "#fff" }}>{station.title}</DialogTitle>
-            <DialogCloseTrigger>
-              <IoCloseOutline />
-            </DialogCloseTrigger>
-          </DialogHeader>
-          <DialogBody>
-            {isLoading ? (
-              <Box display='flex' justifyContent='center' alignItems='center' width='100%' height='250px'>
-                <Spinner size='md' color='gray.500' />
-              </Box>
-            ) : (
-              <Image
-                src={imgSrc}
-                alt={station.title}
-                width='100%'
-                height='auto'
-                borderRadius='lg'
-                cursor='pointer'
-                onClick={() => setPlayerState(prev => ({ ...prev, isDialogOpen: true }))}
-              />
-            )}
-          </DialogBody>
-        </DialogContent>
-      </DialogRoot>
+      <PlayerDialog
+        isOpen={playerState.isDialogOpen}
+        onOpenChange={(e) =>
+          setPlayerState((prev) => ({ ...prev, isDialogOpen: e.open }))
+        }
+        station={station}
+        isLoading={isLoading}
+        imgSrc={imgSrc}
+      />
 
-      <Box display='flex' justifyContent='center' position='relative' width='250px' margin='0 auto' mb='1em'>
+      <Box
+        display="flex"
+        justifyContent="center"
+        position="relative"
+        width="250px"
+        margin="0 auto"
+        mb="1em"
+      >
         {isLoading ? (
-          <Box display='flex' justifyContent='center' alignItems='center' width='250px' height='250px'>
-            <Spinner size='md' color='gray.500' />
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            width="250px"
+            height="250px"
+          >
+            <Spinner size="md" color="gray.500" />
           </Box>
         ) : (
           <Image
             src={imgSrc}
             alt={station.title}
-            width='250px'
-            height='250px'
-            borderRadius='lg'
-            cursor='pointer'
-            onClick={() => setPlayerState(prev => ({ ...prev, isDialogOpen: true }))}
+            width="250px"
+            height="250px"
+            borderRadius="lg"
+            cursor="pointer"
+            onClick={() =>
+              setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
+            }
           />
         )}
-        <Box position='absolute' right='-1em' bottom='-1em'>
+        <Box position="absolute" right="-1em" bottom="-1em">
           <Share />
         </Box>
       </Box>
-      <Box display='flex' justifyContent='center' alignItems='center' marginBottom='1em'>
-        <Box display='inline-flex' alignItems='center'>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        marginBottom="1em"
+      >
+        <Box display="inline-flex" alignItems="center">
           <Text
-            fontSize='xl'
-            fontWeight='bold'
-            overflow='hidden'
-            textOverflow='ellipsis'
-            textWrap='nowrap'
-            maxW={{ base: "250px", md: "400px" }}
+            fontSize="xl"
+            fontWeight="bold"
+            overflow="hidden"
+            textOverflow="ellipsis"
+            textWrap="nowrap"
+            maxW={{ base: '250px', md: '400px' }}
           >
             {station.title}
           </Text>
         </Box>
       </Box>
-      <Box position='relative'>
-        <Box display='flex' gap='2' justifyContent='center'>
+      <Box position="relative">
+        <Box display="flex" gap="2" justifyContent="center">
           {station.tags
-            .split(",")
-            .filter(tag => tag.trim().length <= 10)
+            .split(',')
+            .filter((tag) => tag.trim().length <= 10)
             .slice(0, 3)
-            .map(tag => (
-              <Badge key={tag} colorScheme='gray' variant='subtle' fontSize='xs' borderRadius='full' p={2} fontWeight='bold'>
+            .map((tag) => (
+              <Badge
+                key={tag}
+                colorScheme="gray"
+                variant="subtle"
+                fontSize="xs"
+                borderRadius="full"
+                p={2}
+                fontWeight="bold"
+              >
                 {tag.trim()}
               </Badge>
             ))}
         </Box>
 
-        <audio ref={audioRef} src={audioSrc} onPlay={handlePlay} onPause={handlePause} onError={handleError} />
+        <audio
+          ref={audioRef}
+          src={audioSrc}
+          onPlay={handlePlay}
+          onPause={handlePause}
+          onError={handleError}
+        />
 
-        <Box display='flex' justifyContent='center' marginTop='1em'>
+        <Box display="flex" justifyContent="center" marginTop="1em">
           <HStack spacing={4}>
             <IconButton
-              aria-label='Previous'
-              as='a'
-              href={navigate("prev")}
-              variant='subtle'
-              colorPalette='yellow'
-              boxSize={{ base: "40px", md: "60px" }}
-              rounded={"full"}
+              aria-label="Previous"
+              as="a"
+              href={navigate('prev')}
+              variant="subtle"
+              colorPalette="yellow"
+              boxSize={{ base: '40px', md: '60px' }}
+              rounded={'full'}
             >
               <IoPlayBackOutline />
             </IconButton>
 
             <IconButton
-              aria-label={playerState.isPlaying ? "Pause" : "Play"}
+              aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
               onClick={togglePlay}
-              variant='subtle'
-              colorPalette='yellow'
-              boxSize={{ base: "60px", md: "80px" }}
-              rounded={"full"}
+              variant="subtle"
+              colorPalette="yellow"
+              boxSize={{ base: '60px', md: '80px' }}
+              rounded={'full'}
             >
               {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
             </IconButton>
 
             <IconButton
-              aria-label='Next'
-              as='a'
-              href={navigate("next")}
-              variant='subtle'
-              colorPalette='yellow'
-              boxSize={{ base: "40px", md: "60px" }}
-              rounded={"full"}
+              aria-label="Next"
+              as="a"
+              href={navigate('next')}
+              variant="subtle"
+              colorPalette="yellow"
+              boxSize={{ base: '40px', md: '60px' }}
+              rounded={'full'}
             >
               <IoPlayForwardOutline />
             </IconButton>
