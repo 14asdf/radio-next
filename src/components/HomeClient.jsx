@@ -21,7 +21,13 @@ import s from '../stations.json';
 import _ from 'lodash';
 const stations = _.uniqBy(s, 'title');
 
+import { useAudioPlayer } from '../contexts/AudioPlayerContext';
+import MiniPlayer from './MiniPlayer';
+
 const HomeClient = ({ initialId }) => {
+  const { playerState, togglePlay } = useAudioPlayer();
+  const { isPlaying, currentStation } = playerState;
+
   const searchParams = useSearchParams();
 
   const pathname = usePathname();
@@ -70,6 +76,7 @@ const HomeClient = ({ initialId }) => {
 
         {/* Footer */}
         <Box as="footer" p={4} borderTopWidth="0">
+          {isPlaying && <MiniPlayer audioId={audioId} />}
           <Box
             display="flex"
             justifyContent="space-between"

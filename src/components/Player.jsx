@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Image,
@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react';
 import { IoPlayOutline } from 'react-icons/io5';
 import { IoPauseOutline } from 'react-icons/io5';
-import { IoPlayBackOutline, IoPlayForwardOutline } from 'react-icons/io5';
 
 import {
   encodeUrl,
@@ -28,81 +27,21 @@ import s from '../stations.json';
 import _ from 'lodash';
 
 import PlayerDialog from './PlayerDialog';
+import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 
 const stations = _.uniqBy(s, 'title');
 
 const Player = ({ audioId }) => {
+  const { playerState, togglePlay } = useAudioPlayer();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [imgSrc, setImgSrc] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
   const station = React.useMemo(
     () => (audioSrc ? findStation(audioId, stations) : null),
     [audioId, audioSrc]
   );
-
-  const [playerState, setPlayerState] = React.useState({
-    isDialogOpen: false,
-    isPlaying: false,
-  });
-
-  const audioRef = useRef(null);
-
-  const currentIndex = React.useMemo(() => {
-    return stations.findIndex((s) => decodeUrl(audioId) === s.streamUrl);
-  }, [audioId]);
-
-  const navigate = (direction) => {
-    let newIndex = currentIndex;
-    if (direction === 'next') {
-      newIndex = (currentIndex + 1) % stations.length;
-    } else {
-      newIndex = (currentIndex - 1 + stations.length) % stations.length;
-    }
-    const newStation = stations[newIndex];
-
-    return `/?id=${encodeUrl(newStation.streamUrl)}`;
-  };
-
-  const handlePlay = React.useCallback(() => {
-    setPlayerState((prev) => ({ ...prev, isPlaying: true }));
-
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: station.title,
-        artist: 'Online Radio',
-        album: 'Live Streaming',
-        artwork: [
-          {
-            src:
-              station.img ||
-              'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      });
-    }
-  }, [station]);
-
-  const handlePause = () => {
-    setPlayerState((prev) => ({ ...prev, isPlaying: false }));
-  };
-
-  const handleError = React.useCallback((e) => {
-    console.error('Audio playback error:', e);
-    setPlayerState((prev) => ({ ...prev, isPlaying: false }));
-  }, []);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (playerState.isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-    }
-  };
-
-  const [imgSrc, setImgSrc] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -126,10 +65,8 @@ const Player = ({ audioId }) => {
   return (
     <>
       <PlayerDialog
-        isOpen={playerState.isDialogOpen}
-        onOpenChange={(e) =>
-          setPlayerState((prev) => ({ ...prev, isDialogOpen: e.open }))
-        }
+        isOpen={isDialogOpen}
+        onOpenChange={(e) => setIsDialogOpen(e.open)}
         station={station}
         isLoading={isLoading}
         imgSrc={imgSrc}
@@ -161,9 +98,7 @@ const Player = ({ audioId }) => {
             height="250px"
             borderRadius="lg"
             cursor="pointer"
-            onClick={() =>
-              setPlayerState((prev) => ({ ...prev, isDialogOpen: true }))
-            }
+            onClick={() => setIsDialogOpen(true)}
           />
         )}
         <Box position="absolute" right="-1em" bottom="-1em">
@@ -210,51 +145,17 @@ const Player = ({ audioId }) => {
             ))}
         </Box>
 
-        <audio
-          ref={audioRef}
-          src={audioSrc}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onError={handleError}
-        />
-
         <Box display="flex" justifyContent="center" marginTop="1em">
-          <HStack spacing={4}>
-            <IconButton
-              aria-label="Previous"
-              as="a"
-              href={navigate('prev')}
-              variant="subtle"
-              colorPalette="yellow"
-              boxSize={{ base: '40px', md: '60px' }}
-              rounded={'full'}
-            >
-              <IoPlayBackOutline />
-            </IconButton>
-
-            <IconButton
-              aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
-              onClick={togglePlay}
-              variant="subtle"
-              colorPalette="yellow"
-              boxSize={{ base: '60px', md: '80px' }}
-              rounded={'full'}
-            >
-              {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
-            </IconButton>
-
-            <IconButton
-              aria-label="Next"
-              as="a"
-              href={navigate('next')}
-              variant="subtle"
-              colorPalette="yellow"
-              boxSize={{ base: '40px', md: '60px' }}
-              rounded={'full'}
-            >
-              <IoPlayForwardOutline />
-            </IconButton>
-          </HStack>
+          <IconButton
+            aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
+            onClick={() => togglePlay(audioId)}
+            variant="subtle"
+            colorPalette="yellow"
+            boxSize={{ base: '60px', md: '80px' }}
+            rounded={'full'}
+          >
+            {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+          </IconButton>
         </Box>
       </Box>
     </>

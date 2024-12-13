@@ -1,4 +1,5 @@
 import { Provider } from '../components/ui/provider';
+import { AudioPlayerProvider } from '../contexts/AudioPlayerContext';
 
 // Static viewport configuration
 export const viewport = {
@@ -24,7 +25,9 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body>
         <div id="root">
-          <Provider>{children}</Provider>
+          <Provider>
+            <AudioPlayerProvider>{children}</AudioPlayerProvider>
+          </Provider>
         </div>
       </body>
     </html>
