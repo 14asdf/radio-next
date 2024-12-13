@@ -19,6 +19,7 @@ import {
 import { IoCloseOutline } from 'react-icons/io5';
 import { RiSearchLine } from 'react-icons/ri';
 import { createAvatarUrl, encodeUrl } from '../utils';
+import Link from 'next/link';
 
 // Create a separate StationSearchRow component
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
@@ -47,7 +48,7 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
   return (
     <Box
       key={`${searchTerm}-${station.streamUrl}`}
-      as="a"
+      as={Link}
       href={`/?id=${encodeUrl(station.streamUrl)}`}
       display="flex"
       gap={4}

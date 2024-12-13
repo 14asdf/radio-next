@@ -15,6 +15,7 @@ import { generateUUID, encodeUrl, decodeUrl, createAvatarUrl } from '../utils'; 
 import s from '../stations.json';
 import _ from 'lodash';
 import { IoCloseOutline } from 'react-icons/io5';
+import Link from 'next/link';
 
 const stations = _.uniqBy(s, 'title');
 
@@ -44,7 +45,7 @@ const StationRow = React.memo(({ station }) => {
 
   return (
     <Box
-      as="a"
+      as={Link}
       href={`/?id=${encodeUrl(station.streamUrl)}`}
       display="flex"
       flexDirection="column"

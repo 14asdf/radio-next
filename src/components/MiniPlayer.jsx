@@ -83,15 +83,14 @@ const MiniPlayer = ({ audioId }) => {
           </Text>
         </HStack>
 
-        <IconButton
+        <Box
           aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
           onClick={() => togglePlay(audioId)}
           size="sm"
-          variant="subtle"
-          colorPalette="yellow"
+          cursor="pointer"
         >
           {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
-        </IconButton>
+        </Box>
       </HStack>
     </Box>
   );

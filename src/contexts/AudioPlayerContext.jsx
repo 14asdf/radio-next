@@ -19,7 +19,9 @@ export function AudioPlayerProvider({ children }) {
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     currentStation: null,
+    showMiniPlayer: false,
   });
+
   const audioRef = useRef(null);
 
   const handlePlay = useCallback((station) => {
@@ -65,11 +67,17 @@ export function AudioPlayerProvider({ children }) {
     }
   };
 
+  const showMiniPlayer = (audioId) => {
+    console.log(audioId);
+    setPlayerState((prev) => ({ ...prev, showMiniPlayer: audioId }));
+  };
+
   return (
     <AudioPlayerContext.Provider
       value={{
         playerState,
         togglePlay,
+        showMiniPlayer,
         audioRef,
         stations,
       }}

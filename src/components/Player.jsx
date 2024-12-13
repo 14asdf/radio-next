@@ -32,7 +32,7 @@ import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 const stations = _.uniqBy(s, 'title');
 
 const Player = ({ audioId }) => {
-  const { playerState, togglePlay } = useAudioPlayer();
+  const { playerState, togglePlay, showMiniPlayer } = useAudioPlayer();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -148,7 +148,11 @@ const Player = ({ audioId }) => {
         <Box display="flex" justifyContent="center" marginTop="1em">
           <IconButton
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
-            onClick={() => togglePlay(audioId)}
+            onClick={() => {
+              togglePlay(audioId);
+              console.warn(audioId);
+              showMiniPlayer(audioId);
+            }}
             variant="subtle"
             colorPalette="yellow"
             boxSize={{ base: '60px', md: '80px' }}

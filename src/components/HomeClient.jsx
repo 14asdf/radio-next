@@ -26,12 +26,13 @@ import MiniPlayer from './MiniPlayer';
 
 const HomeClient = ({ initialId }) => {
   const { playerState, togglePlay } = useAudioPlayer();
-  const { isPlaying, currentStation } = playerState;
+  const { isPlaying, currentStation, showMiniPlayer } = playerState;
 
   const searchParams = useSearchParams();
 
   const pathname = usePathname();
   const audioId = searchParams.get('id');
+  console.log(audioId);
 
   return (
     <>
@@ -76,7 +77,7 @@ const HomeClient = ({ initialId }) => {
 
         {/* Footer */}
         <Box as="footer" p={4} borderTopWidth="0">
-          {isPlaying && <MiniPlayer audioId={audioId} />}
+          {showMiniPlayer && <MiniPlayer audioId={showMiniPlayer} />}
           <Box
             display="flex"
             justifyContent="space-between"
