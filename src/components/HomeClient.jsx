@@ -32,7 +32,6 @@ const HomeClient = ({ initialId }) => {
 
   const pathname = usePathname();
   const audioId = searchParams.get('id');
-  console.log(audioId);
 
   return (
     <>

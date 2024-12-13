@@ -37,8 +37,6 @@ const Player = ({ audioId }) => {
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(audioId);
-
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
   const station = React.useMemo(
     () => (audioSrc ? findStation(audioId, stations) : null),
@@ -149,11 +147,7 @@ const Player = ({ audioId }) => {
 
         <Box display="flex" justifyContent="center" marginTop="1em">
           <IconButton
-            aria-label={
-              playerState.isPlaying && playerState.showMiniPlayer === audioId
-                ? 'Pause'
-                : 'Play'
-            }
+            aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => {
               togglePlay(audioId);
               !playerState.isPlaying && showMiniPlayer(audioId);
@@ -163,7 +157,11 @@ const Player = ({ audioId }) => {
             boxSize={{ base: '60px', md: '80px' }}
             rounded={'full'}
           >
-            {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+            {playerState.isPlaying && playerState.showMiniPlayer === audioId ? (
+              <IoPauseOutline />
+            ) : (
+              <IoPlayOutline />
+            )}
           </IconButton>
         </Box>
       </Box>
