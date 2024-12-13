@@ -48,7 +48,7 @@ const MiniPlayer = ({ audioId }) => {
   }, [station]);
 
   return (
-    <Box bg="white" borderTop="1px solid" borderColor="gray.200" p={2}>
+    <Box borderTop="1px solid" borderColor="gray.200" p={2}>
       <HStack spacing={4} justify="space-between" align="center" px={4}>
         <HStack spacing={3}>
           {isLoading ? (

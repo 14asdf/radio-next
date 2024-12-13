@@ -68,7 +68,6 @@ export function AudioPlayerProvider({ children }) {
   };
 
   const showMiniPlayer = (audioId) => {
-    console.log(audioId);
     setPlayerState((prev) => ({ ...prev, showMiniPlayer: audioId }));
   };
 
