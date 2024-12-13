@@ -53,16 +53,26 @@ export function AudioPlayerProvider({ children }) {
     setPlayerState((prev) => ({ ...prev, isPlaying: false }));
   };
 
-  const togglePlay = (audioId) => {
+  const togglePlay = (audioId, forceAction) => {
     const audioSrc = decodeUrl(audioId);
     const station = findStation(audioId, stations);
 
-    if (audioRef.current) {
-      if (playerState.isPlaying) {
+    if (forceAction) {
+      if (audioRef.current) {
         audioRef.current.pause();
-      } else {
         audioRef.current.src = audioSrc;
         audioRef.current.play();
+        handlePlay(station);
+        showMiniPlayer(audioId);
+      }
+    } else {
+      if (audioRef.current) {
+        if (playerState.isPlaying) {
+          audioRef.current.pause();
+        } else {
+          audioRef.current.src = audioSrc;
+          audioRef.current.play();
+        }
       }
     }
   };

@@ -149,7 +149,7 @@ const Player = ({ audioId }) => {
           <IconButton
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => {
-              togglePlay(audioId);
+              togglePlay(audioId, playerState.showMiniPlayer !== audioId);
               !playerState.isPlaying && showMiniPlayer(audioId);
             }}
             variant="subtle"
