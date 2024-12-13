@@ -13,7 +13,8 @@ import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import s from '../stations.json';
 import _ from 'lodash';
-import { createAvatarUrl, decodeUrl, findStation } from '@/utils';
+import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
+import Link from 'next/link';
 
 const stations = _.uniqBy(s, 'title');
 
@@ -50,7 +51,11 @@ const MiniPlayer = ({ audioId }) => {
   return (
     <Box borderTop="1px solid" borderColor="gray.200" p={2}>
       <HStack spacing={4} justify="space-between" align="center" px={4}>
-        <HStack spacing={3}>
+        <HStack
+          spacing={3}
+          as={Link}
+          href={`/?id=${encodeUrl(station.streamUrl)}`}
+        >
           {isLoading ? (
             <Box
               display="flex"
