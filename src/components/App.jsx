@@ -106,7 +106,13 @@ const App = ({ initialId }) => {
             </Box>
 
             {/* Center Section */}
-            <Box flex="1" display="flex" justifyContent="center">
+            <Box
+              flex="1"
+              display="flex"
+              justifyContent="center"
+              as="main"
+              overflowX="hidden"
+            >
               <IconButton
                 as={Link}
                 href="/search"
