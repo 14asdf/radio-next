@@ -20,6 +20,7 @@ export function AudioPlayerProvider({ children }) {
     isPlaying: false,
     currentStation: null,
     showMiniPlayer: false,
+    volume: 1,
   });
 
   const audioRef = useRef(null);
@@ -81,6 +82,16 @@ export function AudioPlayerProvider({ children }) {
     setPlayerState((prev) => ({ ...prev, showMiniPlayer: audioId }));
   };
 
+  const handleVolumeChange = useCallback((newVolume) => {
+    // Ensure volume is a number and within valid range (0-1)
+    const validVolume = Math.min(Math.max(Number(newVolume) || 0, 0), 1);
+
+    setPlayerState((prev) => ({ ...prev, volume: validVolume }));
+    if (audioRef.current) {
+      audioRef.current.volume = validVolume;
+    }
+  }, []);
+
   return (
     <AudioPlayerContext.Provider
       value={{
@@ -89,6 +100,7 @@ export function AudioPlayerProvider({ children }) {
         showMiniPlayer,
         audioRef,
         stations,
+        handleVolumeChange,
       }}
     >
       <audio
@@ -96,6 +108,7 @@ export function AudioPlayerProvider({ children }) {
         onPlay={() => handlePlay(playerState.currentStation)}
         onPause={handlePause}
         onError={(e) => console.error('Audio playback error:', e)}
+        volume={playerState.volume}
       />
       {children}
     </AudioPlayerContext.Provider>

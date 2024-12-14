@@ -10,19 +10,31 @@ import {
   Spinner,
   Separator,
 } from '@chakra-ui/react';
-import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
+import {
+  IoPlayOutline,
+  IoPauseOutline,
+  IoVolumeHighOutline,
+} from 'react-icons/io5';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import s from '../stations.json';
 import _ from 'lodash';
 import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
 import Link from 'next/link';
+import { Slider } from '@/components/ui/slider';
+import {
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 const stations = _.uniqBy(s, 'title');
 
 const MiniPlayer = ({ audioId }) => {
-  const { playerState, togglePlay } = useAudioPlayer();
+  const { playerState, togglePlay, handleVolumeChange } = useAudioPlayer();
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [isVolumeOpen, setIsVolumeOpen] = useState(false);
 
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
   const station = React.useMemo(
@@ -48,6 +60,10 @@ const MiniPlayer = ({ audioId }) => {
       setIsLoading(false);
     }
   }, [station]);
+
+  const setVolume = (value) => {
+    handleVolumeChange(value / 100);
+  };
 
   return (
     <Box bg="gray.100" _dark={{ bg: 'gray.700' }} pr="2">
@@ -84,17 +100,54 @@ const MiniPlayer = ({ audioId }) => {
           </Text>
         </HStack>
 
-        <IconButton
-          variant="subtle"
-          colorPalette="yellow"
-          borderRadius="full"
-          aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
-          onClick={() => togglePlay(audioId)}
-          size="sm"
-          cursor="pointer"
-        >
-          {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
-        </IconButton>
+        <HStack>
+          <PopoverRoot
+            open={isVolumeOpen}
+            onOpenChange={(e) => setIsVolumeOpen(e.open)}
+          >
+            <PopoverTrigger asChild>
+              <IconButton
+                variant="subtle"
+                colorPalette="yellow"
+                borderRadius="full"
+                aria-label="Volume"
+                size="sm"
+                cursor="pointer"
+              >
+                <IoVolumeHighOutline />
+              </IconButton>
+            </PopoverTrigger>
+            <PopoverContent w="50px" h="170px">
+              <PopoverBody p="3">
+                <Box w="150px">
+                  <Slider
+                    width="25px"
+                    height="150px"
+                    defaultValue={[100]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    colorPalette="yellow"
+                    onValueChange={(e) => setVolume(e.value)}
+                    orientation="vertical"
+                  />
+                </Box>
+              </PopoverBody>
+            </PopoverContent>
+          </PopoverRoot>
+
+          <IconButton
+            variant="subtle"
+            colorPalette="yellow"
+            borderRadius="full"
+            aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
+            onClick={() => togglePlay(audioId)}
+            size="sm"
+            cursor="pointer"
+          >
+            {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+          </IconButton>
+        </HStack>
       </HStack>
     </Box>
   );
