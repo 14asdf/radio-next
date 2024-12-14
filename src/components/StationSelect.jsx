@@ -70,7 +70,7 @@ const StationGroupRow = React.memo(
             draggable: true,
             hide: false,
           }}
-          speed={100}
+          speed={600}
           onSwiper={setSwiper}
           freeMode={{
             enabled: true,
@@ -162,10 +162,7 @@ const StationGroupRow = React.memo(
           zIndex={1000}
           borderRadius="full"
           size="sm"
-          visibility={{
-            base: 'hidden',
-            md: isBeginning ? 'hidden' : 'visible',
-          }}
+          display={{ base: 'none', md: isBeginning ? 'none' : 'flex' }}
         >
           <IoChevronBackOutline />
         </IconButton>
@@ -181,7 +178,7 @@ const StationGroupRow = React.memo(
           zIndex={1000}
           borderRadius="full"
           size="sm"
-          visibility={{ base: 'hidden', md: isEnd ? 'hidden' : 'visible' }}
+          display={{ base: 'none', md: isEnd ? 'none' : 'flex' }}
         >
           <IoChevronForwardOutline />
         </IconButton>
