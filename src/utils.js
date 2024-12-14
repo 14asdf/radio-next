@@ -22,34 +22,27 @@ export const findStation = (audioSrc, stations) => {
 };
 
 export const createAvatarUrl = (title) => {
-  const initials = title
-    .split(' ')
-    .filter((word) => word.length > 0)
-    .map((word) => {
-      const match = word.match(/[\p{L}\p{N}]/u);
-      return match ? match[0] : '';
-    })
-    .join('')
-    .padEnd(1, 'X')
-    .substring(0, 2)
-    .replace(/^(.)$/, '$1')
-    .toUpperCase();
-
-  const hue = Math.abs(
+  const baseHue = Math.abs(
     title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360
   );
-  const backgroundColor = `hsl(${hue}, 70%, 60%)`;
+  const secondHue = (baseHue + 180) % 360; // Complementary color
 
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
-    <defs>
-      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:hsl(${hue}, 80%, 75%);stop-opacity:1" />
-        <stop offset="100%" style="stop-color:hsl(${hue}, 70%, 45%);stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <rect width="100" height="100" fill="url(#grad)"/>
-    <text x="50" y="50" dy="0.1em" fill="white" font-family="sans-serif" font-size="40" font-weight="bold" text-anchor="middle" dominant-baseline="middle">${initials}</text>
-  </svg>`;
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:hsl(${baseHue}, 90%, 65%)"/>
+          <stop offset="100%" style="stop-color:hsl(${secondHue}, 80%, 55%)"/>
+        </linearGradient>
+      </defs>
+      
+      <rect width="100" height="100" fill="url(#grad1)"/>
+      <text x="50" y="50" dy="0.1em" fill="white" 
+        font-family="sans-serif" font-size="40" font-weight="bold" 
+        text-anchor="middle" dominant-baseline="middle">
+        ${title.substring(0, 2).toUpperCase()}
+      </text>
+    </svg>`;
 
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 };
