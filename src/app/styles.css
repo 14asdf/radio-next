@@ -31,3 +31,11 @@ body {
   color: black;
   -webkit-font-smoothing: antialiased;
 }
+
+.swiper-scrollbar-drag {
+  background: var(--chakra-colors-gray-400);
+}
+
+.dark .swiper-scrollbar-drag {
+  background: var(--chakra-colors-gray-200);
+}

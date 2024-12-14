@@ -14,10 +14,171 @@ import { InputGroup, InputRightElement } from '@chakra-ui/input';
 import { generateUUID, encodeUrl, decodeUrl, createAvatarUrl } from '../utils'; // Update imports
 import s from '../stations.json';
 import _ from 'lodash';
-import { IoCloseOutline } from 'react-icons/io5';
+import {
+  IoCloseOutline,
+  IoChevronBackOutline,
+  IoChevronForwardOutline,
+} from 'react-icons/io5';
+// import { Link } from 'react-router-dom';
 import Link from 'next/link';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Scrollbar, A11y, FreeMode } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/scrollbar';
+import 'swiper/css/a11y';
+import 'swiper/css/free-mode';
 
 const stations = _.uniqBy(s, 'title');
+
+const StationGroupRow = React.memo(
+  ({ tag, stations, visibleItems, isLoading, onLoadMore }) => {
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+    const scrollbarRef = useRef(null);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
+
+    return (
+      <Box position="relative" overflow="visible">
+        <Swiper
+          modules={[Navigation, Scrollbar, A11y, FreeMode]}
+          spaceBetween={16}
+          slidesPerView={'auto'}
+          slidesPerGroup={5} // Add this line to skip 3 slides at a time
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          scrollbar={{
+            el: scrollbarRef.current,
+            draggable: true,
+            hide: false,
+          }}
+          freeMode={{
+            enabled: true,
+            momentum: true,
+            momentumRatio: 0.9,
+            momentumVelocityRatio: 0.5,
+            minimumVelocity: 0.5,
+            sticky: false,
+            momentumBounce: false,
+          }}
+          onBeforeInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.params.scrollbar.el = scrollbarRef.current;
+          }}
+          onProgress={(swiper, progress) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+
+            // Trigger load more when reaching 80% of the slider
+            if (swiper.progress > 0.97) {
+              onLoadMore(tag);
+            }
+          }}
+          watchSlidesProgress={true}
+          className="station-swiper"
+          style={{
+            padding: '0 1px',
+            paddingBottom: '24px',
+          }}
+          speed={400}
+        >
+          {stations.slice(0, visibleItems).map((station) => (
+            <SwiperSlide key={station.streamUrl} style={{ width: 'auto' }}>
+              <StationRow station={station} />
+            </SwiperSlide>
+          ))}
+          {stations.length > visibleItems && (
+            <SwiperSlide style={{ width: 'auto' }}>
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                minW="200px"
+                h="200px"
+                flexDirection="column"
+                gap={4}
+              >
+                {isLoading ? (
+                  <Spinner size="md" color="gray.500" />
+                ) : (
+                  <Button
+                    size="sm"
+                    colorScheme="black"
+                    borderRadius="full"
+                    onClick={() => onLoadMore(tag)}
+                  >
+                    Load More
+                  </Button>
+                )}
+              </Box>
+            </SwiperSlide>
+          )}
+        </Swiper>
+
+        {/* Custom scrollbar */}
+        <Box
+          ref={scrollbarRef}
+          position="absolute"
+          bottom="8px"
+          left="0"
+          right="0"
+          height="4px"
+          zIndex={999}
+          borderRadius={'full'}
+          background="gray.100"
+          _dark={{ background: 'gray.700' }}
+          css={{
+            '.swiper-scrollbar-drag': {
+              background: 'var(--chakra-colors-gray-300)',
+              '[data-theme="dark"] &': {
+                background: 'var(--chakra-colors-gray-600)',
+              },
+            },
+          }}
+        />
+
+        {/* Previous button */}
+        <IconButton
+          ref={prevRef}
+          aria-label="Previous"
+          position="absolute"
+          left="-20px"
+          top="50%"
+          transform="translateY(calc(-50% - 28.5px))"
+          zIndex={1000}
+          borderRadius="full"
+          size="sm"
+          visibility={{
+            base: 'hidden',
+            md: isBeginning ? 'hidden' : 'visible',
+          }}
+        >
+          <IoChevronBackOutline />
+        </IconButton>
+
+        {/* Next button */}
+        <IconButton
+          ref={nextRef}
+          aria-label="Next"
+          position="absolute"
+          right="-20px"
+          top="50%"
+          transform="translateY(calc(-50% - 28.5px))"
+          zIndex={1000}
+          borderRadius="full"
+          size="sm"
+          visibility={{ base: 'hidden', md: isEnd ? 'hidden' : 'visible' }}
+        >
+          <IoChevronForwardOutline />
+        </IconButton>
+      </Box>
+    );
+  }
+);
 
 // Move StationRow outside and memoize it
 const StationRow = React.memo(({ station }) => {
@@ -46,6 +207,7 @@ const StationRow = React.memo(({ station }) => {
   return (
     <Box
       as={Link}
+      // to={`/?id=${encodeUrl(station.streamUrl)}`}
       href={`/?id=${encodeUrl(station.streamUrl)}`}
       display="flex"
       flexDirection="column"
@@ -110,70 +272,6 @@ const StationRow = React.memo(({ station }) => {
     </Box>
   );
 });
-
-// Create a separate row component
-const StationGroupRow = React.memo(
-  ({ tag, stations, visibleItems, isLoading, onScroll, onLoadMore }) => {
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-      const container = scrollRef.current;
-      if (container) {
-        const handleScrollEvent = (e) => onScroll(e, tag, stations);
-        container.addEventListener('scroll', handleScrollEvent);
-        return () => container.removeEventListener('scroll', handleScrollEvent);
-      }
-    }, [tag, stations, onScroll]);
-
-    return (
-      <Box
-        ref={scrollRef}
-        position="relative"
-        display="flex"
-        overflowX="auto"
-        gap={4}
-        // css={{
-        //   '&::-webkit-scrollbar': { height: '8px' },
-        //   '&::-webkit-scrollbar-track': { background: 'rgba(0, 0, 0, 0.1)' },
-        //   '&::-webkit-scrollbar-thumb': {
-        //     background: 'rgba(0, 0, 0, 0.2)',
-        //     borderRadius: '4px',
-        //   },
-        // }}
-      >
-        {stations.slice(0, visibleItems).map((station) => (
-          <StationRow key={station.streamUrl} station={station} />
-        ))}
-        {stations.length > visibleItems && (
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            minW="200px"
-            h="200px"
-            flexDirection="column"
-            gap={4}
-          >
-            {isLoading ? (
-              <Spinner size="md" color="gray.500" />
-            ) : (
-              <>
-                <Button
-                  size="sm"
-                  colorScheme="black"
-                  borderRadius="full"
-                  onClick={() => onLoadMore(tag)}
-                >
-                  Load More
-                </Button>
-              </>
-            )}
-          </Box>
-        )}
-      </Box>
-    );
-  }
-);
 
 const StationSelect = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -302,12 +400,12 @@ const StationSelect = () => {
   ]);
 
   return (
-    <Box mx="auto" ref={containerRef}>
-      <Box overflow="auto">
+    <Box mx="auto" ref={containerRef} overflow="visible">
+      <Box overflow="visible">
         {groupedStations
           .slice(0, visibleGroups)
           .map(({ tag, stations }, index) => (
-            <Box key={tag} mb={6}>
+            <Box key={tag} mb={6} overflow="visible">
               <Text fontSize="2xl" mb={2} fontWeight="bold">
                 {tag.charAt(0).toUpperCase() + tag.slice(1)}
               </Text>
