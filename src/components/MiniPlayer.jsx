@@ -23,6 +23,8 @@ import s from '../stations.json';
 import _ from 'lodash';
 import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
 import Link from 'next/link';
+// import { Link } from 'react-router-dom';
+
 import { Slider } from '@/components/ui/slider';
 import {
   PopoverBody,
@@ -79,6 +81,7 @@ const MiniPlayer = ({ audioId }) => {
     <Box bg="gray.100" _dark={{ bg: 'gray.700' }} pr="2">
       <HStack justify="space-between" align="center" mb="2">
         <HStack as={Link} href={`/?id=${encodeUrl(station.streamUrl)}`}>
+          {/* <HStack as={Link} to={`/?id=${encodeUrl(station.streamUrl)}`}> */}
           {isLoading ? (
             <Box
               display="flex"
