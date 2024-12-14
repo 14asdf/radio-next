@@ -50,8 +50,7 @@ const MiniPlayer = ({ audioId }) => {
   }, [station]);
 
   return (
-    <Box>
-      <Separator mb="2" />
+    <Box bg="gray.100" _dark={{ bg: 'gray.700' }} pr="2">
       <HStack justify="space-between" align="center" mb="2">
         <HStack as={Link} href={`/?id=${encodeUrl(station.streamUrl)}`}>
           {isLoading ? (
@@ -59,8 +58,8 @@ const MiniPlayer = ({ audioId }) => {
               display="flex"
               justifyContent="center"
               alignItems="center"
-              width="40px"
-              height="40px"
+              width="60px"
+              height="60px"
             >
               <Spinner size="md" color="gray.500" />
             </Box>
@@ -68,9 +67,8 @@ const MiniPlayer = ({ audioId }) => {
             <Image
               src={imgSrc}
               alt={station.title}
-              width="40px"
-              height="40px"
-              borderRadius="md"
+              width="60px"
+              height="60px"
             />
           )}
 

@@ -77,9 +77,10 @@ const HomeClient = ({ initialId }) => {
         {/* Footer */}
         <Box
           as="footer"
-          p={4}
-          pl={{ base: '4', md: '14' }}
-          pr={{ base: '4', md: '14' }}
+          pb="1"
+          pt="1"
+          // pl={{ base: '4', md: '14' }}
+          // pr={{ base: '4', md: '14' }}
         >
           {showMiniPlayer && <MiniPlayer audioId={showMiniPlayer} />}
           <Box
