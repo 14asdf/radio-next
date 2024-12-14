@@ -14,6 +14,9 @@ import {
   IoPlayOutline,
   IoPauseOutline,
   IoVolumeHighOutline,
+  IoVolumeLowOutline,
+  IoVolumeMediumOutline,
+  IoVolumeMuteOutline,
 } from 'react-icons/io5';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import s from '../stations.json';
@@ -29,6 +32,13 @@ import {
 } from '@/components/ui/popover';
 
 const stations = _.uniqBy(s, 'title');
+
+const VolumeIcon = ({ volume }) => {
+  if (volume === 0) return <IoVolumeMuteOutline />;
+  if (volume < 0.33) return <IoVolumeLowOutline />;
+  if (volume < 0.66) return <IoVolumeMediumOutline />;
+  return <IoVolumeHighOutline />;
+};
 
 const MiniPlayer = ({ audioId }) => {
   const { playerState, togglePlay, handleVolumeChange } = useAudioPlayer();
@@ -114,7 +124,7 @@ const MiniPlayer = ({ audioId }) => {
                 size="sm"
                 cursor="pointer"
               >
-                <IoVolumeHighOutline />
+                <VolumeIcon volume={playerState.volume} />
               </IconButton>
             </PopoverTrigger>
             <PopoverContent w="50px" h="170px">
