@@ -139,7 +139,7 @@ const SearchResults = React.memo(
         setTimeout(() => {
           setVisibleItems((prev) => prev + 10);
           setIsLoading(false);
-        }, 500);
+        }, 100);
       }
     }, [isLoading, filteredStations.length, visibleItems]);
 
