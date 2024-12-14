@@ -68,6 +68,8 @@ const App = ({ initialId }) => {
           pr={{ base: '4', md: '14' }}
           pt={audioId ? 4 : 0}
           justifyContent="center"
+          overflowX="hidden"
+          as="center"
         >
           {pathname === '/' &&
             (audioId ? <Player audioId={audioId} /> : <StationSelect />)}
@@ -106,13 +108,7 @@ const App = ({ initialId }) => {
             </Box>
 
             {/* Center Section */}
-            <Box
-              flex="1"
-              display="flex"
-              justifyContent="center"
-              as="main"
-              overflowX="hidden"
-            >
+            <Box flex="1" display="flex" justifyContent="center">
               <IconButton
                 as={Link}
                 href="/search"
