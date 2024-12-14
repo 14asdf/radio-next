@@ -69,7 +69,7 @@ const App = ({ initialId }) => {
           pt={audioId ? 4 : 0}
           justifyContent="center"
           overflowX="hidden"
-          as="center"
+          as="main"
         >
           {pathname === '/' &&
             (audioId ? <Player audioId={audioId} /> : <StationSelect />)}
