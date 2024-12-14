@@ -17,6 +17,7 @@ import {
   IoVolumeLowOutline,
   IoVolumeMediumOutline,
   IoVolumeMuteOutline,
+  IoPlaySkipForwardOutline,
 } from 'react-icons/io5';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import s from '../stations.json';
@@ -75,6 +76,14 @@ const MiniPlayer = ({ audioId }) => {
 
   const setVolume = (value) => {
     handleVolumeChange(value / 100);
+  };
+
+  const handleNextTrack = () => {
+    const currentIndex = stations.findIndex((s) => s.streamUrl === audioSrc);
+    const nextIndex =
+      currentIndex === stations.length - 1 ? 0 : currentIndex + 1;
+    const nextStation = stations[nextIndex];
+    togglePlay(encodeUrl(nextStation.streamUrl), true);
   };
 
   return (
@@ -159,6 +168,18 @@ const MiniPlayer = ({ audioId }) => {
             cursor="pointer"
           >
             {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+          </IconButton>
+
+          <IconButton
+            variant="subtle"
+            colorPalette="yellow"
+            borderRadius="full"
+            aria-label="Next station"
+            onClick={handleNextTrack}
+            size="sm"
+            cursor="pointer"
+          >
+            <IoPlaySkipForwardOutline />
           </IconButton>
         </HStack>
       </HStack>

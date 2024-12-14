@@ -19,7 +19,7 @@ export function AudioPlayerProvider({ children }) {
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     currentStation: null,
-    showMiniPlayer: false,
+    stationInMiniPlayer: null,
     volume: 1,
   });
 
@@ -64,7 +64,7 @@ export function AudioPlayerProvider({ children }) {
         audioRef.current.src = audioSrc;
         audioRef.current.play();
         handlePlay(station);
-        showMiniPlayer(audioId);
+        stationInMiniPlayer(audioId);
       }
     } else {
       if (audioRef.current) {
@@ -78,8 +78,8 @@ export function AudioPlayerProvider({ children }) {
     }
   };
 
-  const showMiniPlayer = (audioId) => {
-    setPlayerState((prev) => ({ ...prev, showMiniPlayer: audioId }));
+  const stationInMiniPlayer = (audioId) => {
+    setPlayerState((prev) => ({ ...prev, stationInMiniPlayer: audioId }));
   };
 
   const handleVolumeChange = useCallback((newVolume) => {
@@ -97,7 +97,7 @@ export function AudioPlayerProvider({ children }) {
       value={{
         playerState,
         togglePlay,
-        showMiniPlayer,
+        stationInMiniPlayer,
         audioRef,
         stations,
         handleVolumeChange,

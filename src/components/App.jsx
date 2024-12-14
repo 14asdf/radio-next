@@ -26,7 +26,7 @@ import MiniPlayer from './MiniPlayer';
 
 const App = ({ initialId }) => {
   const { playerState, togglePlay } = useAudioPlayer();
-  const { isPlaying, currentStation, showMiniPlayer } = playerState;
+  const { isPlaying, currentStation, stationInMiniPlayer } = playerState;
 
   const searchParams = useSearchParams();
 
@@ -81,7 +81,7 @@ const App = ({ initialId }) => {
           // pl={{ base: '4', md: '14' }}
           // pr={{ base: '4', md: '14' }}
         >
-          {showMiniPlayer && <MiniPlayer audioId={showMiniPlayer} />}
+          {stationInMiniPlayer && <MiniPlayer audioId={stationInMiniPlayer} />}
           <Box
             display="flex"
             justifyContent="space-between"

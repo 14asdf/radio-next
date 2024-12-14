@@ -32,7 +32,7 @@ import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 const stations = _.uniqBy(s, 'title');
 
 const Player = ({ audioId }) => {
-  const { playerState, togglePlay, showMiniPlayer } = useAudioPlayer();
+  const { playerState, togglePlay, stationInMiniPlayer } = useAudioPlayer();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -149,15 +149,16 @@ const Player = ({ audioId }) => {
           <IconButton
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => {
-              togglePlay(audioId, playerState.showMiniPlayer !== audioId);
-              !playerState.isPlaying && showMiniPlayer(audioId);
+              togglePlay(audioId, playerState.stationInMiniPlayer !== audioId);
+              !playerState.isPlaying && stationInMiniPlayer(audioId);
             }}
             variant="subtle"
             colorPalette="yellow"
             boxSize={{ base: '60px', md: '80px' }}
             rounded={'full'}
           >
-            {playerState.isPlaying && playerState.showMiniPlayer === audioId ? (
+            {playerState.isPlaying &&
+            playerState.stationInMiniPlayer === audioId ? (
               <IoPauseOutline />
             ) : (
               <IoPlayOutline />
