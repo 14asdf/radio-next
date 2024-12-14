@@ -22,6 +22,19 @@ export const findStation = (audioSrc, stations) => {
 };
 
 export const createAvatarUrl = (title) => {
+  const initials = title
+    .split(' ')
+    .filter((word) => word.length > 0)
+    .map((word) => {
+      const match = word.match(/[\p{L}\p{N}]/u);
+      return match ? match[0] : '';
+    })
+    .join('')
+    .padEnd(1, 'X')
+    .substring(0, 2)
+    .replace(/^(.)$/, '$1')
+    .toUpperCase();
+
   const baseHue = Math.abs(
     title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360
   );
@@ -40,7 +53,7 @@ export const createAvatarUrl = (title) => {
       <text x="50" y="50" dy="0.1em" fill="white" 
         font-family="sans-serif" font-size="40" font-weight="bold" 
         text-anchor="middle" dominant-baseline="middle">
-        ${title.substring(0, 2).toUpperCase()}
+        ${initials}
       </text>
     </svg>`;
 
