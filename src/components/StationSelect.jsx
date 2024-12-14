@@ -38,6 +38,21 @@ const StationGroupRow = React.memo(
     const scrollbarRef = useRef(null);
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
+    const [swiper, setSwiper] = useState(null);
+
+    // Update navigation when refs change
+    useEffect(() => {
+      if (swiper) {
+        swiper.params.navigation.prevEl = prevRef.current;
+        swiper.params.navigation.nextEl = nextRef.current;
+        swiper.params.scrollbar.el = scrollbarRef.current;
+        swiper.navigation.init();
+        swiper.navigation.update();
+        swiper.scrollbar.init();
+        swiper.scrollbar.updateSize();
+        swiper.update();
+      }
+    }, [swiper]);
 
     return (
       <Box position="relative" overflow="visible">
@@ -45,7 +60,7 @@ const StationGroupRow = React.memo(
           modules={[Navigation, Scrollbar, A11y, FreeMode]}
           spaceBetween={16}
           slidesPerView={'auto'}
-          slidesPerGroup={5} // Add this line to skip 3 slides at a time
+          slidesPerGroup={5}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
@@ -55,6 +70,8 @@ const StationGroupRow = React.memo(
             draggable: true,
             hide: false,
           }}
+          speed={100}
+          onSwiper={setSwiper}
           freeMode={{
             enabled: true,
             momentum: true,
@@ -64,16 +81,10 @@ const StationGroupRow = React.memo(
             sticky: false,
             momentumBounce: false,
           }}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.params.scrollbar.el = scrollbarRef.current;
-          }}
           onProgress={(swiper, progress) => {
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
 
-            // Trigger load more when reaching 80% of the slider
             if (swiper.progress > 0.97) {
               onLoadMore(tag);
             }
@@ -84,7 +95,6 @@ const StationGroupRow = React.memo(
             padding: '0 1px',
             paddingBottom: '24px',
           }}
-          speed={400}
         >
           {stations.slice(0, visibleItems).map((station) => (
             <SwiperSlide key={station.streamUrl} style={{ width: 'auto' }}>
