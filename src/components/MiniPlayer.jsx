@@ -139,12 +139,12 @@ const MiniPlayer = ({ audioId }) => {
                 <VolumeIcon volume={playerState.volume} />
               </IconButton>
             </PopoverTrigger>
-            <PopoverContent w="50px" h="170px">
+            <PopoverContent w="50px" h="175px">
               <PopoverBody p="3">
                 <Box w="150px">
                   <Slider
-                    width="25px"
-                    height="150px"
+                    w="25px"
+                    h="150px"
                     defaultValue={[100]}
                     min={0}
                     max={100}
