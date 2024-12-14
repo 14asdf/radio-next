@@ -64,8 +64,8 @@ const App = ({ initialId }) => {
           flex="1"
           overflow="auto"
           pb="4"
-          pl={{ base: '4', md: '40' }}
-          pr={{ base: '4', md: '40' }}
+          pl={{ base: '4', md: '20' }}
+          pr={{ base: '4', md: '20' }}
           pt={audioId ? 4 : 0}
           justifyContent="center"
           as="main"
