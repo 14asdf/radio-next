@@ -40,6 +40,25 @@ const StationGroupRow = React.memo(
     const [isEnd, setIsEnd] = useState(false);
     const [swiper, setSwiper] = useState(null);
 
+    // Add resize handler
+    useEffect(() => {
+      if (!swiper || typeof window === 'undefined') return;
+
+      const handleResize = _.debounce(() => {
+        if (swiper?.scrollbar?.updateSize) {
+          swiper.scrollbar.updateSize();
+          swiper.update();
+        }
+      }, 200);
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        handleResize.cancel();
+      };
+    }, [swiper]);
+
     // Update navigation when refs change
     useEffect(() => {
       if (!swiper) return;

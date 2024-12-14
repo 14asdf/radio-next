@@ -68,7 +68,6 @@ const App = ({ initialId }) => {
           pr={{ base: '4', md: '14' }}
           pt={audioId ? 4 : 0}
           justifyContent="center"
-          overflowX="hidden"
           as="main"
         >
           {pathname === '/' &&
