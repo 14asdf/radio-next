@@ -78,7 +78,6 @@ const HomeClient = ({ initialId }) => {
         <Box
           as="footer"
           pb="1"
-          pt="1"
           // pl={{ base: '4', md: '14' }}
           // pr={{ base: '4', md: '14' }}
         >
@@ -90,54 +89,39 @@ const HomeClient = ({ initialId }) => {
           >
             {/* Left Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <Box display="flex" flexDirection="column" alignItems="center">
-                <IconButton
-                  as={Link}
-                  href="/"
-                  variant="subtle"
-                  colorPalette="yellow"
-                  size="lg"
-                  rounded={'full'}
-                >
-                  {pathname === '/' && !searchParams.get('id') ? (
-                    <RiHomeFill />
-                  ) : (
-                    <RiHomeLine />
-                  )}
-                </IconButton>
-                <Text fontSize="xs" mt={1}>
-                  Home
-                </Text>
-              </Box>
+              <IconButton
+                as={Link}
+                href="/"
+                variant="subtle"
+                colorPalette="yellow"
+                size="lg"
+                rounded={'full'}
+              >
+                {pathname === '/' && !searchParams.get('id') ? (
+                  <RiHomeFill />
+                ) : (
+                  <RiHomeLine />
+                )}
+              </IconButton>
             </Box>
 
             {/* Center Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <Box display="flex" flexDirection="column" alignItems="center">
-                <IconButton
-                  as={Link}
-                  href="/search"
-                  variant="subtle"
-                  colorPalette="yellow"
-                  size="lg"
-                  rounded={'full'}
-                >
-                  {pathname === '/search' ? <RiSearchFill /> : <RiSearchLine />}
-                </IconButton>
-                <Text fontSize="xs" mt={1}>
-                  Search
-                </Text>
-              </Box>
+              <IconButton
+                as={Link}
+                href="/search"
+                variant="subtle"
+                colorPalette="yellow"
+                size="lg"
+                rounded={'full'}
+              >
+                {pathname === '/search' ? <RiSearchFill /> : <RiSearchLine />}
+              </IconButton>
             </Box>
 
             {/* Right Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <Box display="flex" flexDirection="column" alignItems="center">
-                <ColorModeButton />
-                <Text fontSize="xs" mt={1}>
-                  Theme
-                </Text>
-              </Box>
+              <ColorModeButton />
             </Box>
           </Box>
         </Box>
