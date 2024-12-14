@@ -42,16 +42,38 @@ const StationGroupRow = React.memo(
 
     // Update navigation when refs change
     useEffect(() => {
-      if (swiper) {
-        swiper.params.navigation.prevEl = prevRef.current;
-        swiper.params.navigation.nextEl = nextRef.current;
-        swiper.params.scrollbar.el = scrollbarRef.current;
-        swiper.navigation.init();
-        swiper.navigation.update();
-        swiper.scrollbar.init();
-        swiper.scrollbar.updateSize();
-        swiper.update();
+      if (!swiper) return;
+
+      // Initialize navigation parameters
+      if (swiper.params) {
+        Object.assign(swiper.params, {
+          navigation: {
+            ...swiper.params.navigation,
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          },
+          scrollbar: {
+            ...swiper.params.scrollbar,
+            el: scrollbarRef.current,
+          },
+        });
       }
+
+      // Initialize and update navigation
+      const { navigation, scrollbar } = swiper;
+
+      if (navigation?.init && navigation?.update) {
+        navigation.init();
+        navigation.update();
+      }
+
+      // Initialize and update scrollbar
+      if (scrollbar?.init && scrollbar?.updateSize) {
+        scrollbar.init();
+        scrollbar.updateSize();
+      }
+
+      swiper.update();
     }, [swiper]);
 
     return (
