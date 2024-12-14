@@ -43,7 +43,7 @@ const App = ({ initialId }) => {
         _dark={{ color: '#ffffff' }}
       >
         {/* Header */}
-        <Box as="header" p={4} borderBottomWidth="0">
+        <Box as="header" p={2} borderBottomWidth="0">
           <Box
             display="flex"
             justifyContent="space-between"
@@ -64,8 +64,8 @@ const App = ({ initialId }) => {
           flex="1"
           overflow="auto"
           pb="4"
-          pl={{ base: '4', md: '14' }}
-          pr={{ base: '4', md: '14' }}
+          pl={{ base: '4', md: '40' }}
+          pr={{ base: '4', md: '40' }}
           pt={audioId ? 4 : 0}
           justifyContent="center"
           as="main"
