@@ -21,6 +21,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { RiSearchLine } from 'react-icons/ri';
 import { createAvatarUrl, encodeUrl } from '../utils';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // Create a separate StationSearchRow component
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
@@ -235,6 +236,15 @@ const StationSearch = ({ stations }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('all');
   const containerRef = useRef(null);
+  const router = useRouter();
+
+  const handleCancel = () => {
+    if (window.history.length > 2) {
+      router.back();
+    } else {
+      router.push('/');
+    }
+  };
 
   return (
     <Box mx="auto" ref={containerRef}>
@@ -244,37 +254,49 @@ const StationSearch = ({ stations }) => {
         bg="inherit"
         zIndex={1}
         pb={5}
-        pt={5}
+        pt={1}
         background={{
           base: 'var(--chakra-colors-white)',
           _dark: { base: 'var(--chakra-colors-black)' },
         }}
       >
-        <InputGroup>
-          <InputLeftElement height="100%" pointerEvents="none" ml="12">
-            <RiSearchLine color="gray.500" />
-          </InputLeftElement>
-          <Input
-            variant="subtle"
-            fontSize="xl"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            colorPalette="yellow"
-            paddingLeft="10"
-            autoFocus
-          />
-          {searchTerm && (
-            <InputRightElement
-              onClick={() => setSearchTerm('')}
-              height="100%"
-              mr="12"
-              cursor="pointer"
-            >
-              <IoCloseOutline />
-            </InputRightElement>
-          )}
-        </InputGroup>
+        <Box display="flex" gap={2}>
+          <InputGroup>
+            <InputLeftElement height="100%" pointerEvents="none" ml="12">
+              <RiSearchLine color="gray.500" />
+            </InputLeftElement>
+            <Input
+              variant="subtle"
+              fontSize="xl"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              colorPalette="yellow"
+              paddingLeft="10"
+              autoFocus
+            />
+            {searchTerm && (
+              <InputRightElement
+                onClick={() => setSearchTerm('')}
+                height="100%"
+                mr="12"
+                cursor="pointer"
+              >
+                <IoCloseOutline />
+              </InputRightElement>
+            )}
+          </InputGroup>
+          <Box
+            onClick={handleCancel}
+            minW="80px"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            cursor="pointer"
+          >
+            Cancel
+          </Box>
+        </Box>
 
         <Tabs.Root
           defaultValue={searchType}

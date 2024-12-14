@@ -24,7 +24,7 @@ const stations = _.uniqBy(s, 'title');
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import MiniPlayer from './MiniPlayer';
 
-const HomeClient = ({ initialId }) => {
+const App = ({ initialId }) => {
   const { playerState, togglePlay } = useAudioPlayer();
   const { isPlaying, currentStation, showMiniPlayer } = playerState;
 
@@ -130,4 +130,4 @@ const HomeClient = ({ initialId }) => {
   );
 };
 
-export default HomeClient;
+export default App;

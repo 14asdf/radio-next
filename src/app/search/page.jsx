@@ -1,11 +1,10 @@
 import { Suspense } from 'react';
-import StationSearch from '@/components/StationSearch';
-import HomeClient from '@/components/HomeClient';
+import App from '@/components/App';
 
 export default function SearchPage() {
   return (
     <Suspense>
-      <HomeClient />
+      <App />
     </Suspense>
   );
 }

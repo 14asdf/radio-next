@@ -1,6 +1,6 @@
 import { findStation, decodeUrl } from '../utils';
 import s from '../stations.json';
-import HomeClient from '../components/HomeClient';
+import App from '../components/App';
 import './styles.css';
 
 export async function generateMetadata({ searchParams }) {
@@ -38,5 +38,5 @@ export async function generateMetadata({ searchParams }) {
 }
 
 export default function Home({ searchParams }) {
-  return <HomeClient initialId={searchParams.id} />;
+  return <App initialId={searchParams.id} />;
 }
