@@ -236,7 +236,7 @@ const StationSelect = () => {
             new Map(prev).set(tag, prev.get(tag) + 10)
           );
           setIsLoading(false);
-        }, 500);
+        }, 100);
       }
     },
     [isLoading, visibleItemsMap]
@@ -251,7 +251,7 @@ const StationSelect = () => {
             new Map(prev).set(tag, prev.get(tag) + 10)
           );
           setIsLoading(false);
-        }, 500);
+        }, 100);
       }
     },
     [isLoading, visibleItemsMap]
@@ -263,7 +263,7 @@ const StationSelect = () => {
     setTimeout(() => {
       setVisibleGroups((prev) => prev + 10);
       setIsVerticalLoading(false);
-    }, 500);
+    }, 100);
   }, []);
 
   // Update scroll handler with IntersectionObserver
