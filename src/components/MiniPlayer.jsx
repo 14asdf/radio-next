@@ -130,7 +130,6 @@ const MiniPlayer = ({ audioId }) => {
             <PopoverTrigger asChild>
               <IconButton
                 variant="subtle"
-                colorPalette="yellow"
                 borderRadius="full"
                 aria-label="Volume"
                 size="sm"
@@ -149,7 +148,6 @@ const MiniPlayer = ({ audioId }) => {
                     min={0}
                     max={100}
                     step={1}
-                    colorPalette="yellow"
                     onValueChange={(e) => setVolume(e.value)}
                     orientation="vertical"
                   />
@@ -160,7 +158,6 @@ const MiniPlayer = ({ audioId }) => {
 
           <IconButton
             variant="subtle"
-            colorPalette="yellow"
             borderRadius="full"
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => togglePlay(audioId)}
@@ -172,7 +169,6 @@ const MiniPlayer = ({ audioId }) => {
 
           <IconButton
             variant="subtle"
-            colorPalette="yellow"
             borderRadius="full"
             aria-label="Next station"
             onClick={handleNextTrack}

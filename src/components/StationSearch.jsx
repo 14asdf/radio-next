@@ -300,9 +300,14 @@ const StationSearch = ({ stations }) => {
               placeholder="Search..."
               value={searchTerm}
               onChange={handleSearchChange}
-              colorPalette="yellow"
               paddingLeft="10"
               autoFocus
+              _focus={{
+                boxShadow: 'none',
+                border: 'none',
+                outline: 'none',
+              }}
+              focusBorderColor="transparent"
             />
             {searchTerm && (
               <InputRightElement

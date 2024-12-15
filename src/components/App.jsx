@@ -90,38 +90,56 @@ const App = ({ initialId }) => {
           >
             {/* Left Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <IconButton
+              <Box
                 as={Link}
                 href="/"
-                variant="subtle"
-                colorPalette="yellow"
-                size="lg"
-                rounded={'full'}
+                style={{ textDecoration: 'none' }}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
               >
                 {pathname === '/' && !searchParams.get('id') ? (
-                  <RiHomeFill />
+                  <RiHomeFill size={24} />
                 ) : (
-                  <RiHomeLine />
+                  <RiHomeLine size={24} />
                 )}
-              </IconButton>
+                <Text fontSize="xs" mt={1}>
+                  Home
+                </Text>
+              </Box>
             </Box>
 
             {/* Center Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <IconButton
+              <Box
                 as={Link}
                 href="/search"
-                variant="subtle"
-                colorPalette="yellow"
-                size="lg"
-                rounded={'full'}
+                style={{ textDecoration: 'none' }}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
               >
-                {pathname === '/search' ? <RiSearchFill /> : <RiSearchLine />}
-              </IconButton>
+                {pathname === '/search' ? (
+                  <RiSearchFill size={24} />
+                ) : (
+                  <RiSearchLine size={24} />
+                )}
+                <Text fontSize="xs" mt={1}>
+                  Search
+                </Text>
+              </Box>
             </Box>
 
             {/* Right Section */}
-            <Box flex="1" display="flex" justifyContent="center">
+            <Box
+              flex="1"
+              display="flex"
+              justifyContent="center"
+              flexDirection="column"
+              alignItems="center"
+            >
               <ColorModeButton />
             </Box>
           </Box>

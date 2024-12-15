@@ -40,7 +40,6 @@ const Share = () => {
         <IconButton
           as="a"
           variant="subtle"
-          colorPalette="yellow"
           size="lg"
           rounded={'full'}
           style={{ marginLeft: '1em' }}
@@ -53,7 +52,6 @@ const Share = () => {
         <IconButton
           as="a"
           variant="ghost"
-          colorPalette="yellow"
           size="lg"
           rounded={'full'}
           onClick={() => handleShare('telegram')}
@@ -64,7 +62,6 @@ const Share = () => {
           marginLeft="1em"
           as="a"
           variant="ghost"
-          colorPalette="yellow"
           size="lg"
           rounded={'full'}
           onClick={() => handleShare('whatsapp')}
@@ -75,7 +72,6 @@ const Share = () => {
           marginLeft="1em"
           as="a"
           variant="ghost"
-          colorPalette="yellow"
           size="lg"
           rounded={'full'}
           onClick={() => handleShare('vk')}
@@ -86,7 +82,6 @@ const Share = () => {
           marginLeft="1em"
           as="a"
           variant="ghost"
-          colorPalette="yellow"
           size="lg"
           rounded={'full'}
           onClick={handleCopyUrl}

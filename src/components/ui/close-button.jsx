@@ -12,13 +12,7 @@ function _nullishCoalesce(lhs, rhsFn) {
 
 export const CloseButton = React.forwardRef(function CloseButton(props, ref) {
   return (
-    <ChakraIconButton
-      variant="subtle"
-      colorPalette="yellow"
-      aria-label="Close"
-      ref={ref}
-      {...props}
-    >
+    <ChakraIconButton variant="subtle" aria-label="Close" ref={ref} {...props}>
       {_nullishCoalesce(props.children, () => (
         <LuX />
       ))}

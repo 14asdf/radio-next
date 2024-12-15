@@ -152,8 +152,7 @@ const Player = ({ audioId }) => {
               togglePlay(audioId, playerState.stationInMiniPlayer !== audioId);
               !playerState.isPlaying && stationInMiniPlayer(audioId);
             }}
-            variant="subtle"
-            colorPalette="yellow"
+            colorPalette="black"
             boxSize={{ base: '60px', md: '80px' }}
             rounded={'full'}
           >
