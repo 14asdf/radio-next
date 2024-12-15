@@ -78,7 +78,6 @@ const App = ({ initialId }) => {
         {/* Footer */}
         <Box
           as="footer"
-          pb="1"
           // pl={{ base: '4', md: '14' }}
           // pr={{ base: '4', md: '14' }}
         >
@@ -87,6 +86,8 @@ const App = ({ initialId }) => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
+            pb="1"
+            pt="1"
           >
             {/* Left Section */}
             <Box flex="1" display="flex" justifyContent="center">

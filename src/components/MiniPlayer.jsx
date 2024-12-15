@@ -88,7 +88,7 @@ const MiniPlayer = ({ audioId }) => {
 
   return (
     <Box bg="gray.100" _dark={{ bg: 'gray.700' }} pr="2">
-      <HStack justify="space-between" align="center" mb="2">
+      <HStack justify="space-between" align="center">
         <HStack as={Link} href={`/?id=${encodeUrl(station.streamUrl)}`}>
           {/* <HStack as={Link} to={`/?id=${encodeUrl(station.streamUrl)}`}> */}
           {isLoading ? (

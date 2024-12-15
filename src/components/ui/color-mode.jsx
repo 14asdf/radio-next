@@ -31,7 +31,11 @@ export function useColorModeValue(light, dark) {
 
 export function ColorModeIcon() {
   const { colorMode } = useColorMode();
-  return colorMode === 'light' ? <PiSunThin /> : <PiMoonThin />;
+  return colorMode === 'light' ? (
+    <PiSunThin size={24} />
+  ) : (
+    <PiMoonThin size={24} />
+  );
 }
 
 export const ColorModeButton = React.forwardRef(function ColorModeButton(
