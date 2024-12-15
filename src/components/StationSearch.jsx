@@ -20,8 +20,8 @@ import {
 import { IoCloseOutline } from 'react-icons/io5';
 import { RiSearchLine } from 'react-icons/ri';
 import { createAvatarUrl, encodeUrl } from '../utils';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 // Create a separate StationSearchRow component
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
@@ -108,7 +108,11 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
 
 // Update the SearchResults component to use StationSearchRow
 const SearchResults = React.memo(
-  ({ stations, searchTerm, searchType }) => {
+  ({ stations }) => {
+    const searchParams = useSearchParams();
+    const searchTerm = searchParams.get('q') || '';
+    const searchType = searchParams.get('type') || 'all';
+
     const [visibleItems, setVisibleItems] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
     const containerRef = useRef(null);
@@ -223,12 +227,8 @@ const SearchResults = React.memo(
     );
   },
   (prevProps, nextProps) => {
-    // Update memo comparison to include searchType
-    return (
-      prevProps.searchTerm === nextProps.searchTerm &&
-      prevProps.stations === nextProps.stations &&
-      prevProps.searchType === nextProps.searchType
-    );
+    // Only need to compare stations prop now
+    return prevProps.stations === nextProps.stations;
   }
 );
 
@@ -237,13 +237,42 @@ const StationSearch = ({ stations }) => {
   const [searchType, setSearchType] = useState('all');
   const containerRef = useRef(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Initialize state from URL params
+  useEffect(() => {
+    const queryTerm = searchParams.get('q') || '';
+    const queryType = searchParams.get('type') || 'all';
+    setSearchTerm(queryTerm);
+    setSearchType(queryType);
+  }, []);
+
+  // Debounced search function
+  const debouncedSearch = useCallback(
+    debounce((term, type) => {
+      const params = new URLSearchParams();
+      if (term) params.set('q', term);
+      if (type !== 'all') params.set('type', type);
+      router.push(`/search?${params.toString()}`);
+    }, 300),
+    [router]
+  );
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    const newTerm = e.target.value;
+    setSearchTerm(newTerm);
+    debouncedSearch(newTerm, searchType);
+  };
+
+  // Handle search type change
+  const handleTypeChange = (newType) => {
+    setSearchType(newType);
+    debouncedSearch(searchTerm, newType);
+  };
 
   const handleCancel = () => {
-    if (window.history.length > 2) {
-      router.back();
-    } else {
-      router.push('/');
-    }
+    router.push('/');
   };
 
   return (
@@ -270,14 +299,17 @@ const StationSearch = ({ stations }) => {
               fontSize="xl"
               placeholder="Search..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={handleSearchChange}
               colorPalette="yellow"
               paddingLeft="10"
               autoFocus
             />
             {searchTerm && (
               <InputRightElement
-                onClick={() => setSearchTerm('')}
+                onClick={() => {
+                  setSearchTerm('');
+                  router.push('/');
+                }}
                 height="100%"
                 mr="12"
                 cursor="pointer"
@@ -299,8 +331,8 @@ const StationSearch = ({ stations }) => {
         </Box>
 
         <Tabs.Root
-          defaultValue={searchType}
-          onValueChange={(e) => setSearchType(e.value)}
+          value={searchType}
+          onValueChange={(e) => handleTypeChange(e.value)}
           mt={4}
           style={{ width: '100%' }}
         >
@@ -348,13 +380,22 @@ const StationSearch = ({ stations }) => {
         </Tabs.Root>
       </Box>
 
-      <SearchResults
-        stations={stations}
-        searchTerm={searchTerm}
-        searchType={searchType}
-      />
+      <SearchResults stations={stations} />
     </Box>
   );
 };
+
+// Debounce utility function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 export default StationSearch;
