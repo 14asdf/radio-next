@@ -56,7 +56,7 @@ export const ColorModeButton = React.forwardRef(function ColorModeButton(
       {...props}
     >
       <ColorModeIcon />
-      <Text fontSize="xs" mt={1}>
+      <Text fontSize="xs" mt={0.5}>
         Theme
       </Text>
     </Box>

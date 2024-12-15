@@ -86,8 +86,8 @@ const App = ({ initialId }) => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            pb="1"
-            pt="1"
+            pb="1.5"
+            pt="1.5"
           >
             {/* Left Section */}
             <Box flex="1" display="flex" justifyContent="center">
@@ -105,7 +105,7 @@ const App = ({ initialId }) => {
                 ) : (
                   <RiHomeLine size={24} />
                 )}
-                <Text fontSize="xs" mt={1}>
+                <Text fontSize="xs" mt={0.5}>
                   Home
                 </Text>
               </Box>
@@ -127,7 +127,7 @@ const App = ({ initialId }) => {
                 ) : (
                   <RiSearchLine size={24} />
                 )}
-                <Text fontSize="xs" mt={1}>
+                <Text fontSize="xs" mt={0.5}>
                   Search
                 </Text>
               </Box>
