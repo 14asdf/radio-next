@@ -53,6 +53,8 @@ export const ColorModeButton = React.forwardRef(function ColorModeButton(
       alignItems="center"
       justifyContent="center"
       cursor="pointer"
+      pr="4"
+      pl="4"
       {...props}
     >
       <ColorModeIcon />

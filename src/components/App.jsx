@@ -99,6 +99,8 @@ const App = ({ initialId }) => {
                 flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
+                pr="4"
+                pl="4"
               >
                 {pathname === '/' && !searchParams.get('id') ? (
                   <RiHomeFill size={24} />
@@ -121,6 +123,8 @@ const App = ({ initialId }) => {
                 flexDirection="column"
                 alignItems="center"
                 justifyContent="center"
+                pr="4"
+                pl="4"
               >
                 {pathname === '/search' ? (
                   <RiSearchFill size={24} />
