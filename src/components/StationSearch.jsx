@@ -87,7 +87,7 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
           <Box display="flex" gap="2" mt={2}>
             {station.tags
               .split(',')
-              .filter((tag) => tag.trim().length <= 10)
+              .filter((tag) => tag.trim().length <= 10 && tag.length > 3)
               .slice(0, 3)
               .map((tag) => (
                 <Badge

@@ -128,7 +128,7 @@ const Player = ({ audioId }) => {
         <Box display="flex" gap="2" justifyContent="center">
           {station.tags
             .split(',')
-            .filter((tag) => tag.trim().length <= 10)
+            .filter((tag) => tag.trim().length <= 10 && tag.length > 3)
             .slice(0, 3)
             .map((tag) => (
               <Badge
