@@ -296,7 +296,6 @@ const StationSearch = ({ stations }) => {
             </InputLeftElement>
             <Input
               variant="subtle"
-              fontSize="xl"
               placeholder="Search..."
               value={searchTerm}
               onChange={handleSearchChange}
@@ -313,7 +312,7 @@ const StationSearch = ({ stations }) => {
               <InputRightElement
                 onClick={() => {
                   setSearchTerm('');
-                  router.push('/');
+                  debouncedSearch('', searchType);
                 }}
                 height="100%"
                 mr="12"
