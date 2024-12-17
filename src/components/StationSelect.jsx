@@ -194,14 +194,6 @@ const StationGroupRow = React.memo(
           borderRadius={'full'}
           background="gray.100"
           _dark={{ background: 'gray.700' }}
-          css={{
-            '.swiper-scrollbar-drag': {
-              background: 'var(--chakra-colors-gray-300)',
-              '[data-theme="dark"] &': {
-                background: 'var(--chakra-colors-gray-600)',
-              },
-            },
-          }}
         />
 
         {/* Previous button */}
@@ -477,7 +469,6 @@ const StationSelect = () => {
                 onScroll={handleScroll}
                 onLoadMore={handleLoadMore}
               />
-              {index < groupedStations.length - 1 && <Separator my={4} />}
             </Box>
           ))}
         {visibleGroups < groupedStations.length && (
