@@ -87,29 +87,34 @@ const App = ({ initialId }) => {
           >
             {/* Left Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <Box as={Link} href="/" className="nav-icon">
+              <IconButton
+                as={Link}
+                href="/"
+                variant="ghost"
+                borderRadius="full"
+              >
                 {pathname === '/' && !searchParams.get('id') ? (
                   <RiHomeFill size={24} />
                 ) : (
                   <RiHomeLine size={24} />
                 )}
-              </Box>
+              </IconButton>
             </Box>
 
             {/* Center Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <Box
+              <IconButton
                 as={Link}
                 href="/search"
-                style={{ textDecoration: 'none' }}
-                className="nav-icon"
+                variant="ghost"
+                borderRadius="full"
               >
                 {pathname === '/search' ? (
                   <RiSearchFill size={24} />
                 ) : (
                   <RiSearchLine size={24} />
                 )}
-              </Box>
+              </IconButton>
             </Box>
 
             {/* Right Section */}

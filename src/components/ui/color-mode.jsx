@@ -44,14 +44,15 @@ export const ColorModeButton = React.forwardRef(function ColorModeButton(
 ) {
   const { toggleColorMode } = useColorMode();
   return (
-    <Box
+    <IconButton
       onClick={toggleColorMode}
       aria-label="Toggle color mode"
       ref={ref}
-      className="nav-icon"
+      variant="ghost"
+      borderRadius="full"
       {...props}
     >
       <ColorModeIcon />
-    </Box>
+    </IconButton>
   );
 });
