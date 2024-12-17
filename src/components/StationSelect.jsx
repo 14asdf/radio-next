@@ -116,8 +116,8 @@ const StationGroupRow = React.memo(
           freeMode={{
             enabled: true,
             momentum: true,
-            momentumRatio: 1.5,
-            momentumVelocityRatio: 1,
+            momentumRatio: 0.7,
+            momentumVelocityRatio: 0.9,
             minimumVelocity: 0.001,
             sticky: false,
             momentumBounce: false,
