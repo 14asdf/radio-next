@@ -22,7 +22,13 @@ import {
 // import { Link } from 'react-router-dom';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Scrollbar, A11y, FreeMode } from 'swiper/modules';
+import {
+  Navigation,
+  Scrollbar,
+  A11y,
+  FreeMode,
+  Mousewheel,
+} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
@@ -98,7 +104,7 @@ const StationGroupRow = React.memo(
     return (
       <Box position="relative" overflow="visible">
         <Swiper
-          modules={[Navigation, Scrollbar, A11y, FreeMode]}
+          modules={[Navigation, Scrollbar, A11y, FreeMode, Mousewheel]}
           spaceBetween={16}
           slidesPerView={'auto'}
           slidesPerGroup={5}
@@ -135,6 +141,11 @@ const StationGroupRow = React.memo(
           style={{
             padding: '0 1px',
             paddingBottom: '24px',
+          }}
+          mousewheel={{
+            enabled: true,
+            forceToAxis: true,
+            sensitivity: 1,
           }}
         >
           {stations.slice(0, visibleItems).map((station) => (
