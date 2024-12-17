@@ -132,10 +132,11 @@ const StationGroupRow = React.memo(
             setIsBeginning(swiper.isBeginning);
             setIsEnd(swiper.isEnd);
 
-            if (swiper.progress > 0.97) {
-              onLoadMore(tag);
-            }
+            // if (swiper.progress > 0.97) {
+            //   onLoadMore(tag);
+            // }
           }}
+          onReachEnd={() => onLoadMore(tag)}
           watchSlidesProgress={true}
           className="station-swiper"
           style={{
