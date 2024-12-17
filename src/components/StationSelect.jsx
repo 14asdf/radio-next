@@ -420,7 +420,7 @@ const StationSelect = () => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '100px',
+      rootMargin: '150px',
       threshold: 0.1,
     };
 
