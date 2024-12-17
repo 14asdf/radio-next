@@ -48,19 +48,10 @@ export const ColorModeButton = React.forwardRef(function ColorModeButton(
       onClick={toggleColorMode}
       aria-label="Toggle color mode"
       ref={ref}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      cursor="pointer"
-      pr="4"
-      pl="4"
+      className="nav-icon"
       {...props}
     >
       <ColorModeIcon />
-      <Text fontSize="xs" mt={0.5}>
-        Theme
-      </Text>
     </Box>
   );
 });

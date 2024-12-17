@@ -26,7 +26,7 @@ body,
 body {
   position: fixed;
   overflow: hidden;
-  overscroll-behavior-y: none;
+  /* overscroll-behavior-y: none; */
   font-family: helvetica neue, helvetica, arial, sans-serif;
   color: black;
   -webkit-font-smoothing: antialiased;
@@ -38,4 +38,16 @@ body {
 
 .dark .swiper-scrollbar-drag {
   background: var(--chakra-colors-gray-200);
+}
+
+.nav-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
 }

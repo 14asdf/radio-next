@@ -76,11 +76,7 @@ const App = ({ initialId }) => {
         </Box>
 
         {/* Footer */}
-        <Box
-          as="footer"
-          // pl={{ base: '4', md: '14' }}
-          // pr={{ base: '4', md: '14' }}
-        >
+        <Box as="footer">
           {stationInMiniPlayer && <MiniPlayer audioId={stationInMiniPlayer} />}
           <Box
             display="flex"
@@ -91,25 +87,12 @@ const App = ({ initialId }) => {
           >
             {/* Left Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              <Box
-                as={Link}
-                href="/"
-                style={{ textDecoration: 'none' }}
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                pr="4"
-                pl="4"
-              >
+              <Box as={Link} href="/" className="nav-icon">
                 {pathname === '/' && !searchParams.get('id') ? (
                   <RiHomeFill size={24} />
                 ) : (
                   <RiHomeLine size={24} />
                 )}
-                <Text fontSize="xs" mt={0.5}>
-                  Home
-                </Text>
               </Box>
             </Box>
 
@@ -119,21 +102,13 @@ const App = ({ initialId }) => {
                 as={Link}
                 href="/search"
                 style={{ textDecoration: 'none' }}
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-                pr="4"
-                pl="4"
+                className="nav-icon"
               >
                 {pathname === '/search' ? (
                   <RiSearchFill size={24} />
                 ) : (
                   <RiSearchLine size={24} />
                 )}
-                <Text fontSize="xs" mt={0.5}>
-                  Search
-                </Text>
               </Box>
             </Box>
 
