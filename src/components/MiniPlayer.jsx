@@ -140,7 +140,7 @@ const MiniPlayer = ({ audioId }) => {
             </PopoverTrigger>
             <PopoverContent w="50px" h="175px">
               <PopoverBody p="3">
-                <Box w="150px">
+                <Box w="auto">
                   <Slider
                     w="25px"
                     h="150px"
