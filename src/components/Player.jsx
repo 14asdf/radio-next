@@ -63,7 +63,14 @@ const Player = ({ audioId }) => {
   }, [station]);
 
   return (
-    <>
+    <Box
+      justifyContent="center"
+      width="100%"
+      height="100%"
+      display="flex"
+      flexDirection="column"
+    >
+      {' '}
       <PlayerDialog
         isOpen={isDialogOpen}
         onOpenChange={(e) => setIsDialogOpen(e.open)}
@@ -71,7 +78,6 @@ const Player = ({ audioId }) => {
         isLoading={isLoading}
         imgSrc={imgSrc}
       />
-
       <Box
         display="flex"
         justifyContent="center"
@@ -164,7 +170,7 @@ const Player = ({ audioId }) => {
           </IconButton>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
