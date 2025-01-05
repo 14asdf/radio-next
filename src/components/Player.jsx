@@ -21,7 +21,7 @@ import {
   findStation,
   generateUUID,
   createAvatarUrl,
-} from '../utils';
+} from '../utils'; // Assuming utility functions are in utils.js
 import Share from './Share';
 import s from '../stations.json';
 import _ from 'lodash';
@@ -32,7 +32,7 @@ import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 const stations = _.uniqBy(s, 'title');
 
 const Player = ({ audioId }) => {
-  const { playerState, togglePlay, stationInMiniPlayer } = useAudioPlayer();
+  const { playerState, togglePlay, currentStation } = useAudioPlayer();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -77,6 +77,7 @@ const Player = ({ audioId }) => {
         isLoading={isLoading}
         imgSrc={imgSrc}
       />
+
       <Box
         display="flex"
         justifyContent="center"
@@ -154,13 +155,13 @@ const Player = ({ audioId }) => {
           <IconButton
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => {
-              togglePlay(audioId, playerState.stationInMiniPlayer !== audioId);
+              togglePlay(audioId);
             }}
             boxSize={{ base: '60px', md: '80px' }}
             rounded={'full'}
           >
             {playerState.isPlaying &&
-            playerState.stationInMiniPlayer === audioId ? (
+            encodeUrl(playerState.currentStation.streamUrl) === audioId ? (
               <IoPauseOutline />
             ) : (
               <IoPlayOutline />

@@ -7,7 +7,7 @@ import React, {
   useState,
   useCallback,
 } from 'react';
-import { findStation, decodeUrl } from '../utils';
+import { findStation, decodeUrl, encodeUrl } from '../utils';
 import _ from 'lodash';
 import s from '../stations.json';
 
@@ -19,13 +19,16 @@ export function AudioPlayerProvider({ children }) {
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     currentStation: null,
-    stationInMiniPlayer: null,
     volume: 1,
   });
 
   const audioRef = useRef(null);
 
   const handlePlay = useCallback((station) => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+
     setPlayerState((prev) => ({
       ...prev,
       isPlaying: true,
@@ -50,50 +53,35 @@ export function AudioPlayerProvider({ children }) {
     }
   }, []);
 
-  const handlePause = () => {
+  const handlePause = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
     setPlayerState((prev) => ({ ...prev, isPlaying: false }));
-  };
+  }, []);
 
-  const togglePlay = (audioId, forceAction) => {
+  const togglePlay = (audioId) => {
     const audioSrc = decodeUrl(audioId);
     const station = findStation(audioId, stations);
+    const isNewStation =
+      playerState.currentStation === null ||
+      encodeUrl(playerState.currentStation.streamUrl) !== audioId;
 
-    if (forceAction) {
-      if (audioRef.current) {
-        audioRef.current.pause();
+    if (audioRef.current) {
+      if (isNewStation) {
+        // New station - always play
         audioRef.current.src = audioSrc;
-        audioRef.current.play();
         handlePlay(station);
-        setPlayerState((prev) => ({ ...prev, stationInMiniPlayer: audioId }));
-      }
-    } else {
-      if (audioRef.current) {
+      } else {
+        // Same station - toggle play state
         if (playerState.isPlaying) {
-          audioRef.current.pause();
+          handlePause();
         } else {
-          audioRef.current.src = audioSrc;
-          audioRef.current.play();
-          setPlayerState((prev) => ({ ...prev, stationInMiniPlayer: audioId }));
+          handlePlay(station);
         }
       }
     }
   };
-
-  const stationInMiniPlayer = useCallback(
-    (audioId) => {
-      setPlayerState((prev) => {
-        if (prev.stationInMiniPlayer && prev.stationInMiniPlayer !== audioId) {
-          if (audioRef.current) {
-            audioRef.current.pause();
-          }
-        }
-        return { ...prev, stationInMiniPlayer: audioId };
-      });
-
-      togglePlay(audioId, true);
-    },
-    [togglePlay]
-  );
 
   const handleVolumeChange = useCallback((newVolume) => {
     // Ensure volume is a number and within valid range (0-1)
@@ -110,7 +98,6 @@ export function AudioPlayerProvider({ children }) {
       value={{
         playerState,
         togglePlay,
-        stationInMiniPlayer,
         audioRef,
         stations,
         handleVolumeChange,

@@ -19,6 +19,8 @@ import {
 import Link from 'next/link';
 import s from '../stations.json';
 import _ from 'lodash';
+import { decodeUrl, encodeUrl } from '../utils';
+
 const stations = _.uniqBy(s, 'title');
 
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
@@ -26,7 +28,7 @@ import MiniPlayer from './MiniPlayer';
 
 const App = ({ initialId }) => {
   const { playerState, togglePlay } = useAudioPlayer();
-  const { isPlaying, currentStation, stationInMiniPlayer } = playerState;
+  const { isPlaying, currentStation } = playerState;
 
   const searchParams = useSearchParams();
 
@@ -116,7 +118,9 @@ const App = ({ initialId }) => {
 
         {/* Footer */}
         <Box as="footer">
-          {stationInMiniPlayer && <MiniPlayer audioId={stationInMiniPlayer} />}
+          {currentStation && (
+            <MiniPlayer audioId={encodeUrl(currentStation.streamUrl)} />
+          )}
           <Box
             display="flex"
             justifyContent="space-between"

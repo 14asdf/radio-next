@@ -7,7 +7,7 @@ import s from '../stations.json';
 import _ from 'lodash';
 import { AvatarGroup, Avatar } from '../components/ui/avatar';
 import { sampleSize } from 'lodash';
-import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
+import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 
 const COLORS = [
   'red.500',
@@ -43,18 +43,17 @@ const stations = _.uniqBy(s, 'title');
 
 // Custom Avatar component with play icon on hover
 const StationAvatar = React.memo(({ station }) => {
-  const { playerState, togglePlay, stationInMiniPlayer } = useAudioPlayer();
+  const { playerState, togglePlay } = useAudioPlayer();
 
   const handleClick = (e) => {
     e.stopPropagation(); // Stop event bubbling
     e.preventDefault(); // Prevent link navigation
 
     const audioId = encodeUrl(station.streamUrl);
-    togglePlay(audioId, true);
+    togglePlay(audioId);
   };
-
   return (
-    <Box position="relative" onClick={(e) => handleClick(e)}>
+    <Box position="relative" onClick={handleClick}>
       <Avatar
         src={station.img || createAvatarUrl(station.title)}
         name={station.title}
