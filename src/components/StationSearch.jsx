@@ -106,7 +106,6 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
   );
 });
 
-// Update the SearchResults component to use StationSearchRow
 const SearchResults = React.memo(
   ({ stations }) => {
     const searchParams = useSearchParams();
