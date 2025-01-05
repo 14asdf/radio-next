@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Box, Text, Stack, Icon, useBreakpointValue } from '@chakra-ui/react';
 import { RiPlayFill } from 'react-icons/ri';
 import Link from 'next/link';
@@ -86,13 +86,43 @@ const StationAvatar = React.memo(({ station }) => {
 
 // Genre Card component
 const GenreCard = React.memo(({ tag, stations }) => {
-  const randomStations = useMemo(() => sampleSize(stations, 5), [stations]);
-  const maxAvatars = useBreakpointValue({ base: 3, md: 5 });
+  const [maxAvatars, setMaxAvatars] = useState(() =>
+    window.innerWidth > 768 ? 5 : 3
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMaxAvatars(window.innerWidth > 768 ? 5 : 3);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const randomStations = useMemo(
+    () => sampleSize(stations, maxAvatars),
+    [stations, maxAvatars]
+  );
+
   const genreColor = useMemo(
     () =>
       GENRE_COLORS[tag.toLowerCase()] ||
       COLORS[Math.floor(Math.random() * COLORS.length)],
     [tag]
+  );
+
+  const avatarGroup = useMemo(
+    () => (
+      <AvatarGroup size="md" max={maxAvatars} spacing="-3">
+        {randomStations.map((station) => (
+          <StationAvatar key={station.streamUrl} station={station} />
+        ))}
+        {stations.length > maxAvatars && (
+          <Avatar fallback={`+${stations.length - maxAvatars}`} />
+        )}
+      </AvatarGroup>
+    ),
+    [randomStations, maxAvatars, stations.length]
   );
 
   return (
@@ -120,14 +150,7 @@ const GenreCard = React.memo(({ tag, stations }) => {
         >
           {tag}
         </Text>
-        <AvatarGroup size="md" max={{ base: 3, md: 5 }} spacing="-3">
-          {randomStations.slice(0, maxAvatars).map((station) => (
-            <StationAvatar key={station.streamUrl} station={station} />
-          ))}
-          {stations.length > maxAvatars && (
-            <Avatar fallback={`+${stations.length - maxAvatars}`} />
-          )}
-        </AvatarGroup>
+        {avatarGroup}
       </Stack>
     </Box>
   );
