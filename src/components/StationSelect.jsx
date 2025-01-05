@@ -48,7 +48,9 @@ const StationAvatar = React.memo(({ station }) => {
   const handleClick = (e) => {
     e.stopPropagation(); // Stop event bubbling
     e.preventDefault(); // Prevent link navigation
-    stationInMiniPlayer(encodeUrl(station.streamUrl)); // Using station.streamUrl instead of undefined audioId
+
+    const audioId = encodeUrl(station.streamUrl);
+    togglePlay(audioId, true);
   };
 
   return (

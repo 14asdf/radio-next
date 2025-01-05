@@ -64,7 +64,7 @@ export function AudioPlayerProvider({ children }) {
         audioRef.current.src = audioSrc;
         audioRef.current.play();
         handlePlay(station);
-        stationInMiniPlayer(audioId);
+        setPlayerState((prev) => ({ ...prev, stationInMiniPlayer: audioId }));
       }
     } else {
       if (audioRef.current) {
@@ -73,6 +73,7 @@ export function AudioPlayerProvider({ children }) {
         } else {
           audioRef.current.src = audioSrc;
           audioRef.current.play();
+          setPlayerState((prev) => ({ ...prev, stationInMiniPlayer: audioId }));
         }
       }
     }

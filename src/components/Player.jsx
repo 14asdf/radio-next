@@ -155,7 +155,6 @@ const Player = ({ audioId }) => {
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => {
               togglePlay(audioId, playerState.stationInMiniPlayer !== audioId);
-              !playerState.isPlaying && stationInMiniPlayer(audioId);
             }}
             boxSize={{ base: '60px', md: '80px' }}
             rounded={'full'}
