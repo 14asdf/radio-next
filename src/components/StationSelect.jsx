@@ -1,339 +1,128 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import {
-  Box,
-  Image,
-  Text,
-  Input,
-  Badge,
-  IconButton,
-  Separator,
-  Spinner,
-  Button,
-} from '@chakra-ui/react';
-import { InputGroup, InputRightElement } from '@chakra-ui/input';
-import { generateUUID, encodeUrl, decodeUrl, createAvatarUrl } from '../utils'; // Update imports
+import React, { useMemo } from 'react';
+import { Box, Text, Stack, Icon, useBreakpointValue } from '@chakra-ui/react';
+import { RiPlayFill } from 'react-icons/ri';
+import Link from 'next/link';
+import { createAvatarUrl, encodeUrl } from '../utils';
 import s from '../stations.json';
 import _ from 'lodash';
-import {
-  IoCloseOutline,
-  IoChevronBackOutline,
-  IoChevronForwardOutline,
-} from 'react-icons/io5';
-// import { Link } from 'react-router-dom';
-import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  Navigation,
-  Scrollbar,
-  A11y,
-  FreeMode,
-  Mousewheel,
-} from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
-import 'swiper/css/a11y';
-import 'swiper/css/free-mode';
+import { AvatarGroup, Avatar } from '../components/ui/avatar';
+import { sampleSize } from 'lodash';
+
+const COLORS = [
+  'red.500',
+  'red.600',
+  'orange.500',
+  'orange.600',
+  'yellow.500',
+  'yellow.600',
+  'green.500',
+  'green.600',
+  'teal.500',
+  'teal.600',
+  'blue.500',
+  'blue.600',
+  'cyan.500',
+  'cyan.600',
+  'purple.500',
+  'purple.600',
+  'pink.500',
+  'pink.600',
+];
+
+const GENRE_COLORS = {
+  rock: 'red.500',
+  jazz: 'purple.500',
+  classical: 'blue.500',
+  electronic: 'green.500',
+  pop: 'pink.500',
+  default: () => COLORS[Math.floor(Math.random() * COLORS.length)],
+};
 
 const stations = _.uniqBy(s, 'title');
 
-const StationGroupRow = React.memo(
-  ({ tag, stations, visibleItems, isLoading, onLoadMore }) => {
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
-    const scrollbarRef = useRef(null);
-    const [isBeginning, setIsBeginning] = useState(true);
-    const [isEnd, setIsEnd] = useState(false);
-    const [swiper, setSwiper] = useState(null);
-
-    // Add resize handler
-    useEffect(() => {
-      if (!swiper || typeof window === 'undefined') return;
-
-      const handleResize = _.debounce(() => {
-        if (swiper?.scrollbar?.updateSize) {
-          swiper.scrollbar.updateSize();
-          swiper.update();
-        }
-      }, 200);
-
-      window.addEventListener('resize', handleResize);
-
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        handleResize.cancel();
-      };
-    }, [swiper]);
-
-    // Update navigation when refs change
-    useEffect(() => {
-      if (!swiper) return;
-
-      // Initialize navigation parameters
-      if (swiper.params) {
-        Object.assign(swiper.params, {
-          navigation: {
-            ...swiper.params.navigation,
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          },
-          scrollbar: {
-            ...swiper.params.scrollbar,
-            el: scrollbarRef.current,
-          },
-        });
-      }
-
-      // Initialize and update navigation
-      const { navigation, scrollbar } = swiper;
-
-      if (navigation?.init && navigation?.update) {
-        navigation.init();
-        navigation.update();
-      }
-
-      // Initialize and update scrollbar
-      if (scrollbar?.init && scrollbar?.updateSize) {
-        scrollbar.init();
-        scrollbar.updateSize();
-      }
-
-      swiper.update();
-    }, [swiper]);
-
-    return (
-      <Box position="relative" overflow="visible">
-        <Swiper
-          modules={[Navigation, Scrollbar, A11y, FreeMode, Mousewheel]}
-          spaceBetween={16}
-          slidesPerView={'auto'}
-          slidesPerGroup={5}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
+// Custom Avatar component with play icon on hover
+const StationAvatar = React.memo(({ station }) => {
+  return (
+    <Link href={`/?id=${encodeUrl(station.streamUrl)}`}>
+      <Box position="relative">
+        <Avatar
+          src={station.img || createAvatarUrl(station.title)}
+          name={station.title}
+          size="md"
+          _hover={{
+            transform: 'scale(1.1)',
+            transition: 'transform 0.2s',
           }}
-          scrollbar={{
-            el: scrollbarRef.current,
-            draggable: true,
-            hide: false,
-          }}
-          speed={600}
-          onSwiper={setSwiper}
-          freeMode={{
-            enabled: true,
-            momentum: true,
-            momentumRatio: 0.7,
-            momentumVelocityRatio: 0.9,
-            minimumVelocity: 0.001,
-            sticky: false,
-            momentumBounce: false,
-          }}
-          onProgress={(swiper, progress) => {
-            setIsBeginning(swiper.isBeginning);
-            setIsEnd(swiper.isEnd);
-
-            // if (swiper.progress > 0.97) {
-            //   onLoadMore(tag);
-            // }
-          }}
-          onReachEnd={() => onLoadMore(tag)}
-          watchSlidesProgress={true}
-          className="station-swiper"
-          style={{
-            padding: '0 1px',
-            paddingBottom: '24px',
-          }}
-          mousewheel={{
-            enabled: true,
-            forceToAxis: true,
-            sensitivity: 1,
-          }}
-        >
-          {stations.slice(0, visibleItems).map((station) => (
-            <SwiperSlide key={station.streamUrl} style={{ width: 'auto' }}>
-              <StationRow station={station} />
-            </SwiperSlide>
-          ))}
-          {stations.length > visibleItems && (
-            <SwiperSlide style={{ width: 'auto' }}>
-              <Box
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                minW="200px"
-                h="200px"
-                flexDirection="column"
-                gap={4}
-              >
-                {isLoading ? (
-                  <Spinner size="md" color="gray.500" />
-                ) : (
-                  <Button
-                    size="sm"
-                    colorScheme="black"
-                    borderRadius="full"
-                    onClick={() => onLoadMore(tag)}
-                  >
-                    Load More
-                  </Button>
-                )}
-              </Box>
-            </SwiperSlide>
-          )}
-        </Swiper>
-
-        {/* Custom scrollbar */}
+        />
         <Box
-          ref={scrollbarRef}
           position="absolute"
-          bottom="8px"
+          top="0"
           left="0"
           right="0"
-          height="4px"
-          zIndex={999}
-          borderRadius={'full'}
-          background="gray.100"
-          _dark={{ background: 'gray.700' }}
-        />
-
-        {/* Previous button */}
-        <IconButton
-          ref={prevRef}
-          aria-label="Previous"
-          position="absolute"
-          left="-50px"
-          top="50%"
-          transform="translateY(calc(-50% - 28.5px))"
-          zIndex={1000}
+          bottom="0"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          backgroundColor="blackAlpha.600"
           borderRadius="full"
-          size="sm"
-          display={{ base: 'none', md: isBeginning ? 'none' : 'flex' }}
+          opacity="0"
+          _hover={{ opacity: 1 }}
+          transition="opacity 0.2s"
         >
-          <IoChevronBackOutline />
-        </IconButton>
-
-        {/* Next button */}
-        <IconButton
-          ref={nextRef}
-          aria-label="Next"
-          position="absolute"
-          right="-50px"
-          top="50%"
-          transform="translateY(calc(-50% - 28.5px))"
-          zIndex={1000}
-          borderRadius="full"
-          size="sm"
-          display={{ base: 'none', md: isEnd ? 'none' : 'flex' }}
-        >
-          <IoChevronForwardOutline />
-        </IconButton>
+          <RiPlayFill color="white" size="20px" />
+        </Box>
       </Box>
-    );
-  }
-);
+    </Link>
+  );
+});
 
-// Move StationRow outside and memoize it
-const StationRow = React.memo(({ station }) => {
-  const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    if (station?.img) {
-      const img = new window.Image();
-      img.src = station.img;
-      img.onerror = () => {
-        setImgSrc(createAvatarUrl(station.title));
-        setIsLoading(false);
-      };
-      img.onload = () => {
-        setImgSrc(station.img);
-        setIsLoading(false);
-      };
-    } else {
-      setImgSrc(createAvatarUrl(station.title));
-      setIsLoading(false);
-    }
-  }, [station]);
+// Genre Card component
+const GenreCard = React.memo(({ tag, stations }) => {
+  const randomStations = useMemo(() => sampleSize(stations, 5), [stations]);
+  const maxAvatars = useBreakpointValue({ base: 3, md: 5 });
+  const genreColor = useMemo(
+    () =>
+      GENRE_COLORS[tag.toLowerCase()] ||
+      COLORS[Math.floor(Math.random() * COLORS.length)],
+    [tag]
+  );
 
   return (
     <Box
       as={Link}
-      // to={`/?id=${encodeUrl(station.streamUrl)}`}
-      href={`/?id=${encodeUrl(station.streamUrl)}`}
-      display="flex"
-      flexDirection="column"
-      gap="2"
-      p="2"
-      pl="0"
-      mr="1"
-      minW="160px"
-      maxW="160px"
+      href={`/search?type=genre&q=${encodeURIComponent(tag)}`}
+      width={{ base: 'calc(50% - 0.5rem)', md: 'calc(33.333% - 0.75rem)' }}
+      p={6}
+      borderRadius="xl"
+      backgroundColor={genreColor}
+      opacity={0.9}
       _hover={{
-        cursor: 'pointer',
+        opacity: 1,
+        transform: 'translateY(-2px)',
+        transition: 'all 0.2s',
       }}
+      transition="all 0.2s"
     >
-      {isLoading ? (
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          width="160px"
-          height="160px"
-        >
-          <Spinner size="md" color="gray.500" />
-        </Box>
-      ) : (
-        <Image
-          src={imgSrc}
-          borderRadius="md"
-          boxSize="160px"
-          alt={station.title}
-          objectFit="cover"
-        />
-      )}
-      <Text
-        overflow="hidden"
-        textOverflow="ellipsis"
-        textWrap="nowrap"
-        maxW="100%"
-        fontSize="sm"
-        fontWeight="bold"
-      >
-        {station.title}
-      </Text>
-      {station.tags && (
-        <Box display="flex" gap="2">
-          {station.tags
-            .split(',')
-            .filter((tag) => tag.trim().length <= 10 && tag.length > 3)
-            .slice(0, 2)
-            .map((tag) => (
-              <Badge
-                key={tag}
-                colorScheme="gray"
-                variant="subtle"
-                fontSize="xs"
-                borderRadius="full"
-              >
-                {tag.trim()}
-              </Badge>
-            ))}
-        </Box>
-      )}
+      <Stack spacing={4}>
+        <Text fontSize="2xl" fontWeight="bold" textTransform="capitalize">
+          {tag}
+        </Text>
+        <AvatarGroup size="md" max={{ base: 3, md: 5 }} spacing="-3">
+          {randomStations.slice(0, maxAvatars).map((station) => (
+            <StationAvatar key={station.streamUrl} station={station} />
+          ))}
+          {stations.length > maxAvatars && (
+            <Avatar fallback={`+${stations.length - maxAvatars}`} />
+          )}
+        </AvatarGroup>
+      </Stack>
     </Box>
   );
 });
 
 const StationSelect = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [visibleItemsMap, setVisibleItemsMap] = useState(new Map());
-  const containerRef = useRef(null);
-  const [visibleGroups, setVisibleGroups] = useState(3);
-  const [isVerticalLoading, setIsVerticalLoading] = useState(false);
-
-  // Group stations by tags (without filtering)
-  const groupedStations = React.useMemo(() => {
+  // Group stations by tags
+  const groupedStations = useMemo(() => {
     const groups = new Map();
     const usedStations = new Set();
 
@@ -353,141 +142,19 @@ const StationSelect = () => {
       }
     });
 
-    return Array.from(groups.entries()).map(([tag, stations]) => ({
-      tag,
-      stations,
-    }));
+    return Array.from(groups.entries())
+      .map(([tag, stations]) => ({
+        tag,
+        stations,
+      }))
+      .filter((group) => group.stations.length >= 5); // Only show genres with at least 5 stations
   }, []);
-
-  // Initialize visibleItemsMap for new tags
-  useEffect(() => {
-    groupedStations.forEach(({ tag }) => {
-      if (!visibleItemsMap.has(tag)) {
-        setVisibleItemsMap((prev) => new Map(prev).set(tag, 10));
-      }
-    });
-  }, [groupedStations]);
-
-  const handleScroll = useCallback(
-    (event, tag, stations) => {
-      const container = event.target;
-      const isNearEnd =
-        container.scrollLeft + container.clientWidth >=
-        container.scrollWidth - 50;
-
-      if (
-        isNearEnd &&
-        !isLoading &&
-        stations.length > visibleItemsMap.get(tag)
-      ) {
-        setIsLoading(true);
-        setTimeout(() => {
-          setVisibleItemsMap((prev) =>
-            new Map(prev).set(tag, prev.get(tag) + 10)
-          );
-          setIsLoading(false);
-        }, 100);
-      }
-    },
-    [isLoading, visibleItemsMap]
-  );
-
-  const handleLoadMore = useCallback(
-    (tag) => {
-      if (!isLoading && stations.length > visibleItemsMap.get(tag)) {
-        setIsLoading(true);
-        setTimeout(() => {
-          setVisibleItemsMap((prev) =>
-            new Map(prev).set(tag, prev.get(tag) + 10)
-          );
-          setIsLoading(false);
-        }, 100);
-      }
-    },
-    [isLoading, visibleItemsMap]
-  );
-
-  // Modify loadMoreGroups to add more categories at once
-  const loadMoreGroups = useCallback(() => {
-    setIsVerticalLoading(true);
-    setTimeout(() => {
-      setVisibleGroups((prev) => prev + 10);
-      setIsVerticalLoading(false);
-    }, 100);
-  }, []);
-
-  // Update scroll handler with IntersectionObserver
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '150px',
-      threshold: 0.1,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      const lastEntry = entries[0];
-      if (
-        lastEntry.isIntersecting &&
-        !isVerticalLoading &&
-        visibleGroups < groupedStations.length
-      ) {
-        loadMoreGroups();
-      }
-    }, options);
-
-    // Find the last visible group element
-    const lastGroupElement = containerRef.current?.querySelector(
-      `div:nth-child(${visibleGroups})`
-    );
-    if (lastGroupElement) {
-      observer.observe(lastGroupElement);
-    }
-
-    return () => observer.disconnect();
-  }, [
-    visibleGroups,
-    groupedStations.length,
-    isVerticalLoading,
-    loadMoreGroups,
-  ]);
 
   return (
-    <Box mx="auto" ref={containerRef} overflow="visible">
-      <Box overflow="visible">
-        {groupedStations
-          .slice(0, visibleGroups)
-          .map(({ tag, stations }, index) => (
-            <Box key={tag} mb={6} overflow="visible">
-              <Text fontSize="2xl" mb={2} fontWeight="bold">
-                {tag.charAt(0).toUpperCase() + tag.slice(1)}
-              </Text>
-              <StationGroupRow
-                tag={tag}
-                stations={stations}
-                visibleItems={visibleItemsMap.get(tag)}
-                isLoading={isLoading}
-                onScroll={handleScroll}
-                onLoadMore={handleLoadMore}
-              />
-            </Box>
-          ))}
-        {visibleGroups < groupedStations.length && (
-          <Box display="flex" justifyContent="center" my={4}>
-            {isVerticalLoading ? (
-              <Spinner size="md" color="gray.500" />
-            ) : (
-              <Button
-                size="sm"
-                colorScheme="black"
-                borderRadius="full"
-                onClick={loadMoreGroups}
-              >
-                Load More
-              </Button>
-            )}
-          </Box>
-        )}
-      </Box>
+    <Box display="flex" flexWrap="wrap" gap={4} width="100%">
+      {groupedStations.map(({ tag, stations }) => (
+        <GenreCard key={tag} tag={tag} stations={stations} />
+      ))}
     </Box>
   );
 };
