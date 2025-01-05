@@ -52,7 +52,7 @@ const StationAvatar = React.memo(({ station }) => {
   };
 
   return (
-    <Box position="relative" onClick={handleClick}>
+    <Box position="relative" onClick={(e) => handleClick(e)}>
       <Avatar
         src={station.img || createAvatarUrl(station.title)}
         name={station.title}

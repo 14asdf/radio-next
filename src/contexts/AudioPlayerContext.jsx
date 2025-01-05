@@ -78,19 +78,21 @@ export function AudioPlayerProvider({ children }) {
     }
   };
 
-  const stationInMiniPlayer = (audioId) => {
-    setPlayerState((prev) => {
-      if (prev.stationInMiniPlayer && prev.stationInMiniPlayer !== audioId) {
-        if (audioRef.current) {
-          audioRef.current.pause();
+  const stationInMiniPlayer = useCallback(
+    (audioId) => {
+      setPlayerState((prev) => {
+        if (prev.stationInMiniPlayer && prev.stationInMiniPlayer !== audioId) {
+          if (audioRef.current) {
+            audioRef.current.pause();
+          }
         }
-        const station = findStation(audioId, stations);
-        togglePlay(audioId, true);
-      }
+        return { ...prev, stationInMiniPlayer: audioId };
+      });
 
-      return { ...prev, stationInMiniPlayer: audioId };
-    });
-  };
+      togglePlay(audioId, true);
+    },
+    [togglePlay]
+  );
 
   const handleVolumeChange = useCallback((newVolume) => {
     // Ensure volume is a number and within valid range (0-1)

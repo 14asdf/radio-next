@@ -43,7 +43,6 @@ const VolumeIcon = ({ volume }) => {
 };
 
 const MiniPlayer = ({ audioId }) => {
-  console.log(audioId);
   const { playerState, togglePlay, handleVolumeChange } = useAudioPlayer();
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
