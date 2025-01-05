@@ -24,7 +24,6 @@ import s from '../stations.json';
 import _ from 'lodash';
 import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
 import Link from 'next/link';
-// import { Link } from 'react-router-dom';
 
 import { Slider } from '@/components/ui/slider';
 import {
