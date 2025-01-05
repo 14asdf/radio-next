@@ -7,6 +7,7 @@ import s from '../stations.json';
 import _ from 'lodash';
 import { AvatarGroup, Avatar } from '../components/ui/avatar';
 import { sampleSize } from 'lodash';
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 const COLORS = [
   'red.500',
@@ -42,37 +43,43 @@ const stations = _.uniqBy(s, 'title');
 
 // Custom Avatar component with play icon on hover
 const StationAvatar = React.memo(({ station }) => {
+  const { playerState, togglePlay, stationInMiniPlayer } = useAudioPlayer();
+
+  const handleClick = (e) => {
+    e.stopPropagation(); // Stop event bubbling
+    e.preventDefault(); // Prevent link navigation
+    stationInMiniPlayer(encodeUrl(station.streamUrl)); // Using station.streamUrl instead of undefined audioId
+  };
+
   return (
-    <Link href={`/?id=${encodeUrl(station.streamUrl)}`}>
-      <Box position="relative">
-        <Avatar
-          src={station.img || createAvatarUrl(station.title)}
-          name={station.title}
-          size="md"
-          _hover={{
-            transform: 'scale(1.1)',
-            transition: 'transform 0.2s',
-          }}
-        />
-        <Box
-          position="absolute"
-          top="0"
-          left="0"
-          right="0"
-          bottom="0"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          backgroundColor="blackAlpha.600"
-          borderRadius="full"
-          opacity="0"
-          _hover={{ opacity: 1 }}
-          transition="opacity 0.2s"
-        >
-          <RiPlayFill color="white" size="20px" />
-        </Box>
+    <Box position="relative" onClick={handleClick}>
+      <Avatar
+        src={station.img || createAvatarUrl(station.title)}
+        name={station.title}
+        size="md"
+        _hover={{
+          transform: 'scale(1.1)',
+          transition: 'transform 0.2s',
+        }}
+      />
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        backgroundColor="blackAlpha.600"
+        borderRadius="full"
+        opacity="0"
+        _hover={{ opacity: 1 }}
+        transition="opacity 0.2s"
+      >
+        <RiPlayFill color="white" size="20px" />
       </Box>
-    </Link>
+    </Box>
   );
 });
 

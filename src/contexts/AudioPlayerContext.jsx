@@ -79,7 +79,17 @@ export function AudioPlayerProvider({ children }) {
   };
 
   const stationInMiniPlayer = (audioId) => {
-    setPlayerState((prev) => ({ ...prev, stationInMiniPlayer: audioId }));
+    setPlayerState((prev) => {
+      if (prev.stationInMiniPlayer && prev.stationInMiniPlayer !== audioId) {
+        if (audioRef.current) {
+          audioRef.current.pause();
+        }
+        const station = findStation(audioId, stations);
+        togglePlay(audioId, true);
+      }
+
+      return { ...prev, stationInMiniPlayer: audioId };
+    });
   };
 
   const handleVolumeChange = useCallback((newVolume) => {

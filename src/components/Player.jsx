@@ -70,7 +70,6 @@ const Player = ({ audioId }) => {
       display="flex"
       flexDirection="column"
     >
-      {' '}
       <PlayerDialog
         isOpen={isDialogOpen}
         onOpenChange={(e) => setIsDialogOpen(e.open)}
