@@ -104,7 +104,12 @@ const GenreCard = React.memo(({ tag, stations }) => {
       transition="all 0.2s"
     >
       <Stack spacing={4}>
-        <Text fontSize="2xl" fontWeight="bold" textTransform="capitalize">
+        <Text
+          fontSize="2xl"
+          fontWeight="bold"
+          textTransform="capitalize"
+          color="#fff"
+        >
           {tag}
         </Text>
         <AvatarGroup size="md" max={{ base: 3, md: 5 }} spacing="-3">
