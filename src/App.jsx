@@ -52,22 +52,13 @@ const App = ({ children }) => {
           bg="chakra-body-bg"
         >
           {pathname === '/' && (
-            <>
-              {/* Left Section */}
-
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Logo />
-
-                {/* Right Section */}
-                <Box flex="1" display="flex" justifyContent="flex-end" gap={4}>
-                  <ColorModeButton />
-                </Box>
-              </Box>
-            </>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Logo />
+            </Box>
           )}
         </Box>
 
@@ -110,6 +101,7 @@ const App = ({ children }) => {
               display="flex"
               gap="3"
               justifyContent="flex-start"
+              borderRadius="full"
             >
               {pathname === '/' && !searchParams.get('id') ? (
                 <RiHomeFill size={24} />
@@ -127,6 +119,7 @@ const App = ({ children }) => {
               display="flex"
               gap="3"
               justifyContent="flex-start"
+              borderRadius="full"
             >
               {pathname === '/search' ? (
                 <RiSearchFill size={24} />
@@ -144,6 +137,7 @@ const App = ({ children }) => {
               display="flex"
               gap="3"
               justifyContent="flex-start"
+              borderRadius="full"
             >
               {pathname === '/profile' ? (
                 <RiUserFill size={24} />
@@ -152,6 +146,7 @@ const App = ({ children }) => {
               )}
               <Text>Profile</Text>
             </Button>
+            <ColorModeButton size="lg" width="full" borderRadius="full" />
           </Box>
         </Box>
 
@@ -217,6 +212,7 @@ const App = ({ children }) => {
                   <RiUserLine size={24} />
                 )}
               </IconButton>
+              <ColorModeButton borderRadius="full" />
             </Box>
           </Box>
         </Box>

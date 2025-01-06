@@ -1,6 +1,13 @@
 'use client';
 
-import { ClientOnly, IconButton, Skeleton, Box, Text } from '@chakra-ui/react';
+import {
+  ClientOnly,
+  IconButton,
+  Skeleton,
+  Box,
+  Text,
+  Button,
+} from '@chakra-ui/react';
 import { ThemeProvider, useTheme } from 'next-themes';
 
 import * as React from 'react';
@@ -38,21 +45,20 @@ export function ColorModeIcon() {
   );
 }
 
-export const ColorModeButton = React.forwardRef(function ColorModeButton(
-  props,
-  ref
-) {
-  const { toggleColorMode } = useColorMode();
+export const ColorModeButton = ({ ...props }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <IconButton
+    <Button
       onClick={toggleColorMode}
-      aria-label="Toggle color mode"
-      ref={ref}
       variant="ghost"
-      borderRadius="full"
+      display="flex"
+      gap="3"
+      justifyContent="flex-start"
       {...props}
     >
       <ColorModeIcon />
-    </IconButton>
+      <Text display={{ base: 'none', xl: 'block' }}>Change theme</Text>
+    </Button>
   );
-});
+};
