@@ -91,8 +91,6 @@ const StationInfo = ({ audioId }) => {
       <Box
         position="relative"
         width="100%"
-        height={{ base: '80vh', md: '60vh' }}
-        minHeight="400px"
         overflow="hidden"
         borderRadius="2em"
       >
@@ -132,7 +130,6 @@ const StationInfo = ({ audioId }) => {
           position="relative"
           maxWidth="1200px"
           margin="0 auto"
-          height="100%"
           px={4}
           py={8}
           display="flex"
