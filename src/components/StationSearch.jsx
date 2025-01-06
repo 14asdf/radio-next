@@ -22,6 +22,7 @@ import { RiSearchLine } from 'react-icons/ri';
 import { createAvatarUrl, encodeUrl } from '../utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { useStations } from '../contexts/StationsContext';
 
 // Create a separate StationSearchRow component
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
@@ -108,7 +109,8 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
 
 // Update the SearchResults component to use StationSearchRow
 const SearchResults = React.memo(
-  ({ stations }) => {
+  () => {
+    const { stations } = useStations();
     const searchParams = useSearchParams();
     const searchTerm = searchParams.get('q') || '';
     const searchType = searchParams.get('type') || 'all';
@@ -181,12 +183,12 @@ const SearchResults = React.memo(
       <Box key={searchTerm} ref={containerRef}>
         {!searchTerm ? null : filteredStations.length === 0 ? (
           <Text fontSize={25} textAlign="center" mt={4}>
-            No{' '}
+            No
             {searchType === 'all'
-              ? 'stations'
+              ? ' stations '
               : searchType === 'name'
-              ? 'station names'
-              : 'genres'}{' '}
+              ? ' station names '
+              : ' genres '}
             found for "{searchTerm}"
           </Text>
         ) : (
@@ -232,7 +234,8 @@ const SearchResults = React.memo(
   }
 );
 
-const StationSearch = ({ stations }) => {
+const StationSearch = () => {
+  const { stations } = useStations();
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('all');
   const containerRef = useRef(null);
@@ -306,7 +309,6 @@ const StationSearch = ({ stations }) => {
                 border: 'none',
                 outline: 'none',
               }}
-              focusBorderColor="transparent"
             />
             {searchTerm && (
               <InputRightElement
@@ -384,7 +386,7 @@ const StationSearch = ({ stations }) => {
         </Tabs.Root>
       </Box>
 
-      <SearchResults stations={stations} />
+      <SearchResults />
     </Box>
   );
 };
