@@ -42,9 +42,8 @@ const StationInfo = ({ audioId }) => {
     [audioId, audioSrc]
   );
   const { user } = useAuth();
-  const { toggleFavorite } = useFavorites();
+  const { toggleFavorite, getFavorites } = useFavorites();
   const [isFavorite, setIsFavorite] = useState(false);
-  const { favorites } = useFavorites();
 
   useEffect(() => {
     setIsLoading(true);
@@ -52,7 +51,7 @@ const StationInfo = ({ audioId }) => {
       const img = new window.Image();
       img.src = station.img;
       img.onerror = () => {
-        setImgSrc(createAvatarUrl(station.title));
+        setImgSrc(createAvatarUrl(station?.title || ''));
         setIsLoading(false);
       };
       img.onload = () => {
@@ -60,14 +59,23 @@ const StationInfo = ({ audioId }) => {
         setIsLoading(false);
       };
     } else {
-      setImgSrc(createAvatarUrl(station.title));
+      setImgSrc(createAvatarUrl(station?.title || ''));
       setIsLoading(false);
     }
   }, [station]);
 
   useEffect(() => {
-    setIsFavorite(favorites.includes(encodeUrl(station.streamUrl)));
-  }, [favorites, station.streamUrl]);
+    const loadFavorites = async () => {
+      const favs = (await getFavorites()) || [];
+      const favoritesList = Array.isArray(favs) ? favs : Object.keys(favs);
+
+      if (station?.streamUrl) {
+        setIsFavorite(favoritesList.includes(encodeUrl(station.streamUrl)));
+      }
+    };
+
+    loadFavorites();
+  }, [station?.streamUrl, getFavorites]);
 
   const handleFavoriteClick = async () => {
     if (!user) {

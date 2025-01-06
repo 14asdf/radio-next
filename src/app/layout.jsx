@@ -26,10 +26,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <AuthProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body>
-          <div id="root">
+    <html lang="en">
+      <body suppressHydrationWarning>
+        <div id="root">
+          <AuthProvider>
             <StationsProvider>
               <ChakraProvider>
                 <AudioPlayerProvider>
@@ -39,9 +39,9 @@ export default function RootLayout({ children }) {
                 </AudioPlayerProvider>
               </ChakraProvider>
             </StationsProvider>
-          </div>
-        </body>
-      </html>
-    </AuthProvider>
+          </AuthProvider>
+        </div>
+      </body>
+    </html>
   );
 }

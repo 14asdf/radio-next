@@ -45,8 +45,6 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
       href={`/?id=${encodeUrl(station.streamUrl)}`}
       display="flex"
       gap={4}
-      overflow="hidden"
-      textWrap="nowrap"
       textOverflow="ellipsis"
       maxW="100%"
     >
@@ -62,13 +60,19 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
         </Box>
       ) : (
         <Box position="relative" onClick={handlePlayClick}>
-          <Image
-            src={imgSrc}
-            borderRadius="md"
-            boxSize="80px"
-            alt={station.title}
-            objectFit="cover"
-          />
+          <Box width="80px" height="80px" flexShrink={0}>
+            <Image
+              src={imgSrc}
+              borderRadius="md"
+              width="80px"
+              height="80px"
+              minWidth="80px"
+              minHeight="80px"
+              boxSize="80px"
+              alt={station.title}
+              objectFit="cover"
+            />
+          </Box>
           <Box
             position="absolute"
             top="0"
