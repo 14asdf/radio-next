@@ -11,7 +11,6 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { FcGoogle } from 'react-icons/fc';
-import { FaVk } from 'react-icons/fa';
 import Logo from '../components/shared/Logo';
 import { useAuth } from '../contexts/AuthContext';
 import { auth, db } from '../firebase/config';
@@ -41,8 +40,6 @@ const Login = () => {
       console.error('Google login error:', error);
     }
   };
-
-  const handleVKLogin = async () => {};
 
   return (
     <Box>
@@ -74,18 +71,6 @@ const Login = () => {
               >
                 <FcGoogle size={20} />
                 Continue with Google
-              </Button>
-
-              <Button
-                onClick={handleVKLogin}
-                display="flex"
-                gap={2}
-                alignItems="center"
-                borderRadius="full"
-                w="100%"
-              >
-                <FaVk size={20} color="#0077FF" />
-                Continue with VK
               </Button>
             </VStack>
           </VStack>

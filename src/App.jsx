@@ -58,7 +58,7 @@ const App = ({ children }) => {
             alignItems="center"
           >
             {/* Left Section */}
-            {pathname === '/' && <Logo />}
+            <Logo />
 
             {/* Right Section */}
             <Box flex="1" display="flex" justifyContent="flex-end" gap={4}>
