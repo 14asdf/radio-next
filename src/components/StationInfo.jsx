@@ -83,6 +83,7 @@ const StationInfo = ({ audioId }) => {
       return;
     }
     await toggleFavorite(encodeUrl(station.streamUrl));
+    setIsFavorite((prev) => !prev);
   };
 
   return (
