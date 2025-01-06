@@ -23,6 +23,7 @@ import { decodeUrl, encodeUrl } from './utils';
 
 import { useAudioPlayer } from './contexts/AudioPlayerContext';
 import MiniPlayer from './components/MiniPlayer';
+import { Suspense } from 'react';
 
 const App = ({ children }) => {
   // Accept children prop
@@ -35,7 +36,7 @@ const App = ({ children }) => {
   const audioId = searchParams.get('id');
 
   return (
-    <>
+    <Suspense>
       <Toaster />
       <Box
         height={{ base: '100dvh', md: '100vh' }}
@@ -170,7 +171,7 @@ const App = ({ children }) => {
           </Box>
         </Box>
       </Box>
-    </>
+    </Suspense>
   );
 };
 
