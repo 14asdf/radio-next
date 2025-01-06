@@ -72,7 +72,7 @@ const App = ({ children }) => {
           <Box
             flex="1"
             overflow="auto"
-            pb={{ base: '16', xl: '4' }}
+            pb={{ base: '4', xl: '4' }}
             pl={{ base: '4', md: '20' }}
             pr={{ base: '4', md: '20' }}
             pt={audioId ? 4 : 0}
