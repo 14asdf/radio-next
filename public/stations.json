@@ -1684,7 +1684,7 @@
     "title": "Radio Art - Baroque",
     "tags": "baroque,classical,classical music,literature,talk",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "IoXIIm58ZvhBy52y"
   },
   {
@@ -2020,7 +2020,7 @@
     "title": "Millenium FM Electro DJ Webradio",
     "tags": "dance,dance music,dubstep,electro,electronic,electronic dance music,house,progressive house,soulful house,techno,trance",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "MYPXJk9SZ7gu9LsK"
   },
   {
@@ -2284,7 +2284,7 @@
     "title": "Capital FM2",
     "tags": "classic hits",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "QExmFZBw3a5qAhrg"
   },
   {
@@ -2539,8 +2539,8 @@
     "streamUrl": "https://lhttp.qingting.fm/live/4804/64k.mp3",
     "title": "怀集音乐之声",
     "tags": "classical",
-    "img": null,
-    "posted": false,
+    "img": "/usr/src/app/assets/default.png",
+    "posted": true,
     "_id": "T5HkGJQ7zcS95ZXf"
   },
   {
@@ -2796,7 +2796,7 @@
     "title": "Radio Art - Current Jazz",
     "tags": "contemporary jazz,current jazz,jazz",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "WjZHuotmy2CdgtME"
   },
   {
@@ -3052,7 +3052,7 @@
     "title": "CFBW \"BWR 91.3\" Hanover, ON",
     "tags": "blues,community radio,country,hanover,jazz,oldies,world music",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "Y59GX7EIeHcT6o5q"
   },
   {
@@ -3308,7 +3308,7 @@
     "title": "Radio Jazz 89.1 - JAZZ Vocals",
     "tags": "jazz vocal",
     "img": "https://radiojazzfm.ru/favicons/favicon-32x32.png",
-    "posted": false,
+    "posted": true,
     "_id": "aUomrUBsQixjwQxf"
   },
   {
@@ -3476,7 +3476,7 @@
     "title": "Rádió KoKo",
     "tags": "adult contemporary,classic hits,contemporary hits radio,pop music,pop rock",
     "img": "https://radiokokoms.ro/images/radiokoko-logo.png",
-    "posted": false,
+    "posted": true,
     "_id": "cbWxD7FRfE5qR7Np"
   },
   {
@@ -3604,7 +3604,7 @@
     "title": "DR P8 Jazz",
     "tags": "jazz",
     "img": "https://dr.dk/favicon.ico",
-    "posted": false,
+    "posted": true,
     "_id": "dwvMy8K3Aj9GKhaJ"
   },
   {
@@ -3732,7 +3732,7 @@
     "title": "Радио Орфей - Классика музыкального кроссовера",
     "tags": "classical,crossover,cultural",
     "img": "https://orpheusradio.ru/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "fRWpE80cOx8Mr3ab"
   },
   {
@@ -3860,7 +3860,7 @@
     "title": "Lounge.FM - 100% Austria",
     "tags": "downtempo,easy listening,lounge,smooth jazz",
     "img": "https://www.allzicradio.com/media/radios/c17511.png",
-    "posted": false,
+    "posted": true,
     "_id": "gwwCqldHnbPeUSqi"
   },
   {
@@ -3988,7 +3988,7 @@
     "title": "Traxx FM - Cool Jam",
     "tags": "commercial-free,jazz,lounge,no ads,nu jazz,nu-jazz,relax,relaxing,smooth jazz",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "ivWYWxe6OpjZzzQS"
   },
   {
@@ -4116,7 +4116,7 @@
     "title": "1980s.FM",
     "tags": "80s,classic hits,classic rock,richmond",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "jw9jCSEzOncl2djp"
   },
   {
@@ -4244,7 +4244,7 @@
     "title": "Radio Art - Gregorian Chants",
     "tags": "classical,meditation",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "lXrTwdtiObIAs0DF"
   },
   {
@@ -4348,7 +4348,7 @@
     "title": "Radyo Ender",
     "tags": "classic hits,hits,pop,turkish music",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "mTO0GUazUH0aRdtP"
   },
   {
@@ -4412,7 +4412,7 @@
     "title": "7000FM",
     "tags": "techno",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "nn35cKrptPPbF9D0"
   },
   {
@@ -4476,7 +4476,7 @@
     "title": "Radio Classique",
     "tags": "classical",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "oFPyrwGkTUieELfF"
   },
   {
@@ -4540,7 +4540,7 @@
     "title": "Radio Art - Saxophone Jazz",
     "tags": "jazz,music",
     "img": "https://www.radioart.com/favicon.ico",
-    "posted": false,
+    "posted": true,
     "_id": "omzVPmecHvqP9HCR"
   },
   {
@@ -4588,7 +4588,7 @@
     "title": "Easy Network Jazz & Soul",
     "tags": "jazz,padova,soul",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "pHpmavrQ37p7yllJ"
   },
   {
@@ -4612,7 +4612,7 @@
     "title": "Greatest Hits Radio (Manchester and North West)",
     "tags": "classic hits,variety hits",
     "img": "https://hellorayo.co.uk/tesla/static/favicons/rayo/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "pqw3xRh3wlmNh7i3"
   },
   {
@@ -4628,7 +4628,7 @@
     "title": "Radio Techno Zagreb",
     "tags": "techno",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "qBbzgVZSlZ3aw5hi"
   },
   {
@@ -4644,7 +4644,7 @@
     "title": "Radio Jazzinec",
     "tags": "jazz",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "qCcWHLVsTferCfpt"
   },
   {
@@ -4660,7 +4660,7 @@
     "title": "Haarlem105",
     "tags": "adult contemporary,house,jazz,local news,pop",
     "img": "https://i0.wp.com/haarlem105.nl/wp-content/uploads/2020/02/cropped-h105-fav.png?fit=180%2c180&#038;ssl=1",
-    "posted": false,
+    "posted": true,
     "_id": "qfWMv44Kd5eM1Zbb"
   },
   {
@@ -4676,7 +4676,7 @@
     "title": "Radio 105 - Hits",
     "tags": "classic hits,hits,mediaset",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "ql1ogkwDCQEPcKdL"
   },
   {
@@ -4692,7 +4692,7 @@
     "title": "Klasszik Rádió 92.1",
     "tags": "classical",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "qphOYFosloBbTQp6"
   },
   {
@@ -4708,7 +4708,7 @@
     "title": "YourClassical Black History",
     "tags": "black history,classical",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "qzu0nCTMkhPe3dQD"
   },
   {
@@ -4724,7 +4724,7 @@
     "title": "Jet FM",
     "tags": "breakbeat,dub,electro,funk,hiphop,jazz,reggae,techno,world music",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "rHdYTmV5fbz1WTUj"
   },
   {
@@ -4756,7 +4756,7 @@
     "title": "WVIK",
     "tags": "classical,quad ciities",
     "img": "https://www.wvik.org/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "rn6WBK0k4Bwo6PEZ"
   },
   {
@@ -4772,7 +4772,7 @@
     "title": "Jazz Radio Groov'Up",
     "tags": "groove,jazz",
     "img": "http://www.jazzradio.fr/apple-touch-icon-120x120.png",
-    "posted": false,
+    "posted": true,
     "_id": "rzgQfEBQ5AhqyWTs"
   },
   {
@@ -4788,7 +4788,7 @@
     "title": "Radio Brassens",
     "tags": "jazz",
     "img": "https://www.radiobrassens.com/wp-content/uploads/2020/12/cropped-favicon-32x32.png",
-    "posted": false,
+    "posted": true,
     "_id": "s1i5byON5JnlNqlS"
   },
   {
@@ -4804,7 +4804,7 @@
     "title": "ROCKSTATION's Broadcast",
     "tags": "alternative rock,classic rock,rock",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "s6dtL55kJPlN4IF2"
   },
   {
@@ -4820,7 +4820,7 @@
     "title": "Adagio Radio HD",
     "tags": "classical",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "sfEA4CDIDLXP3Pvq"
   },
   {
@@ -4836,7 +4836,7 @@
     "title": "M Radio Cultes années 60 et 70",
     "tags": "classical",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "sqz4lf3ZSYZUUcSB"
   },
   {
@@ -4852,7 +4852,7 @@
     "title": "M Radio Années 80",
     "tags": "classical",
     "img": "https://mradio.fr/apple-touch-icon-120x120.png",
-    "posted": false,
+    "posted": true,
     "_id": "t37wztZ3TqQeRR5z"
   },
   {
@@ -4868,7 +4868,7 @@
     "title": "Your Classical Chamber Music",
     "tags": "chamber music,classical",
     "img": "https://www.yourclassical.org/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "tAzYCGkiMsM3Ug1B"
   },
   {
@@ -4884,7 +4884,7 @@
     "title": "Christmas Radio",
     "tags": "christian contemporary,christmas music,classical,country,rnb,soul",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "tBrOXvIbltLXEhjF"
   },
   {
@@ -4900,7 +4900,7 @@
     "title": "Радио Jazz Legends",
     "tags": "jazz",
     "img": "https://i.postimg.cc/xTvDJbbn/cover-social.jpg",
-    "posted": false,
+    "posted": true,
     "_id": "tKQXqctEqO6rRSEW"
   },
   {
@@ -4916,7 +4916,7 @@
     "title": "Jazz Radio Soul Food by DJ Philgood",
     "tags": "jazz,soul",
     "img": "https://www.jazzradio.fr/apple-touch-icon-120x120.png",
-    "posted": false,
+    "posted": true,
     "_id": "tUtNKZfky6RIqfi0"
   },
   {
@@ -4932,7 +4932,7 @@
     "title": "Soul Rhythms Radio UK",
     "tags": "classic jazz,disco funk,rnb,soul music",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "tYltePqqruB8d8PZ"
   },
   {
@@ -4948,7 +4948,7 @@
     "title": "Virgin Radio Rock '80",
     "tags": "80s,classic rock,mediaset",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "tlPVmT00wjVDCRMD"
   },
   {
@@ -4964,7 +4964,7 @@
     "title": "#1 Splash 90s",
     "tags": "1990s,90's,90er,90s,90s y más,classic 90s,splash",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "tos2dMDJ6YvjKXxS"
   },
   {
@@ -4980,7 +4980,7 @@
     "title": "Poptarisznya Blues24",
     "tags": "blues,classic rock,oldies",
     "img": "https://cdn.onlineradiobox.com/img/logo/6/77516.v2.png",
-    "posted": false,
+    "posted": true,
     "_id": "tr31QmmcZGqpmbCD"
   },
   {
@@ -5012,7 +5012,7 @@
     "title": "123 All Classic Rock",
     "tags": "classic rock,rock,rock-classic",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "uLaTJLOxRNMjitoX"
   },
   {
@@ -5028,7 +5028,7 @@
     "title": "goBEACH",
     "tags": "ambiental,beach,chill,chillout,relax",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "uY6L8tgWitM3p7NB"
   },
   {
@@ -5044,7 +5044,7 @@
     "title": "Donau Radio Musikwelle",
     "tags": "classic hits,oldies,schlager",
     "img": "https://www.stadtradio.at/wp-content/uploads/2021/10/logo_2503-150x150.png",
-    "posted": false,
+    "posted": true,
     "_id": "uZ8WkPHEQgLEKl2c"
   },
   {
@@ -5059,8 +5059,8 @@
     "streamUrl": "http://greece-media.monroe.edu/wgmc.mp3",
     "title": "WGMC \"Jazz 90.1\" Rochester, NY",
     "tags": "community radio,jazz,multicultural,multilingual,rochester",
-    "img": "http://www.jazz901.org/favicon.ico",
-    "posted": false,
+    "img": null,
+    "posted": true,
     "_id": "v0ankKauExPcGgum"
   },
   {
@@ -5076,7 +5076,7 @@
     "title": "4mbs Classic FM",
     "tags": "australia,classic,music",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "v2SReecc8FcACWEn"
   },
   {
@@ -5092,7 +5092,7 @@
     "title": "Crooner Radio Love (Romantique)",
     "tags": "crooner,crooner radio,crooners,love songs,oldies,romantique,smooth,smoothest songs,vocal jazz",
     "img": "https://www.croonerradio.fr/wp-content/uploads/2023/02/LOGO-CROONER-RADIO-WR-LOVE.jpg",
-    "posted": false,
+    "posted": true,
     "_id": "vH1pGdhWyqao7JkG"
   },
   {
@@ -5108,7 +5108,7 @@
     "title": "France Musique | Classique Easy",
     "tags": "classic,classical",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "vO13yGgv7oHFOBkX"
   },
   {
@@ -5124,7 +5124,7 @@
     "title": "Radio Art - Robert Schumann",
     "tags": "classical,piano,violin",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "vgxMgDtoCdfJogob"
   },
   {
@@ -5140,7 +5140,7 @@
     "title": "J-Club Club Bandstand",
     "tags": "1930s,1940s,big band,jazz,swing",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "vthQ2xOtQRnsUfoC"
   },
   {
@@ -5155,8 +5155,8 @@
     "streamUrl": "http://radiominor.ru:8000/radiominor_ru_jazz.mp3",
     "title": "Radio Minor",
     "tags": "classic jazz,jazz",
-    "img": "https://radiominor.ru/favicon.ico",
-    "posted": false,
+    "img": null,
+    "posted": true,
     "_id": "w1ZifXLcOFogkL8u"
   },
   {
@@ -5172,7 +5172,7 @@
     "title": "- 0 N - Classic Rock on Radio",
     "tags": "80er,80s,90er,90s,classic rock,rock",
     "img": "https://www.0nradio.com/logos/0n-classic-rock_600x600.jpg",
-    "posted": false,
+    "posted": true,
     "_id": "w8Ng2lqdsFRC5ZP1"
   },
   {
@@ -5188,7 +5188,7 @@
     "title": "90.5 wes",
     "tags": "jazz,npr,pittsburgh",
     "img": "https://www.wesa.fm/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "wV453zwAL90OYDBe"
   },
   {
@@ -5204,7 +5204,7 @@
     "title": "Radio Caroline 259 Gold 64kbps",
     "tags": "00s,60s,70s,80s,90s,album rock,classic rock",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "wYiB2CO6QFBaT5xK"
   },
   {
@@ -5220,7 +5220,7 @@
     "title": "Allzic Radio 80s",
     "tags": "80s,classic hits,oldies,pop",
     "img": "https://www.allzicradio.com/apple-touch-icon-120x120.png",
-    "posted": false,
+    "posted": true,
     "_id": "weOfaTUKKhNSqQ2c"
   },
   {
@@ -5236,7 +5236,7 @@
     "title": "Best Net Radio - Classic Rock",
     "tags": "classic rock",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "x0EhkHHDo2oJHxQo"
   },
   {
@@ -5251,8 +5251,8 @@
     "streamUrl": "http://listen.181fm.com/181-classicaljazz_128k.mp3",
     "title": "181.FM - Classical Jazz",
     "tags": "classic jazz,waynesboro",
-    "img": "http://www.181.fm/favicon.ico",
-    "posted": false,
+    "img": null,
+    "posted": true,
     "_id": "xCi72gUw8fqVAso5"
   },
   {
@@ -5284,7 +5284,7 @@
     "title": "Radio Dom Druzhbi",
     "tags": "classic hits,hits,top40",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "xgFsSJctvLsL3a4L"
   },
   {
@@ -5300,7 +5300,7 @@
     "title": "Radio Art - Latin Jazz",
     "tags": "dance,instrumental,jazz,latin,latin jazz",
     "img": "https://www.radioart.com/favicon.ico",
-    "posted": false,
+    "posted": true,
     "_id": "xoEoXkIVPRq0ywp7"
   },
   {
@@ -5316,7 +5316,7 @@
     "title": "Радио Открытие Мценск 102.0 FM",
     "tags": "classic hits,hits,top100",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "xzHFwlPDp4AnIlMj"
   },
   {
@@ -5332,7 +5332,7 @@
     "title": "Grand Prix Radio",
     "tags": "autosport,classics,danceable hits",
     "img": "https://grandprixradio.nl/themes/flixi/favicons/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "y1vVfx7vCtxRRwLT"
   },
   {
@@ -5348,7 +5348,7 @@
     "title": "Poptarisznya Oldies",
     "tags": "classic hits,oldies",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "yC6VOXvyLLzfvNkt"
   },
   {
@@ -5364,7 +5364,7 @@
     "title": "Old Time Radio KSA 720 AM",
     "tags": "classic radio drama",
     "img": "https://static.wixstatic.com/media/7d32c5_2a0e314736a54369a945724dd2c84980%7emv2.png/v1/fill/w_180%2ch_180%2clg_1%2cusm_0.66_1.00_0.01/7d32c5_2a0e314736a54369a945724dd2c84980%7emv2.png",
-    "posted": false,
+    "posted": true,
     "_id": "yHE244geMPYCjxer"
   },
   {
@@ -5380,7 +5380,7 @@
     "title": "club.radio",
     "tags": "funk,jazz,rock,soul",
     "img": "https://club.radio/favicon.png",
-    "posted": false,
+    "posted": true,
     "_id": "yMCS9lHbKVLj7Cmi"
   },
   {
@@ -5396,7 +5396,7 @@
     "title": "Aswat FM",
     "tags": "arabic music,classic hits,hits,pop",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "yhTlXf5qxi3wd9NP"
   },
   {
@@ -5412,7 +5412,7 @@
     "title": "WCPN 90.3 \"Ideastream\" Cleveland, OH",
     "tags": "cleveland,jazz,news,npr,public radio,talk",
     "img": "http://wcpn.ideastream.org/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "ypO5RDBNt6indzdi"
   },
   {
@@ -5428,7 +5428,7 @@
     "title": "TechnoBase.FM",
     "tags": "dance,eurodance,handsup,happy hardcore,hardcore,jumpstyle,techno",
     "img": "https://technobase.fm/media/icons/tb/apple-touch-icon.png",
-    "posted": false,
+    "posted": true,
     "_id": "z4SVfjoD0Z24uaiP"
   },
   {
@@ -5444,7 +5444,7 @@
     "title": "Smooth Lounge Global Radio",
     "tags": "jazz",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "zKDrtjfYI7pDkkpX"
   },
   {
@@ -5460,7 +5460,7 @@
     "title": "Radio Mediterranea",
     "tags": "lounge chillout relax smoothjazz ambient",
     "img": "https://www.radiomediterranea.com/wp-content/uploads/2021/07/cc.srr_.primary-1.png",
-    "posted": false,
+    "posted": true,
     "_id": "zSL4Rhk4y6Gw5H55"
   },
   {
@@ -5476,7 +5476,7 @@
     "title": "Radio Gamma Magic",
     "tags": "80s,90s,classic hits,love songs",
     "img": null,
-    "posted": false,
+    "posted": true,
     "_id": "zyyfXgSEAgCIWB1X"
   },
   {
@@ -5492,7 +5492,7 @@
     "title": "Радио Орфей - Современная хоровая 256kbps",
     "tags": "choir,choral,contemporary",
     "img": "https://orpheusradio.ru/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/2209_128.mp3",
@@ -5506,7 +5506,7 @@
     "title": "Allzic Radio - Lounge",
     "tags": "chillout,downtempo,lounge,relax",
     "img": "https://www.allzicradio.com/apple-touch-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://allzic20.ice.infomaniak.ch/allzic20.mp3",
@@ -5520,98 +5520,98 @@
     "title": "Allzic Radio Zen",
     "tags": "calm,relax,relaxation",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://24283.live.streamtheworld.com:443/PARADISO.mp3",
     "title": "Amil Paradiso FM",
     "tags": "brazilian music,oldies,relax",
     "img": "https://amilparadiso.fm/assets/img/favicon57.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://rdstream-0625.dez.ovh:8000/radio.mp3",
     "title": "Chillofi Radio: relax & study beats",
     "tags": "chill,chillhop,chillout,lo-fi,music for study,relax,relaxing",
     "img": "https://chillofi-radio.dez.ovh/img/clofi-logo.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.classic.nl/classicnl-mindradio.mp3",
     "title": "Classicnl Mind Radio",
     "tags": "calm,chillout,new age,relax,smooth lounge",
     "img": "https://classic.nl/images/icons/favicon-96x96.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emg02.hostingradio.ru/ep-light128.mp3",
     "title": "Europa Plus Light",
     "tags": "ballads,europe,pop,relax,romantic",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://locus.creacast.com:9001/kyoto_cyberforesthydro.mp3",
     "title": "KyotoUriverside from riverside of Yura River in Kyoto University Ashiu research forest (Miyama, Kyoto)",
     "tags": "relax",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://play.nicecream.fm/radio/8000/red.mp3",
     "title": "Nice Cream Red",
     "tags": "chill beats,relax",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://mp3s.nc.u-tokyo.ac.jp/OTSUCHI_CyberForest.mp3",
     "title": "otohama Coastal Soundscape from The University of Tokyo International Coastal Research Center (Otsuchi, Iwate)",
     "tags": "relax",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s4.ssl-stream.com/listen/oxo_radio/radio.mp3",
     "title": "OXO Radio",
     "tags": "beach,deep,deep house,organic,relax",
     "img": "https://oxoradio.eu/wp-content/uploads/2021/09/logo-oxo_mobile_bw.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://str45.streamakaci.com:8014/;*.mp3",
     "title": "Radio  Flemme",
     "tags": "relax,relaxation",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fAmbient_piano.mp3",
     "title": "Radio Art - Ambient Piano",
     "tags": "instrumental,piano,relax",
     "img": "https://d1iyh67kzf6t3o.cloudfront.net/images/channels/12_Ambient_Piano.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fAromatherapy.mp3",
     "title": "Radio Art - Aromatherapy",
     "tags": "instrumental,relax",
     "img": "https://d1iyh67kzf6t3o.cloudfront.net/images/channels/128_aromatherapy-600x400.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fChillout_and_tropical.mp3",
     "title": "Radio Art - Chillout & Tropical",
     "tags": "electronic,lounge,relax,relaxing",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fDidgeridoo.mp3",
     "title": "Radio Art - Didgeridoo",
     "tags": "didgeridoo,relaxing",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fFor_inspiration.mp3",
@@ -5625,49 +5625,49 @@
     "title": "Radio Art - Lounge",
     "tags": "lounge,music,relax",
     "img": "https://d1iyh67kzf6t3o.cloudfront.net/images/channels/Lounge.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fLullaby.mp3",
     "title": "Radio Art - Lullaby",
     "tags": "absolute music,relax,sleep",
     "img": "https://d1iyh67kzf6t3o.cloudfront.net/images/channels/11_Lullaby.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fMantras.mp3",
     "title": "Radio Art - Mantras",
     "tags": "mantras,meditation,relax,relaxing",
     "img": "https://d1iyh67kzf6t3o.cloudfront.net/images/channels/067_mantras-600x400.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.radioart.com/fMusic_for_moms.mp3",
     "title": "Radio Art - Music for Moms",
     "tags": "classical,inoculation,relax",
     "img": "https://d1iyh67kzf6t3o.cloudfront.net/images/channels/musicformoms.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fNew_age.mp3",
     "title": "Radio Art - New Age",
     "tags": "easy listening,instrumental,new age,relax",
     "img": "https://www.radioart.com/templates/yootheme/cache/logo-2d9baf0b.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fPiano_and_guitar.mp3",
     "title": "Radio Art - Piano & Guitar(2)",
     "tags": "guitar,instrumental,piano,relax,relaxing",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fPiano_trios.mp3",
     "title": "Radio Art - Piano Trios",
     "tags": "instrumental,music,piano,relax",
     "img": "https://www.radioart.com/templates/yootheme/cache/logo-2d9baf0b.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fPilates.mp3",
@@ -5681,49 +5681,49 @@
     "title": "Radio Art - Pregnancy Relaxation",
     "tags": "relaxation",
     "img": "https://stream30.radioart.com:2197/static/f142_pregnancy_r/covers/rsz_emb_piano_sensation_piano_solo_5c408f41.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fReiki.mp3",
     "title": "Radio Art - Reiki",
     "tags": "instrumental,piano,relax",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fRelaxing.mp3",
     "title": "Radio Art - Relaxing (Violin, Piano & Cello)",
     "tags": "cello,piano,relax,violin",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fShamanic.mp3",
     "title": "Radio Art - Shamanic",
     "tags": "meditation,relax,relaxing",
     "img": "https://d1iyh67kzf6t3o.cloudfront.net/images/channels/133_shamanic-600x400.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fSolo_guitar.mp3",
     "title": "Radio Art - Solo Guitar",
     "tags": "guitar,relax,relaxing",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://live.radioart.com/fStress_relief.mp3",
     "title": "Radio Art - Stress Relief",
     "tags": "new age,relax",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fZen.mp3",
     "title": "Radio Art - Zen",
     "tags": "relax,zen",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://server36206.streamplus.de:10308/stream.mp3",
@@ -5737,49 +5737,49 @@
     "title": "Radyo Voyage",
     "tags": "folk,mood,relaxing,world",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://25243.live.streamtheworld.com:80/SRGSTR07.mp3",
     "title": "Sky Radio Nice & Easy",
     "tags": "hits,non-stop,relax",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://23153.live.streamtheworld.com/SMOOTHRELAX_SYD.mp3",
     "title": "SMOOTH Relax",
     "tags": "relaxing",
     "img": "https://www.smooth.com.au/assets/smooth/icons/favicon/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.canstream.co.uk:9134/live.mp3",
     "title": "Soundart Radio",
     "tags": "arts,community,eclectic,eclética,experimental,live,music,relaxing",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://traxx004.ice.infomaniak.ch/traxx004-low.mp3",
     "title": "Traxx FM - Lounge",
     "tags": "commercial-free,lounge,lounge music,no ads,relax,relaxation,relaxation music,relaxing,smooth lounge",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://mp3s.nc.u-tokyo.ac.jp/Fuji_CyberForest.mp3",
     "title": "yamanakako from Fuji Iyashinomori Woodland Study Center, The University of Tokyo Forests (Yamanakako, Yamanashi)",
     "tags": "relax",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-xgospel_128k.mp3",
     "title": "181.FM - Christmas Gospel",
     "tags": "christmas music,gospel,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://94.23.159.187:9958/;stream.mp3",
@@ -5793,49 +5793,49 @@
     "title": "92.1 FM Estación de la Familia / Candelita7",
     "tags": "biblica,cristiana,gospel",
     "img": "https://candelita7.com/wp-content/uploads/2023/04/YouTube-C7TV-PF.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://panel.streamenviron.com:8158/stream.mp3",
     "title": "El Sembrador Radio 590 AM Y 100.1 FM",
     "tags": "bible,cristiana,folk,gospel,religious",
     "img": "https://lirp.cdn-website.com/441cb63a/dms3rep/multi/opt/Logo-El-Sembrador--2023-03-1920w.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://essentielradioing.streamakaci.com/essentielradio.mp3",
     "title": "ESSENTIEL radio",
     "tags": "gospel,pop rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://cdnradio.streamakaci.com/essentielfr.mp3",
     "title": "ESSENTIEL.fr",
     "tags": "gospel,pop rock",
     "img": "http://www.essentielradio.com/upload/Radios%20digitales/ESSENTIEL.fr1200.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio015.gt.gt/radio/8000/live.mp3",
     "title": "Estéreo Santa Sion",
     "tags": "cristiana,evangelio,gospel,religious",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.gotright.net/radio/8000/radio.mp3",
     "title": "Gospotainment Radio",
     "tags": "afrobeats,christian,christian contemporary,christian praise&worship,gospel,gospel music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://hopefy.fanantenanahoanao.org/listen/hopefy_radio_mg/radio.mp3",
     "title": "Hopefy Radio MG",
     "tags": "christian,gospel,religious",
     "img": "https://hopefy.fanantenanahoanao.org/static/uploads/album_art.1718582233.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice.zradio.org/h/high.mp3",
@@ -5849,49 +5849,49 @@
     "title": "JOY HITS",
     "tags": "gospel",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://rhema-radio.streamguys1.com/rhema-lifefm.mp3",
     "title": "LifeFM",
     "tags": "christian,gospel",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://a5.asurahosting.com:7230/radio.mp3",
     "title": "Pfem Radio Uganda (MP3)",
     "tags": "christian,gospel,religious,talk",
     "img": "https://pfemdr.org/gallery/favicons/favicon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://zionmultimedia.live/radio/8010/radio.mp3",
     "title": "Radio Zion (Tijuana) - 540 AM - XESURF-AM - Zion Multimedia - Tijuana, BC",
     "tags": "540,540 am,am,baja california,california,christian,christian contemporary,christian music,christian talk,christian-gospel,christmas music,contemporary christian,cristian,cristiana,cristianas,cristiano,estación,mensajes cristianos,musica cristiana,música religiosa,radio,radio cristiana,religion,religiosa,religious,religión,religous,san diego,spanish christian,tijuana,zion multimedia",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://webradio.ev2.hu:10010/river.mp3",
     "title": "River",
     "tags": "christian-gospel,contemporary christian music,online only",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://116.203.69.202/slubfurt_64.mp3",
     "title": "Słubfurt FM",
     "tags": "gospel",
     "img": "https://media.mastodon.de/accounts/avatars/111/773/078/668/664/240/original/39054a716ed6e7e9.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://julycast.be/8232/stream.mp3",
     "title": "UCCJ Online Radio - Kampala (MP3)",
     "tags": "christian,gospel,religious,talk",
     "img": "https://i.ibb.co/Jk12TG3/411529777-750345283803087-6806023776434354762-n.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice.zradio.org/h/high.mp3",
@@ -5905,49 +5905,49 @@
     "title": "Apacik Radyo",
     "tags": "jazz",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://22603.live.streamtheworld.com:80/DEEP_RADIO.mp3",
     "title": "Deep Radio",
     "tags": "ambient,dance,deep house,downtempo,edm,house,nu-jazz,progressive,techno",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://jazz-wr17.ice.infomaniak.ch/jazz-wr17-128.mp3",
     "title": "Jazzradio.fr Jazz & Classique",
     "tags": "classic,jazz",
     "img": "https://www.jazzradio.fr/apple-touch-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming.wrek.org:8000/main/128kb.mp3",
     "title": "WREK 91.1 Atlanta, GA",
     "tags": "atlanta,college radio,georgia,georgia tech,jazz",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio7.pro-fhi.net:19141/milleniumfm.mp3",
     "title": "Laurent DINE IGLESIAS",
     "tags": "dance,electro,electro latino,electro pop,french touch,hits,house,mix,progressive house,techno",
     "img": "https://milleniumfm.fr/wp-content/uploads/2023/01/Millenium-Vinyl-1280x768-3-e1673027437588.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream2.mfmstreaming.nl/8032/stream.mp3",
     "title": "Rainz FM",
     "tags": "dance,deep house,house,ibiza,pop dance,tech house,techno",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.techno.fm/radio.mp3",
     "title": "Techno.FM",
     "tags": "techno",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://17843.live.streamtheworld.com:80/BEG_2EC.mp3",
@@ -5961,49 +5961,49 @@
     "title": "4U 70s Flower",
     "tags": "rock classic",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://str4uice.streamakaci.com/4uclassicrock.mp3",
     "title": "4U Classic Rock",
     "tags": "classic rock,hits",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://str4uice.streamakaci.com/4u70s.mp3",
     "title": "4U Radios - 4U 70s Flowers",
     "tags": "classic hits 70s,old hits",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icecast.commedia.org.uk:8000/asianstar.mp3",
     "title": "Asian Star Radio",
     "tags": "bhangra,bollywood classics,pakistani",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.chinesemusicworld.com/chinesemusic.mp3",
     "title": "Chinese Classical Music Online Radio",
     "tags": "classical music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.chinesemusicworld.com/chinesemusic.mp3",
     "title": "Chinese Music World",
     "tags": "chinese classical",
     "img": "http://i.imgur.com/2Xl8X03.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://www.play4.fr/play4-club.mp3",
     "title": "CLASSIC HITS RADIO",
     "tags": "1970s,1980s,70's,70s,70s disco,80,80's,80s,boogie,classic hits,disco funk,funk,funky,modern soul",
     "img": "https://classichits.radio/wp-content/uploads/2022/10/classichitsit-100x100.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://22203.live.streamtheworld.com:80/WITHFM.mp3",
@@ -6017,49 +6017,49 @@
     "title": "Greatest hits radio (Sussex)",
     "tags": "classics",
     "img": "https://planetradio.co.uk/tesla/static/favicons/planet-radio/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s2.ssl-stream.com/radio/8170/radio.mp3",
     "title": "Labgate - Classic Rock",
     "tags": "classic rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://relay.publicdomainradio.org/classical.mp3",
     "title": "Public Domain Classical",
     "tags": "classical,public domain,royalty free",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.radioart.com/fLudovico_einaudi.mp3",
     "title": "Radio Art - Ludovico Einaudi",
     "tags": "classical",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fFor_work.mp3",
     "title": "Radio Art - Work",
     "tags": "classical,instrumental,music for study",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://live.slovakradio.sk:8000/Devin_256.mp3",
     "title": "Rádio Devín",
     "tags": "classical",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://transmision.cadenaeich.com:8000/RadioH-Maestra.mp3",
     "title": "Radio Eich Saladillo 92.3",
     "tags": "70s,80s,90s,classic hits,hits,music,oldies",
     "img": "http://www.cadenaeich.com/images/rh_header_banner.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://19993.live.streamtheworld.com:80/RFM.mp3",
@@ -6073,49 +6073,49 @@
     "title": "REG FM - Lakes Entrance / Bairnsdale - 90.7 FM / 105.5 FM (MP3)",
     "tags": "classic hits,community radio,easy listening,talk",
     "img": "https://i.ibb.co/JFgx9Zn/79630b-c48d4a6998374afab92e1d6a8c505b0e-mv2.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.flashbackcentral.co.uk/radio/8050/tunein.mp3",
     "title": "Saudi Aramco Studio X 80s and 90s",
     "tags": "80s,90s,classic hits,retro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://14533.live.streamtheworld.com:80/T_RAD_ROCK_S01.mp3",
     "title": "Totally Radio - Rock (MP3)",
     "tags": "alternative rock,blues rock,classic rock,hard rock,indie rock,pop rock,progressive rock,punk rock,rock,soft rock",
     "img": "https://i.ibb.co/X4Wwcn2/Totally-Radio-Rock-qj8jjmigi7f6eerdvuo7e2wtp2otgopbg1unaq3fxc.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://wpln.streamguys1.com/wfclfm.mp3",
     "title": "WFCL \"Classical 91.1\"  Nashville Public Radio, TN",
     "tags": "classical,nashville,public radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://0n-lounge.radionetz.de/0n-lounge.mp3",
     "title": "- 0 N - Lounge on Radio",
     "tags": "ambient,chillout,easy listening,lounge",
     "img": "https://www.0nradio.com/logos/0n-lounge_600x600.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://isekoi-radio.com/listen/ambient/ambientradio.mp3",
     "title": "ISEKOI Radio | Non-Stop Ambient",
     "tags": "ambient",
     "img": "https://i.postimg.cc/MTFQMqFM/ISEKOI-ambient-Logo-1440x1440.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air-tunein.radioart.com/fYoga.mp3",
     "title": "Radio Art - Yoga",
     "tags": "ambient,instrumental,soft music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://edmdnb.com:448/radio/8000/radio.mp3",
@@ -6129,49 +6129,49 @@
     "title": "DNBRadio Main channel 192k",
     "tags": "drum & bass,drum and bass,dubstep,neurofunk,tech step",
     "img": "https://dnbradio.com/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://trace.dnbradio.com:8000/dnbradio_darkstep.mp3",
     "title": "DnBRadio.com - Darkstep Channel (DE Mirror)",
     "tags": "dnb,drum & bass,drum 'n' bass,drum and bass,drum n bass,drum&bass,drum'n'bass,drumn bass",
     "img": "https://i.imgur.com/txk5cnh.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://trace.dnbradio.com:8000/dnbradio_main.mp3",
     "title": "DnBRadio.com - Main Channel (DE Mirror)",
     "tags": "dnb,drum & bass,drum 'n' bass,drum and bass,drum n bass,drum&bass,drum'n'bass,drumn bass,liquid dnb",
     "img": "https://i.imgur.com/txk5cnh.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://ildnb1.dnbradio.com:8000/dnbradio_main.mp3",
     "title": "DnBRadio.com - Main Channel (FR Mirror)",
     "tags": "dnb,drum & bass,drum 'n' bass,drum and bass,drum n bass,drum&bass,drum'n'bass,drumn bass,liquid dnb",
     "img": "https://i.imgur.com/txk5cnh.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://www.powerfm.org:8443/powerfm.mp3",
     "title": "PowerFM Dublin 320Kbps MP3",
     "tags": "dance,drum and bass,electronic,house,jungle",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icecast.unitedradio.it/105Trap.mp3",
     "title": "Radio 105 - Trap",
     "tags": "drum and bass,electronic,mediaset,trap",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://mp3.radiox.ch:8000/standard.mp3",
     "title": "Radio X Basel (MP3 Stream)",
     "tags": "drum and bass,electronica,hiphop,house,indie,reggae,trance",
     "img": "http://www.radiox.ch/.resources/radiox-theme/webresources/images/favicon/touch-icon-ipad.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listener1.mp3.tb-group.fm:80/hb.mp3",
@@ -6185,49 +6185,49 @@
     "title": "Nova Reggae",
     "tags": "dancehall,dub,reggae,rocksteady,ska",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ecast.myautodj.com:1380/listen.mp3",
     "title": "Radio BipTunia",
     "tags": "bass,dub,electronic,experimental,microtonal,psychedelic,space",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream0.datenkollektiv.net/corax_192.mp3",
     "title": "Radio CORAX Halle (192kbps)",
     "tags": "coraxfunk,dubisthalle.de,freies radio,hölle (saale),medienanstalt sachsen-anhalt,morgenmagazin,nkl,subjektiv,widerhall",
     "img": "https://dev.radiocorax.de/wp-content/uploads/logo-4.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://ph1.ministeriotv.com:8031/salvacion.mp3",
     "title": "810 AM Radio Salvación Internacional (RD)",
     "tags": "cristiana",
     "img": "https://i.imgur.com/PZ0qMsY.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://audio.radioleviro.bisericilive.com/radioleviro.mp3",
     "title": "ascultă-Radio Levi",
     "tags": "cristian",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://audio.radiounisonro.bisericilive.com:8080/radiounisonro.mp3",
     "title": "ascultă-Radio Unison",
     "tags": "cristian",
     "img": "https://cdn.onlineradiobox.com/img/apple-touch-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://edge-st1-audio.masterhost.com.ar/listen/radio_republica_955/radio.mp3",
     "title": "Charles Stanley Radio ",
     "tags": "cristiana",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://aler.org:8445/gerardi.mp3",
@@ -6241,56 +6241,56 @@
     "title": "Radio Esperanza (Monterrey) - 1140 AM - XEMR-AM - Grupo Radio Alegría - Apodaca / Monterrey, NL",
     "tags": "1140,1140 am,am,apodaca,cristiana,cristianas,estación,grupo radio alegría,iglesias,mensajes cristianos,mex,mexico,monterrey,music,musica,musica cristiana,mx,méxico,música,música religiosa,nuevo leon,nuevo león,radio,radio cristiana,religion,religiosa,religión",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nr6.newradio.it:9174/;listen&ext=.mp3",
     "title": "Radio Sacra Famiglia",
     "tags": "cristiana",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://zionmultimedia.live/radio/8010/radio.mp3",
     "title": "Radio Zion 540 AM",
     "tags": "christian,cristiana",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://14203.live.streamtheworld.com/WMBIAM.mp3",
     "title": "WMBI (2024) 1110 AM Radio (Chicago) Moody Español ",
     "tags": "1110,chicago,cristiana,moody",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://0n-reggae.radionetz.de/0n-reggae.mp3",
     "title": "- 0 N - Reggae on Radio",
     "tags": "dancehall,latin,reggae,reggaeton",
     "img": "https://www.0nradio.com/logos/0n-reggae_600x600.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-kickincountry_128k.mp3",
     "title": "181.FM - Reggae Roots",
     "tags": "reggae,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://19803.live.streamtheworld.com:443/LOS40_COLOMBIA.mp3",
     "title": "40 Principales Colombia",
     "tags": "pop,reggaeton,urban",
     "img": "https://los40co00.epimg.net/iconos/v1.x/v1.0/promos/promo_og_los40.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://giss.tv:8001/alicia_radio.mp3",
     "title": "Alicia radio",
     "tags": "folk,fusión,garage,punk,punk rock,reggae,rock,rupestre,ska,surf",
     "img": "https://multiforoalicia.org/wp-content/uploads/2024/03/CM26lLOUYAAur1s-150x150.jpeg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://allzic39.ice.infomaniak.ch/allzic39.mp3",
@@ -6304,56 +6304,56 @@
     "title": "Allzic Radio Reggae",
     "tags": "ganja,jamaican,reggae,weed",
     "img": "https://www.allzicradio.com/apple-touch-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://alziraradiomob.streaming-pro.com:6172/alziraradio.mp3",
     "title": "Alzira ràdio 107.9 FM",
     "tags": "deportes,entretenimiento,música variada,news,noticias,radio hablada,reggae,rock,sports",
     "img": "https://alziraradio.com/wp-content/uploads/2019/03/web-alzira-radio-noticies-esports-entreteniment.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.mixesurbanospty.com:8020/blasturbana.mp3",
     "title": "Blast panama",
     "tags": "entretenimiento,hits,latino,musica,radio hablada,reggaeton,urbano",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://transmision.cadenaeich.com:8000/RadioH-Maestra.mp3",
     "title": "Cadena Eich Sport 104.1",
     "tags": "entretenimiento,hits,music,música en español,reggaeton,top 40",
     "img": "http://www.cadenaeich.com/images/rh_header_banner.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://transmision.cadenaeich.com:8000/RadioH-Maestra.mp3",
     "title": "Cadena Eich Tandil 93.1",
     "tags": "hits,music,música en español e inglés,pop,reggaeton",
     "img": "http://www.cadenaeich.com/images/rh_header_banner.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://innovatingthenet.com.ar:8001/energyai.mp3",
     "title": "Cadena Energy",
     "tags": "dance,entretenimiento,hits,latino,reggaeton,top 40,top hits",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming5.elitecomunicacion.es:8082/live.mp3",
     "title": "Chocolate FM",
     "tags": "chr,dance,español,latin,latin music,latino,pop,pop latino,reggaeton,top 40,trap",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming5.elitecomunicacion.es:8030/live.mp3",
     "title": "Chocolate FM HD",
     "tags": "chr,dance,español,hd,latin,latin music,latino,pop,pop latino,reggaeton,top 40,trap",
     "img": "https://www.chocolatefm.com/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nap.casthost.net:9194/stream.mp3",
@@ -6367,21 +6367,21 @@
     "title": "FIP autour du reggae",
     "tags": "reggae",
     "img": "http://www.fipradio.fr/dist/favicons/logo-120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icepool.silvacast.com/DEFJAY.mp3",
     "title": "Fishbone",
     "tags": "hiphop,r & b,reggae",
     "img": "http://resources.live24.gr/resources/images/stations/aff99e31-9f82-431a-81e9-da8f672c73b3.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://st4.laurban.eu:8443/flow.mp3",
     "title": "Flow Radio España MP3 Stream",
     "tags": "latin pop,mainstream urban,música urbana,reggaeton,reguetón",
     "img": "https://flowradio.es/wp-content/uploads/2024/06/cropped-logo_flowradio_web-2-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://hd.lagrosseradio.info/lagrosseradio-reggae-192.mp3",
@@ -6395,21 +6395,21 @@
     "title": "Latina Reggaeton",
     "tags": "latin,reggaeton",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://latinareggaeton.ice.infomaniak.ch/latinareggaeton.mp3",
     "title": "Latina reggaeton",
     "tags": "reggaeton",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://music-station.live/radio/8010/radio.mp3",
     "title": "Nam Radio Local",
     "tags": "african hip hop,afropop,azonto,coupé-decalé,dancehall,deep house,isicathamiya,ndombolo,r&b,reggae,soca",
     "img": "https://music-station.live/static/uploads/browser_icon/120.1628258158.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ouifmganja.ice.infomaniak.ch/ouifmganja-128.mp3",
@@ -6423,21 +6423,21 @@
     "title": "Q 100.7 FM",
     "tags": "decades,health,hymns,music,obituaries,oldies,quality,reggae,soca,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.radioart.com/fRoots_reggae.mp3",
     "title": "Radio Art - Roots Reggae",
     "tags": "music,ragga,reggae",
     "img": "https://www.radioart.com/images/channels/Roots_reggae.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://sphera.fluidstream.eu/companyreggaetown.mp3",
     "title": "Radio Company Reggaetown",
     "tags": "reggaeton",
     "img": "https://www.radiocompany.com/wp-content/uploads/fbrfg/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s37.radiolize.com/radio/8100/radio.mp3",
@@ -6451,21 +6451,21 @@
     "title": "Reggae Radio Rastamusic.com",
     "tags": "reggae",
     "img": "https://static.wixstatic.com/media/a09246_33fe4aef6e5f4f17b605a8d8645ff015%7emv2.png/v1/fill/w_32%2ch_32%2clg_1%2cusm_0.66_1.00_0.01/a09246_33fe4aef6e5f4f17b605a8d8645ff015%7emv2.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://5.135.183.124:9283/stream?type=.mp3",
     "title": "Revoltosa FM",
     "tags": "latin pop,reggaeton",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://rouge-reggae.ice.infomaniak.ch/rouge-reggae-128.mp3",
     "title": "Rouge Reggae",
     "tags": "reggae",
     "img": "https://static.wixstatic.com/media/9a9c36_3d1dd8d8cf814ecca8cd2631a43bb249%7emv2.png/v1/fill/w_32%2ch_32%2clg_1%2cusm_0.66_1.00_0.01/9a9c36_3d1dd8d8cf814ecca8cd2631a43bb249%7emv2.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://reggaespin.media:8000/radio.mp3",
@@ -6479,35 +6479,35 @@
     "title": "UnityXM Radio",
     "tags": "afrobeats,dancehall,reggae",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://ice02.fluidstream.net/playstudio.mp3",
     "title": "Vibra FM",
     "tags": "caribbean rhythm,electrolatino,reggaeton",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.drumbase.space/listen/drumbase.space/radio.mp3",
     "title": "drumbases.pace",
     "tags": "drum & bass,jungle",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://carol.epichosts.co.uk:8232/live.mp3",
     "title": "Infrared.fm",
     "tags": "breaks,drum & bass,hardcore,jungle",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://chilledstreaming.com:8650/mobile.mp3",
     "title": "Playback UK",
     "tags": "dnb,house,jungle,uk garage",
     "img": "https://www.playbackuk.com/wp-content/uploads/2021/01/cropped-pbuk-123-192x192.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://0n-charts.radionetz.de/0n-charts.mp3",
@@ -6521,21 +6521,21 @@
     "title": "- 0 N - Top 40 on Radio",
     "tags": "dance,hits,house,pop,rock,top40",
     "img": "https://www.0nradio.com/logos/0n-top-40_600x600.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://1a-charts.radionetz.de/1a-charts.mp3",
     "title": "- 1 A - Charts von 1A Radio",
     "tags": "dance,hits,house,pop,rock,top40",
     "img": "https://www.1aradio.com/logos/1a-charts_600x600.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://icy.unitedradio.it/105Miami.mp3",
     "title": "105 Miami",
     "tags": "dance,house,rap",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-energy98_128k.mp3",
@@ -6549,21 +6549,21 @@
     "title": "538 Dance Departmetn",
     "tags": "dance,house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen.deepradio.co.uk/radio.mp3",
     "title": "AA-DeepRadio",
     "tags": "dance,house,pop,pop dance",
     "img": "https://deepradio.co.uk/images/transparent_logo.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.airconnectradio.com/ac192.mp3",
     "title": "Air Connect",
     "tags": "edm,house,pop,urban",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.airconnectradio.com:9003/ac192.mp3",
@@ -6577,21 +6577,21 @@
     "title": "Allzic Radio Chill Out",
     "tags": "chillout,electro deep,electronic,house,vocal",
     "img": "https://www.allzicradio.com/apple-touch-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.canstream.co.uk:8058/live.mp3",
     "title": "Bloop London Radio",
     "tags": "electronic,house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.clubdance.online:8000/live.mp3",
     "title": "Club Dance Online",
     "tags": "club house trance dance",
     "img": "https://clubdance.online/ss_logo.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice.coldstar.online/low.mp3",
@@ -6605,21 +6605,21 @@
     "title": "Cool Dance Radio",
     "tags": "cdr,downtempo,happy,ibiza,melodic house,music,new music,organic house,party,vibes",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://sc.cyberstacja.pl:8000/radio.mp3",
     "title": "CYBERStacja",
     "tags": "dance,electro,electronic,house,pop,trance",
     "img": "https://cyberstacja.pl/images/historia/logo_sluchawki.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s15.myradiostream.com/:13980/listen.mp3",
     "title": "D-code 96.2",
     "tags": "electronica,house,indiepop,nu disco,nu funk,soul,triphop",
     "img": "https://962.gr/wp-content/uploads/2022/08/cropped-Untitled-design-93-192x192.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice4.abradio.cz/dance128.mp3",
@@ -6633,21 +6633,21 @@
     "title": "Dance FM",
     "tags": "club,dance,deep house,dj mix,house",
     "img": "https://www.dancefm.ro/static/theme-repo/bin/images/logo-dance-fm.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.deegay.fm/deegay3.mp3",
     "title": "DeeGay Club",
     "tags": "electronic,house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://andromeda.housejunkie.ca:8000/radio.mp3",
     "title": "Deeper Shades Of House",
     "tags": "dance,deep house,electronic",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://dfm.hostingradio.ru/dfm128.mp3",
@@ -6661,21 +6661,21 @@
     "title": "DJ Radio Romania",
     "tags": "dance,dance pop,house,pop,pop dance,pop music,romanian pop",
     "img": "https://djradio.ro/apple-touch-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://europaplus.hostingradio.ru:8014/europaplus320f.mp3",
     "title": "Europa Plus",
     "tags": "dance,house,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://mp3stream4.abradio.cz/fajnfresh64.mp3",
     "title": "Fajn Fresh Radio",
     "tags": "dance,house,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icecast8.play.cz/freeradio128.mp3",
@@ -6689,21 +6689,21 @@
     "title": "GLOWFM - Eindhoven",
     "tags": "house,rnb,top40",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://hirschmilch.de:7001/prog-house.mp3",
     "title": "Hirschmilch Radio Prog-House",
     "tags": "progressive house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://hirschmilch.de:7000/prog-house.mp3",
     "title": "hirschmilsch-progressive",
     "tags": "prog-house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://uk4-vn.mixstream.net/:8128/listen.mp3",
@@ -6717,21 +6717,21 @@
     "title": "Ibiza Global Classics",
     "tags": "club,dance,electronic,house,trance",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://jzr-wr19.ice.infomaniak.ch/jzr-wr19-128.mp3",
     "title": "JazzRadio.fr Nouveautés Soul",
     "tags": "new soul,soul,soulful,soulful house",
     "img": "https://www.jazzradio.fr/apple-touch-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming2.elitecomunicacion.es:8220//stream?type=.mp3",
     "title": "La Mega Radio",
     "tags": "90s,electronic,house,pop,rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.lolliradio.net/lolli_dance.mp3",
@@ -6745,21 +6745,21 @@
     "title": "M2 Club",
     "tags": "edm,house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.maydayrecords.net/radio/8000/maydayrecords.mp3",
     "title": "Mayday Records",
     "tags": "electronic,progressive house,tech house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://my.radiolize.com/radio/8090/radio.mp3",
     "title": "Nu Disco Funk Radio",
     "tags": "deep house,disco,electric,funk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icy.unitedradio.it/105InDaKlubb.mp3",
@@ -6773,21 +6773,21 @@
     "title": "Radio 105 - Miami",
     "tags": "dance,house,mediaset",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio13.pro-fhi.net/listen-tpgmxyoe-stream.mp3",
     "title": "Radio Aviva",
     "tags": "00s,70s,80s,90s,dance,house,local news,news,pop dance,top 40",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://live.radiobandit.ro:8000/320.mp3",
     "title": "Radio Bandit",
     "tags": "80s,90s,dance,house,oldies,pop,pop dance,pop music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.radioboom.ro/listen/boom_house_music/radio.mp3",
@@ -6801,21 +6801,21 @@
     "title": "Radio Company Global House",
     "tags": "electronic,house",
     "img": "https://www.radiocompany.com/wp-content/uploads/fbrfg/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://radio.radiodeepunderground.com:8000/rdu.mp3",
     "title": "Radio Deep Underground",
     "tags": "club,dance,deep house,tech house,underground",
     "img": "https://radiodeepunderground.com/wp-content/uploads/2024/08/cropped-logo-mini-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radios.vpn.sapo.pt/AO/radio1.mp3",
     "title": "Radio Escola 88.5 FM",
     "tags": "hiphop,house,kizoma,kuduro,pop,r&b,rap,semba",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radios.vpn.sapo.pt/AO/radio10.mp3",
@@ -6829,21 +6829,21 @@
     "title": "Radio Marketescu House&Minimal",
     "tags": "electronic,house,minimal,tech house",
     "img": "https://static.wixstatic.com/media/f12f63_070c1efff191450da48f160a69f27447~mv2.png/v1/fill/w_520,h_528,al_c,lg_1,q_85,enc_auto/Copie%20a%20Design%20f%C4%83r%C4%83%20titlu%20(1).png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listener2.mp3.tb-group.fm:80/ht.mp3",
     "title": "Replay.FM",
     "tags": "house,oldies,replay",
     "img": "https://www.replay.fm/media/icons/rp/favicon-32x32.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.retrolan.party:9000/radio.mp3",
     "title": "Retro LAN Radio",
     "tags": "00s,90s,electronic,house,trance",
     "img": "https://www.lan.fm/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s61.radiolize.com//radio//8000//radio.mp3",
@@ -6857,21 +6857,21 @@
     "title": "Strictly House",
     "tags": "dance,house,nu-disco,poolside",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://streaming.tdiradio.com/crnagora.mp3",
     "title": "TDI Radio Crna Gora",
     "tags": "pop - house - dance",
     "img": "https://tdiradio.com/wp-content/uploads/2022/05/cropped-tds-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://traxx013.ice.infomaniak.ch/traxx013-low.mp3",
     "title": "Traxx FM - Deep",
     "tags": "commercial-free,deep,deep house,electronic,house,no ads",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://traxx001.ice.infomaniak.ch/traxx001-low.mp3",
@@ -6885,21 +6885,21 @@
     "title": "Traxx FM - House",
     "tags": "commercial-free,deep house,edm,electronic,house,no ads",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://icecast9.play.cz/zun192.mp3",
     "title": "WeHouseRadio",
     "tags": "funky house,house,jackin house,nu-disco,soulful house,tech house",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.zunradio.cz/zun3.mp3",
     "title": "Zoner Underground Network",
     "tags": "deep house,house",
     "img": "https://zunradio.cz/media/templates/site/website/images/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emg02.hostingradio.ru/ep-residance128.mp3",
@@ -6913,21 +6913,21 @@
     "title": "4duk - ЧИПЛЬДУК",
     "tags": "misc",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://amoris.sknt.ru/bible.mp3",
     "title": "Anima Amoris Bible",
     "tags": "bible,religion",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://eu.asiaplusradio.tj:8443/Asia-Plus-128.mp3",
     "title": "Asia Plus",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe.streamr.ru/best-128.mp3",
@@ -6941,21 +6941,21 @@
     "title": "Beta Anon.FM",
     "tags": "anonymous,various",
     "img": "https://anon.fm/imgs/logos/5.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream0.datenkollektiv.net/corax_256.mp3",
     "title": "Coraxfunk Antifa",
     "tags": "ahlsdorf,allstedt,alternative,altstadt,amateurfunk,ammendorf,anrode,antifa,antikapitalismus,ard zdf deutschlandradio rundfunkbeitrag,arnstein,aschersleben,autism,bad bibra,bad dürrenberg,bad lauchstädt,balgstädt,barnstädt,baumersroda,beesen,beesenstedt,beichlingen,benndorf,bennstedt,berga,bergstedt,bergwinkel,blankenburg,blankenheim,blanschwitz,bornstedt,braunsbedra,braunsroda,brehna,breitenstein,brücken-hackpfüffel,bucha,burgliebenau,burgscheidungen,burgörner,böllberg,bürgel,bürgermedien,bürgerradio,büschdorf,cahnsdorf,call-out culture,camburg,cancel culture,casekirchen,cauerwitz,cdu spd fdp afd linke grüne bsw,charts,community radio,confirmation bias,crossen an der elster,cölleda,dederstedt,dieskau,dilettantisch,divicon media,dogmatismus,domnitz,droyßig,döblitz,dölau,echo chamber,eckartsberga,ehringsdorf,eisleben,elsteraue,ermsleben,farnstädt,filter bubble,finne,finsterwalde,fm,framing,frankleben,freie-radios.net,freies radio,freyburg (unstrut),frohse,funkhaus halle,galgenberg,geiseltal,gerbstedt,giebichenstein,glaucha,gleina,goseck,gottfried-keller-siedlung,graitschen bei bürgel,groupthink,großgörschen,großjena,großpörthen,gutenborn,götschetal,gößnitz,hainichen,halle (saale),haynsburg,hedersleben,heide-nord,heide-süd,helbra,helfta,hergisdorf,herrengosserstedt,hettstedt,hirschfeld,hits,hohenhettstedt,hohenmölsen,holdenstedt,holleben,honsfeld,horburg-maßlau,hornburg,identitätspolitik,ilfeld,intolerance of dissent,intoleranz,jessen (elster),kabelsketal,kahla,kanena,karsdorf,katzhütte,kemberg,keutschen,kirchscheidungen,kleinjena,klosterhäseler,klostermansfeld,kretzschau,kröllwitz,kultur,könnern,landsberg,lanitz-hassel-tal,laucha an der unstrut,leimbach,lettin,leuna,lgbtqia+,lieskau,links-grün-versifft,linksextremismus,livestream,local,lutherplatz,lutherstadt eisleben,löbejün,lützen,mansfeld,mansfeld-südharz,markwerben,mdr,medienanstalt sachsen-anhalt,medienpolitik,meineweh,meisdorf,merseburg,mertendorf,molauer land,moral outrage,mönchpfiffel-nikolausrieth,mücheln (geiseltal),nachrichten,naumburg (saale),nazi,nebra (unstrut),nemsdorf-göhrendorf,neuengönna,neurodivergent,neustadt,neustadt an der orla,news,nicht-kommerzielles lokalradio,nienburg (saale),nietleben,nkl,nordharz,obersdorf,obhausen,oechlitz,offener kanal,osendorf,osterfeld,passendorf,peissen,petersberg,politaktivismus,pop,preußlitz,prießnitz,punk,pößneck,queer,querfurt,radewell,ranis,raßnitz,rechtsextremismus,regional,regionalsender,reideburg,reinsdorf,reußen,rippach,rock,rodau,roßbach,rundfunk-kombinat,saalekreis,saalfeld/saale,sachsen,salzatal,salzmünde,sangerhausen,saxony,schkeuditz,schkopau,schkölen,schraplau,schöndorf,seeben,seegebiet mansfelder land,selbitz,selective exposure,sieglitz,silberhöhe,slm,steigra,strohmann-argument,stößen,sylda,südharz,südstadt,teuchern,teutschenthal,thale,thalebra,thalwinkel,theißen,totalitarismus,trans non-binary,trebnitz,trockenborn-wolfersdorf,trotha,tschechow,ukw,ulrichshalden,unstruttal,wallhausen,wallwitz,weißenfels,welbsleben,werbefrei,wethau,wetterzeube,wettin,whataboutism,wiehe,wippra,wokeness,wolferstedt,wörmlitz,wülknitz,wünschendorf/elster,zappendorf,zeckenfunk,zeitz,öffentlich-rechtlich",
     "img": "https://telegram.org/img/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.devzen.ru/stream?type=.mp3",
     "title": "DevZen Podcast",
     "tags": "podcast,talking",
     "img": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts113/v4/90/f7/1a/90f71a87-096d-b3c1-c284-873b2eaf1a25/mza_4771468106753631555.jpg/1200x630wp.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://dfm.hostingradio.ru/dfm128.mp3",
@@ -6969,21 +6969,21 @@
     "title": "DWG Radio ru",
     "tags": "christian",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgspb.hostingradio.ru/eldoradio64.mp3",
     "title": "Eldoradio",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icecast.err.ee/raadio4.mp3?type=.mp3/;stream.mp3",
     "title": "ERR Raadio 4",
     "tags": "err,public radio,russian programming",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emg02.hostingradio.ru:80/ep-light128.mp3",
@@ -6997,21 +6997,21 @@
     "title": "EuropaPplus New",
     "tags": "128kbit,new",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://epdop.hostingradio.ru:8033//epparty128.mp3",
     "title": "EuropaPplus Party",
     "tags": "128kbit,party",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emg02.hostingradio.ru:80/ep-residance128.mp3",
     "title": "EuropaPplus Residance",
     "tags": "128kbit,residance",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://epdop.hostingradio.ru:8033/ep-urban128.mp3",
@@ -7025,21 +7025,21 @@
     "title": "MADFM",
     "tags": "mainstream",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://mariafm.ru:8000/maria-fm.mp3",
     "title": "Mariya FM",
     "tags": "pop",
     "img": "http://mariafm.ru/sites/default/files/favicon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://79.137.234.183:8000/;stream.mp3",
     "title": "MDS-Station",
     "tags": "audiobooks,literature",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radiomv.hostingradio.ru:80/radiomv256.mp3",
@@ -7053,21 +7053,21 @@
     "title": "NAGASWARA RADIOTEMEN",
     "tags": "to people of russia ... there is a war in ukraine right now ... the forces of the russian federation are attacking civilian infrastructure in kharkiv ... kyiv ... chernihiv ... sumy ... irpin and dozens of other cities ... people are dying both civilians and military servicemen including russian conscripts who were thrown into the fighting ... in order to deprive its own people of access to information the government of the russian federation has forbidden calling a war a war ... shut down independent media and is passing a number of dictatorial laws ... these laws are meant to silence all those who are against war ... you can be jailed for multiple years for simply calling for peace ... do not be silent ... silence is a sign that you accept the russian governments policy ... you can choose not to be silent",
     "img": "https://www.youtube.com/s/desktop/905763c7/img/favicon_144x144.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe.streamr.ru/nashe20-128.mp3",
     "title": "Nashe 2.0",
     "tags": "rock",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe1.hostingradio.ru/nashe-128.mp3",
     "title": "Nashe Radio",
     "tags": "live air",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://hitster.hostingradio.ru:8010/nrjufa128.mp3",
@@ -7081,21 +7081,21 @@
     "title": "Omsk FM",
     "tags": "hits,pop,russian hits,top40",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.overdrivelive.net:8000/alternative_128.mp3",
     "title": "Overdrive Live! Station",
     "tags": "alternative,alternative metal,hard rock,industrial rock,metalcore,modern rock,nu-metal,post-grunge,post-hardcore,rap metal,rock",
     "img": "https://overdrivelive.net/wp-content/uploads/2024/06/favicon_overdrivelive.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://62.183.34.109:8000/radio107.mp3",
     "title": "Radio 107 Moscow",
     "tags": "dance,eurodance,hits,top 100",
     "img": "https://radio107.ru/images/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://europaplus.hostingradio.ru:8014/radiosept320.mp3",
@@ -7109,21 +7109,21 @@
     "title": "Radio Blago",
     "tags": "news talk,political talk,talk radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://83.143.32.136:8000/live128.mp3",
     "title": "Radio Chistaya Volna",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://jfm1.hostingradio.ru:14536/pcstream.mp3",
     "title": "Radio Classic FM Poetry",
     "tags": "poetry",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://iskatel.hostingradio.ru:8015/iskatel-128.mp3",
@@ -7137,21 +7137,21 @@
     "title": "Radio Klorax",
     "tags": "ahlsdorf,allstedt,alternative,altstadt,amateurfunk,ammendorf,anrode,antifa,antikapitalismus,ard zdf deutschlandradio rundfunkbeitrag,arnstein,aschersleben,autism,bad bibra,bad dã¼rrenberg,bad lauchstã¤dt,balgstã¤dt,barnstã¤dt,baumersroda,beesen,beesenstedt,beichlingen,benndorf,bennstedt,berga,bergstedt,bergwinkel,blankenburg,blankenheim,blanschwitz,bornstedt,braunsbedra,braunsroda,brehna,breitenstein,brã¼cken-hackpfã¼ffel,bucha,burgliebenau,burgscheidungen,burgã¶rner,bã¶llberg,bã¼rgel,bã¼rgermedien,bã¼rgerradio,bã¼schdorf,cahnsdorf,call-out culture,camburg,cancel culture,casekirchen,cauerwitz,cdu spd fdp afd linke grãœne bsw,charts,community radio,confirmation bias,crossen an der elster,cã¶lleda,dederstedt,dieskau,dilettantisch,divicon media,dogmatismus,domnitz,droyãÿig,dã¶blitz,dã¶lau,echo chamber,eckartsberga,ehringsdorf,eisleben,elsteraue,ermsleben,farnstã¤dt,filter bubble,finne,finsterwalde,fm,framing,frankleben,freie-radios.net,freies radio,freyburg (unstrut),frohse,funkhaus halle,galgenberg,geiseltal,gerbstedt,giebichenstein,glaucha,gleina,goseck,gottfried-keller-siedlung,graitschen bei bã¼rgel,groupthink,groãÿgã¶rschen,groãÿjena,groãÿpã¶rthen,gutenborn,gã¶tschetal,gã¶ãÿnitz,hainichen,halle (saale),haynsburg,hedersleben,heide-nord,heide-sã¼d,helbra,helfta,hergisdorf,herrengosserstedt,hettstedt,hirschfeld,hits,hohenhettstedt,hohenmã¶lsen,holdenstedt,holleben,honsfeld,horburg-maãÿlau,hornburg,identitã¤tspolitik,ilfeld,intolerance of dissent,intoleranz,jessen (elster),kabelsketal,kahla,kanena,karsdorf,katzhã¼tte,kemberg,keutschen,kirchscheidungen,kleinjena,klosterhã¤seler,klostermansfeld,kretzschau,krã¶llwitz,kultur,kã¶nnern,landsberg,lanitz-hassel-tal,laucha an der unstrut,leimbach,lettin,leuna,lgbtqia+,lieskau,links-grã¼n-versifft,linksextremismus,livestream,local,lutherplatz,lutherstadt eisleben,lã¶bejã¼n,lã¼tzen,mansfeld,mansfeld-sã¼dharz,markwerben,mdr,medienanstalt sachsen-anhalt,medienpolitik,meineweh,meisdorf,merseburg,mertendorf,molauer land,moral outrage,mã¶nchpfiffel-nikolausrieth,mã¼cheln (geiseltal),nachrichten,naumburg (saale),nazi,nebra (unstrut),nemsdorf-gã¶hrendorf,neuengã¶nna,neurodivergent,neustadt,neustadt an der orla,news,nicht-kommerzielles lokalradio,nienburg (saale),nietleben,nkl,nordharz,obersdorf,obhausen,oechlitz,offener kanal,osendorf,osterfeld,passendorf,peissen,petersberg,politaktivismus,pop,preuãÿlitz,prieãÿnitz,punk,pã¶ãÿneck,queer,querfurt,radewell,ranis,raãÿnitz,rechtsextremismus,regional,regionalsender,reideburg,reinsdorf,reuãÿen,rippach,rock,rodau,roãÿbach,rundfunk-kombinat,saalekreis,saalfeld/saale,sachsen,salzatal,salzmã¼nde,sangerhausen,saxony,schkeuditz,schkopau,schkã¶len,schraplau,schã¶ndorf,seeben,seegebiet mansfelder land,selbitz,selective exposure,sieglitz,silberhã¶he,slm,steigra,strohmann-argument,stã¶ãÿen,sylda,sã¼dharz,sã¼dstadt,teuchern,teutschenthal,thale,thalebra,thalwinkel,theiãÿen,totalitarismus,trans non-binary,trebnitz,trockenborn-wolfersdorf,trotha,tschechow,ukw,ulrichshalden,unstruttal,wallhausen,wallwitz,weiãÿenfels,welbsleben,werbefrei,wethau,wetterzeube,wettin,whataboutism,wiehe,wippra,wokeness,wolferstedt,wã¶rmlitz,wã¼lknitz,wã¼nschendorf/elster,zappendorf,zeckenfunk,zeitz,ã¶ffentlich-rechtlich",
     "img": "https://assets.production.linktr.ee/profiles/_next/static/logo-assets/apple-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://online.radio.moe/listen/radiokult/radio.mp3",
     "title": "Radio KULT",
     "tags": "",
     "img": "https://radiokult.ru/wp-content/uploads/2024/05/cropped-a1733ee4-1022-49ab-9108-38e1061d4cbc-180x180.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://maximum.hostingradio.ru/maximum128.mp3",
     "title": "Radio Maximum",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://online-radio.nv.ua/radionv.mp3",
@@ -7165,21 +7165,21 @@
     "title": "RADIO R",
     "tags": "pop music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://streams.vestiirk.ru:8443/ridio_rossii.mp3",
     "title": "Radio Rossii Irkutsk - Радио России Иркутск",
     "tags": "local news,news",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://icecast.stv.livebox.sk/rsi_128.mp3",
     "title": "Rádio RSI",
     "tags": "culture,international,news,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://rb-stream.de:8000/rrb_128.mp3",
@@ -7193,21 +7193,21 @@
     "title": "Radio Stalingrad",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe1.hostingradio.ru/ultra-192.mp3",
     "title": "Radio Ultra",
     "tags": "alternative,alternative rock,rock",
     "img": "https://radioultra.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.mediacdn.ru/uldash.mp3",
     "title": "Radio Yuldash",
     "tags": "pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice.radiomv.co:8440/russian.mp3",
@@ -7221,21 +7221,21 @@
     "title": "RadioMV Russian Kids",
     "tags": "christian,kids",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice.radiomv.co:8440/russian_music.mp3",
     "title": "RadioMV Russian Music",
     "tags": "christian",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice.radiomv.co:8440/russian_new_testament.mp3",
     "title": "RadioMV Russian New Testament",
     "tags": "bible,christian",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ice.radiomv.co:8440/russian_old_testament.mp3",
@@ -7249,7 +7249,7 @@
     "title": "RadioMv.com | Russian Old Testament (128Kbps)",
     "tags": "bible,christian",
     "img": "https://de.radiomv.com/wp-content/uploads/2023/02/android-chrome-192x192-1.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://europaplus.hostingradio.ru:8014/retro320.mp3",
@@ -7263,7 +7263,7 @@
     "title": "Retro FM",
     "tags": "retro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://revolutionradio.ru:8443/live.mp3",
@@ -7277,7 +7277,7 @@
     "title": "RFI Russe",
     "tags": "news,public radio",
     "img": "http://ru.rfi.fr/android-chrome-192x192.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://rfiukraine.ice.infomaniak.ch/rfiukraine-96.mp3",
@@ -7291,7 +7291,7 @@
     "title": "riseFM",
     "tags": "varied",
     "img": "https://risefm.mpbnetwerken.nl/assets/risefm.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe.streamr.ru/rock-128.mp3",
@@ -7305,7 +7305,7 @@
     "title": "ROCK FM, 00s",
     "tags": "rock",
     "img": "https://www.rockfm.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://jfm1.hostingradio.ru:14536/rock70.mp3",
@@ -7319,7 +7319,7 @@
     "title": "ROCK FM, 80s",
     "tags": "rock",
     "img": "https://www.rockfm.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://jfm1.hostingradio.ru:14536/rock90.mp3",
@@ -7333,7 +7333,7 @@
     "title": "ROCK FM,HEAVY",
     "tags": "rock",
     "img": "https://www.rockfm.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://jfm1.hostingradio.ru:14536/prog.mp3",
@@ -7347,7 +7347,7 @@
     "title": "rockfm.ru heavy",
     "tags": "heavy metal,metal",
     "img": "https://www.rockfm.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://jfm1.hostingradio.ru:14536/prog.mp3",
@@ -7361,7 +7361,7 @@
     "title": "rockfm.ru rock00s",
     "tags": "",
     "img": "https://www.rockfm.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://jfm1.hostingradio.ru:14536/rock80.mp3",
@@ -7375,7 +7375,7 @@
     "title": "rockfm.ru rock90s",
     "tags": "",
     "img": "https://www.rockfm.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming.enacast.com:8000/rusradiomarbellaHD.mp3",
@@ -7389,7 +7389,7 @@
     "title": "Sputnik FM",
     "tags": "pop",
     "img": "https://bash.news/images/favicon/apple-touch-icon-120x120-precomposed.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/spb.s21.mp3",
@@ -7403,7 +7403,7 @@
     "title": "THT Music Radio",
     "tags": "dance,hits,pop",
     "img": "https://tntmusic.ru/static/favicon/favicon-32x32.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://93.190.204.101:8000/live_102_3.mp3",
@@ -7417,7 +7417,7 @@
     "title": "xTream Dance",
     "tags": "dance,eurodance,hands up,trance",
     "img": "http://xradio.ovh/static/icons/production/120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://zfm.hostingradio.ru/zfm128.mp3",
@@ -7431,7 +7431,7 @@
     "title": "Балтик Плюс",
     "tags": "adult contemporary,news,pop,soft rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bfmreg.hostingradio.ru/spb.bfm128.mp3",
@@ -7445,7 +7445,7 @@
     "title": "Вести ФМ Ростов-на-Дону 90.2 FM",
     "tags": "news,politics,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://media.govoritmoskva.ru:8880/ru64.mp3",
@@ -7459,7 +7459,7 @@
     "title": "Говорит Москва - Govorit Moskva",
     "tags": "news,talk,вести,говорит",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://sv5.golosmira.com/radio/8020/rgm.mp3",
@@ -7473,7 +7473,7 @@
     "title": "Дорожное радио Вологда 101.0 FM",
     "tags": "music",
     "img": "https://top-radio.ru/assets/image/radio/180/dorojnoe.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/samara.dorognoe.mp3",
@@ -7487,7 +7487,7 @@
     "title": "Дорожное радио Санкт-Петербург 87.5 FM",
     "tags": "chanson,music,nostalgia",
     "img": "https://top-radio.ru/assets/image/radio/180/dorojnoe.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/cherepovec.dorognoe.mp3",
@@ -7501,7 +7501,7 @@
     "title": "Дорожное радио Ярославль 103.8 FM",
     "tags": "music,nostalgia,pop,region 76,yaroslavl",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/vladivostok.europaplus.mp3",
@@ -7515,7 +7515,7 @@
     "title": "Европа Плюс Владикавказ 102.0 FM",
     "tags": "europa plus,music,pop,region 15,vladikavkaz",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/vologda.europaplus.mp3",
@@ -7529,7 +7529,7 @@
     "title": "Европа Плюс Волхов 107.2 FM",
     "tags": "music,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/kaluga.europaplus.mp3",
@@ -7543,7 +7543,7 @@
     "title": "Европа Плюс Самара 99.9 FM",
     "tags": "music,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/spb.europaplus.mp3",
@@ -7557,7 +7557,7 @@
     "title": "Европа Плюс Сочи 104.4 FM",
     "tags": "music,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/habarovsk.europaplus.mp3",
@@ -7571,7 +7571,7 @@
     "title": "Искатель",
     "tags": "",
     "img": "https://upload.wikimedia.org/wikipedia/ru/2/28/Iskatel-logo-colors.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://radio.kazak.fm/kazak_fm.mp3",
@@ -7585,7 +7585,7 @@
     "title": "комерсант (Kommersant FM) 93.6 Moscow",
     "tags": "news",
     "img": "https://im.kommersant.ru/contentflex/images/favicons2020/apple-touch-icon-120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kommersant77.hostingradio.ru:8016/kommersant128.mp3",
@@ -7599,7 +7599,7 @@
     "title": "Коммерсантъ FM 93.6",
     "tags": "economics,finance,information,news,talk",
     "img": "https://im.kommersant.ru/contentflex/images/favicons2020/apple-touch-icon-120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kpradio.hostingradio.ru:8000/vladivostok.radiokp64.mp3",
@@ -7613,7 +7613,7 @@
     "title": "Комсомольская правда Вологда 97.2 FM",
     "tags": "army,news,politics,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kpradio.hostingradio.ru:8000/voroneg.radiokp128.mp3",
@@ -7627,7 +7627,7 @@
     "title": "Комсомольская правда Калуга 93.1 FM",
     "tags": "news,politics,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kpradio.hostingradio.ru:8000/krasnodar.radiokp128.mp3",
@@ -7641,7 +7641,7 @@
     "title": "Комсомольская правда Ростов-на-Дону 89.8 FM",
     "tags": "news,politics,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kpradio.hostingradio.ru:8000/samara.radiokp128.mp3",
@@ -7655,7 +7655,7 @@
     "title": "Комсомольская правда Санкт-Петербург 92.0 FM",
     "tags": "news,politics,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kpradio.hostingradio.ru:8000/tver.radiokp128.mp3",
@@ -7669,7 +7669,7 @@
     "title": "Комсомольская правда Хабаровск 88.3 FM",
     "tags": "news,politics,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kpradio.hostingradio.ru:8000/yaroslavl.radiokp128.mp3",
@@ -7683,7 +7683,7 @@
     "title": "Литературное радио",
     "tags": "аудиокниги",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://mariafm.ru:8000/maria-fm.mp3",
@@ -7697,7 +7697,7 @@
     "title": "Международное Французское Радио RFI",
     "tags": "news,talk",
     "img": "http://ru.rfi.fr/android-chrome-192x192.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://93.190.204.101:8000/live_100_4.mp3",
@@ -7711,7 +7711,7 @@
     "title": "Милицейская Волна",
     "tags": "поп-музыка,хиты прошлых лет",
     "img": "https://pcradio.ru/images/stations/62ea3ebd9ffdd.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe.streamr.ru/nashe-128.mp3",
@@ -7725,7 +7725,7 @@
     "title": "Наше радио",
     "tags": "rock",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://nashe1.hostingradio.ru:18000/nashe20-128.mp3",
@@ -7739,7 +7739,7 @@
     "title": "Наше радио 2.0",
     "tags": "rock",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe1.hostingradio.ru/nasheclassic.mp3",
@@ -7753,7 +7753,7 @@
     "title": "Наше Радио Панки-ХОЙ!",
     "tags": "punk,russian punk",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://nashe1.hostingradio.ru:80/nashespb128.mp3",
@@ -7767,7 +7767,7 @@
     "title": "НАШЕ Радио СПб",
     "tags": "rock",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe1.hostingradio.ru/nashesongs.mp3",
@@ -7781,7 +7781,7 @@
     "title": "НАШЕ Радио, Щас спою",
     "tags": "",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe1.hostingradio.ru/nasheclassic.mp3",
@@ -7795,7 +7795,7 @@
     "title": "НАШЕ Радио,Панки хой!",
     "tags": "",
     "img": "https://www.nashe.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgspb.hostingradio.ru/novoespb128.mp3",
@@ -7809,7 +7809,7 @@
     "title": "Новое радио Воронеж 98.5 FM",
     "tags": "music,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/krasnodar.novoe.mp3",
@@ -7823,7 +7823,7 @@
     "title": "Новое радио Санкт-Петербург 91.1 FM",
     "tags": "78,music,pop,sankt petersburg,super hits",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/sochi.novoe.mp3",
@@ -7837,7 +7837,7 @@
     "title": "Пионер ФМ Кассета",
     "tags": "80s,90s,dance",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://jfm1.hostingradio.ru:14536/pcstream.mp3",
@@ -7851,7 +7851,7 @@
     "title": "Радио \"Искатель\"",
     "tags": "",
     "img": "https://radioiskatel.ru/wp-content/uploads/2020/06/Logo-HD-white.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3",
@@ -7865,7 +7865,7 @@
     "title": "Радио 10",
     "tags": "поп-музыка,чилаут",
     "img": "https://topradio.me/assets/image/radio/100/10-petrozavodsk.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://ic.radio10.live/stream.mp3",
@@ -7879,7 +7879,7 @@
     "title": "Радио 107",
     "tags": "",
     "img": "http://www.radio107.ru/images/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://onair.radio1922.ru:8000/192.mp3",
@@ -7893,7 +7893,7 @@
     "title": "Радио 54",
     "tags": "pop-music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://radio7server.streamr.ru:8040/radio7256.mp3",
@@ -7907,7 +7907,7 @@
     "title": "Радио 7 Сочи 98.9 FM",
     "tags": "music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://maximum.hostingradio.ru/maximum128.mp3",
@@ -7921,7 +7921,7 @@
     "title": "Радио ULTRA",
     "tags": "rock",
     "img": "https://www.rockfm.ru/favicons/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nashe1.hostingradio.ru/ultra-192.mp3",
@@ -7935,7 +7935,7 @@
     "title": "Радио Алания Владикавказ 104.5 FM",
     "tags": "15,alanya,pop music,region 15,vladikavkaz",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://jfm1.hostingradio.ru:14536/pcstream.mp3",
@@ -7949,7 +7949,7 @@
     "title": "Радио Красная Армия Тюмень 104.6 FM",
     "tags": "music,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.dcatk.pro/radio.mp3",
@@ -7963,7 +7963,7 @@
     "title": "Радио Лента stream 2",
     "tags": "news,russian,talk radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://broadcast.osetiafm.ru/mc.mp3",
@@ -7977,7 +7977,7 @@
     "title": "Радио Орфей - Классика киномузыки",
     "tags": "cinema,cinematic,movie soundtracks",
     "img": "https://orpheusradio.ru/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://channels.fonotron.ru:8000/Chan_66_256.mp3",
@@ -7991,7 +7991,7 @@
     "title": "Радио Орфей - Музыка с участием духовых 256kbps",
     "tags": "brass",
     "img": "https://orpheusradio.ru/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://channels.fonotron.ru:8000/Chan_63_256.mp3",
@@ -8005,7 +8005,7 @@
     "title": "Радио Петербург",
     "tags": "разговорное",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.5-tv.ru/radio.mp3",
@@ -8019,7 +8019,7 @@
     "title": "Радио Рекорд Петрозаводск 95.0 FM",
     "tags": "music,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://retroserver.streamr.ru:8043/retro256.mp3",
@@ -8033,7 +8033,7 @@
     "title": "Радио России Иркутск",
     "tags": "local news,news,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://fm.pln24.ru/echo.mp3",
@@ -8047,7 +8047,7 @@
     "title": "Радио ФМ-на-Дону\nРостов-на-Дону 100.7 FM",
     "tags": "music,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://radio.4duk.ru/4duk128.mp3",
@@ -8061,7 +8061,7 @@
     "title": "Радио Шансон - Radio Shanson",
     "tags": "pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://93.190.204.101:8000/live_105_5.mp3",
@@ -8075,7 +8075,7 @@
     "title": "Радио Шансон Смоленск 91.3 FM",
     "tags": "chanson,music,pop,region 67,smolensk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23.105.253.220:8000/chansonsochi128.mp3",
@@ -8089,7 +8089,7 @@
     "title": "Ретро FM 70e",
     "tags": "70s",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://retro80.hostingradio.ru:8025/retro80-128.mp3",
@@ -8103,7 +8103,7 @@
     "title": "Ретро FM 90e",
     "tags": "90s",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgspb.hostingradio.ru/retrofmspb128.mp3",
@@ -8117,7 +8117,7 @@
     "title": "Ретро ФМ Владикавказ 105.9 FM",
     "tags": "80-s,90-s,music,region 15,retro,vladikavkaz",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/vologda.retrofm.mp3",
@@ -8131,7 +8131,7 @@
     "title": "Ретро ФМ Волхов 88.6 FM",
     "tags": "music,pop,retro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/samara.retrofm.mp3",
@@ -8145,7 +8145,7 @@
     "title": "Ретро ФМ Сочи 107.9 FM",
     "tags": "music,nostalgia,retro,retro music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://emgregion.hostingradio.ru:8064/yaroslavl.retrofm.mp3",
@@ -8159,7 +8159,7 @@
     "title": "Романтический шансон",
     "tags": "shanson",
     "img": "https://radioshanson.ru/assets/2a380c6a/touch-icon-pad-retina.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://broadcast.osetiafm.ru/rr.mp3",
@@ -8173,7 +8173,7 @@
     "title": "Своё Радио",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://silverrain.hostingradio.ru/silver128.mp3",
@@ -8187,7 +8187,7 @@
     "title": "Серебряный Дождь Ставрополь",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://spravedlivo.hostingradio.ru:8022/spravedlivo128.mp3",
@@ -8201,7 +8201,7 @@
     "title": "Спутник ФМ - Уфимская Волна",
     "tags": "107,music,news,pop,ufa,уфа",
     "img": "https://bash.news/images/favicon/apple-touch-icon-120x120-precomposed.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.mediacdn.ru/fm_na_donu.mp3",
@@ -8215,7 +8215,7 @@
     "title": "Чипльдук",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://chanson.hostingradio.ru:8041/chanson-uncensored256.mp3",
@@ -8229,7 +8229,7 @@
     "title": "эльдорадио (Eldo Radio) 101.4 St. Petersburg",
     "tags": "pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icecast.kab.tv/live1-rus-574bcfd5.mp3",
@@ -8243,7 +8243,7 @@
     "title": " CFZM Zoomer 740 AM/96.7 FM - Toronto, ON",
     "tags": "adult contemporary,decades,oldies",
     "img": "https://www.zoomerradio.ca/2ee733bbb5e505903c0c630c8be6056f.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/2447_192.mp3",
@@ -8257,7 +8257,7 @@
     "title": "- 1 A - 90er von 1A Radio",
     "tags": "rock",
     "img": "https://www.1aradio.com/logos/1a-90er_600x600.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://c4.auracast.net/radio/8020/radio.mp3",
@@ -8271,7 +8271,7 @@
     "title": "#1 Splash 70s",
     "tags": "1960s and 1970s,1970s,70er,70s,70s disco,disco,hits 70's,splash",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://c6.auracast.net/radio/8090/radio.mp3",
@@ -8285,7 +8285,7 @@
     "title": "#1 Splash Christmas",
     "tags": "christmas,christmas music,klassik weihnachten christmas,splash,weihnachten",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/2210_128.mp3",
@@ -8299,7 +8299,7 @@
     "title": "=KECO=ROCK FM ",
     "tags": "rock music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://31.13.223.148:8000/1_rock.mp3",
@@ -8313,7 +8313,7 @@
     "title": "10 Radio 105.3 - Wiveliscombe",
     "tags": "community radio,somerset,wivelliscombe",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3?https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3https://retrowave.ru/audio/008996f9685b1157e65fc708a95632983d95fe71.mp3",
@@ -8327,7 +8327,7 @@
     "title": "101 FM - Logan - 101.1 FM (MP3)",
     "tags": "community radio,miscellaneous,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://23153.live.streamtheworld.com/4CBL.mp3",
@@ -8341,7 +8341,7 @@
     "title": "101.5 Bob Rocks",
     "tags": "hard rock,hardrock,rock",
     "img": "https://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/1693/2020/10/12160146/logo-150x150.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21423.live.streamtheworld.com:80/GOL_HOTTOMATO.mp3",
@@ -8355,7 +8355,7 @@
     "title": "104.9 The River",
     "tags": "christian contemporary",
     "img": "https://riverradio.com/wp-content/uploads/2019/01/cropped-1049theriver-favicon-2019-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://edge-bauerall-01-gos2.sharp-stream.com/wave105.mp3",
@@ -8369,7 +8369,7 @@
     "title": "1340 The Fan 3",
     "tags": "sports",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-80scountry_128k.mp3",
@@ -8383,7 +8383,7 @@
     "title": "181.FM - 80's HairBand",
     "tags": "80s,hair metal,metal,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-90salt_128k.mp3",
@@ -8397,7 +8397,7 @@
     "title": "181.FM - 90's Country",
     "tags": "90s,country,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-90sdance_128k.mp3",
@@ -8411,7 +8411,7 @@
     "title": "181.FM - Awesome 80's",
     "tags": "80s,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-beatles_128k.mp3",
@@ -8425,7 +8425,7 @@
     "title": "181.FM - Chilled Out",
     "tags": "chillout,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-chloe_128k.mp3",
@@ -8439,7 +8439,7 @@
     "title": "181.FM - Christmas Blender",
     "tags": "christmas music,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-xtraditional_128k.mp3",
@@ -8453,7 +8453,7 @@
     "title": "181.FM - Christmas Fun",
     "tags": "christmas music,comedy,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-xhighway_128k.mp3",
@@ -8467,7 +8467,7 @@
     "title": "181.FM - Christmas Kids",
     "tags": "children,christmas music,kids,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-xkkountry_128k.mp3",
@@ -8481,7 +8481,7 @@
     "title": "181.FM - Christmas Mix",
     "tags": "christmas music,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-xpower_128k.mp3",
@@ -8495,7 +8495,7 @@
     "title": "181.FM - Christmas R&B",
     "tags": "christmas music,rnb,soul,waynesboro",
     "img": "http://www.181.fm/images/playerlanding/181.FM.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-xrock_128k.mp3",
@@ -8509,7 +8509,7 @@
     "title": "181.FM - Christmas Soundtracks",
     "tags": "christmas music,soundtracks,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-xspirit_128k.mp3",
@@ -8523,7 +8523,7 @@
     "title": "181.FM - Christmas Standards",
     "tags": "adult standards,christmas music,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-classicbuzz_128k.mp3",
@@ -8537,7 +8537,7 @@
     "title": "181.FM - Comedy Club",
     "tags": "comedy,talk,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-energy93_128k.mp3",
@@ -8551,7 +8551,7 @@
     "title": "181.FM - Front Porch (Bluegrass)",
     "tags": "bluegrass,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-goodtime_128k.mp3",
@@ -8565,7 +8565,7 @@
     "title": "181.FM - Jammin 181",
     "tags": "rnb,soul,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-kickincountry_128k.mp3",
@@ -8579,7 +8579,7 @@
     "title": "181.FM - Lite 80's",
     "tags": "80s,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-lite90s_128k.mp3",
@@ -8593,7 +8593,7 @@
     "title": "181.FM - Old School HipHop/RnB",
     "tags": "hiphop,oldschool,rnb,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-party_128k.mp3",
@@ -8607,7 +8607,7 @@
     "title": "181.FM - Power 181 (Top 40)",
     "tags": "pop,top 40,waynesboro",
     "img": "http://www.181.fm/images/playerlanding/181.FM.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-realcountry_128k.mp3",
@@ -8621,7 +8621,7 @@
     "title": "181.FM - Rock 181",
     "tags": "rock,waynesboro",
     "img": "http://www.181.fm/images/playerlanding/181.FM.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-rock40_128k.mp3",
@@ -8635,7 +8635,7 @@
     "title": "181.FM - Salsa",
     "tags": "salsa,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-smoothac_128k.mp3",
@@ -8649,7 +8649,7 @@
     "title": "181.FM - Soul",
     "tags": "soul,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-star90s_128k.mp3",
@@ -8663,7 +8663,7 @@
     "title": "181.FM - Super 70s",
     "tags": "70s,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-ball_128k.mp3",
@@ -8677,7 +8677,7 @@
     "title": "181.FM - The Beat (HipHop/R&B)",
     "tags": "hiphop,rnb,urban,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-thebox_128k.mp3",
@@ -8691,7 +8691,7 @@
     "title": "181.FM - The Breeze",
     "tags": "easy listening,waynesboro",
     "img": "http://www.181.fm/images/playerlanding/181.FM.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-buzz_128k.mp3",
@@ -8705,7 +8705,7 @@
     "title": "181.FM - The Heart (Love Songs)",
     "tags": "love songs,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-office_128k.mp3",
@@ -8719,7 +8719,7 @@
     "title": "181.FM - The Point",
     "tags": "pop,rock,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-hardrock_128k.mp3",
@@ -8733,7 +8733,7 @@
     "title": "181.FM - The Vibe of Vegas",
     "tags": "dance,edm,electro,pop,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-blues_128k.mp3",
@@ -8747,7 +8747,7 @@
     "title": "181.FM - True R&B",
     "tags": "rnb,urban,waynesboro",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-uktop40_128k.mp3",
@@ -8761,7 +8761,7 @@
     "title": "181.FM Super 70'S",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-vocals_128k.mp3",
@@ -8775,7 +8775,7 @@
     "title": "2 Triple B - Bellingen - 107.3 FM (MP3)",
     "tags": "community radio,miscellaneous,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.wt5.net/radio/8000/radio.mp3",
@@ -8789,7 +8789,7 @@
     "title": "202.fm 020 Alternative",
     "tags": "alternative rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23203.live.streamtheworld.com:80/2BOB.mp3",
@@ -8803,7 +8803,7 @@
     "title": "2CHR - Cessnock - 96.5 FM (MP3)",
     "tags": "community radio,easy listening,music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23153.live.streamtheworld.com:80/2DRY.mp3",
@@ -8817,7 +8817,7 @@
     "title": "2GB - Sydney - 873 AM (MP3)",
     "tags": "news,talk radio",
     "img": "https://www.2gb.com/wp-content/themes/2gb/assets/img/favicon/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21423.live.streamtheworld.com:80/2GB.mp3",
@@ -8831,7 +8831,7 @@
     "title": "2GLF 89.3 - Liverpool - 89.3 FM (MP3)",
     "tags": "community radio",
     "img": "https://893fm.com.au/wp-content/uploads/2022/06/cropped-2glf-logo-2022-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23163.live.streamtheworld.com:80/2HAY.mp3",
@@ -8845,7 +8845,7 @@
     "title": "2KRR-FM",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21363.live.streamtheworld.com:80/2MAX.mp3",
@@ -8859,7 +8859,7 @@
     "title": "2MIA - Griffith - 95.1 FM (MP3)",
     "tags": "community radio,local",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://220.233.66.253:88/broadwave.mp3",
@@ -8873,7 +8873,7 @@
     "title": "2MNO Monaro FM - Cooma - 90.5 FM",
     "tags": "community radio,music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21333.live.streamtheworld.com:80/2NURFM.mp3",
@@ -8887,7 +8887,7 @@
     "title": "2NURFM",
     "tags": "easy listening",
     "img": "https://www.2nurfm.com.au/wp-content/uploads/2021/06/cropped-2nurfm-favicon-512x512-1-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21413.live.streamtheworld.com:80/2RRR.mp3",
@@ -8901,7 +8901,7 @@
     "title": "2SEA - Eden - 104.7 FM (MP3)",
     "tags": "community radio,music,news,talk",
     "img": "https://i.ibb.co/y4WB5LF/60fd487a6ce288da14fc2751.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://138.25.219.25:840/2ser128.MP3",
@@ -8915,7 +8915,7 @@
     "title": "2ST - Nowra - 91.7 FM (MP3)",
     "tags": "adult contemporary",
     "img": "https://i.ibb.co/9nM3Vnx/61ea4e2cad655b10105ec3a1.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://19273.live.streamtheworld.com:80/BOW_2ST.mp3",
@@ -8929,7 +8929,7 @@
     "title": "2ST - Southern Highlands - 91.7 FM (MP3)",
     "tags": "adult contemporary",
     "img": "https://i.ibb.co/9nM3Vnx/61ea4e2cad655b10105ec3a1.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23163.live.streamtheworld.com:80/2WCR.mp3",
@@ -8943,7 +8943,7 @@
     "title": "2XX - Canberra - 98.3 FM (MP3)",
     "tags": "alternative,community radio",
     "img": "https://www.2xxfm.org.au/wp-content/uploads/2021/03/cropped-2xx-logo-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming.2yyyradio.com/radio/8000/radio.mp3",
@@ -8957,7 +8957,7 @@
     "title": "3AW - Melbourne - 693 AM (MP3)",
     "tags": "news,talk radio",
     "img": "https://www.3aw.com.au/wp-content/themes/3aw/assets/img/favicon/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://23153.live.streamtheworld.com:443/3CR.mp3",
@@ -8971,7 +8971,7 @@
     "title": "3CR - Melbourne - 855 AM (MP3)",
     "tags": "community radio,miscellaneous",
     "img": "https://www.3cr.org.au/sites/default/themes/cr/favicon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21413.live.streamtheworld.com:80/3KND.mp3",
@@ -8985,7 +8985,7 @@
     "title": "3MBS - Melbourne, 103.5 MHz FM",
     "tags": "classical",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://14533.live.streamtheworld.com:80/3MGB.mp3",
@@ -8999,7 +8999,7 @@
     "title": "3WAY-FM - Warrnambool - 103.7 FM (MP3)",
     "tags": "community radio,miscellaneous",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://198.74.51.37:8435/;stream.mp3",
@@ -9013,7 +9013,7 @@
     "title": "4BC - Brisbane - 882 AM (MP3)",
     "tags": "news,talk radio",
     "img": "https://www.4bc.com.au/wp-content/uploads/sites/10/2023/01/4BC.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://24923.live.streamtheworld.com:80/BUN_4BU.mp3",
@@ -9027,7 +9027,7 @@
     "title": "4CA - Cairns - 846 AM (MP3)",
     "tags": "adult contemporary,commercial",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://26303.live.streamtheworld.com:80/GLA_4CC.mp3",
@@ -9041,7 +9041,7 @@
     "title": "4CRM - Mackay - 107.5 FM (MP3)",
     "tags": "community radio,easy listening",
     "img": "https://i.ibb.co/hLFtLW6/299183675-474782797990382-4129744979587839304-n.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://14533.live.streamtheworld.com:80/4EB.mp3",
@@ -9055,7 +9055,7 @@
     "title": "4MK - Mackay - 1026 AM (MP3)",
     "tags": "adult contemporary,commercial",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://26303.live.streamtheworld.com:80/ROC_4RO.mp3",
@@ -9069,7 +9069,7 @@
     "title": "4U Motown",
     "tags": "disco,r&b,soul",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://str4uice.streamakaci.com/4urocklive.mp3",
@@ -9083,7 +9083,7 @@
     "title": "4YOU - Rockhampton - 98.5 FM (MP3)",
     "tags": "community radio,easy listening",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://22343.live.streamtheworld.com:443/TLPSTR08.mp3",
@@ -9097,7 +9097,7 @@
     "title": "5fm Radio Zambia",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s6.myradiostream.com:48146/listen.mp3",
@@ -9111,7 +9111,7 @@
     "title": "6IX",
     "tags": "6ix,perth",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23163.live.streamtheworld.com:80/6PR.mp3",
@@ -9125,7 +9125,7 @@
     "title": "7HO FM Hobart",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://18423.live.streamtheworld.com:80/HOB_7HORIVER.mp3",
@@ -9139,7 +9139,7 @@
     "title": "7HOFM - Hobart - 101.7 FM (MP3)",
     "tags": "adult contemporary,local programming,news",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://azuracast.ssl-stream.com/radio/8050/256.mp3",
@@ -9153,7 +9153,7 @@
     "title": "80s Remix Radio",
     "tags": "80's,80s,pop,remix",
     "img": "https://a10.asurahosting.com/static/uploads/80s_remix_radio/album_art.1730307872.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/2350_128.mp3",
@@ -9167,7 +9167,7 @@
     "title": "87.9 Kaboozi fm",
     "tags": "sports commentary,variety",
     "img": "https://akaboozi.com/wp-content/uploads/2024/06/favicon-150x150.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://162.244.80.52:8732/;stream.mp3",
@@ -9181,7 +9181,7 @@
     "title": "89.3 WRKF",
     "tags": "public radio",
     "img": "https://www.wrkf.org/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://21333.live.streamtheworld.com/8CCC.mp3",
@@ -9195,7 +9195,7 @@
     "title": "91.1 Hot FM - Maroochydore - 91.1 FM (MP3)",
     "tags": "commercial,contemporary hit radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen.923.com.au:13098/stream.mp3",
@@ -9209,7 +9209,7 @@
     "title": "92.9 KUZU",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://14533.live.streamtheworld.com:80/941FM.mp3",
@@ -9223,7 +9223,7 @@
     "title": "94.9 Power FM - Nowra - 94.9 FM (MP3)",
     "tags": "hot adult contemporary",
     "img": "https://i.ibb.co/3hTQRYJ/61ea4f61dcdc455f530c040d.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21363.live.streamtheworld.com:80/3NR.mp3",
@@ -9237,7 +9237,7 @@
     "title": "96FM - Perth - 96.1 FM (MP3)",
     "tags": "active rock,mainstream rock,rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21363.live.streamtheworld.com:80/3GGR.mp3",
@@ -9251,7 +9251,7 @@
     "title": "97.1 The Fan WBNS FM",
     "tags": "buckeyes,ohio,ohio state,sports",
     "img": "https://dehayf5mhw1h7.cloudfront.net/wp-content/uploads/sites/2091/2020/10/12160146/station-150x150.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://18063.live.streamtheworld.com:80/WBSXFM.mp3",
@@ -9265,7 +9265,7 @@
     "title": "979fm - Melton, Melbourne - 97.9 FM (AAC)",
     "tags": "community radio",
     "img": "https://i.ibb.co/GH8SMrB/55726349-2059527037476381-3180553381542363136-n.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://25003.live.streamtheworld.com:80/MUS_POWER_FM.mp3",
@@ -9279,7 +9279,7 @@
     "title": "99.1FM Downtown Radio",
     "tags": "",
     "img": "https://downtownradio.org/wp-content/uploads/2020/01/cropped-dtrlogo-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21423.live.streamtheworld.com:80/997BRIDGEFM.mp3",
@@ -9293,7 +9293,7 @@
     "title": "ABC Country (MP3)",
     "tags": "abc,country,public radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://abf.net-radio.fr/abflove.mp3",
@@ -9307,7 +9307,7 @@
     "title": "ABradio Chillout",
     "tags": "chillout,electronic,trip hop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.absna6pack.com/radio/8000/radio.mp3",
@@ -9321,7 +9321,7 @@
     "title": "Actitud 100.9",
     "tags": "\\,christian,christian music,christian praise&worship",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream2.addictradio.net/addictalternative.mp3",
@@ -9335,7 +9335,7 @@
     "title": "AFTERMATH.FM",
     "tags": "conspiracies,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.aimusicradio.org/listen/ai_radio/radio.mp3",
@@ -9349,7 +9349,7 @@
     "title": "Airstream FM",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://al-ansaar.simplestreaming.co.za/listen/al-ansaar_radio/radio.mp3",
@@ -9363,7 +9363,7 @@
     "title": "Alive 90.5 - Parramatta - 90.5 FM (MP3)",
     "tags": "community radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://allzic01.ice.infomaniak.ch/allzic01.mp3",
@@ -9377,7 +9377,7 @@
     "title": "Allzic Radio Rock",
     "tags": "rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://audiovision.cdnstream1.com/2154_128.mp3",
@@ -9391,7 +9391,7 @@
     "title": "AltRadio",
     "tags": "alternative rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.acbradio.org:8000/mainstream.mp3",
@@ -9405,7 +9405,7 @@
     "title": "American Family Radio: Hybrid",
     "tags": "christian talk,conservative talk,talk radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://mediaserver3.afa.net:8443/music.mp3",
@@ -9419,7 +9419,7 @@
     "title": "American Family Radio: Talk",
     "tags": "christian talk,conservative talk,talk radio",
     "img": "https://afr.net/media/nxrpxumw/afr-logo-800x500.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/1976_128.mp3",
@@ -9433,7 +9433,7 @@
     "title": "Anchor Radio",
     "tags": "community,entertainment,mainstream,talk,top 40,top40,variety,various",
     "img": "https://anchor.radio/wp-content/uploads/2024/08/cropped-512x512px-compact-logo-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.asylumstudio.net:8000/radio.mp3",
@@ -9447,7 +9447,7 @@
     "title": "BAGeL Radio",
     "tags": "indie,noise,rock",
     "img": "https://live.mystreamplayer.com/configs/images/bagel512.jpeg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bananavision.tv:8000/bananarang.mp3",
@@ -9461,7 +9461,7 @@
     "title": "Bananavision",
     "tags": "talk,tv,variety",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bananavision.tv:8000/brain.mp3",
@@ -9475,7 +9475,7 @@
     "title": "BananaVision Trek",
     "tags": "science fiction,tv",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://25003.live.streamtheworld.com:80/GEE_BAY939.mp3",
@@ -9489,7 +9489,7 @@
     "title": "BCB Radio",
     "tags": "bradford,community radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.beachgrooves.com:9000/stream.mp3",
@@ -9503,7 +9503,7 @@
     "title": "Beat Fusion",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://beats.seediffusion.cc:8005/live.mp3",
@@ -9517,7 +9517,7 @@
     "title": "Behind the Sch3m3s",
     "tags": "conspiracy theories",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bigrradio.cdnstream1.com/5154_128?listenerid=43889c39c8ecf4f87725056b0d737597&cb=178302.mp3",
@@ -9531,7 +9531,7 @@
     "title": "Best Net Radio - Country Mix",
     "tags": "country",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bigrradio.cdnstream1.com/5168_128?listenerid=43889c39c8ecf4f87725056b0d737597&cb=180307.mp3",
@@ -9545,7 +9545,7 @@
     "title": "Best Net Radio - The Mix",
     "tags": "adult contemporary",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bigrradio.cdnstream1.com/5170_128?listenerid=43889c39c8ecf4f87725056b0d737597&cb=176618.mp3",
@@ -9559,7 +9559,7 @@
     "title": "BFBS 2",
     "tags": "",
     "img": "http://www.forces.net//themes/custom/forcesnet/mstile-144x144.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://edge-audio-08-thn.sharp-stream.com/ssvcbfbs22.mp3",
@@ -9573,7 +9573,7 @@
     "title": "BFBS Gibraltar",
     "tags": "british forces,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://edge-audio-02-thn.sharp-stream.com/ssvcbfbs1.mp3",
@@ -9587,7 +9587,7 @@
     "title": "Big Blue Swing",
     "tags": "blues,swing",
     "img": "https://i.imgur.com/xo2K6Jl.jpeg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://radio.bigblueswing.com:8004/;32bit.mp3",
@@ -9601,7 +9601,7 @@
     "title": "Big Blue Swing 64k",
     "tags": "blues,non-commercial,non-profit,swing",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream4.nsupdate.info:8100/biglh.mp3",
@@ -9615,7 +9615,7 @@
     "title": "Big L 2",
     "tags": "70's,80's,oldies 50's/60's",
     "img": "https://www.bigl2.co.uk/templates/radiowave/includes/images/ios/icon@2x.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/2294_128.mp3",
@@ -9629,7 +9629,7 @@
     "title": "Big River FM",
     "tags": "community,music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.mediasector.es/radio/8030/bikinifm.mp3",
@@ -9643,7 +9643,7 @@
     "title": "Binjang Community Radio - Wellington - 91.5 FM (MP3)",
     "tags": "community radio",
     "img": "https://i.ibb.co/vxbhDnR/2-BJG-2546771-config-station-logo-image-1637888493.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icecast.uhururadio.com:8010/uhururadio.mp3",
@@ -9657,7 +9657,7 @@
     "title": "Bloop London Radio - live4",
     "tags": "electronic",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.canstream.co.uk:8058/live.mp3",
@@ -9671,7 +9671,7 @@
     "title": "Blues Music Fan Radio",
     "tags": "blues",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/1992_128.mp3",
@@ -9685,7 +9685,7 @@
     "title": "BNR Business Beats",
     "tags": "beats,pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.canstream.co.uk:8083/live.mp3",
@@ -9699,7 +9699,7 @@
     "title": "Break Radio",
     "tags": "hip-hop,hip-hop and rap oldies,hiphop,rap,rap hiphop rnb,rnb,trap",
     "img": "https://www.breakradio.ch/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://carol.epichosts.co.uk:8442/live.mp3",
@@ -9713,7 +9713,7 @@
     "title": "Byron BayFM - Byron Bay - 99.9 FM (MP3)",
     "tags": "community radio,entertainment,information,local programming,music,talk",
     "img": "https://www.bayfm.org/wp-content/uploads/2021/01/cropped-bayfm-favicon-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://26283.live.streamtheworld.com:443/CSPANRADIO.mp3",
@@ -9727,7 +9727,7 @@
     "title": "C9 Radio",
     "tags": "dance,pop,rock,talk,top 40",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21423.live.streamtheworld.com:80/ARN_CADA.mp3",
@@ -9741,7 +9741,7 @@
     "title": "Callisto Radio",
     "tags": "90s,90s hits,oldies",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://195.10.228.6:8035/canal.mp3",
@@ -9755,7 +9755,7 @@
     "title": "Canberra's 1WAY FM - Canberra - 91.9 FM (MP3)",
     "tags": "christian,community radio",
     "img": "https://i.ibb.co/hB2hksb/1-WAY-2546771-config-station-logo-image-1646965054.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://current.stream.publicradio.org/carbonsound.mp3",
@@ -9769,7 +9769,7 @@
     "title": "Cat FM Radio",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://108.178.16.190:8000/947fm.mp3",
@@ -9783,7 +9783,7 @@
     "title": "CFBS-FM 89.9 & 93.1 Blanc Sablon, QC  ",
     "tags": "community radio",
     "img": "https://static.wixstatic.com/media/609138_6ffccca15cfb4807b3140a5bd5becb7c%7emv2.png/v1/fill/w_180%2ch_180%2clg_1%2cusm_0.66_1.00_0.01/609138_6ffccca15cfb4807b3140a5bd5becb7c%7emv2.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://audio.cfrc.ca:8000/;.mp3",
@@ -9797,7 +9797,7 @@
     "title": "CFTA 107.9 Tantramar FM  Amherst, NS",
     "tags": "amherst,community radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa1.streamon.fm/7681_64k.mp3",
@@ -9811,7 +9811,7 @@
     "title": "CHAW-FM 103.1 \"Country 103\" Little Current, ON ",
     "tags": "country",
     "img": "https://mytuner.global.ssl.fastly.net/media/tvos_radios/6uDz3bmufp.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen-cheesyfm.sharp-stream.com/cheesyfm.mp3",
@@ -9825,7 +9825,7 @@
     "title": "Chemist Warehouse Remix (MP3)",
     "tags": "australian music,hot adult contemporary,mix,music,world music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://209.53.182.2:8000/stream.mp3",
@@ -9839,7 +9839,7 @@
     "title": "Chicago Radio Land",
     "tags": "70s,airchecks,chicago,oldies",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://chi.webradio.ovh:8000/stream.mp3",
@@ -9853,7 +9853,7 @@
     "title": "Chill Pills (USA) 320k mp3",
     "tags": "chillout,downtempo,electronic,lounge",
     "img": "https://www.uppmixes.com/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://24963.live.streamtheworld.com:80/LAU_CHILLI.mp3",
@@ -9867,7 +9867,7 @@
     "title": "Chilli FM - Launceston - 90.1 FM (MP3)",
     "tags": "contemporary hit radio",
     "img": "https://i.ibb.co/dmMrykj/61ea5b51dcdc455f530c044f.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://27273.live.streamtheworld.com:80/SCO_CHILLI.mp3",
@@ -9881,7 +9881,7 @@
     "title": "ChilliZet Covers",
     "tags": "covers",
     "img": "https://gfx.chillizet.pl/extension/chillizet/design/standard/images/favicon/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://rdstream-0625.dez.ovh:8000/radio.mp3",
@@ -9895,7 +9895,7 @@
     "title": "Chios",
     "tags": "info,music",
     "img": "http://resources.live24.gr/resources/images/stations/6f40f002-870c-463c-a9d1-0768d1f2b2f5.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream02.ustream.ca/chip128.mp3",
@@ -9909,7 +9909,7 @@
     "title": "Christmas Radio FM",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.christmas247.rocks/listen/christmas247/320.mp3",
@@ -9923,7 +9923,7 @@
     "title": "CITR 101.9 University of British Columbia, Vancouver, BC",
     "tags": "community radio,university radio",
     "img": "https://www.citr.ca/wp-content/themes/citr-unused/assets/img/icons/favicon-48@2x.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://31.13.223.148:8000/city.mp3",
@@ -9937,7 +9937,7 @@
     "title": "City FM",
     "tags": "dance,eurodance,hits,top100",
     "img": "https://hitradiocity.cz/design/favicons/apple-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23093.live.streamtheworld.com:80/7LTN.mp3",
@@ -9951,7 +9951,7 @@
     "title": "CIVL-FM 103.9 University of the Fraser Valley - Abbotsford, BC",
     "tags": "campus radio,university radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://dns4.83north.ca:8000/cjbp.mp3",
@@ -9965,7 +9965,7 @@
     "title": "CJIE-FM 107.5 \"CJ107\" Gimli, MB ",
     "tags": "country",
     "img": "https://upload.wikimedia.org/wikipedia/commons/e/e4/CJIE_CJ107_logo.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://lweb04.lcaat.ca:8000/91x.mp3",
@@ -9979,7 +9979,7 @@
     "title": "CJSB  104.5 \"CJ104\" Swan River, MB",
     "tags": "adult contemporary,commercial,country,swan river",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://dns4.83north.ca:8000/cjvm.mp3",
@@ -9993,7 +9993,7 @@
     "title": "CJWA 107.1 \"JJAM FM\" Wawa, ON",
     "tags": "adult contemporary,wawa",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://thebay887.ca:8002/;stream.mp3",
@@ -10007,7 +10007,7 @@
     "title": "CKDU 88.1 Dalhousie",
     "tags": "campus radio,canada,community radio,diversity,student radio,student-managed",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://archive1.ckdu.ca:9750/ckdu_1_on_air_low.mp3",
@@ -10021,7 +10021,7 @@
     "title": "CKLU 96.7 Laurentian University - Sudbury, ON",
     "tags": "community radio,sudbury,university radio",
     "img": "https://static.wixstatic.com/media/a9e704_e5208697ba82479cb46e619b3cdb661f~mv2.png/v1/fill/w_277,h_92,al_c,lg_1/a9e704_e5208697ba82479cb46e619b3cdb661f~mv2.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://51.68.215.9:8000/radio.mp3",
@@ -10035,7 +10035,7 @@
     "title": "Cleveland Browns Radio Network",
     "tags": "football,local talk,nfl,sports,sports commentary,sports talk,talk radio",
     "img": "https://s.yimg.com/cv/apiv2/default/nfl/20190724/500x500/2019_CLE_wbg.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21413.live.streamtheworld.com:80/ARN_IHRT15.mp3",
@@ -10049,7 +10049,7 @@
     "title": "CNN",
     "tags": "news",
     "img": "https://www.cnn.com/media/sites/cnn/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://tunein.cdnstream1.com/2868_96.mp3",
@@ -10063,7 +10063,7 @@
     "title": "CNN INTERNATIONAL",
     "tags": "news",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://s45.myradiostream.com:8800/listen.mp3",
@@ -10077,7 +10077,7 @@
     "title": "coloRadio extra",
     "tags": "dresden,freies radio,sonderkanal",
     "img": "https://azuracast.rundfunkkombinat.de/static/uploads/browser_icon/192.1723736338.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://azuracast.rundfunkkombinat.de/listen/coloradio_extra/stream.mp3",
@@ -10091,7 +10091,7 @@
     "title": "Comedy Old Time Radio channel - MPIR",
     "tags": "comedy",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://s3.voscast.com:8454/stream.mp3",
@@ -10105,7 +10105,7 @@
     "title": "Connect Uganda Radio (MP3)",
     "tags": "african music,information,news",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://edge-bauerall-01-gos2.sharp-stream.com/coolfm.mp3",
@@ -10119,7 +10119,7 @@
     "title": "Coral Coast Radio - Bundaberg - 94.7 FM (MP3)",
     "tags": "community radio",
     "img": "https://i.ibb.co/qdV8Z1N/305485245-493577782777736-7994360038483179378-n.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://26343.live.streamtheworld.com:443/SAM04AAC335.mp3",
@@ -10133,7 +10133,7 @@
     "title": "Country Music ",
     "tags": "country music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen.181fm.com/181-80scountry_128k.mp3",
@@ -10147,7 +10147,7 @@
     "title": "COW FM - Casino - 107.9 FM (MP3)",
     "tags": "community radio,local programming,music",
     "img": "https://i.ibb.co/3hKfzxg/cowban-2.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://a1.asurahosting.com:9210/radio.mp3",
@@ -10161,7 +10161,7 @@
     "title": "Crooner Radio - Movies",
     "tags": "crooner,movie music,music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://croonerradio_franksinatra.ice.infomaniak.ch/croonerradio-franksinatra-midfi.mp3",
@@ -10175,7 +10175,7 @@
     "title": "Cross Rhythms City Radio",
     "tags": "christian contemporary,christian praise&worship,christian rock,community radio,contemporary christian",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://lyra.shoutca.st:8564/listen.mp3",
@@ -10189,7 +10189,7 @@
     "title": "Dance rádio cz",
     "tags": "fm 89.0",
     "img": "https://www.danceradio.cz/favicons/apple-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://broadcast.dancefmlive.com/radio/8010/radio.mp3",
@@ -10203,7 +10203,7 @@
     "title": "Darkfurry FM",
     "tags": "cc,nocopyright,remixes",
     "img": "https://fm.darkfurry.de/static/uploads/darkfurry_radio/album_art.1678027513.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://hi5.death.fm/;stream.mp3",
@@ -10217,7 +10217,7 @@
     "title": "DefJay Urban",
     "tags": "hiphop,rap,rnb,urban",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://dggradio.net:8000/radio.mp3",
@@ -10231,7 +10231,7 @@
     "title": "DnB station",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://66.59.109.208:8000/;stream.mp3",
@@ -10245,7 +10245,7 @@
     "title": "Down East Radio Reading Service",
     "tags": "radio for the print handicapped,radio reading service",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://cast.streams.ovh:9362/;stream.mp3",
@@ -10259,7 +10259,7 @@
     "title": "DripFeed Radio",
     "tags": "surf,surf music,surf rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://www.ds106rad.io/listen/ds106radio/autodj.mp3",
@@ -10273,7 +10273,7 @@
     "title": "DZMB Love Radio 90.7",
     "tags": "ballads,easy pop,love songs",
     "img": "https://www.loveradio.com.ph/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen-nation.sharp-stream.com/breezyradiouk.mp3",
@@ -10287,7 +10287,7 @@
     "title": "Eden Radio",
     "tags": "anime,jpop",
     "img": "https://www.edenofthewest.com/static/icons/production/120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23153.live.streamtheworld.com:80/2BAR.mp3",
@@ -10301,7 +10301,7 @@
     "title": "Egregore Radio",
     "tags": "music,variety",
     "img": "https://www.egrego.re/RESOURCES/IMAGES/EGREGORELOGO.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21333.live.streamtheworld.com:80/ARN_IHRT1.mp3",
@@ -10315,7 +10315,7 @@
     "title": "Elf Radio iHeartRadio Australia (MP3)",
     "tags": "christmas music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://13.54.221.214:8000/sen.mp3",
@@ -10329,7 +10329,7 @@
     "title": "EnJOY Radio",
     "tags": "dance,fresh,hits,pop,romanian music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming.silvacast.com/ESCRADIO.mp3",
@@ -10343,7 +10343,7 @@
     "title": "Euro Nation",
     "tags": "euro,eurodance",
     "img": "https://euronation.ca/wp-content/uploads/2023/05/cropped-blackwhitelogo-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://19003.live.streamtheworld.com:443/XHGLX.mp3",
@@ -10357,7 +10357,7 @@
     "title": "Fabulous 103",
     "tags": "electronic,folk,local news,local weather",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://www.fsnradionews.com/FSNNews/FSNWorldNews.mp3",
@@ -10371,7 +10371,7 @@
     "title": "Fed's Trap Radio",
     "tags": "chill,chilled trap,edm,electronic,hip-hop,liquid trap,trap",
     "img": "https://fedstrapradio.com/img/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://uk2-pn.mixstream.net/:8394/listen.mp3",
@@ -10385,7 +10385,7 @@
     "title": "Fighting Game Community Radio",
     "tags": "game",
     "img": "https://www.fgcast.com/wp-content/uploads/2024/03/cropped-FGCast_Logo_SiteLogo_background.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://122.53.138.32:8000/dzrm.mp3",
@@ -10399,7 +10399,7 @@
     "title": "FRENCHCORE24FM Radio",
     "tags": "frenchcore",
     "img": "https://www.frenchcore24fm-radio.nl/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s36.radiolize.com/radio/8170/radio.mp3",
@@ -10413,7 +10413,7 @@
     "title": "Frome FM 96.6",
     "tags": "community radio,frome",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen-funkids.sharp-stream.com/funkids.mp3",
@@ -10427,7 +10427,7 @@
     "title": "Fun Kids Junior",
     "tags": "kids",
     "img": "https://assets.radioplayer.org/826/8261471/600/600/kwdqc7lt.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen-funkids.sharp-stream.com/funkids.mp3",
@@ -10441,7 +10441,7 @@
     "title": "FUN KIDS RADIO",
     "tags": "🪷🌷🌸🪷🌺💐",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://funkyradio.streamingmedia.it/play.mp3",
@@ -10455,7 +10455,7 @@
     "title": "FUNKY RADIO - Only Funk Music (60's 70's)",
     "tags": "60s,70s,70s disco,80s,black,black music,disco,funk,funky,motown,music,oldies,p-funk,r&b,r'n'b,rare groove,rnb,soul,usa",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.funradio.sk:8000/funpgm256.mp3",
@@ -10469,7 +10469,7 @@
     "title": "G Praise 106.3",
     "tags": "christian hip hop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://s39.myradiostream.com:14858/;listen.mp3",
@@ -10483,7 +10483,7 @@
     "title": "Galway Bay FM",
     "tags": "galway,ireland,local",
     "img": "https://www.galwaybayfm.ie/images/ico/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.gamesboro.org/listen/gamesboro_radio/radio.mp3",
@@ -10497,7 +10497,7 @@
     "title": "Gaydio Brighton",
     "tags": "",
     "img": "https://mmo.aiircdn.com/20/61edc776c6010.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen-gbnews.sharp-stream.com/gbnews.mp3",
@@ -10511,7 +10511,7 @@
     "title": "Gem FM - Bowen - 95.1 FM (MP3)",
     "tags": "community radio,easy listening",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23093.live.streamtheworld.com:80/3GCR.mp3",
@@ -10525,7 +10525,7 @@
     "title": "Glastonbury FM \"GFM\" 107.1",
     "tags": "community radio,freeform,glastonbury,indie",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://19273.live.streamtheworld.com:80/BEN_GOLD.mp3",
@@ -10539,7 +10539,7 @@
     "title": "Gongas Radio",
     "tags": "1990s,80's",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://pureplay.cdnstream1.com/6018_128.mp3",
@@ -10553,7 +10553,7 @@
     "title": "GotRadio - 90s Alternative",
     "tags": "90s",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://pureplay.cdnstream1.com/6019_128.mp3",
@@ -10567,7 +10567,7 @@
     "title": "GotRadio - Southern Rock",
     "tags": "southern rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://pureplay.cdnstream1.com/6029_128.mp3",
@@ -10581,7 +10581,7 @@
     "title": "GotRadio - Top 40",
     "tags": "rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://pureplay.cdnstream1.com/6041_128.mp3",
@@ -10595,7 +10595,7 @@
     "title": "GotRadio Rockin' 80's",
     "tags": "80s,pop rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21363.live.streamtheworld.com:80/2GLA.mp3",
@@ -10609,7 +10609,7 @@
     "title": "Greatest Hits Radio (Berkshire & North Hampshire)",
     "tags": "70s,80s,pop",
     "img": "https://media.bauerradio.com/image/upload/c_crop,g_custom/v1678808110/brand_manager/stations/gp2e7pt8fiivkamwgqni.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://edge-bauerall-01-gos2.sharp-stream.com/net2aylesbury.mp3",
@@ -10623,7 +10623,7 @@
     "title": "Greatest Hits Radio (Norfolk & North Suffolk)",
     "tags": "",
     "img": "https://planetradio.co.uk/tesla/static/favicons/greatest-hits/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://edge-bauerall-01-gos2.sharp-stream.com/net2westnorfolk.mp3",
@@ -10637,7 +10637,7 @@
     "title": "Greatest Hits Radio (York and North Yorkshire)",
     "tags": "70s,80s,90s",
     "img": "https://planetradio.co.uk/tesla/static/favicons/greatest-hits/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s21.myradiostream.com/:10716/listen.mp3",
@@ -10651,7 +10651,7 @@
     "title": "Hardrockin80s",
     "tags": "rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://zvukipro.com/uploads/files/2021-07/1627104739_21071.mp3",
@@ -10665,7 +10665,7 @@
     "title": "Heart Berkshire 102.9 & 97.0",
     "tags": "hot adult contemporary",
     "img": "http://www.heart.co.uk/assets_v4r/heart/img/favicon-196x196.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://media-ice.musicradio.com/HeartSussexMP3?.mp3",
@@ -10679,7 +10679,7 @@
     "title": "Her.st Propaganda Broadcast",
     "tags": "conspiracy theories,philosophy,psychedelic",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://audio.wavefarm.org:8000/heregoes.mp3",
@@ -10693,7 +10693,7 @@
     "title": "HEY rádio",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://listen-hifmtemp.sharp-stream.com/hifmmid.mp3",
@@ -10707,7 +10707,7 @@
     "title": "Hi FM Oman ",
     "tags": "pop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://24463.live.streamtheworld.com:443/XHTO_FM.mp3",
@@ -10721,7 +10721,7 @@
     "title": "Hit104.7 Canberra - 104.7 FM",
     "tags": "adult contemporary",
     "img": "https://images.ctfassets.net/yxg7lydfj6tc/3cae53de-3605-48b3-9809-c1c0890da7fd/9ddf5e92def463ea03444ec854e15ec9/0046-canberra-1047.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21423.live.streamtheworld.com:80/ARN_1047HIT.mp3",
@@ -10735,7 +10735,7 @@
     "title": "HITS RADIO UK",
     "tags": "contemporary variety and current affairs,rock",
     "img": "https://planetradio.co.uk/tesla/static/favicons/hits-radio/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://tunein.cdnstream1.com/2876_96.mp3",
@@ -10749,7 +10749,7 @@
     "title": "Hot 100 - Darwin - 100.1 FM",
     "tags": "hot adult contemporary",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://25003.live.streamtheworld.com:80/DAR_HOT100.mp3",
@@ -10763,7 +10763,7 @@
     "title": "HOT 91.9",
     "tags": "",
     "img": "https://cdn3.dan.com/assets/icons/touch-icon-iphone-retina-bdd5112764b4900705e85f7845ca32c42ae1bbefea7e6da068d8c85973fa199c.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://22353.live.streamtheworld.com:443/HOTDANCERADIO2.mp3",
@@ -10777,7 +10777,7 @@
     "title": "Hot FM - Mildura - 106.7 FM (MP3)",
     "tags": "community radio,easy listening",
     "img": "https://i.ibb.co/9W994cz/3-HOT-2546971-config-background-image-1692685773.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://443-1.autopo.st/54/stream.mp3",
@@ -10791,7 +10791,7 @@
     "title": "Hugot Radio",
     "tags": "internet radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://live.ianl.org.uk:4016/stream.mp3",
@@ -10805,7 +10805,7 @@
     "title": "idobi Anthm",
     "tags": "indie,indie rock,new music",
     "img": "https://idobi.com/wp-content/themes/idobi-2022/assets/img/idobi%20logo%20medium%20transparent.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://idobihowl.idobi.com/;stream.mp3",
@@ -10819,7 +10819,7 @@
     "title": "idobi Radio",
     "tags": "alternative,new music,punk,rock",
     "img": "https://idobi.com/wp-content/themes/idobi-2022/assets/img/idobi%20logo%20medium%20transparent.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://17643.live.streamtheworld.com:80/ST29_SO1.mp3",
@@ -10833,7 +10833,7 @@
     "title": "iHeartAustralia (MP3)",
     "tags": "australian music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21413.live.streamtheworld.com:80/ARN_IHRT9.mp3",
@@ -10847,7 +10847,7 @@
     "title": "iHeartDance Australia (MP3)",
     "tags": "dance,dance music",
     "img": "https://i.ibb.co/hXM4wC3/652741b2f702ccd6ae1831d1.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://14533.live.streamtheworld.com:80/ARN_IHRT11.mp3",
@@ -10861,7 +10861,7 @@
     "title": "In Touch Radio Network",
     "tags": "",
     "img": "https://www.intouch.org/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://studio22.radiolize.com/radio/8160/radio.mp3",
@@ -10875,7 +10875,7 @@
     "title": "IPR News Stream",
     "tags": "news",
     "img": "https://www.iowapublicradio.org/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://studioone-stream.iowapublicradio.org/StudioOne.mp3",
@@ -10889,7 +10889,7 @@
     "title": "IPR Studio One (Iowa Public Radio)",
     "tags": "",
     "img": "http://iowapublicradio.org/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://isekoi-radio.com/listen/isekoi/radio.mp3",
@@ -10903,7 +10903,7 @@
     "title": "Islands FM",
     "tags": "community radio,country,pop,rock,soul",
     "img": "https://www.liveradio.uk/files/images/405648/resized/180x172c/islands_fm.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://radio.canstream.co.uk:8040/live.mp3",
@@ -10917,7 +10917,7 @@
     "title": "Jack FM 95.7 River Rat Radio",
     "tags": "adult hits",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.jacarandafm.com/jacarandahigh.mp3",
@@ -10931,7 +10931,7 @@
     "title": "Japan Hits - asia DREAM radio",
     "tags": "j-pop,japanese,jpop",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radio.plainrock127.xyz/listen/jasns/radio.mp3",
@@ -10945,7 +10945,7 @@
     "title": "JIB On The WEB",
     "tags": "beautiful music,easy listening",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.joyhits.online:8070/joyhitshq.mp3",
@@ -10959,7 +10959,7 @@
     "title": "Joy Hits Radio ",
     "tags": "music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.joyhits.online:8070/joyhitshq.mp3",
@@ -10973,7 +10973,7 @@
     "title": "Joy Hits UK",
     "tags": "commercial free,pop,pop music",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s2.stationplaylist.com:7064/listen.mp3",
@@ -10987,7 +10987,7 @@
     "title": "K ROCK 95.5 - Geelong - 95.5 FM (MP3)",
     "tags": "comedy,contemporary hit radio,sport,top 40",
     "img": "https://i.ibb.co/BsKbJwf/61ea50c2dcdc455f530c0413.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://s36.myradiostream.com:11554/;listen.mp3",
@@ -11001,7 +11001,7 @@
     "title": "kafeneio.social",
     "tags": "",
     "img": "https://laterna.kafeneio.social/static/icons/production/192.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://23023.live.streamtheworld.com:443/KANWHD2.mp3",
@@ -11015,7 +11015,7 @@
     "title": "KAOS 89.3 Community Radio - Olympia, WA",
     "tags": "community radio,evergreen state college,olympia",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://grn-stream-01.miriamtech.net:8000/KATH910AM.mp3",
@@ -11029,7 +11029,7 @@
     "title": "KAXE",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.kcaastreaming.com:5222/kcaa.mp3",
@@ -11043,7 +11043,7 @@
     "title": "KCity Radio",
     "tags": "misc",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://localcurrent.stream.publicradio.org/localcurrent.mp3",
@@ -11057,7 +11057,7 @@
     "title": "KCMP Minnesota Public Radio \"Radio Heartland\" Stream - Northfield, MN",
     "tags": "americana,minneapolis,minnesota public radio,northfield,public radio,roots,st. paul",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://rockthecradle.stream.publicradio.org/rockthecradle.mp3",
@@ -11071,7 +11071,7 @@
     "title": "KCNR 1460 Free Fire Radio",
     "tags": "1460 am,free fire radio,jefferson state of mine,kcnr,kcnr 1460,norcal,redding",
     "img": "https://kcnr1460.com/wp-content/uploads/2024/07/favicon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.amellus.com:8000/KDDL.mp3",
@@ -11085,7 +11085,7 @@
     "title": "KDPT-LP 102.9 Dos Palos, CA",
     "tags": "community radio,dos palos",
     "img": "https://broncoradio.files.wordpress.com/2014/08/cropped-screen-shot-2014-08-10-at-1-30-31-am.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://24463.live.streamtheworld.com:443/KBNA975_FM.mp3",
@@ -11099,7 +11099,7 @@
     "title": "Kearney FM",
     "tags": "community radio,local news,top 40,top100",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://edge-bauerall-01-gos2.sharp-stream.com/kerrang.mp3",
@@ -11113,7 +11113,7 @@
     "title": "KFM 94.5",
     "tags": "kfm",
     "img": "https://cdn.onlineradiobox.com/img/logo/0/11680.v7.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nwmedia-kfnwfm.streamguys1.com/kfnw-fm?.mp3",
@@ -11127,7 +11127,7 @@
     "title": "KGOU",
     "tags": "npr,public radio",
     "img": "https://www.kgou.org/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://d2a481t1usahi0.cloudfront.net/live/35259945.mp3",
@@ -11141,7 +11141,7 @@
     "title": "KHYX - Rock 94.3 FM",
     "tags": "rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21423.live.streamtheworld.com:80/ARN_KIIS1011.mp3",
@@ -11155,7 +11155,7 @@
     "title": "KIIS 1065 - Sydney - 106.5 FM (MP3)",
     "tags": "contemporary hit radio,pop",
     "img": "https://i.iheart.com/v3/re/assets/images/fa2db663-cc83-4148-8312-886ce94029ae.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23193.live.streamtheworld.com:80/ARN_973FM.mp3",
@@ -11169,7 +11169,7 @@
     "title": "Kiss 98",
     "tags": "decades,pop,top 40",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://live.radiokiss.gr/kissfm1006hq.mp3",
@@ -11183,7 +11183,7 @@
     "title": "Kiss FM 87.6, 87.8 & 88.0 Melbourne, VIC",
     "tags": "dance,electronica,melbourne",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://streaming.redboing.com/radio/8060/radio.mp3",
@@ -11197,7 +11197,7 @@
     "title": "KISS Pop Rock",
     "tags": "blues,pop,pop rock,rock,soul",
     "img": "http://kiss-pop-rock.net/gallery/80db7a44a7c11fe7318b0b25ba88a2c4_400x400.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live-kiss.sharp-stream.com/kiss100.mp3",
@@ -11211,7 +11211,7 @@
     "title": "Kiss UK",
     "tags": "non-stop old skool & anthems",
     "img": "https://planetradio.co.uk/tesla/static/favicons/rayo/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://live-bauer-al.sharp-stream.com/kisstory.mp3",
@@ -11225,7 +11225,7 @@
     "title": "KIX Country (MP3)",
     "tags": "country",
     "img": "https://www.kixcountry.com.au/wp-content/uploads/sites/51/2023/06/KIX-300x150-fullcolour.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://24.225.20.103:8000/stream.mp3",
@@ -11239,7 +11239,7 @@
     "title": "KKFI 90.1 Kansas City, MO",
     "tags": "community radio,eclectic,kansas city",
     "img": "http://kkfi.org/wp-content/themes/porto/images/logo/apple-touch-icon_152x152.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://14203.live.streamtheworld.com:443/KMBIFM.mp3",
@@ -11253,7 +11253,7 @@
     "title": "KNNZ 89.1 Ken's FM",
     "tags": "local music,modern rock",
     "img": "https://storage.googleapis.com/wzukusers/user-34598172/images/5c107e5806e90jgCIQX8/kensfmlogo_d200.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://nis.stream.publicradio.org/nis.mp3",
@@ -11267,7 +11267,7 @@
     "title": "KNSJ Community Radio",
     "tags": "community radio,san diego",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream5.opb.org/radio_player.mp3",
@@ -11281,7 +11281,7 @@
     "title": "KOOP",
     "tags": "community radio",
     "img": "https://koop.org/wp-content/themes/koop/images/dist/favicon/apple-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://14533.live.streamtheworld.com:80/2LND.mp3",
@@ -11295,7 +11295,7 @@
     "title": "KOPB 91.5 Oregon Public Broadcasting - Portland, OR",
     "tags": "apm,culture,news,npr,opb,politics,portland,pri,public,talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://edge.iono.fm/xice/88_high.mp3",
@@ -11309,7 +11309,7 @@
     "title": "KOTO",
     "tags": "community radio,non-underwritten",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://25063.live.streamtheworld.com:443/KPCWFM.mp3",
@@ -11323,7 +11323,7 @@
     "title": "KPHRED Radio",
     "tags": "life,neurospicy,spiritual balance,work",
     "img": "https://radio.kphred.com/static/uploads/kphred.com/album_art.1728937603.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kqallive.winona.edu:8000/kqal.mp3",
@@ -11337,7 +11337,7 @@
     "title": "KQBM-LP 90.7 & 103.7 \"Blue Mountain Radio\"  West Point, CA",
     "tags": "community radio,san andres,west point",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://s4.voscast.com:7250/;.mp3",
@@ -11351,7 +11351,7 @@
     "title": "KRR - Kandos - 98.7 FM (MP3)",
     "tags": "1950s,1960s,1970s,1980s,50s,60s,70s,80s,community radio,local,miscellaneous,talk",
     "img": "https://i.ibb.co/symGjB1/60fd3dca11a963a6033d557a.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://edge126.rdsnet.ro:84/profm/dancefm.mp3",
@@ -11365,7 +11365,7 @@
     "title": "KSAN 107.7 The Bone",
     "tags": "rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://grn-stream-01.miriamtech.net:8000/KSHJ1430AM.mp3",
@@ -11379,7 +11379,7 @@
     "title": "KSLM 104.3 FM 1220 AM",
     "tags": "conservative talk",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://134.29.211.155:8002/;.mp3",
@@ -11393,7 +11393,7 @@
     "title": "KTMY1",
     "tags": "",
     "img": "https://www.mytalk1071.com/wp-content/uploads/2023/07/cropped-mytalk_mt-bubble-1-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://streaming.azpm.org/kuaz192.mp3",
@@ -11407,7 +11407,7 @@
     "title": "KUOW",
     "tags": "public radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://streams.kut.org/4426_128.mp3",
@@ -11421,7 +11421,7 @@
     "title": "KUTX 98.9 (2024 Stream, 192 kbps mp3)",
     "tags": "indie rock",
     "img": "https://npr.brightspotcdn.com/dims4/default/6521ea6/2147483647/strip/true/crop/1000x500+0+0/resize/1760x880!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F03%2F7a%2Fc6bc7f9b41aa8ac869077559b6f5%2Fkut-news-logo-with-tagline-1000x500.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://138.197.2.189:8000/kuzu.mp3",
@@ -11435,7 +11435,7 @@
     "title": "KVGC Country (MP3 128)",
     "tags": "amador,calaveras,country,local radio",
     "img": "https://isteam.wsimg.com/ip/3f3c55ac-80ae-467b-bde8-924918a030ba/KVGC%202.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://ingest2.cdnstream1.com:7080/2314_128.mp3",
@@ -11449,7 +11449,7 @@
     "title": "KZSC 88.1 Santa Cruz, CA",
     "tags": "college radio,santa cruz",
     "img": "https://kzsc.org/wp-content/uploads/2018/12/cropped-favicon-88.1-80x80.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://kzsu-streams.stanford.edu/kzsu-1-256.mp3",
@@ -11463,7 +11463,7 @@
     "title": "KZSU-HD2 Stanford University, CA",
     "tags": "live sports,stanford,university radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s2.stationplaylist.com:7090/listen.mp3",
@@ -11477,7 +11477,7 @@
     "title": "La Mejor 90.7",
     "tags": "regional mexican",
     "img": "https://radiostationusa.fm/assets/image/radio/180/XHTIMFM.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://25003.live.streamtheworld.com:443/KINTFM.mp3",
@@ -11491,7 +11491,7 @@
     "title": "La Urban Radio",
     "tags": "other",
     "img": "https://www.urbanrevolution.es/wp-content/uploads/2022/10/logo-urban-positivo-169x68-1.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s2.ssl-stream.com/radio/8200/radio.mp3",
@@ -11505,7 +11505,7 @@
     "title": "Labgate Radio Clasic Rock",
     "tags": "",
     "img": "http://labgateradio.com/wp-content/uploads/2020/07/FullColor_1280x1024_72dpi-e1595865561342-246x300.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://18423.live.streamtheworld.com:80/LAU_LAFM.mp3",
@@ -11519,7 +11519,7 @@
     "title": "LagosJump Radio",
     "tags": "afrobeats",
     "img": "https://www.lagosjumpradio.com/wp-content/uploads/2023/09/cropped-pr-favi-icon-512x512-1-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://streaming.lahmacun.hu/radio/8000/radio.mp3",
@@ -11533,7 +11533,7 @@
     "title": "Lapfox Radio (MP3 320k)",
     "tags": "electronic,furry",
     "img": "https://lapfoxradio.com/apple-touch-icon-152x152.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.sxmradio.com:8060/channel7.mp3",
@@ -11547,7 +11547,7 @@
     "title": "lbi Radio",
     "tags": "arabic,arabic music,hits,lebanon,online",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://lin1.san.fast-serv.com:6048/stream.mp3",
@@ -11561,7 +11561,7 @@
     "title": "Liffey Sound 96.4 FM",
     "tags": "community,community radio,culture,current affairs,local,local news,music,variety",
     "img": "https://liffeysoundfm.ie/wp-content/uploads/2017/01/Logo_edit-300x239.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://lionheartstudio.co.uk:8000/listen.mp3",
@@ -11575,7 +11575,7 @@
     "title": "Lotus FM Macau HD - 97.4 FM",
     "tags": "variety,world music",
     "img": "https://upload.wikimedia.org/wikipedia/en/9/99/Lotus_TV_Macau_logo.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://lhttp.qtfm.cn/live/20133/64k.mp3",
@@ -11589,7 +11589,7 @@
     "title": "Loving Life FM - Grafton - 103.1 FM (MP3)",
     "tags": "christian,community radio,local",
     "img": "https://i.ibb.co/jTd1gGw/2fccc1-eb93a86b6b9d48bd82d0f52504a13039-mv2.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fLuciano_pavarotti.mp3",
@@ -11603,7 +11603,7 @@
     "title": "Lyca Radio",
     "tags": "",
     "img": "https://www.lycaradio.com/wp-content/uploads/2021/06/favicon-01-150x150.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://str0.creacast.com/magnum?type=.mp3",
@@ -11617,7 +11617,7 @@
     "title": "Manx Radio AM",
     "tags": "top 40",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.gofm.ro:2000/stream/MARLENERADIO/stream.mp3",
@@ -11631,7 +11631,7 @@
     "title": "METRO FM LAGOS",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://edge-bauerall-01-gos2.sharp-stream.com/metro.mp3",
@@ -11645,7 +11645,7 @@
     "title": "Mid Downs Radio",
     "tags": "hospital radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://direct.sharp-stream.com/midwestfmie.mp3",
@@ -11659,7 +11659,7 @@
     "title": "Mix 102.3 - Adelaide - 102.3 FM (MP3)",
     "tags": "hot adult contemporary",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://19273.live.streamtheworld.com:80/DAR_MIX1049.mp3",
@@ -11673,7 +11673,7 @@
     "title": "Mix 106.3 - Canberra - 106.3 FM (MP3)",
     "tags": "adult contemporary",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21333.live.streamtheworld.com:80/ARN_MIX1063.mp3",
@@ -11687,7 +11687,7 @@
     "title": "Mix 106.3 Canberra - 106.3 FM (MP3)",
     "tags": "adult contemporary",
     "img": "https://www.mix106.com.au/wp-content/uploads/sites/7/2020/08/FREQUENCY_logo.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s1.voscast.com:11377/live.mp3",
@@ -11701,7 +11701,7 @@
     "title": "MIX FM 105.9",
     "tags": "variety",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://s1.voscast.com:11377/live.mp3",
@@ -11715,7 +11715,7 @@
     "title": "Mix FM Syria",
     "tags": "",
     "img": "https://mixfmsyria.net/logo.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen.moinestifm.ro/radio.mp3",
@@ -11729,7 +11729,7 @@
     "title": "Monocle Radio",
     "tags": "culture,design,entrepreneurship,global,live shows,news,urbanism",
     "img": "https://pbs.twimg.com/profile_images/1641728752236281856/zeIa6wPU_400x400.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://16613.live.streamtheworld.com:443/KUFMFM.mp3",
@@ -11743,7 +11743,7 @@
     "title": "montcarlo",
     "tags": "montcarlo",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://live.mootxi.co/listen/mootxico/radio.mp3",
@@ -11757,7 +11757,7 @@
     "title": "Morow Prog Rock Radio",
     "tags": "progressive rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radiozender.mpbnetwerken.nl/radio1.mp3",
@@ -11771,7 +11771,7 @@
     "title": "MPB Radio 2",
     "tags": "varied",
     "img": "https://radio2.mpbnetwerken.nl/images/2.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://radiozender.mpbnetwerken.nl/radio2-90s00s.mp3",
@@ -11785,7 +11785,7 @@
     "title": "MPR The Current",
     "tags": "music,public radio",
     "img": "http://www.thecurrent.org/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://tunein.cdnstream1.com/3511_96.mp3",
@@ -11799,7 +11799,7 @@
     "title": "MSX Tribute Radio by MSXALL",
     "tags": "electronic game music",
     "img": "https://msxall.com/media/2022/06/MSXALL-Radio-Seal.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21363.live.streamtheworld.com:80/2MTM.mp3",
@@ -11813,7 +11813,7 @@
     "title": "Muddy Country Radio",
     "tags": "country,new country",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://air.radioart.com/fMusic_for_kids.mp3",
@@ -11827,7 +11827,7 @@
     "title": "Mystery Play Internet Radio ",
     "tags": "mystery,old time radio",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bananavision.tv:8000/mst3k.mp3",
@@ -11841,7 +11841,7 @@
     "title": "Nation Xmas",
     "tags": "christmas,christmas music,christmas songs",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ncpr-ice.streamguys1.com/ncpr-96k.mp3",
@@ -11855,7 +11855,7 @@
     "title": "NetPro.TV Radio",
     "tags": "electro,news,pop,rap,rnb,top hits",
     "img": "https://app.netpro.tv/assets/apps/user_506/app_7327/draft/icon/app_icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream1.nexusradio.fm/nexusdance.mp3",
@@ -11869,7 +11869,7 @@
     "title": "Nexus-IBA Italian Radio Relay Service",
     "tags": "features,milano,news",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://play.nicecream.fm/radio/8010/green.mp3",
@@ -11883,7 +11883,7 @@
     "title": "Nicecream.fm - Blue",
     "tags": "50s,60s,ad free,music,retro,surf rock",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://play.nicecream.fm/radio/8010/green.mp3",
@@ -11897,7 +11897,7 @@
     "title": "Nicecream.fm - Red",
     "tags": "ad free,chill,downtempo,music,sunset,swing",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://stream.nightride.fm/horrorsynth.mp3",
@@ -11911,7 +11911,7 @@
     "title": "NileFM",
     "tags": "hits",
     "img": "https://www.nilefm.com/static/apple-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen-msmn.sharp-stream.com/nme1.mp3",
@@ -11925,7 +11925,7 @@
     "title": "NME 2 - New & Upfront Indie Alt",
     "tags": "alternative,alternative rock,indie,indie rock",
     "img": "https://www.nme.com/wp-content/uploads/2019/12/logo-nme@64w.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.mikev.com/khb36.mp3",
@@ -11939,7 +11939,7 @@
     "title": "NOAA Weather Radio (Twin Cities, MN)",
     "tags": "weather radio",
     "img": "https://www.weatherusa.net/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa2.cdnstream1.com/2383_128.mp3",
@@ -11953,7 +11953,7 @@
     "title": "NonStop Oldies",
     "tags": "motown,soul & great rock n' roll from the 60s & 70s",
     "img": "https://static.wixstatic.com/media/00a61a_9537b25e21ca43e5a3b4aef6ea09f2a4~mv2.png/v1/crop/x_21,y_0,w_2008,h_566/fill/w_979,h_276,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/NSO%20banner%20new%20size-2048%20x%20600%20px.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://live.canstream.co.uk:8000/manchesterfm.mp3",
@@ -11967,7 +11967,7 @@
     "title": "Northside Radio - Chatswood - 99.3 FM (MP3)",
     "tags": "community radio",
     "img": "https://northsideradio.com.au/wp-content/uploads/2022/11/cropped-icon-medium-1-180x180.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://icy-e-bz-07-boh.sharp-stream.com/northsound2.mp3",
@@ -11981,7 +11981,7 @@
     "title": "Nova (Taylor's Version) (MP3)",
     "tags": "pop",
     "img": "https://novafm.com.au/assets/nova/icons/favicon/apple-touch-icon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21333.live.streamtheworld.com:80/NOVA_100.mp3",
@@ -11995,7 +11995,7 @@
     "title": "Nova 106.9 - Brisbane - 106.9 FM (MP3)",
     "tags": "adult contemporary,commercial,top 40",
     "img": "https://i.ibb.co/n6jJk2m/Brand-Tile-N1069.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://21363.live.streamtheworld.com:80/NOVA_90S.mp3",
@@ -12009,7 +12009,7 @@
     "title": "Nova 919 - Adelaide - 91.9 FM (MP3)",
     "tags": "adult contemporary,commercial,top 40",
     "img": "https://i.ibb.co/5B2VYwV/Brand-Tile-N919.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://23163.live.streamtheworld.com:80/NOVA_937.mp3",
@@ -12023,7 +12023,7 @@
     "title": "Nova 96.9 - Sydney - 96.9 FM (MP3)",
     "tags": "adult contemporary,commercial,top 40",
     "img": "https://i.ibb.co/WD93RTF/Brand-Tile-N969.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://31.13.223.148:8000/nova.mp3",
@@ -12037,7 +12037,7 @@
     "title": "Nova Throwbacks (MP3)",
     "tags": "non-stop music,throwbacks",
     "img": "https://i.ibb.co/y6N3Lmq/Brand-Tile-TBs.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://war.streamguys1.com:7785/wuis.mp3",
@@ -12051,7 +12051,7 @@
     "title": "NPR Newscast",
     "tags": "news,world news",
     "img": "https://static-assets.npr.org/static/images/favicon/favicon-32x32.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://npr-ice.streamguys1.com/live.mp3",
@@ -12065,7 +12065,7 @@
     "title": "Oak 93.5 | WRLY-LP",
     "tags": "raleigh,variety",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://stream.sxmradio.com:8060/channel5.mp3",
@@ -12079,7 +12079,7 @@
     "title": "Ocean City Radio",
     "tags": "various",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://bitsmitter.com:8000/omr%20;stream.mp3",
@@ -12093,7 +12093,7 @@
     "title": "Old Time Radio  USA",
     "tags": "drama",
     "img": "https://static.wixstatic.com/media/7d32c5_2a0e314736a54369a945724dd2c84980%7emv2.png/v1/fill/w_180%2ch_180%2clg_1%2cusm_0.66_1.00_0.01/7d32c5_2a0e314736a54369a945724dd2c84980%7emv2.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://www.oldiesparadise.com:8000/;stream.mp3",
@@ -12107,7 +12107,7 @@
     "title": "One FM 2000s",
     "tags": "00s,2000s",
     "img": "https://www.onefm.ch/wp-content/uploads/2018/08/favicon.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://webradio0006.ice.infomaniak.ch/webradio0006-128.mp3",
@@ -12121,7 +12121,7 @@
     "title": "OnlyHit",
     "tags": "pop,top 40",
     "img": "https://api.onlyhit.us/logo.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://ais-sa3.cdnstream1.com/2628_128.mp3",
@@ -12135,7 +12135,7 @@
     "title": "OnlyHit K-Pop",
     "tags": "hits,k-pop,korean,korean music,korean pop,kpop",
     "img": "https://kpop.onlyhit.us/logo.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://listen-original.sharp-stream.com/original106.mp3",
@@ -12149,7 +12149,7 @@
     "title": "Paekakariki",
     "tags": "",
     "img": null,
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://radio.canstream.co.uk:8123/live.mp3",
@@ -12163,7 +12163,7 @@
     "title": "Palanga Street Radio",
     "tags": "eclectic",
     "img": "https://palanga.live/assets/favicons/apple-icon-120x120.png",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "https://nepatriots.streamguys1.com/live.mp3",
@@ -12177,7 +12177,7 @@
     "title": "Phoenix FM - Bendigo - 106.7 FM (MP3)",
     "tags": "community radio,miscellaneous",
     "img": "https://i.ibb.co/G55hTmG/26491-107125745975503-5100158-n.jpg",
-    "posted": false
+    "posted": true
   },
   {
     "streamUrl": "http://192.99.83.154:8032/stream.mp3",
@@ -14718,6 +14718,13 @@
     "title": "他她说：EP.3 读本书吧《百岁人生》",
     "tags": "",
     "img": null,
+    "posted": false
+  },
+  {
+    "streamUrl": "https://admin.stream.rinse.fm/proxy/rinse_uk/stream",
+    "title": "Rinse.fm",
+    "tags": "techno,dubstep,electro,grime",
+    "img": "https://static.mytuner.mobi/media/tvos_radios/671/rinse-fm-1068.01f6579b.png",
     "posted": false
   }
 ]
