@@ -60,7 +60,6 @@ const StationInfo = ({ audioId }) => {
 
   return (
     <Box width="100%">
-      {/* Hero Section with Background Image */}
       <Box
         position="relative"
         width="100%"
@@ -98,8 +97,101 @@ const StationInfo = ({ audioId }) => {
           justifyContent={{ base: 'center', md: 'flex-start' }}
           gap={{ base: 6, md: 8 }}
         >
-          {/* Left Side - Image */}
+          {/* Info Section with Play Button */}
+          <Box order={{ base: 2, md: 1 }} color="white" width="100%" zIndex={1}>
+            <HStack
+              spacing={{ base: 2, md: 6 }}
+              mb={4}
+              justify={{ base: 'space-between', md: 'flex-start' }}
+              width="100%"
+              alignItems="flex-start"
+            >
+              {/* Play Button - Desktop Only */}
+              <IconButton
+                aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
+                onClick={() => togglePlay(audioId)}
+                boxSize={{ base: '56px', md: '64px' }}
+                rounded="full"
+                colorScheme="brand"
+                display={{ base: 'none', md: 'flex' }}
+                p={4}
+              >
+                {playerState.isPlaying &&
+                encodeUrl(playerState.currentStation.streamUrl) === audioId ? (
+                  <IoPauseOutline size={{ base: '24px', md: '32px' }} />
+                ) : (
+                  <IoPlayOutline size={{ base: '24px', md: '32px' }} />
+                )}
+              </IconButton>
+
+              {/* Title, Tags, and Share Stack */}
+              <Stack spacing={2} flex={1}>
+                <HStack
+                  justify={{ base: 'space-between', md: 'flex-start' }}
+                  width="100%"
+                >
+                  <Text fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold">
+                    {station.title}
+                  </Text>
+
+                  {/* Play Button - Mobile Only */}
+                  <IconButton
+                    aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
+                    onClick={() => togglePlay(audioId)}
+                    boxSize="56px"
+                    rounded="full"
+                    colorScheme="brand"
+                    display={{ base: 'flex', md: 'none' }}
+                    p={4}
+                  >
+                    {playerState.isPlaying &&
+                    encodeUrl(playerState.currentStation.streamUrl) ===
+                      audioId ? (
+                      <IoPauseOutline size="24px" />
+                    ) : (
+                      <IoPlayOutline size="24px" />
+                    )}
+                  </IconButton>
+                </HStack>
+
+                <HStack
+                  spacing={2}
+                  wrap="wrap"
+                  justify={{ base: 'flex-start', md: 'flex-start' }}
+                  width="100%"
+                >
+                  {station.tags
+                    ?.split(',')
+                    .filter(Boolean)
+                    .map((tag) => tag.trim())
+                    .filter((tag) => tag.length >= 3 && tag.length <= 10)
+                    .slice(0, 3)
+                    .map((tag) => (
+                      <Badge
+                        key={generateUUID()}
+                        colorScheme="whiteAlpha"
+                        variant="solid"
+                        fontSize="sm"
+                        borderRadius="full"
+                        px={3}
+                        py={1}
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                </HStack>
+
+                {/* Share Button */}
+                <Box pt={2}>
+                  <Share />
+                </Box>
+              </Stack>
+            </HStack>
+          </Box>
+
+          {/* Image Section */}
           <Box
+            order={{ base: 1, md: 2 }}
             width={{ base: '240px', md: '320px' }}
             height={{ base: '240px', md: '320px' }}
             position="relative"
@@ -125,71 +217,18 @@ const StationInfo = ({ audioId }) => {
                 borderRadius="lg"
               />
             )}
-            <IconButton
-              aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
-              onClick={() => togglePlay(audioId)}
-              position="absolute"
-              top="50%"
-              left="50%"
-              transform="translate(-50%, -50%)"
-              boxSize="80px"
-              rounded="full"
-            >
-              {playerState.isPlaying &&
-              encodeUrl(playerState.currentStation.streamUrl) === audioId ? (
-                <IoPauseOutline size="40px" />
-              ) : (
-                <IoPlayOutline size="40px" />
-              )}
-            </IconButton>
-          </Box>
-
-          {/* Right Side - Info */}
-          <Box
-            ml={{ base: 0, md: 8 }}
-            color="white"
-            textAlign={{ base: 'center', md: 'left' }}
-            width={{ base: '100%', md: 'auto' }}
-            zIndex={1}
-          >
-            <Text fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold" mb={4}>
-              {station.title}
-            </Text>
-            <HStack
-              spacing={2}
-              wrap="wrap"
-              justify={{ base: 'center', md: 'flex-start' }}
-              width={{ base: '100%', md: 'auto' }}
-              px={{ base: 4, md: 0 }}
-              mb={4}
-            >
-              {station.tags
-                ?.split(',')
-                .filter(Boolean)
-                .map((tag) => tag.trim())
-                .filter((tag) => tag.length >= 3 && tag.length <= 10)
-                .slice(0, 3)
-                .map((tag) => (
-                  <Badge
-                    key={generateUUID()}
-                    colorScheme="whiteAlpha"
-                    variant="solid"
-                    fontSize="sm"
-                    borderRadius="full"
-                    px={3}
-                    py={1}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-            </HStack>
           </Box>
         </Box>
 
-        {/* Share Button */}
-        <Box position="absolute" right={4} top={4} zIndex={2}>
+        {/* Remove or comment out the old Share button position */}
+        {/* <Box
+          position="absolute"
+          right={4}
+          top={4}
+          zIndex={2}
+        >
           <Share />
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
