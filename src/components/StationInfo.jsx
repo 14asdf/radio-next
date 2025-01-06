@@ -29,9 +29,8 @@ import _ from 'lodash';
 import PlayerDialog from './PlayerDialog';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 
-const Player = ({ audioId }) => {
+const StationInfo = ({ audioId }) => {
   const { playerState, togglePlay, currentStation } = useAudioPlayer();
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const { stations } = useStations();
@@ -68,14 +67,6 @@ const Player = ({ audioId }) => {
       display="flex"
       flexDirection="column"
     >
-      <PlayerDialog
-        isOpen={isDialogOpen}
-        onOpenChange={(e) => setIsDialogOpen(e.open)}
-        station={station}
-        isLoading={isLoading}
-        imgSrc={imgSrc}
-      />
-
       <Box
         display="flex"
         justifyContent="center"
@@ -101,8 +92,6 @@ const Player = ({ audioId }) => {
             width="250px"
             height="250px"
             borderRadius="lg"
-            cursor="pointer"
-            onClick={() => setIsDialogOpen(true)}
           />
         )}
         <Box position="absolute" right="-1em" bottom="-1em">
@@ -171,4 +160,4 @@ const Player = ({ audioId }) => {
   );
 };
 
-export default React.memo(Player);
+export default React.memo(StationInfo);
