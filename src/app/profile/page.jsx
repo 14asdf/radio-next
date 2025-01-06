@@ -16,12 +16,14 @@ import StationSearchRow from '@/components/StationSearchRow';
 import { useStations } from '@/contexts/StationsContext';
 import { findStation } from '@/utils';
 import { AvatarGroup, Avatar } from '@/components/ui/avatar';
+import { useFavorites } from '@/hooks/useFavorites';
 
 const Profile = () => {
   const { user, setUser } = useAuth();
-  const [favorites, setFavorites] = useState([]);
   const { stations } = useStations();
   const router = useRouter();
+  const { getFavorites } = useFavorites();
+  const [favoritesList, setFavoritesList] = useState([]);
 
   useEffect(() => {
     if (!user) {
@@ -29,13 +31,15 @@ const Profile = () => {
       return;
     }
 
-    const favoritesRef = ref(db, `users/${user.uid}/favorites`);
-    const unsubscribe = onValue(favoritesRef, (snapshot) => {
-      const favoritesData = snapshot.val() || [];
-      setFavorites(favoritesData);
-    });
+    const loadFavorites = async () => {
+      const favorites = (await getFavorites()) || [];
+      const favList = Array.isArray(favorites)
+        ? favorites
+        : Object.keys(favorites);
+      setFavoritesList(favList);
+    };
 
-    return () => unsubscribe();
+    loadFavorites();
   }, [user, router]);
 
   const handleLogout = async () => {
@@ -70,14 +74,14 @@ const Profile = () => {
           Your favorite stations
         </Heading>
         <SimpleGrid gap={8}>
-          {favorites.map((stationId) => (
+          {favoritesList.map((stationId) => (
             <StationSearchRow
               key={stationId}
               station={findStation(stationId, stations)}
-              searchTerm="" // You can pass an empty string or omit if not needed
+              searchTerm=""
             />
           ))}
-          {favorites.length === 0 && (
+          {favoritesList.length === 0 && (
             <Text color="gray.500">No favorite stations yet</Text>
           )}
         </SimpleGrid>
