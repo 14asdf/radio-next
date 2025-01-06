@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Text, IconButton } from '@chakra-ui/react';
+import { Box, Text, IconButton, Button } from '@chakra-ui/react';
 import { Toaster } from './components/ui/toaster';
 
 import { ColorModeButton } from './components/ui/color-mode';
@@ -49,6 +49,7 @@ const App = ({ children }) => {
           borderBottomWidth="0"
           pl={{ base: '4', md: '20' }}
           pr={{ base: '4', md: '20' }}
+          bg="chakra-body-bg"
         >
           {pathname === '/' && (
             <>
@@ -70,39 +71,119 @@ const App = ({ children }) => {
           )}
         </Box>
 
-        {/* Main Content - Scrollable */}
+        {/* Main Content Area */}
         <Box
           flex="1"
-          overflow="auto"
-          pb="4"
-          pl={{ base: '4', md: '20' }}
-          pr={{ base: '4', md: '20' }}
-          pt={audioId ? 4 : 0}
-          justifyContent="center"
-          as="main"
+          display="flex"
+          minHeight="0" // Important for nested flex scrolling
         >
-          {children}
+          {/* Main Scrollable Content */}
+          <Box
+            flex="1"
+            overflow="auto"
+            pb={{ base: '16', xl: '4' }}
+            pl={{ base: '4', md: '20' }}
+            pr={{ base: '4', md: '20' }}
+            pt={audioId ? 4 : 0}
+            as="main"
+          >
+            {children}
+          </Box>
+
+          {/* Right Navigation Panel - Desktop Only */}
+          <Box
+            display={{ base: 'none', xl: 'flex' }}
+            flexDirection="column"
+            gap="6"
+            pr="8"
+            pt="8"
+            width="240px"
+            overflow="auto"
+            bg="chakra-body-bg"
+          >
+            <Button
+              as={Link}
+              href="/"
+              variant="ghost"
+              size="lg"
+              width="full"
+              display="flex"
+              gap="3"
+              justifyContent="flex-start"
+            >
+              {pathname === '/' && !searchParams.get('id') ? (
+                <RiHomeFill size={24} />
+              ) : (
+                <RiHomeLine size={24} />
+              )}
+              <Text>Home</Text>
+            </Button>
+            <Button
+              as={Link}
+              href="/search"
+              variant="ghost"
+              size="lg"
+              width="full"
+              display="flex"
+              gap="3"
+              justifyContent="flex-start"
+            >
+              {pathname === '/search' ? (
+                <RiSearchFill size={24} />
+              ) : (
+                <RiSearchLine size={24} />
+              )}
+              <Text>Search</Text>
+            </Button>
+            <Button
+              as={Link}
+              href="/profile"
+              variant="ghost"
+              size="lg"
+              width="full"
+              display="flex"
+              gap="3"
+              justifyContent="flex-start"
+            >
+              {pathname === '/profile' ? (
+                <RiUserFill size={24} />
+              ) : (
+                <RiUserLine size={24} />
+              )}
+              <Text>Profile</Text>
+            </Button>
+          </Box>
         </Box>
 
-        {/* Footer */}
-        <Box as="footer">
-          {currentStation && (
-            <MiniPlayer audioId={encodeUrl(currentStation.streamUrl)} />
-          )}
+        {/* Footer Section */}
+        <Box display="flex" flexDirection="column">
+          {/* MiniPlayer */}
+          <Box width="100%" display="flex" flexDirection="column">
+            {currentStation && (
+              <MiniPlayer audioId={encodeUrl(currentStation.streamUrl)} />
+            )}
+          </Box>
+
+          {/* Mobile Navigation */}
           <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            pb="1.5"
-            pt="1.5"
+            display={{ base: 'flex', xl: 'none' }}
+            bg="chakra-body-bg"
+            borderTopWidth="1px"
+            px="4"
+            py="2"
           >
-            {/* Left Section */}
-            <Box flex="1" display="flex" justifyContent="center">
+            <Box
+              display="flex"
+              width="100%"
+              justifyContent="space-between"
+              alignItems="center"
+            >
               <IconButton
                 as={Link}
                 href="/"
                 variant="ghost"
                 borderRadius="full"
+                aria-label="Home"
               >
                 {pathname === '/' && !searchParams.get('id') ? (
                   <RiHomeFill size={24} />
@@ -110,15 +191,12 @@ const App = ({ children }) => {
                   <RiHomeLine size={24} />
                 )}
               </IconButton>
-            </Box>
-
-            {/* Center Section */}
-            <Box flex="1" display="flex" justifyContent="center">
               <IconButton
                 as={Link}
                 href="/search"
                 variant="ghost"
                 borderRadius="full"
+                aria-label="Search"
               >
                 {pathname === '/search' ? (
                   <RiSearchFill size={24} />
@@ -126,15 +204,12 @@ const App = ({ children }) => {
                   <RiSearchLine size={24} />
                 )}
               </IconButton>
-            </Box>
-
-            {/* Right Section */}
-            <Box flex="1" display="flex" justifyContent="center">
               <IconButton
                 as={Link}
                 href="/profile"
                 variant="ghost"
                 borderRadius="full"
+                aria-label="Profile"
               >
                 {pathname === '/profile' ? (
                   <RiUserFill size={24} />
