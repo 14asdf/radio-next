@@ -49,7 +49,7 @@ const Share = () => {
     }
 
     // Otherwise try native sharing
-    if (navigator.share && !platform) {
+    if (!platform) {
       try {
         await navigator.share({
           title: document.title,
@@ -66,7 +66,7 @@ const Share = () => {
     return (
       <IconButton
         aria-label="Share"
-        onClick={handleShare}
+        onClick={() => handleShare()}
         variant="ghost"
         size="lg"
         rounded={'full'}
