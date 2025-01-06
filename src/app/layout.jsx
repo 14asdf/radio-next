@@ -3,6 +3,7 @@ import { Provider as ChakraProvider } from '../components/ui/provider';
 import { AudioPlayerProvider } from '../contexts/AudioPlayerContext';
 import { StationsProvider } from '../contexts/StationsContext';
 import { Suspense } from 'react';
+import { AuthProvider } from '../contexts/AuthContext';
 
 // Static viewport configuration
 export const viewport = {
@@ -25,20 +26,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <div id="root">
-          <StationsProvider>
-            <ChakraProvider>
-              <AudioPlayerProvider>
-                <Suspense>
-                  <App>{children}</App>
-                </Suspense>
-              </AudioPlayerProvider>
-            </ChakraProvider>
-          </StationsProvider>
-        </div>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body>
+          <div id="root">
+            <StationsProvider>
+              <ChakraProvider>
+                <AudioPlayerProvider>
+                  <Suspense>
+                    <App>{children}</App>
+                  </Suspense>
+                </AudioPlayerProvider>
+              </ChakraProvider>
+            </StationsProvider>
+          </div>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

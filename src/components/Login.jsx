@@ -13,8 +13,35 @@ import {
 import { FcGoogle } from 'react-icons/fc';
 import { FaVk } from 'react-icons/fa';
 import Logo from '../components/shared/Logo';
+import { useAuth } from '../contexts/AuthContext';
+import { auth, db } from '../firebase/config';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { ref, set } from 'firebase/database';
 
 const Login = () => {
+  const { setUser } = useAuth();
+
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+
+      // Create user profile in RTDB if it doesn't exist
+      await set(ref(db, `users/${result.user.uid}`), {
+        email: result.user.email,
+        name: result.user.displayName,
+        favorites: [],
+        createdAt: Date.now(),
+      });
+
+      setUser(result.user);
+    } catch (error) {
+      console.error('Google login error:', error);
+    }
+  };
+
+  const handleVKLogin = async () => {};
+
   return (
     <Box>
       <Center py={8}>
@@ -36,6 +63,7 @@ const Login = () => {
             {/* Social Login Buttons */}
             <VStack spacing={3} mt="16" gap={6}>
               <Button
+                onClick={handleGoogleLogin}
                 display="flex"
                 gap={2}
                 alignItems="center"
@@ -47,6 +75,7 @@ const Login = () => {
               </Button>
 
               <Button
+                onClick={handleVKLogin}
                 display="flex"
                 gap={2}
                 alignItems="center"

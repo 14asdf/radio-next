@@ -23,7 +23,6 @@ import { decodeUrl, encodeUrl } from './utils';
 
 import { useAudioPlayer } from './contexts/AudioPlayerContext';
 import MiniPlayer from './components/MiniPlayer';
-import { Suspense } from 'react';
 import Logo from './components/shared/Logo';
 
 const App = ({ children }) => {
