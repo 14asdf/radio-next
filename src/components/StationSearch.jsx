@@ -20,7 +20,8 @@ import {
 import { IoCloseOutline } from 'react-icons/io5';
 import { RiSearchLine } from 'react-icons/ri';
 import { createAvatarUrl, encodeUrl } from '../utils';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { useStations } from '../contexts/StationsContext';
 
 // Create a separate StationSearchRow component
@@ -51,7 +52,7 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
     <Box
       key={`${searchTerm}-${station.streamUrl}`}
       as={Link}
-      to={`/?id=${encodeUrl(station.streamUrl)}`}
+      href={`/?id=${encodeUrl(station.streamUrl)}`}
       display="flex"
       gap={4}
       overflow="hidden"
@@ -109,7 +110,7 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
 const SearchResults = React.memo(
   () => {
     const { stations } = useStations();
-    const [searchParams] = useSearchParams();
+    const searchParams = useSearchParams();
     const searchTerm = searchParams.get('q') || '';
     const searchType = searchParams.get('type') || 'all';
 
@@ -232,8 +233,8 @@ const StationSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('all');
   const containerRef = useRef(null);
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   // Initialize state from URL params
   useEffect(() => {
@@ -249,9 +250,9 @@ const StationSearch = () => {
       const params = new URLSearchParams();
       if (term) params.set('q', term);
       if (type !== 'all') params.set('type', type);
-      navigate(`/search?${params.toString()}`);
+      router.push(`/search?${params.toString()}`);
     }, 300),
-    [navigate]
+    [router]
   );
 
   // Handle search input change
@@ -268,7 +269,7 @@ const StationSearch = () => {
   };
 
   const handleCancel = () => {
-    navigate('/');
+    router.push('/');
   };
 
   return (
