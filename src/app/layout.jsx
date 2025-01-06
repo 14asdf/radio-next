@@ -2,6 +2,7 @@ import App from '@/App';
 import { Provider as ChakraProvider } from '../components/ui/provider';
 import { AudioPlayerProvider } from '../contexts/AudioPlayerContext';
 import { StationsProvider } from '../contexts/StationsContext';
+import { Suspense } from 'react';
 
 // Static viewport configuration
 export const viewport = {
@@ -30,7 +31,9 @@ export default function RootLayout({ children }) {
           <StationsProvider>
             <ChakraProvider>
               <AudioPlayerProvider>
-                <App>{children}</App>
+                <Suspense>
+                  <App>{children}</App>
+                </Suspense>
               </AudioPlayerProvider>
             </ChakraProvider>
           </StationsProvider>

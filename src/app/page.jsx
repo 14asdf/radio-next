@@ -3,7 +3,6 @@ import './styles.css';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
 import { RouteHandler } from './routes';
-import { Suspense } from 'react';
 
 export async function generateMetadata(props) {
   const [params, searchParams] = await Promise.all([
@@ -55,9 +54,5 @@ export async function generateMetadata(props) {
 }
 
 export default function HomePage() {
-  return (
-    <Suspense>
-      <RouteHandler />
-    </Suspense>
-  );
+  return <RouteHandler />;
 }

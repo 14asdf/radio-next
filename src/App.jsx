@@ -36,7 +36,7 @@ const App = ({ children }) => {
   const audioId = searchParams.get('id');
 
   return (
-    <Suspense>
+    <>
       <Toaster />
       <Box
         height={{ base: '100dvh', md: '100vh' }}
@@ -171,7 +171,7 @@ const App = ({ children }) => {
           </Box>
         </Box>
       </Box>
-    </Suspense>
+    </>
   );
 };
 
