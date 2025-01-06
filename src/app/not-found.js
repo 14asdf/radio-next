@@ -1,3 +1,5 @@
+'use client';
+
 import { Suspense } from 'react';
 import { Spinner, Text, VStack } from '@chakra-ui/react';
 
