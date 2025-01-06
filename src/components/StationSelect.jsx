@@ -127,36 +127,51 @@ const GenreCard = React.memo(({ tag, stations }) => {
     <Box
       as={Link}
       href={`/search?type=genre&q=${encodeURIComponent(tag)}`}
-      width={{ base: 'calc(50% - 0.5rem)', md: 'calc(33.333% - 0.75rem)' }}
-      p={6}
-      borderRadius="xl"
-      backgroundColor={genreColor}
-      opacity={0.9}
+      width="100%"
+      position="relative"
+      _before={{
+        content: '""',
+        display: 'block',
+        paddingBottom: '100%', // This creates the square aspect ratio
+      }}
       _hover={{
-        opacity: 1,
         transform: 'translateY(-2px)',
         transition: 'all 0.2s',
       }}
       transition="all 0.2s"
     >
-      <Stack spacing={4}>
-        <Text
-          fontSize="2xl"
-          fontWeight="bold"
-          textTransform="capitalize"
-          color="#fff"
-          noOfLines={4}
-          height="6rem"
-          overflow="hidden"
-          textOverflow="ellipsis"
-          whiteSpace="pre-wrap"
-          width="100%"
-          wordWrap="normal"
-        >
-          {tag}
-        </Text>
-        {avatarGroup}
-      </Stack>
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        p={6}
+        borderRadius="xl"
+        backgroundColor={genreColor}
+        opacity={0.9}
+        _hover={{
+          opacity: 1,
+        }}
+      >
+        <Stack spacing={4} height="100%" justifyContent="space-between">
+          <Text
+            fontSize="2xl"
+            fontWeight="bold"
+            textTransform="capitalize"
+            color="#fff"
+            noOfLines={4}
+            overflow="hidden"
+            textOverflow="ellipsis"
+            whiteSpace="pre-wrap"
+            width="100%"
+            wordWrap="normal"
+          >
+            {tag}
+          </Text>
+          <Box>{avatarGroup}</Box>
+        </Stack>
+      </Box>
     </Box>
   );
 });
@@ -194,7 +209,16 @@ const StationSelect = () => {
   }, [stations]);
 
   return (
-    <Box display="flex" flexWrap="wrap" gap={4} width="100%">
+    <Box
+      display="grid"
+      gridTemplateColumns={{
+        base: 'repeat(2, 1fr)',
+        md: 'repeat(3, 1fr)',
+        xl: 'repeat(4, 1fr)',
+      }}
+      gap={{ base: 4, md: 6 }}
+      width="100%"
+    >
       {groupedStations.map(({ tag, stations }) => (
         <GenreCard key={tag} tag={tag} stations={stations} />
       ))}
