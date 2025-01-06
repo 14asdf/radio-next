@@ -72,11 +72,11 @@ const StationInfo = ({ audioId }) => {
     const favoritesRef = ref(db, `users/${user.uid}/favorites`);
     const unsubscribe = onValue(favoritesRef, (snapshot) => {
       const favorites = snapshot.val() || [];
-      setIsFavorite(favorites.includes(station.id));
+      setIsFavorite(favorites.includes(encodeUrl(station.streamUrl)));
     });
 
     return () => unsubscribe();
-  }, [user, station.id]);
+  }, [user, station.streamUrl]);
 
   const handleFavoriteClick = async () => {
     if (!user) {

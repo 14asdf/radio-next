@@ -12,10 +12,14 @@ import { useEffect, useState } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { db, auth } from '../../firebase/config';
 import { useRouter } from 'next/navigation';
+import StationSearchRow from '@/components/StationSearchRow';
+import { useStations } from '@/contexts/StationsContext';
+import { findStation } from '@/utils';
 
 const Profile = () => {
   const { user, setUser } = useAuth();
   const [favorites, setFavorites] = useState([]);
+  const { stations } = useStations();
   const router = useRouter();
 
   useEffect(() => {
@@ -61,7 +65,11 @@ const Profile = () => {
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
           {favorites.map((stationId) => (
-            <Text key={stationId}>{stationId}</Text>
+            <StationSearchRow
+              key={stationId}
+              station={findStation(stationId, stations)}
+              searchTerm="" // You can pass an empty string or omit if not needed
+            />
           ))}
           {favorites.length === 0 && (
             <Text color="gray.500">No favorite stations yet</Text>

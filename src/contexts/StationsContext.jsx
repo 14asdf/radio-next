@@ -40,15 +40,3 @@ export const StationsProvider = ({ children }) => {
     </StationsContext.Provider>
   );
 };
-
-export const getStations = async () => {
-  // If you're fetching from an API
-  const response = await fetch('your-api-endpoint');
-  return response.json();
-
-  // OR if you're importing from a local file
-  // return stations data directly
-  return [
-    // your stations array
-  ];
-};
