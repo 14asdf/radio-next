@@ -63,23 +63,6 @@ const App = ({ children }) => {
             {/* Right Section */}
             <Box flex="1" display="flex" justifyContent="flex-end" gap={4}>
               <ColorModeButton />
-              {!user && (
-                <Text
-                  as={Link}
-                  href="/login"
-                  fontSize="sm"
-                  fontWeight="bold"
-                  bg="black"
-                  color="white"
-                  _dark={{ bg: 'white', color: 'black' }}
-                  px={4}
-                  py={2}
-                  borderRadius="full"
-                  _hover={{ opacity: 0.8 }}
-                >
-                  Log in
-                </Text>
-              )}
             </Box>
           </Box>
         </Box>
@@ -144,22 +127,18 @@ const App = ({ children }) => {
 
             {/* Right Section */}
             <Box flex="1" display="flex" justifyContent="center">
-              {user ? (
-                <IconButton
-                  as={Link}
-                  href="/profile"
-                  variant="ghost"
-                  borderRadius="full"
-                >
-                  {pathname === '/profile' ? (
-                    <RiUserFill size={24} />
-                  ) : (
-                    <RiUserLine size={24} />
-                  )}
-                </IconButton>
-              ) : (
-                <ColorModeButton />
-              )}
+              <IconButton
+                as={Link}
+                href="/profile"
+                variant="ghost"
+                borderRadius="full"
+              >
+                {pathname === '/profile' ? (
+                  <RiUserFill size={24} />
+                ) : (
+                  <RiUserLine size={24} />
+                )}
+              </IconButton>
             </Box>
           </Box>
         </Box>
