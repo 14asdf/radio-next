@@ -24,6 +24,7 @@ import s from '../stations.json';
 import _ from 'lodash';
 import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
 import Link from 'next/link';
+// import { Link } from 'react-router-dom';
 
 import { Slider } from '@/components/ui/slider';
 import {
@@ -87,38 +88,44 @@ const MiniPlayer = ({ audioId }) => {
 
   return (
     <Box bg="gray.100" _dark={{ bg: 'gray.700' }} pr="2">
-      <HStack justify="space-between" align="center">
-        <HStack as={Link} href={`/?id=${encodeUrl(station.streamUrl)}`}>
-          {isLoading ? (
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              width="60px"
-              height="60px"
-            >
-              <Spinner size="md" color="gray.500" />
-            </Box>
-          ) : (
+      <Box
+        display="grid"
+        gridTemplateColumns="60px minmax(0, 1fr) auto"
+        alignItems="center"
+        gap={3}
+      >
+        {isLoading ? (
+          <Box
+            width="60px"
+            height="60px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Spinner />
+          </Box>
+        ) : (
+          <Link href={`/?id=${encodeUrl(station.streamUrl)}`}>
             <Image
               src={imgSrc}
               alt={station.title}
               width="60px"
               height="60px"
             />
-          )}
+          </Link>
+        )}
 
+        <Link href={`/?id=${encodeUrl(station.streamUrl)}`}>
           <Text
             fontSize="sm"
             fontWeight="medium"
             overflow="hidden"
             textOverflow="ellipsis"
             whiteSpace="nowrap"
-            width="100%"
           >
             {station.title}
           </Text>
-        </HStack>
+        </Link>
 
         <HStack>
           <PopoverRoot
@@ -176,7 +183,7 @@ const MiniPlayer = ({ audioId }) => {
             <IoPlaySkipForwardOutline />
           </IconButton>
         </HStack>
-      </HStack>
+      </Box>
     </Box>
   );
 };
