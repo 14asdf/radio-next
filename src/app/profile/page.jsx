@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation';
 import StationSearchRow from '@/components/StationSearchRow';
 import { useStations } from '@/contexts/StationsContext';
 import { findStation } from '@/utils';
+import { AvatarGroup, Avatar } from '@/components/ui/avatar';
 
 const Profile = () => {
   const { user, setUser } = useAuth();
@@ -52,18 +53,23 @@ const Profile = () => {
   return (
     <VStack spacing={8} align="stretch" p={4}>
       <VStack align="center" spacing={4}>
+        <Avatar
+          size="2xl"
+          name={user?.displayName}
+          src={user?.photoURL}
+          bg="gray.400"
+        />
         <Heading size="lg">{user?.displayName}</Heading>
-        <Text>{user?.email}</Text>
-        <Button onClick={handleLogout} colorScheme="red" size="sm">
+        <Button onClick={handleLogout} size="sm" borderRadius="full">
           Log out
         </Button>
       </VStack>
 
       <Box>
-        <Heading size="md" mb={4}>
-          Favorite Stations
+        <Heading size="2xl" mb={4}>
+          Your favorite stations
         </Heading>
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
+        <SimpleGrid gap={8}>
           {favorites.map((stationId) => (
             <StationSearchRow
               key={stationId}

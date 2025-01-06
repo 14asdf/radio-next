@@ -19,11 +19,8 @@ import {
 } from '@chakra-ui/input';
 import { IoCloseOutline } from 'react-icons/io5';
 import { RiSearchLine, RiPlayFill } from 'react-icons/ri';
-import { createAvatarUrl, encodeUrl } from '../utils';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { useStations } from '../contexts/StationsContext';
-import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import StationSearchRow from './StationSearchRow';
 
 // Update the SearchResults component to use StationSearchRow
