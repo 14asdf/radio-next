@@ -5,9 +5,11 @@ import StationSelect from '../components/StationSelect';
 import StationSearch from '../components/StationSearch';
 import { useStations } from '@/contexts/StationsContext';
 
-export const RouteHandler = () => {
+const RouteHandler = () => {
   const searchParams = useSearchParams();
   const { isLoading } = useStations();
   const id = searchParams.get('id');
   return id && !isLoading ? <StationInfo audioId={id} /> : <StationSelect />;
 };
+
+export default RouteHandler;
