@@ -84,7 +84,6 @@ const Share = () => {
         variant="subtle"
         size="lg"
         rounded={'full'}
-        style={{ marginLeft: '1em' }}
         aria-label="Share this station"
         onClick={() => setIsOpen(true)}
       >

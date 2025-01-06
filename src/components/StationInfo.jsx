@@ -74,6 +74,8 @@ const StationInfo = ({ audioId }) => {
           left={0}
           right={0}
           bottom={0}
+          borderRadius={'md'}
+          overflow="hidden"
           filter="blur(20em)"
           // opacity={0.4}
           style={{
@@ -98,7 +100,7 @@ const StationInfo = ({ audioId }) => {
           gap={{ base: 6, md: 8 }}
         >
           {/* Info Section with Play Button */}
-          <Box order={{ base: 2, md: 1 }} color="white" width="100%" zIndex={1}>
+          <Box order={{ base: 2, md: 1 }} width="100%" zIndex={1}>
             <HStack
               spacing={{ base: 2, md: 6 }}
               mb={4}
@@ -110,11 +112,11 @@ const StationInfo = ({ audioId }) => {
               <IconButton
                 aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
                 onClick={() => togglePlay(audioId)}
-                boxSize={{ base: '56px', md: '64px' }}
+                boxSize={{ base: '56px', md: '70px' }}
                 rounded="full"
                 colorScheme="brand"
                 display={{ base: 'none', md: 'flex' }}
-                p={4}
+                m={4}
               >
                 {playerState.isPlaying &&
                 encodeUrl(playerState.currentStation.streamUrl) === audioId ? (
