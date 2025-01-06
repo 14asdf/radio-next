@@ -4,12 +4,25 @@ import './styles.css';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
 
-export async function generateMetadata({ searchParams }) {
-  const stations = JSON.parse(
-    await readFile(join(process.cwd(), 'public', 'stations.json'), 'utf8')
-  );
+export async function generateMetadata(props) {
+  const [params, searchParams] = await Promise.all([
+    props.params,
+    props.searchParams,
+  ]);
 
-  const audioId = searchParams.id;
+  let stations = [];
+  try {
+    stations = JSON.parse(
+      await readFile(join(process.cwd(), 'public', 'stations.json'), 'utf8')
+    );
+  } catch (error) {
+    console.error('Error reading stations.json:', error);
+  }
+
+  console.log('searchParams:', searchParams);
+  const audioId = searchParams?.id || null;
+  console.log('audioId:', audioId);
+
   const audioSrc = audioId ? decodeUrl(audioId) : null;
   const station = audioSrc ? findStation(audioId, stations) : null;
 
@@ -42,6 +55,12 @@ export async function generateMetadata({ searchParams }) {
   };
 }
 
-export default function Home({ searchParams }) {
-  return <App initialId={searchParams.id} />;
+export default async function Home(props) {
+  const [params, searchParams] = await Promise.all([
+    props.params,
+    props.searchParams,
+  ]);
+  console.log('Home searchParams:', searchParams);
+  const initialId = searchParams?.id || null;
+  return <App initialId={initialId} />;
 }
