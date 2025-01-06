@@ -147,6 +147,13 @@ const GenreCard = React.memo(({ tag, stations }) => {
           fontWeight="bold"
           textTransform="capitalize"
           color="#fff"
+          noOfLines={4}
+          height="6rem"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          whiteSpace="pre-wrap"
+          width="100%"
+          wordWrap="normal"
         >
           {tag}
         </Text>

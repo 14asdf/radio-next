@@ -114,7 +114,7 @@ const MiniPlayer = ({ audioId }) => {
             overflow="hidden"
             textOverflow="ellipsis"
             whiteSpace="nowrap"
-            maxW="200px"
+            width="100%"
           >
             {station.title}
           </Text>
