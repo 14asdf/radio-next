@@ -55,7 +55,6 @@ export function useFavorites() {
     const snapshot = await get(favoritesRef);
     const favorites = snapshot.val()?.favorites || [];
 
-    console.log(favorites);
     return Array.isArray(favorites) ? favorites : [];
   };
 
