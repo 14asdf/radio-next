@@ -17,11 +17,9 @@ import {
   RiSearchLine,
 } from 'react-icons/ri';
 import Link from 'next/link';
-import s from '../stations.json';
-import _ from 'lodash';
-import { decodeUrl, encodeUrl } from '../utils';
+import { useStations } from '../contexts/StationsContext';
 
-const stations = _.uniqBy(s, 'title');
+import { decodeUrl, encodeUrl } from '../utils';
 
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import MiniPlayer from './MiniPlayer';
@@ -29,6 +27,7 @@ import MiniPlayer from './MiniPlayer';
 const App = ({ initialId }) => {
   const { playerState, togglePlay } = useAudioPlayer();
   const { isPlaying, currentStation } = playerState;
+  const { stations } = useStations();
 
   const searchParams = useSearchParams();
 

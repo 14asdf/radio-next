@@ -20,8 +20,6 @@ import {
   IoPlaySkipForwardOutline,
 } from 'react-icons/io5';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
-import s from '../stations.json';
-import _ from 'lodash';
 import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
 import Link from 'next/link';
 // import { Link } from 'react-router-dom';
@@ -33,8 +31,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from '@/components/ui/popover';
-
-const stations = _.uniqBy(s, 'title');
+import { useStations } from '@/contexts/StationsContext';
 
 const VolumeIcon = ({ volume }) => {
   if (volume === 0) return <IoVolumeMuteOutline />;
@@ -48,6 +45,7 @@ const MiniPlayer = ({ audioId }) => {
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isVolumeOpen, setIsVolumeOpen] = useState(false);
+  const { stations } = useStations();
 
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
   const station = React.useMemo(

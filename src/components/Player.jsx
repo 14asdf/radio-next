@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { IoPlayOutline } from 'react-icons/io5';
 import { IoPauseOutline } from 'react-icons/io5';
+import { useStations } from '@/contexts/StationsContext';
 
 import {
   encodeUrl,
@@ -23,20 +24,17 @@ import {
   createAvatarUrl,
 } from '../utils'; // Assuming utility functions are in utils.js
 import Share from './Share';
-import s from '../stations.json';
 import _ from 'lodash';
 
 import PlayerDialog from './PlayerDialog';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
-
-const stations = _.uniqBy(s, 'title');
 
 const Player = ({ audioId }) => {
   const { playerState, togglePlay, currentStation } = useAudioPlayer();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
+  const { stations } = useStations();
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
   const station = React.useMemo(
     () => (audioSrc ? findStation(audioId, stations) : null),

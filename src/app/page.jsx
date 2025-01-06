@@ -1,12 +1,17 @@
 import { findStation, decodeUrl } from '../utils';
-import s from '../stations.json';
 import App from '../components/App';
 import './styles.css';
+import { join } from 'path';
+import { readFile } from 'fs/promises';
 
 export async function generateMetadata({ searchParams }) {
+  const stations = JSON.parse(
+    await readFile(join(process.cwd(), 'public', 'stations.json'), 'utf8')
+  );
+
   const audioId = searchParams.id;
   const audioSrc = audioId ? decodeUrl(audioId) : null;
-  const station = audioSrc ? findStation(audioId, s) : null;
+  const station = audioSrc ? findStation(audioId, stations) : null;
 
   const title = station ? `${station.title} | Online Radio` : 'Online Radio';
   const image = station?.img || '/android-chrome-192x192.png';

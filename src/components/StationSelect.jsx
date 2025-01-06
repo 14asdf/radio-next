@@ -3,11 +3,11 @@ import { Box, Text, Stack, Icon, useBreakpointValue } from '@chakra-ui/react';
 import { RiPlayFill } from 'react-icons/ri';
 import Link from 'next/link';
 import { createAvatarUrl, encodeUrl } from '../utils';
-import s from '../stations.json';
 import _ from 'lodash';
 import { AvatarGroup, Avatar } from '../components/ui/avatar';
 import { sampleSize } from 'lodash';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
+import { useStations } from '../contexts/StationsContext';
 
 const COLORS = [
   'red.500',
@@ -38,8 +38,6 @@ const GENRE_COLORS = {
   pop: 'pink.500',
   default: () => COLORS[Math.floor(Math.random() * COLORS.length)],
 };
-
-const stations = _.uniqBy(s, 'title');
 
 // Custom Avatar component with play icon on hover
 const StationAvatar = React.memo(({ station }) => {
@@ -164,6 +162,8 @@ const GenreCard = React.memo(({ tag, stations }) => {
 });
 
 const StationSelect = () => {
+  const { stations } = useStations();
+
   // Group stations by tags
   const groupedStations = useMemo(() => {
     const groups = new Map();
@@ -191,7 +191,7 @@ const StationSelect = () => {
         stations,
       }))
       .filter((group) => group.stations.length >= 5); // Only show genres with at least 5 stations
-  }, []);
+  }, [stations]);
 
   return (
     <Box display="flex" flexWrap="wrap" gap={4} width="100%">

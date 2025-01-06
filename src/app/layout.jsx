@@ -1,5 +1,6 @@
-import { Provider } from '../components/ui/provider';
+import { Provider as ChakraProvider } from '../components/ui/provider';
 import { AudioPlayerProvider } from '../contexts/AudioPlayerContext';
+import { StationsProvider } from '../contexts/StationsContext';
 
 // Static viewport configuration
 export const viewport = {
@@ -25,9 +26,11 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body>
         <div id="root">
-          <Provider>
-            <AudioPlayerProvider>{children}</AudioPlayerProvider>
-          </Provider>
+          <StationsProvider>
+            <ChakraProvider>
+              <AudioPlayerProvider>{children}</AudioPlayerProvider>
+            </ChakraProvider>
+          </StationsProvider>
         </div>
       </body>
     </html>

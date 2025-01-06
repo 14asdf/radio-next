@@ -8,14 +8,12 @@ import React, {
   useCallback,
 } from 'react';
 import { findStation, decodeUrl, encodeUrl } from '../utils';
-import _ from 'lodash';
-import s from '../stations.json';
-
-const stations = _.uniqBy(s, 'title');
+import { useStations } from './StationsContext';
 
 const AudioPlayerContext = createContext();
 
 export function AudioPlayerProvider({ children }) {
+  const { stations } = useStations();
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     currentStation: null,
