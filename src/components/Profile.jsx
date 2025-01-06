@@ -6,7 +6,11 @@ import {
   Heading,
   Text,
   Button,
+  IconButton,
   SimpleGrid,
+  Menu,
+  MenuButton,
+  MenuList,
 } from '@chakra-ui/react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useEffect, useState } from 'react';
@@ -18,6 +22,14 @@ import { useStations } from '@/contexts/StationsContext';
 import { findStation } from '@/utils';
 import { AvatarGroup, Avatar } from '@/components/ui/avatar';
 import { useFavorites } from '@/hooks/useFavorites';
+import {
+  MenuRoot,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  MenuItemText,
+} from '@/components/ui/menu';
+import { LuSettings, LuLogOut, LuMenu } from 'react-icons/lu';
 
 const Profile = () => {
   const { user, setUser } = useAuth();
@@ -56,23 +68,42 @@ const Profile = () => {
   if (!user) return null;
 
   return (
-    <VStack spacing={8} align="stretch" p={4}>
-      <HStack w="full" spacing={4} align="center" justify="space-between">
-        <HStack spacing={4} flex={1}>
+    <>
+      <Box display="flex" justifyContent="center">
+        <Box position="relative">
           <Avatar
             size="2xl"
             name={user?.displayName}
             src={user?.photoURL}
             bg="gray.400"
           />
-          {/* <Heading size="lg" flex={1}>
-            {user?.displayName}
-          </Heading> */}
-        </HStack>
-        <Button onClick={handleLogout} size="sm" borderRadius="full">
-          Log out
-        </Button>
-      </HStack>
+          <MenuRoot>
+            <MenuTrigger asChild>
+              <IconButton
+                variant="subtle"
+                size="xsm"
+                rounded="full"
+                aria-label="Profile menu"
+                position="absolute"
+                bottom={-1}
+                right={-1}
+                bg="white"
+                shadow="md"
+              >
+                <LuMenu />
+              </IconButton>
+            </MenuTrigger>
+            <MenuContent rounded="full">
+              <MenuItem onClick={handleLogout} rounded="full" curor="pointer">
+                <HStack spacing={2}>
+                  <LuLogOut />
+                  <Text>Log out</Text>
+                </HStack>
+              </MenuItem>
+            </MenuContent>
+          </MenuRoot>
+        </Box>
+      </Box>
 
       <Box>
         <Heading size="2xl" mb={4} mt={4}>
@@ -91,7 +122,7 @@ const Profile = () => {
           )}
         </SimpleGrid>
       </Box>
-    </VStack>
+    </>
   );
 };
 

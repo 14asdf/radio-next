@@ -33,8 +33,6 @@ const App = ({ children }) => {
   const pathname = usePathname();
   const audioId = searchParams.get('id');
 
-  const { user } = useAuth();
-
   return (
     <>
       <Toaster />
@@ -52,19 +50,24 @@ const App = ({ children }) => {
           pl={{ base: '4', md: '20' }}
           pr={{ base: '4', md: '20' }}
         >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            {/* Left Section */}
-            <Logo />
+          {pathname === '/' && (
+            <>
+              {/* Left Section */}
 
-            {/* Right Section */}
-            <Box flex="1" display="flex" justifyContent="flex-end" gap={4}>
-              <ColorModeButton />
-            </Box>
-          </Box>
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Logo />
+
+                {/* Right Section */}
+                <Box flex="1" display="flex" justifyContent="flex-end" gap={4}>
+                  <ColorModeButton />
+                </Box>
+              </Box>
+            </>
+          )}
         </Box>
 
         {/* Main Content - Scrollable */}
