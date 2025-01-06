@@ -18,8 +18,6 @@ import { useStations } from '@/contexts/StationsContext';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useAuth } from '../contexts/AuthContext';
 import { useFavorites } from '../hooks/useFavorites';
-import { ref, onValue } from 'firebase/database';
-import { db } from '../firebase/config';
 
 import {
   encodeUrl,
