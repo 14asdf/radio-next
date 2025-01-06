@@ -5,7 +5,6 @@ import StationSelect from '../components/StationSelect';
 import StationSearch from '../components/StationSearch';
 import { useStations } from '@/contexts/StationsContext';
 
-// Custom RouteHandler component
 export const RouteHandler = () => {
   const searchParams = useSearchParams();
   const { isLoading } = useStations();
