@@ -46,6 +46,7 @@ const StationInfo = ({ audioId }) => {
   const { user } = useAuth();
   const { toggleFavorite } = useFavorites();
   const [isFavorite, setIsFavorite] = useState(false);
+  const { favorites } = useFavorites();
 
   useEffect(() => {
     setIsLoading(true);
@@ -67,16 +68,8 @@ const StationInfo = ({ audioId }) => {
   }, [station]);
 
   useEffect(() => {
-    if (!user) return;
-
-    const favoritesRef = ref(db, `users/${user.uid}/favorites`);
-    const unsubscribe = onValue(favoritesRef, (snapshot) => {
-      const favorites = snapshot.val() || [];
-      setIsFavorite(favorites.includes(encodeUrl(station.streamUrl)));
-    });
-
-    return () => unsubscribe();
-  }, [user, station.streamUrl]);
+    setIsFavorite(favorites.includes(encodeUrl(station.streamUrl)));
+  }, [favorites, station.streamUrl]);
 
   const handleFavoriteClick = async () => {
     if (!user) {
