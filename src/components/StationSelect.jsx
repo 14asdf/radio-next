@@ -214,7 +214,7 @@ const StationSelect = () => {
       gridTemplateColumns={{
         base: 'repeat(2, 1fr)',
         md: 'repeat(3, 1fr)',
-        xl: 'repeat(4, 1fr)',
+        '2xl': 'repeat(4, 1fr)',
       }}
       gap={{ base: 4, md: 6 }}
       width="100%"
