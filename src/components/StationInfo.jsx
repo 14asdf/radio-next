@@ -66,6 +66,7 @@ const StationInfo = ({ audioId }) => {
         height={{ base: '80vh', md: '60vh' }}
         minHeight="400px"
         overflow="hidden"
+        borderRadius="2em"
       >
         {/* Blurred Background Image */}
         <Box
@@ -74,15 +75,12 @@ const StationInfo = ({ audioId }) => {
           left={0}
           right={0}
           bottom={0}
-          borderRadius={'md'}
-          overflow="hidden"
           filter="blur(20em)"
-          // opacity={0.4}
-          style={{
-            backgroundImage: `url(${imgSrc})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          bgImage={`url(${imgSrc})`}
+          bgSize="cover"
+          bgPosition="center"
+          bgRepeat="no-repeat"
+          backgroundColor="gray.900" // Fallback background color
         />
 
         {/* Main Content Container */}
