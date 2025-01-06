@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { IoPlayOutline } from 'react-icons/io5';
 import { IoPauseOutline } from 'react-icons/io5';
-import { useStations, isLoading } from '@/contexts/StationsContext';
+import { useStations } from '@/contexts/StationsContext';
 
 import {
   encodeUrl,
@@ -68,6 +68,15 @@ const StationInfo = ({ audioId }) => {
         overflow="hidden"
         borderRadius="2em"
       >
+        {/* SVG Filter Definition */}
+        <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+          <defs>
+            <filter id="blur-filter">
+              <feGaussianBlur stdDeviation="300" />
+            </filter>
+          </defs>
+        </svg>
+
         {/* Blurred Background Image */}
         <Box
           position="absolute"
@@ -75,12 +84,11 @@ const StationInfo = ({ audioId }) => {
           left={0}
           right={0}
           bottom={0}
-          filter="blur(20em)"
-          bgImage={`url(${imgSrc})`}
-          bgSize="cover"
-          bgPosition="center"
-          bgRepeat="no-repeat"
-          backgroundColor="gray.900" // Fallback background color
+          style={{ filter: 'url(#blur-filter)' }}
+          backgroundImage={`url(${imgSrc})`}
+          backgroundSize="cover"
+          backgroundRepeat="no-repeat"
+          backgroundColor="gray.900"
         />
 
         {/* Main Content Container */}
@@ -219,16 +227,6 @@ const StationInfo = ({ audioId }) => {
             )}
           </Box>
         </Box>
-
-        {/* Remove or comment out the old Share button position */}
-        {/* <Box
-          position="absolute"
-          right={4}
-          top={4}
-          zIndex={2}
-        >
-          <Share />
-        </Box> */}
       </Box>
     </Box>
   );
