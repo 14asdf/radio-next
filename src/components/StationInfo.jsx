@@ -26,7 +26,6 @@ import {
 import Share from './Share';
 import _ from 'lodash';
 
-import PlayerDialog from './PlayerDialog';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 
 const StationInfo = ({ audioId }) => {
@@ -60,100 +59,136 @@ const StationInfo = ({ audioId }) => {
   }, [station]);
 
   return (
-    <Box
-      justifyContent="center"
-      width="100%"
-      height="100%"
-      display="flex"
-      flexDirection="column"
-    >
+    <Box width="100%">
+      {/* Hero Section with Background Image */}
       <Box
-        display="flex"
-        justifyContent="center"
         position="relative"
-        width="250px"
-        margin="0 auto"
-        mb="1em"
+        width="100%"
+        height={{ base: '80vh', md: '60vh' }}
+        minHeight="400px"
+        overflow="hidden"
       >
-        {isLoading ? (
+        {/* Blurred Background Image */}
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          filter="blur(20em)"
+          // opacity={0.4}
+          style={{
+            backgroundImage: `url(${imgSrc})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+
+        {/* Main Content Container */}
+        <Box
+          position="relative"
+          maxWidth="1200px"
+          margin="0 auto"
+          height="100%"
+          px={4}
+          py={8}
+          display="flex"
+          flexDirection={{ base: 'column', md: 'row' }}
+          alignItems={{ base: 'center', md: 'center' }}
+          justifyContent={{ base: 'center', md: 'flex-start' }}
+          gap={{ base: 6, md: 8 }}
+        >
+          {/* Left Side - Image */}
           <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            width="250px"
-            height="250px"
+            width={{ base: '240px', md: '320px' }}
+            height={{ base: '240px', md: '320px' }}
+            position="relative"
+            flexShrink={0}
           >
-            <Spinner size="md" color="gray.500" />
-          </Box>
-        ) : (
-          <Image
-            src={imgSrc}
-            alt={station.title}
-            width="250px"
-            height="250px"
-            borderRadius="lg"
-          />
-        )}
-        <Box position="absolute" right="-1em" bottom="-1em">
-          <Share />
-        </Box>
-      </Box>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        marginBottom="1em"
-      >
-        <Box display="inline-flex" alignItems="center">
-          <Text
-            fontSize="xl"
-            fontWeight="bold"
-            overflow="hidden"
-            textOverflow="ellipsis"
-            textWrap="nowrap"
-            maxW={{ base: '250px', md: '400px' }}
-          >
-            {station.title}
-          </Text>
-        </Box>
-      </Box>
-      <Box position="relative">
-        <Box display="flex" gap="2" justifyContent="center">
-          {station.tags
-            .split(',')
-            .filter((tag) => tag.trim().length <= 10 && tag.length > 3)
-            .slice(0, 3)
-            .map((tag) => (
-              <Badge
-                key={tag}
-                colorScheme="gray"
-                variant="subtle"
-                fontSize="xs"
-                borderRadius="full"
-                p={2}
-                fontWeight="bold"
+            {isLoading ? (
+              <Box
+                width="100%"
+                height="100%"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
               >
-                {tag.trim()}
-              </Badge>
-            ))}
+                <Spinner size="xl" color="white" />
+              </Box>
+            ) : (
+              <Image
+                src={imgSrc}
+                alt={station.title}
+                width="100%"
+                height="100%"
+                objectFit="cover"
+                borderRadius="lg"
+              />
+            )}
+            <IconButton
+              aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
+              onClick={() => togglePlay(audioId)}
+              position="absolute"
+              top="50%"
+              left="50%"
+              transform="translate(-50%, -50%)"
+              boxSize="80px"
+              rounded="full"
+            >
+              {playerState.isPlaying &&
+              encodeUrl(playerState.currentStation.streamUrl) === audioId ? (
+                <IoPauseOutline size="40px" />
+              ) : (
+                <IoPlayOutline size="40px" />
+              )}
+            </IconButton>
+          </Box>
+
+          {/* Right Side - Info */}
+          <Box
+            ml={{ base: 0, md: 8 }}
+            color="white"
+            textAlign={{ base: 'center', md: 'left' }}
+            width={{ base: '100%', md: 'auto' }}
+            zIndex={1}
+          >
+            <Text fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold" mb={4}>
+              {station.title}
+            </Text>
+            <HStack
+              spacing={2}
+              wrap="wrap"
+              justify={{ base: 'center', md: 'flex-start' }}
+              width={{ base: '100%', md: 'auto' }}
+              px={{ base: 4, md: 0 }}
+              mb={4}
+            >
+              {station.tags
+                ?.split(',')
+                .filter(Boolean)
+                .map((tag) => tag.trim())
+                .filter((tag) => tag.length >= 3 && tag.length <= 10)
+                .slice(0, 3)
+                .map((tag) => (
+                  <Badge
+                    key={generateUUID()}
+                    colorScheme="whiteAlpha"
+                    variant="solid"
+                    fontSize="sm"
+                    borderRadius="full"
+                    px={3}
+                    py={1}
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+            </HStack>
+          </Box>
         </Box>
 
-        <Box display="flex" justifyContent="center" marginTop="1em">
-          <IconButton
-            aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
-            onClick={() => {
-              togglePlay(audioId);
-            }}
-            boxSize={{ base: '60px', md: '80px' }}
-            rounded={'full'}
-          >
-            {playerState.isPlaying &&
-            encodeUrl(playerState.currentStation.streamUrl) === audioId ? (
-              <IoPauseOutline />
-            ) : (
-              <IoPlayOutline />
-            )}
-          </IconButton>
+        {/* Share Button */}
+        <Box position="absolute" right={4} top={4} zIndex={2}>
+          <Share />
         </Box>
       </Box>
     </Box>
