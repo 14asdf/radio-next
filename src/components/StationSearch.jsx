@@ -20,8 +20,7 @@ import {
 import { IoCloseOutline } from 'react-icons/io5';
 import { RiSearchLine } from 'react-icons/ri';
 import { createAvatarUrl, encodeUrl } from '../utils';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { useStations } from '../contexts/StationsContext';
 
 // Create a separate StationSearchRow component
@@ -52,10 +51,9 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
     <Box
       key={`${searchTerm}-${station.streamUrl}`}
       as={Link}
-      href={`/?id=${encodeUrl(station.streamUrl)}`}
+      to={`/?id=${encodeUrl(station.streamUrl)}`}
       display="flex"
       gap={4}
-      pt="6"
       overflow="hidden"
       textWrap="nowrap"
       textOverflow="ellipsis"
@@ -111,7 +109,7 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
 const SearchResults = React.memo(
   () => {
     const { stations } = useStations();
-    const searchParams = useSearchParams();
+    const [searchParams] = useSearchParams();
     const searchTerm = searchParams.get('q') || '';
     const searchType = searchParams.get('type') || 'all';
 
@@ -193,22 +191,17 @@ const SearchResults = React.memo(
           </Text>
         ) : (
           <>
-            <Box>
-              {filteredStations.slice(0, visibleItems).map((station) => (
+            <Box display="flex" flexDirection="column" gap={6}>
+              {filteredStations.slice(0, visibleItems).map((station, index) => (
                 <StationSearchRow
-                  key={station.streamUrl}
+                  key={`${station.streamUrl}-${index}`}
                   station={station}
                   searchTerm={searchTerm}
                 />
               ))}
             </Box>
             {filteredStations.length > visibleItems && (
-              <Box
-                display="flex"
-                justifyContent="center"
-                my={4}
-                data-loading-trigger
-              >
+              <Box display="flex" justifyContent="center" data-loading-trigger>
                 {isLoading ? (
                   <Spinner size="md" color="gray.500" />
                 ) : (
@@ -239,8 +232,8 @@ const StationSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('all');
   const containerRef = useRef(null);
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // Initialize state from URL params
   useEffect(() => {
@@ -256,9 +249,9 @@ const StationSearch = () => {
       const params = new URLSearchParams();
       if (term) params.set('q', term);
       if (type !== 'all') params.set('type', type);
-      router.push(`/search?${params.toString()}`);
+      navigate(`/search?${params.toString()}`);
     }, 300),
-    [router]
+    [navigate]
   );
 
   // Handle search input change
@@ -275,7 +268,7 @@ const StationSearch = () => {
   };
 
   const handleCancel = () => {
-    router.push('/');
+    navigate('/');
   };
 
   return (
