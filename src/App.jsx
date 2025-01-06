@@ -11,9 +11,10 @@ import {
   RiHomeFill,
   RiSearchFill,
   RiSearchLine,
+  RiUserLine,
+  RiUserFill,
 } from 'react-icons/ri';
 import Link from 'next/link';
-import { AvatarGroup, Avatar } from '@/components/ui/avatar';
 
 import { decodeUrl, encodeUrl } from './utils';
 
@@ -61,17 +62,8 @@ const App = ({ children }) => {
 
             {/* Right Section */}
             <Box flex="1" display="flex" justifyContent="flex-end" gap={4}>
-              {user ? (
-                <Avatar
-                  as={Link}
-                  href="/profile"
-                  size="sm"
-                  src={user.photoURL}
-                  name={user.displayName}
-                  cursor="pointer"
-                  _hover={{ opacity: 0.8 }}
-                />
-              ) : (
+              <ColorModeButton />
+              {!user && (
                 <Text
                   as={Link}
                   href="/login"
@@ -151,14 +143,23 @@ const App = ({ children }) => {
             </Box>
 
             {/* Right Section */}
-            <Box
-              flex="1"
-              display="flex"
-              justifyContent="center"
-              flexDirection="column"
-              alignItems="center"
-            >
-              <ColorModeButton />
+            <Box flex="1" display="flex" justifyContent="center">
+              {user ? (
+                <IconButton
+                  as={Link}
+                  href="/profile"
+                  variant="ghost"
+                  borderRadius="full"
+                >
+                  {pathname === '/profile' ? (
+                    <RiUserFill size={24} />
+                  ) : (
+                    <RiUserLine size={24} />
+                  )}
+                </IconButton>
+              ) : (
+                <ColorModeButton />
+              )}
             </Box>
           </Box>
         </Box>
