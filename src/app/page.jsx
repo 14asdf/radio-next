@@ -24,7 +24,7 @@ export async function generateMetadata(props) {
   const audioSrc = audioId ? decodeUrl(audioId) : null;
   const station = audioSrc ? findStation(audioId, stations) : null;
 
-  const title = station ? `${station.title} | Online Radio` : 'Online Radio';
+  const title = station ? `${station.title} | Radio cloud` : 'Radio cloud';
   const image = station?.img || '/android-chrome-192x192.png';
   const description =
     'Listen to your favorite radio stations live online - free streaming radio';
@@ -37,7 +37,7 @@ export async function generateMetadata(props) {
       description,
       images: [image],
       type: 'website',
-      siteName: 'Online Radio',
+      siteName: 'Radio cloud',
     },
     twitter: {
       card: 'summary_large_image',

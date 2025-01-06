@@ -36,7 +36,7 @@ export function AudioPlayerProvider({ children }) {
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: station.title,
-        artist: 'Online Radio',
+        artist: 'Radio cloud',
         album: 'Live Streaming',
         artwork: [
           {

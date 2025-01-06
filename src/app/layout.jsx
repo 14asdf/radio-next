@@ -14,7 +14,7 @@ export const viewport = {
 
 // Updated metadata configuration
 export const metadata = {
-  title: 'Online Radio',
+  title: 'Radio cloud',
   description: 'Listen to your favorite radio stations',
   icons: {
     icon: '/favicon.ico',
