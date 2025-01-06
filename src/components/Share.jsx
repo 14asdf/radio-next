@@ -62,19 +62,19 @@ const Share = () => {
   };
 
   // Use native share on mobile, custom share button on desktop
-  // if (typeof window !== 'undefined' && navigator.share) {
-  //   return (
-  //     <IconButton
-  //       aria-label="Share"
-  //       onClick={handleShare}
-  //       variant="ghost"
-  //       size="lg"
-  //       rounded={'full'}
-  //     >
-  //       <IoShareOutline />
-  //     </IconButton>
-  //   );
-  // }
+  if (typeof window !== 'undefined' && navigator.share) {
+    return (
+      <IconButton
+        aria-label="Share"
+        onClick={handleShare}
+        variant="ghost"
+        size="lg"
+        rounded={'full'}
+      >
+        <IoShareOutline />
+      </IconButton>
+    );
+  }
 
   // Original share button implementation for desktop
   return (
