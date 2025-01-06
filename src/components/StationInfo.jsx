@@ -73,13 +73,14 @@ const StationInfo = ({ audioId }) => {
           <defs>
             <filter
               id="blur-filter"
-              x="-50%"
-              y="-50%"
-              width="200%"
-              height="200%"
+              x="-100%"
+              y="-100%"
+              width="300%"
+              height="300%"
               colorInterpolationFilters="sRGB"
             >
-              <feGaussianBlur stdDeviation="300" edgeMode="duplicate" />
+              <feGaussianBlur stdDeviation="300" edgeMode="none" />
+              <fePadding left="50%" right="50%" top="50%" bottom="50%" />
             </filter>
           </defs>
         </svg>
