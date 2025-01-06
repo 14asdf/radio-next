@@ -2,14 +2,14 @@
 
 import { Box, Text, IconButton } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
-import { Toaster } from './ui/toaster';
-import Player from './Player';
-import Author from './Author';
-import StationSelect from './StationSelect';
-import { ColorModeButton } from './ui/color-mode';
+import { Toaster } from './components/ui/toaster';
+import Player from './components/Player';
+import Author from './components/Author';
+import StationSelect from './components/StationSelect';
+import { ColorModeButton } from './components/ui/color-mode';
 import { useSearchParams } from 'next/navigation';
 import { usePathname } from 'next/navigation';
-import StationSearch from './StationSearch';
+import StationSearch from './components/StationSearch';
 import {
   RiHomeLine,
   RiHomeFill,
@@ -17,17 +17,17 @@ import {
   RiSearchLine,
 } from 'react-icons/ri';
 import Link from 'next/link';
-import { useStations } from '../contexts/StationsContext';
+import { useStations } from './contexts/StationsContext';
 
-import { decodeUrl, encodeUrl } from '../utils';
+import { decodeUrl, encodeUrl } from './utils';
 
-import { useAudioPlayer } from '../contexts/AudioPlayerContext';
-import MiniPlayer from './MiniPlayer';
+import { useAudioPlayer } from './contexts/AudioPlayerContext';
+import MiniPlayer from './components/MiniPlayer';
 
-const App = ({ initialId }) => {
+const App = ({ children }) => {
+  // Accept children prop
   const { playerState, togglePlay } = useAudioPlayer();
   const { isPlaying, currentStation } = playerState;
-  const { stations, isLoading } = useStations();
 
   const searchParams = useSearchParams();
 
@@ -110,13 +110,7 @@ const App = ({ initialId }) => {
           justifyContent="center"
           as="main"
         >
-          {pathname === '/' &&
-            (audioId && !isLoading ? (
-              <Player audioId={audioId} />
-            ) : (
-              <StationSelect />
-            ))}
-          {pathname === '/search' && <StationSearch stations={stations} />}
+          {children}
         </Box>
 
         {/* Footer */}

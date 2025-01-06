@@ -1,8 +1,8 @@
 import { findStation, decodeUrl } from '../utils';
-import App from '../components/App';
 import './styles.css';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
+import { RouteHandler } from './routes';
 
 export async function generateMetadata(props) {
   const [params, searchParams] = await Promise.all([
@@ -19,15 +19,10 @@ export async function generateMetadata(props) {
     console.error('Error reading stations.json:', error);
   }
 
-  console.log('searchParams:', searchParams);
   const audioId = searchParams?.id || null;
-  console.log('audioId:', audioId);
-  console.log('stations:', stations);
 
   const audioSrc = audioId ? decodeUrl(audioId) : null;
-  console.log('audioSrc:', audioSrc);
   const station = audioSrc ? findStation(audioId, stations) : null;
-  console.log('station:', station);
 
   const title = station ? `${station.title} | Online Radio` : 'Online Radio';
   const image = station?.img || '/android-chrome-192x192.png';
@@ -58,13 +53,6 @@ export async function generateMetadata(props) {
   };
 }
 
-export default async function Home(props) {
-  const [params, searchParams] = await Promise.all([
-    props.params,
-    props.searchParams,
-  ]);
-  console.log('Home searchParams:', searchParams);
-  const initialId = searchParams?.id || null;
-  console.log('Home initialId:', initialId);
-  return <App initialId={initialId} />;
+export default function HomePage() {
+  return <RouteHandler />;
 }

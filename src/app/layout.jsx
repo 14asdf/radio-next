@@ -1,3 +1,4 @@
+import App from '@/App';
 import { Provider as ChakraProvider } from '../components/ui/provider';
 import { AudioPlayerProvider } from '../contexts/AudioPlayerContext';
 import { StationsProvider } from '../contexts/StationsContext';
@@ -28,7 +29,9 @@ export default function RootLayout({ children }) {
         <div id="root">
           <StationsProvider>
             <ChakraProvider>
-              <AudioPlayerProvider>{children}</AudioPlayerProvider>
+              <AudioPlayerProvider>
+                <App>{children}</App>
+              </AudioPlayerProvider>
             </ChakraProvider>
           </StationsProvider>
         </div>

@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { IoPlayOutline } from 'react-icons/io5';
 import { IoPauseOutline } from 'react-icons/io5';
-import { useStations } from '@/contexts/StationsContext';
+import { useStations, isLoading } from '@/contexts/StationsContext';
 
 import {
   encodeUrl,
