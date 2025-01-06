@@ -2,7 +2,7 @@ import { findStation, decodeUrl } from '../utils';
 import './styles.css';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
-import RouteHandler from './routes';
+import { RouteHandler } from './routes';
 
 export async function generateMetadata(props) {
   const [params, searchParams] = await Promise.all([

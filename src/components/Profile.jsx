@@ -8,10 +8,10 @@ import {
   Button,
   SimpleGrid,
 } from '@chakra-ui/react';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useEffect, useState } from 'react';
 import { ref, onValue } from 'firebase/database';
-import { db, auth } from '../../firebase/config';
+import { db, auth } from '@/firebase/config';
 import { useRouter } from 'next/navigation';
 import StationSearchRow from '@/components/StationSearchRow';
 import { useStations } from '@/contexts/StationsContext';
