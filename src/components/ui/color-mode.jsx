@@ -49,16 +49,26 @@ export const ColorModeButton = ({ ...props }) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Button
-      onClick={toggleColorMode}
-      variant="ghost"
-      display="flex"
-      gap="3"
-      justifyContent="flex-start"
-      {...props}
-    >
-      <ColorModeIcon />
-      <Text display={{ base: 'none', xl: 'block' }}>Change theme</Text>
-    </Button>
+    <>
+      <IconButton
+        onClick={toggleColorMode}
+        variant="ghost"
+        display={{ base: 'flex', xl: 'none' }}
+        {...props}
+      >
+        <ColorModeIcon />
+      </IconButton>
+      <Button
+        onClick={toggleColorMode}
+        variant="ghost"
+        display={{ base: 'none', xl: 'flex' }}
+        gap="3"
+        justifyContent="flex-start"
+        {...props}
+      >
+        <ColorModeIcon />
+        <Text>Change theme</Text>
+      </Button>
+    </>
   );
 };
