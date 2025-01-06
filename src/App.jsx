@@ -59,7 +59,7 @@ const App = ({ children }) => {
           >
             {/* Left Section */}
             {pathname === '/' && (
-              <Box flex="1" display="flex" alignItems="flex-start">
+              <Box display="inline-flex" as={Link} href="/" cursor="pointer">
                 <svg
                   width="150"
                   height="32"

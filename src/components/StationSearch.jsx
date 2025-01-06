@@ -333,7 +333,7 @@ const StationSearch = () => {
         <Tabs.Root
           value={searchType}
           onValueChange={(e) => handleTypeChange(e.value)}
-          mt={4}
+          mt={2}
           style={{ width: '100%' }}
         >
           <Tabs.List
