@@ -71,13 +71,20 @@ const StationInfo = ({ audioId }) => {
         {/* SVG Filter Definition */}
         <svg style={{ position: 'absolute', width: 0, height: 0 }}>
           <defs>
-            <filter id="blur-filter">
-              <feGaussianBlur stdDeviation="300" />
+            <filter
+              id="blur-filter"
+              x="-50%"
+              y="-50%"
+              width="200%"
+              height="200%"
+              colorInterpolationFilters="sRGB"
+            >
+              <feGaussianBlur stdDeviation="300" edgeMode="duplicate" />
             </filter>
           </defs>
         </svg>
 
-        {/* Blurred Background Image */}
+        {/* Background Image */}
         <Box
           position="absolute"
           top={0}
