@@ -80,21 +80,19 @@ const Profile = () => {
           <MenuRoot>
             <MenuTrigger asChild>
               <IconButton
-                variant="subtle"
                 size="xsm"
                 rounded="full"
                 aria-label="Profile menu"
                 position="absolute"
                 bottom={-1}
                 right={-1}
-                bg="white"
                 shadow="md"
               >
                 <LuMenu />
               </IconButton>
             </MenuTrigger>
             <MenuContent rounded="full">
-              <MenuItem onClick={handleLogout} rounded="full" curor="pointer">
+              <MenuItem onClick={handleLogout} rounded="full" cursor="pointer">
                 <HStack spacing={2}>
                   <LuLogOut />
                   <Text>Log out</Text>
@@ -106,7 +104,7 @@ const Profile = () => {
       </Box>
 
       <Box>
-        <Heading size="2xl" mb={4} mt={4}>
+        <Heading size="2xl" mb={6} mt={6}>
           Your favorite stations
         </Heading>
         <SimpleGrid gap={8}>
