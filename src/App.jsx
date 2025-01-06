@@ -1,15 +1,11 @@
 'use client';
 
 import { Box, Text, IconButton } from '@chakra-ui/react';
-import { BsChevronLeft } from 'react-icons/bs';
 import { Toaster } from './components/ui/toaster';
-import Player from './components/StationInfo';
-import Author from './components/Author';
-import StationSelect from './components/StationSelect';
+
 import { ColorModeButton } from './components/ui/color-mode';
 import { useSearchParams } from 'next/navigation';
 import { usePathname } from 'next/navigation';
-import StationSearch from './components/StationSearch';
 import {
   RiHomeLine,
   RiHomeFill,
@@ -17,13 +13,14 @@ import {
   RiSearchLine,
 } from 'react-icons/ri';
 import Link from 'next/link';
-import { useStations } from './contexts/StationsContext';
+import { AvatarGroup, Avatar } from '@/components/ui/avatar';
 
 import { decodeUrl, encodeUrl } from './utils';
 
 import { useAudioPlayer } from './contexts/AudioPlayerContext';
 import MiniPlayer from './components/MiniPlayer';
 import Logo from './components/shared/Logo';
+import { useAuth } from './contexts/AuthContext';
 
 const App = ({ children }) => {
   // Accept children prop
@@ -34,6 +31,8 @@ const App = ({ children }) => {
 
   const pathname = usePathname();
   const audioId = searchParams.get('id');
+
+  const { user } = useAuth();
 
   return (
     <>
@@ -61,8 +60,18 @@ const App = ({ children }) => {
             {pathname === '/' && <Logo />}
 
             {/* Right Section */}
-            <Box flex="1" display="flex" justifyContent="flex-end">
-              {pathname === '/' && (
+            <Box flex="1" display="flex" justifyContent="flex-end" gap={4}>
+              {user ? (
+                <Avatar
+                  as={Link}
+                  href="/profile"
+                  size="sm"
+                  src={user.photoURL}
+                  name={user.displayName}
+                  cursor="pointer"
+                  _hover={{ opacity: 0.8 }}
+                />
+              ) : (
                 <Text
                   as={Link}
                   href="/login"

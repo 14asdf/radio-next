@@ -15,6 +15,11 @@ import {
 import { IoPlayOutline } from 'react-icons/io5';
 import { IoPauseOutline } from 'react-icons/io5';
 import { useStations } from '@/contexts/StationsContext';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { useAuth } from '../contexts/AuthContext';
+import { useFavorites } from '../hooks/useFavorites';
+import { ref, onValue } from 'firebase/database';
+import { db } from '../firebase/config';
 
 import {
   encodeUrl,
@@ -38,6 +43,9 @@ const StationInfo = ({ audioId }) => {
     () => (audioSrc ? findStation(audioId, stations) : null),
     [audioId, audioSrc]
   );
+  const { user } = useAuth();
+  const { toggleFavorite } = useFavorites();
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -57,6 +65,26 @@ const StationInfo = ({ audioId }) => {
       setIsLoading(false);
     }
   }, [station]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const favoritesRef = ref(db, `users/${user.uid}/favorites`);
+    const unsubscribe = onValue(favoritesRef, (snapshot) => {
+      const favorites = snapshot.val() || [];
+      setIsFavorite(favorites.includes(station.id));
+    });
+
+    return () => unsubscribe();
+  }, [user, station.id]);
+
+  const handleFavoriteClick = async () => {
+    if (!user) {
+      // Redirect to login or show login prompt
+      return;
+    }
+    await toggleFavorite(encodeUrl(station.streamUrl));
+  };
 
   return (
     <Box width="100%">
@@ -199,7 +227,21 @@ const StationInfo = ({ audioId }) => {
 
                 {/* Share Button */}
                 <Box pt={2}>
-                  <Share />
+                  <HStack spacing={2}>
+                    {user && (
+                      <IconButton
+                        aria-label="Favorite"
+                        onClick={handleFavoriteClick}
+                        colorScheme={isFavorite ? 'red' : 'gray'}
+                        variant="ghost"
+                        size="lg"
+                        rounded="full"
+                      >
+                        {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+                      </IconButton>
+                    )}
+                    <Share />
+                  </HStack>
                 </Box>
               </Stack>
             </HStack>
