@@ -61,9 +61,9 @@ const App = ({ children }) => {
             {pathname === '/' && (
               <Box display="inline-flex" as={Link} href="/" cursor="pointer">
                 <svg
-                  width="150"
+                  width="130"
                   height="32"
-                  viewBox="0 0 150 32"
+                  viewBox="0 0 130 32"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
