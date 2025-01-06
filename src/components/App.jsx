@@ -27,7 +27,7 @@ import MiniPlayer from './MiniPlayer';
 const App = ({ initialId }) => {
   const { playerState, togglePlay } = useAudioPlayer();
   const { isPlaying, currentStation } = playerState;
-  const { stations } = useStations();
+  const { stations, isLoading } = useStations();
 
   const searchParams = useSearchParams();
 
@@ -111,7 +111,11 @@ const App = ({ initialId }) => {
           as="main"
         >
           {pathname === '/' &&
-            (audioId ? <Player audioId={audioId} /> : <StationSelect />)}
+            (audioId && !isLoading ? (
+              <Player audioId={audioId} />
+            ) : (
+              <StationSelect />
+            ))}
           {pathname === '/search' && <StationSearch stations={stations} />}
         </Box>
 

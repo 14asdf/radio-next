@@ -22,9 +22,12 @@ export async function generateMetadata(props) {
   console.log('searchParams:', searchParams);
   const audioId = searchParams?.id || null;
   console.log('audioId:', audioId);
+  console.log('stations:', stations);
 
   const audioSrc = audioId ? decodeUrl(audioId) : null;
+  console.log('audioSrc:', audioSrc);
   const station = audioSrc ? findStation(audioId, stations) : null;
+  console.log('station:', station);
 
   const title = station ? `${station.title} | Online Radio` : 'Online Radio';
   const image = station?.img || '/android-chrome-192x192.png';
@@ -62,5 +65,6 @@ export default async function Home(props) {
   ]);
   console.log('Home searchParams:', searchParams);
   const initialId = searchParams?.id || null;
+  console.log('Home initialId:', initialId);
   return <App initialId={initialId} />;
 }
