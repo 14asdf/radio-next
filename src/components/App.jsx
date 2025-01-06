@@ -88,7 +88,7 @@ const App = ({ initialId }) => {
                     fontSize="16"
                     fontWeight="600"
                   >
-                    Radio Cloud
+                    Radio cloud
                   </text>
                 </svg>
               </Box>
