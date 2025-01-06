@@ -2,6 +2,7 @@
 import {
   Box,
   VStack,
+  HStack,
   Heading,
   Text,
   Button,
@@ -56,21 +57,25 @@ const Profile = () => {
 
   return (
     <VStack spacing={8} align="stretch" p={4}>
-      <VStack align="center" spacing={4}>
-        <Avatar
-          size="2xl"
-          name={user?.displayName}
-          src={user?.photoURL}
-          bg="gray.400"
-        />
-        <Heading size="lg">{user?.displayName}</Heading>
+      <HStack w="full" spacing={4} align="center" justify="space-between">
+        <HStack spacing={4} flex={1}>
+          <Avatar
+            size="2xl"
+            name={user?.displayName}
+            src={user?.photoURL}
+            bg="gray.400"
+          />
+          <Heading size="lg" flex={1}>
+            {user?.displayName}
+          </Heading>
+        </HStack>
         <Button onClick={handleLogout} size="sm" borderRadius="full">
           Log out
         </Button>
-      </VStack>
+      </HStack>
 
       <Box>
-        <Heading size="2xl" mb={4}>
+        <Heading size="2xl" mb={4} mt={4}>
           Your favorite stations
         </Heading>
         <SimpleGrid gap={8}>
