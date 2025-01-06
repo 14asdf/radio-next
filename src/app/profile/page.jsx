@@ -65,9 +65,9 @@ const Profile = () => {
             src={user?.photoURL}
             bg="gray.400"
           />
-          <Heading size="lg" flex={1}>
+          {/* <Heading size="lg" flex={1}>
             {user?.displayName}
-          </Heading>
+          </Heading> */}
         </HStack>
         <Button onClick={handleLogout} size="sm" borderRadius="full">
           Log out
