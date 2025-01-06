@@ -18,16 +18,18 @@ import {
   InputLeftElement,
 } from '@chakra-ui/input';
 import { IoCloseOutline } from 'react-icons/io5';
-import { RiSearchLine } from 'react-icons/ri';
+import { RiSearchLine, RiPlayFill } from 'react-icons/ri';
 import { createAvatarUrl, encodeUrl } from '../utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useStations } from '../contexts/StationsContext';
+import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 
 // Create a separate StationSearchRow component
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
   const [isLoading, setIsLoading] = useState(true);
+  const { togglePlay } = useAudioPlayer();
 
   useEffect(() => {
     setIsLoading(true);
@@ -47,6 +49,13 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
       setIsLoading(false);
     }
   }, [station]);
+
+  const handlePlayClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const audioId = encodeUrl(station.streamUrl);
+    togglePlay(audioId);
+  };
 
   return (
     <Box
@@ -71,13 +80,32 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
           <Spinner size="md" color="gray.500" />
         </Box>
       ) : (
-        <Image
-          src={imgSrc}
-          borderRadius="md"
-          boxSize="80px"
-          alt={station.title}
-          objectFit="cover"
-        />
+        <Box position="relative" onClick={handlePlayClick}>
+          <Image
+            src={imgSrc}
+            borderRadius="md"
+            boxSize="80px"
+            alt={station.title}
+            objectFit="cover"
+          />
+          <Box
+            position="absolute"
+            top="0"
+            left="0"
+            right="0"
+            bottom="0"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            backgroundColor="blackAlpha.600"
+            borderRadius="md"
+            opacity="0"
+            _hover={{ opacity: 1 }}
+            transition="opacity 0.2s"
+          >
+            <RiPlayFill color="white" size="30px" />
+          </Box>
+        </Box>
       )}
       <Box>
         <Text fontSize="lg" fontWeight="bold">
