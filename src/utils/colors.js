@@ -25,9 +25,17 @@ export const GENRE_COLORS = {
   classical: 'blue.500',
   electronic: 'green.500',
   pop: 'pink.500',
-  default: () => COLORS[Math.floor(Math.random() * COLORS.length)],
+  default: (tag) => {
+    if (!tag) return COLORS[0];
+    // Use the first 7 characters (or less if the tag is shorter) to determine color index
+    const charSum = tag
+      .slice(0, 7)
+      .split('')
+      .reduce((sum, char) => sum + char.charCodeAt(0), 0);
+    return COLORS[charSum % COLORS.length];
+  },
 };
 
 export const getGenreColor = (tag) => {
-  return GENRE_COLORS[tag?.toLowerCase()] || GENRE_COLORS.default();
+  return GENRE_COLORS[tag?.toLowerCase()] || GENRE_COLORS.default(tag);
 };

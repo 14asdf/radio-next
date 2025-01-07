@@ -35,7 +35,7 @@ const GenrePage = () => {
     );
   }, [stations, tag]);
 
-  const bgColor = useMemo(() => getGenreColor(), []);
+  const bgColor = useMemo(() => getGenreColor(tag), []);
 
   const handleBack = () => {
     router.back();
