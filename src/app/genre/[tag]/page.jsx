@@ -111,15 +111,16 @@ const GenrePage = () => {
         bg={bgColor}
         backgroundSize="cover"
         backgroundPosition="center"
+        borderTopRadius={16}
       >
         <Box
           position="absolute"
-          bottom="0"
+          top="0"
           left="0"
           right="0"
-          w="100%"
-          h="100%"
-          bgGradient="linear(to-b, transparent 0%, rgba(23,25,35,0.8) 80%, rgb(23,25,35) 100%)"
+          bottom="0"
+          bg="linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.95) 100%)"
+          pointerEvents="none"
         />
 
         <Container maxW="container.xl" h="100%" position="relative">
@@ -155,7 +156,7 @@ const GenrePage = () => {
           <Text color="gray.300">No stations found for this genre.</Text>
         ) : (
           <>
-            <VStack spacing={4} align="stretch">
+            <VStack gap={4} align="stretch">
               {displayedStations.map((station) => (
                 <StationSearchRow key={station.streamUrl} station={station} />
               ))}
