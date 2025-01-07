@@ -8,10 +8,17 @@ import {
   Separator,
   Textarea,
 } from '@chakra-ui/react';
-import { ref, push, onValue, get } from 'firebase/database';
+import { ref, push, onValue, get, remove } from 'firebase/database';
 import { db } from '@/firebase/config';
 import { useAuth } from '@/contexts/AuthContext';
 import { Avatar, AvatarGroup } from './ui/avatar';
+import {
+  MenuRoot,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+} from '@/components/ui/menu';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 const Comments = ({ stationId }) => {
   const [comments, setComments] = useState([]);
@@ -37,7 +44,12 @@ const Comments = ({ stationId }) => {
     const commentsRef = ref(db, `comments/${stationId}`);
     const unsubscribe = onValue(commentsRef, (snapshot) => {
       const data = snapshot.val();
-      const commentsArray = data ? Object.values(data) : [];
+      const commentsArray = data
+        ? Object.entries(data).map(([key, value]) => ({
+            ...value,
+            key,
+          }))
+        : [];
       setComments(commentsArray);
     });
 
@@ -57,6 +69,12 @@ const Comments = ({ stationId }) => {
     });
 
     setNewComment('');
+  };
+
+  const handleDeleteComment = async (commentKey) => {
+    if (!user) return;
+    const commentRef = ref(db, `comments/${stationId}/${commentKey}`);
+    await remove(commentRef);
   };
 
   return (
@@ -94,14 +112,14 @@ const Comments = ({ stationId }) => {
       {/* Comments List */}
       <Box>
         {comments.map((comment, index) => (
-          <Box key={index} mb={4}>
+          <Box key={comment.key} mb={4}>
             <HStack align="start" spacing={3}>
               <Avatar
                 size="sm"
                 src={usersData[comment.userId]?.photoURL}
                 name={comment.userName}
               />
-              <Box>
+              <Box flex="1">
                 <Box
                   bg="gray.100"
                   _dark={{ bg: 'whiteAlpha.100' }}
@@ -110,30 +128,59 @@ const Comments = ({ stationId }) => {
                   position="relative"
                   display="inline-block"
                   maxWidth="100%"
-                  ml="auto"
                 >
                   <Text
                     fontSize="sm"
                     color="gray.200"
                     _dark={{ color: 'gray.300' }}
-                    textAlign="right"
                   >
                     {comment.text}
                   </Text>
                 </Box>
-                <Text fontSize="xs" color="gray.500" textAlign="right" mt={1}>
-                  {(() => {
-                    const now = Date.now();
-                    const diff = now - comment.timestamp;
-                    const hours = Math.floor(diff / (1000 * 60 * 60));
-                    const days = Math.floor(hours / 24);
+                <HStack align="center" mt={1}>
+                  <Text fontSize="xs" color="gray.500">
+                    {(() => {
+                      const now = Date.now();
+                      const diff = now - comment.timestamp;
+                      const hours = Math.floor(diff / (1000 * 60 * 60));
+                      const days = Math.floor(hours / 24);
 
-                    if (hours < 1) return 'less than an hour ago';
-                    if (hours < 24)
-                      return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
-                    return `${days} ${days === 1 ? 'day' : 'days'} ago`;
-                  })()}
-                </Text>
+                      if (hours < 1) return 'less than an hour ago';
+                      if (hours < 24)
+                        return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+                      return `${days} ${days === 1 ? 'day' : 'days'} ago`;
+                    })()}
+                  </Text>
+                  {user && user.uid === comment.userId && (
+                    <MenuRoot>
+                      <MenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="xsm"
+                          rounded="full"
+                          aria-label="More options"
+                          _hover={{ bg: 'whiteAlpha.200' }}
+                        >
+                          <BsThreeDotsVertical />
+                        </Button>
+                      </MenuTrigger>
+                      <MenuContent
+                        rounded="full"
+                        style={{ width: 'fit-content', minWidth: 'auto' }}
+                      >
+                        <MenuItem
+                          onClick={() => handleDeleteComment(comment.key)}
+                          rounded="full"
+                          cursor="pointer"
+                          display="flex"
+                          style={{ width: 'fit-content', minWidth: 'auto' }}
+                        >
+                          <Text>Delete</Text>
+                        </MenuItem>
+                      </MenuContent>
+                    </MenuRoot>
+                  )}
+                </HStack>
               </Box>
             </HStack>
             {index < comments.length - 1 && (
