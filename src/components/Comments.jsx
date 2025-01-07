@@ -131,7 +131,7 @@ const Comments = ({ stationId }) => {
                 >
                   <Text
                     fontSize="sm"
-                    color="gray.200"
+                    color="black"
                     _dark={{ color: 'gray.300' }}
                   >
                     {comment.text}
