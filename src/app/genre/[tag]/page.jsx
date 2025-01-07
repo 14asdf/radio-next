@@ -157,8 +157,11 @@ const GenrePage = () => {
         ) : (
           <>
             <VStack gap={4} align="stretch">
-              {displayedStations.map((station) => (
-                <StationSearchRow key={station.streamUrl} station={station} />
+              {displayedStations.map((station, index) => (
+                <StationSearchRow
+                  key={`${station.streamUrl}-${index}`}
+                  station={station}
+                />
               ))}
             </VStack>
 
