@@ -55,7 +55,7 @@ export default function TrendsPage() {
       const commentsByStation = new Map();
       const commentCountByStation = new Map();
 
-      // Process favorites data more efficiently
+      // Process favorites data
       Object.entries(favoritesData).forEach(([userId, userData]) => {
         const favorites = userData.favorites || [];
         favorites.forEach((stationId) => {
@@ -71,7 +71,7 @@ export default function TrendsPage() {
         stationCounts.set(stationId, userSet.size);
       });
 
-      // Process comments data
+      // Process comments data and ensure stations with only comments are included
       Object.entries(commentsData).forEach(([stationId, stationData]) => {
         const { commentCount, ...comments } = stationData;
         const commentsList = Object.entries(comments || {})
@@ -82,6 +82,11 @@ export default function TrendsPage() {
           }));
         commentsByStation.set(stationId, commentsList);
         commentCountByStation.set(stationId, commentCount || 0);
+
+        // Add station to stationCounts if it's not already there
+        if (!stationCounts.has(stationId)) {
+          stationCounts.set(stationId, 0);
+        }
       });
 
       // Convert stations array to a map
@@ -93,7 +98,18 @@ export default function TrendsPage() {
 
       // Get trending stations
       const trendingStationIds = Array.from(stationCounts.keys()).sort(
-        (a, b) => stationCounts.get(b) - stationCounts.get(a)
+        (a, b) => {
+          const likesA = stationCounts.get(a) || 0;
+          const likesB = stationCounts.get(b) || 0;
+          const commentsA = commentCountByStation.get(a) || 0;
+          const commentsB = commentCountByStation.get(b) || 0;
+
+          // Calculate total engagement (likes + comments)
+          const totalEngagementA = likesA + commentsA;
+          const totalEngagementB = likesB + commentsB;
+
+          return totalEngagementB - totalEngagementA;
+        }
       );
 
       const filteredStations = trendingStationIds
@@ -247,34 +263,36 @@ export default function TrendsPage() {
             <StationSearchRow station={station} />
             <Box mt={4}>
               <Box fontSize="sm" display="flex" alignItems="center" gap={2}>
-                <MenuRoot>
-                  <MenuTrigger asChild>
-                    <Badge
-                      display="flex"
-                      alignItems="center"
-                      bg="gray.100"
-                      _dark={{ bg: 'gray.800' }}
-                      px={3}
-                      py={1}
-                      borderRadius="full"
-                      fontWeight="bold"
-                      cursor="pointer"
-                      _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
+                {station.favoriteCount > 0 && (
+                  <MenuRoot>
+                    <MenuTrigger asChild>
+                      <Badge
+                        display="flex"
+                        alignItems="center"
+                        bg="gray.100"
+                        _dark={{ bg: 'gray.800' }}
+                        px={3}
+                        py={1}
+                        borderRadius="full"
+                        fontWeight="bold"
+                        cursor="pointer"
+                        _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
+                      >
+                        <AiOutlineHeart
+                          size={16}
+                          style={{ marginRight: '6px' }}
+                        />
+                        {station.favoriteCount}
+                      </Badge>
+                    </MenuTrigger>
+                    <MenuContent
+                      rounded="xl"
+                      style={{ width: 'fit-content', minWidth: 'auto' }}
                     >
-                      <AiOutlineHeart
-                        size={16}
-                        style={{ marginRight: '6px' }}
-                      />
-                      {station.favoriteCount}
-                    </Badge>
-                  </MenuTrigger>
-                  <MenuContent
-                    rounded="xl"
-                    style={{ width: 'fit-content', minWidth: 'auto' }}
-                  >
-                    {renderAvatarStack(station.users)}
-                  </MenuContent>
-                </MenuRoot>
+                      {renderAvatarStack(station.users)}
+                    </MenuContent>
+                  </MenuRoot>
+                )}
 
                 {station.commentCount > 0 && (
                   <MenuRoot>
