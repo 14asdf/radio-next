@@ -96,6 +96,9 @@ const Comments = ({ stationId }) => {
                 const hours = Math.floor(diff / (1000 * 60 * 60));
                 const days = Math.floor(hours / 24);
 
+                if (hours < 1) {
+                  return 'less than an hour ago';
+                }
                 if (hours < 24) {
                   return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
                 }
