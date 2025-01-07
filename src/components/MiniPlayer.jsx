@@ -117,7 +117,7 @@ const MiniPlayer = ({ audioId }) => {
           </Link>
         )}
 
-        <Link href={`/?id=${encodeUrl(station.streamUrl)}`}>
+        <Box overflow="hidden">
           <Text
             fontSize="sm"
             fontWeight="medium"
@@ -125,9 +125,15 @@ const MiniPlayer = ({ audioId }) => {
             textOverflow="ellipsis"
             whiteSpace="nowrap"
           >
-            {station.title}
+            <Link
+              href={`/?id=${encodeUrl(station.streamUrl)}`}
+              display="inline"
+              _hover={{ textDecoration: 'underline' }}
+            >
+              {station.title}
+            </Link>
           </Text>
-        </Link>
+        </Box>
 
         <HStack>
           <PopoverRoot
