@@ -103,7 +103,13 @@ const GenrePage = () => {
   }, [genreStations, stationsPerPage]);
 
   return (
-    <Box w="100%" minH="100vh" bg="gray.50" _dark={{ bg: 'gray.900' }}>
+    <Box
+      w="100%"
+      minH="100vh"
+      bg="gray.50"
+      _dark={{ bg: 'gray.900' }}
+      borderBottomRadius={16}
+    >
       <Box
         position="relative"
         h="300px"
@@ -134,7 +140,6 @@ const GenrePage = () => {
             onClick={handleBack}
             variant="ghost"
             aria-label="Go back"
-            color="white"
             borderRadius="full"
             _hover={{ bg: 'whiteAlpha.200' }}
           >
@@ -143,8 +148,7 @@ const GenrePage = () => {
 
           <Heading
             position="absolute"
-            bottom="20px"
-            color="white"
+            bottom="40px"
             fontSize={{ base: '3xl', md: '4xl' }}
             fontWeight="bold"
             textTransform="capitalize"
