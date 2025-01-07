@@ -60,9 +60,9 @@ export default function TrendsPage() {
         });
       });
 
-      // Filter stations with more than 1 favorite
+      // Filter stations with 1 or more favorites
       const trendingStationIds = Array.from(stationCounts.entries())
-        .filter(([_, count]) => count > 1)
+        .filter(([_, count]) => count > 0)
         .sort((a, b) => b[1] - a[1])
         .map(([stationId]) => stationId);
 
