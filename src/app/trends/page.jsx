@@ -9,6 +9,7 @@ import {
   Text,
   Spinner,
   Button,
+  Badge,
 } from '@chakra-ui/react';
 import { ref, get } from 'firebase/database';
 import { db } from '@/firebase/config';
@@ -16,6 +17,7 @@ import StationSearchRow from '@/components/StationSearchRow';
 import { useStations } from '@/contexts/StationsContext';
 import { AvatarGroup, Avatar } from '@/components/ui/avatar';
 import { encodeUrl } from '@/utils';
+import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
 
 export default function TrendsPage() {
   const [trendingStations, setTrendingStations] = useState([]);
@@ -38,9 +40,22 @@ export default function TrendsPage() {
       const usersSnapshot = await get(usersRef);
       const usersData = usersSnapshot.val() || {};
 
+      // Get all comment counts
+      const commentsRef = ref(db, 'comments');
+      const commentsSnapshot = await get(commentsRef);
+      const commentsData = commentsSnapshot.val() || {};
+
       // Create a map to count favorites per station
       const stationCounts = new Map();
       const usersByStation = new Map();
+      const commentCountByStation = new Map();
+
+      // Process comments data
+      Object.entries(commentsData).forEach(([stationId, stationData]) => {
+        if (stationData.commentCount) {
+          commentCountByStation.set(stationId, stationData.commentCount);
+        }
+      });
 
       // Process favorites data
       Object.entries(favoritesData).forEach(([userId, userData]) => {
@@ -80,6 +95,7 @@ export default function TrendsPage() {
           ...stationsMap[id],
           users: usersByStation.get(id) || [],
           favoriteCount: stationCounts.get(id),
+          commentCount: commentCountByStation.get(id) || 0,
         }));
 
       setTrendingStations(filteredStations);
@@ -188,26 +204,39 @@ export default function TrendsPage() {
           <Box key={station.id} overflow="hidden" p={4} transition="all 0.2s">
             <StationSearchRow station={station} />
             <Box mt={4}>
-              <Box
-                fontSize="sm"
-                color="gray.600"
-                _dark={{ color: 'gray.300' }}
-                display="flex"
-                alignItems="center"
-                gap={2}
-              >
-                {station.favoriteCount}{' '}
-                {station.favoriteCount === 1 ? 'like' : 'likes'}
-                <AvatarGroup size="sm" max={3}>
-                  {station.users.map((user, index) => (
-                    <Avatar
-                      size="xs"
-                      key={index}
-                      src={user.userPhotoURL}
-                      name={user.displayName}
+              <Box fontSize="sm" display="flex" alignItems="center" gap={2}>
+                <Badge
+                  display="flex"
+                  alignItems="center"
+                  bg="gray.100"
+                  _dark={{ bg: 'gray.800' }}
+                  px={3}
+                  py={1}
+                  borderRadius="full"
+                  fontWeight="bold"
+                >
+                  <AiOutlineHeart size={16} style={{ marginRight: '6px' }} />
+                  {station.favoriteCount}
+                </Badge>
+                {station.commentCount > 0 && (
+                  <Badge
+                    display="flex"
+                    alignItems="center"
+                    bg="gray.100"
+                    _dark={{ bg: 'gray.800' }}
+                    px={3}
+                    py={1}
+                    borderRadius="full"
+                    fontWeight="bold"
+                  >
+                    <AiOutlineComment
+                      color="currentColor"
+                      size={16}
+                      style={{ marginRight: '6px' }}
                     />
-                  ))}
-                </AvatarGroup>
+                    {station.commentCount}
+                  </Badge>
+                )}
               </Box>
             </Box>
           </Box>

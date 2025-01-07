@@ -8,7 +8,7 @@ import {
   Separator,
   Textarea,
 } from '@chakra-ui/react';
-import { ref, push, onValue, get, remove } from 'firebase/database';
+import { ref, push, onValue, get, remove, set } from 'firebase/database';
 import { db } from '@/firebase/config';
 import { useAuth } from '@/contexts/AuthContext';
 import { Avatar, AvatarGroup } from './ui/avatar';
@@ -43,38 +43,67 @@ const Comments = ({ stationId }) => {
 
     const commentsRef = ref(db, `comments/${stationId}`);
     const unsubscribe = onValue(commentsRef, (snapshot) => {
-      const data = snapshot.val();
-      const commentsArray = data
-        ? Object.entries(data).map(([key, value]) => ({
-            ...value,
-            key,
-          }))
-        : [];
+      const data = snapshot.val() || {};
+      const { commentCount, ...commentsData } = data; // Separate commentCount from comments
+      const commentsArray = Object.entries(commentsData).map(
+        ([key, value]) => ({
+          ...value,
+          key,
+        })
+      );
       setComments(commentsArray);
     });
 
     return () => unsubscribe();
   }, [stationId]);
 
+  // Update comment count in station data
+  const updateCommentCount = async (change) => {
+    try {
+      const countRef = ref(db, `comments/${stationId}/commentCount`);
+      const snapshot = await get(countRef);
+      const currentCount = snapshot.val() || 0;
+
+      await set(countRef, Math.max(0, currentCount + change));
+    } catch (error) {
+      console.error('Error updating comment count:', error);
+    }
+  };
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!user || !newComment.trim()) return;
 
-    const commentsRef = ref(db, `comments/${stationId}`);
-    await push(commentsRef, {
-      text: newComment,
-      userId: user.uid,
-      userName: user.displayName || 'Anonymous',
-      timestamp: Date.now(),
-    });
+    try {
+      const commentsRef = ref(db, `comments/${stationId}`);
+      await push(commentsRef, {
+        text: newComment,
+        userId: user.uid,
+        userName: user.displayName || 'Anonymous',
+        timestamp: Date.now(),
+      });
 
-    setNewComment('');
+      // Increment comment count
+      await updateCommentCount(1);
+      setNewComment('');
+    } catch (error) {
+      console.error('Error posting comment:', error);
+      // Optionally show user feedback about the error
+    }
   };
 
   const handleDeleteComment = async (commentKey) => {
     if (!user) return;
-    const commentRef = ref(db, `comments/${stationId}/${commentKey}`);
-    await remove(commentRef);
+    try {
+      const commentRef = ref(db, `comments/${stationId}/${commentKey}`);
+      await remove(commentRef);
+
+      // Decrement comment count
+      await updateCommentCount(-1);
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+      // Optionally show user feedback about the error
+    }
   };
 
   return (
