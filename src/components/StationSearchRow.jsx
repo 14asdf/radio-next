@@ -44,9 +44,9 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
       as={Link}
       href={`/?id=${encodeUrl(station.streamUrl)}`}
       display="flex"
+      width="fit-content"
       gap={4}
       textOverflow="ellipsis"
-      maxW="100%"
     >
       {isLoading ? (
         <Box
