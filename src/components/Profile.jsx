@@ -91,7 +91,10 @@ const Profile = () => {
                 <LuMenu />
               </IconButton>
             </MenuTrigger>
-            <MenuContent rounded="full">
+            <MenuContent
+              rounded="full"
+              style={{ width: 'fit-content', minWidth: 'auto' }}
+            >
               <MenuItem onClick={handleLogout} rounded="full" cursor="pointer">
                 <HStack spacing={2}>
                   <LuLogOut />
