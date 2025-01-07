@@ -21,6 +21,49 @@ import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
 import { MenuRoot, MenuTrigger, MenuContent } from '@/components/ui/menu';
 import { sampleSize } from 'lodash';
 
+function useClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      // Get all elements in the event path
+      const path =
+        event.composedPath?.() ||
+        event.path ||
+        (event.target.ownerDocument || document).elementsFromPoint(
+          event.clientX,
+          event.clientY
+        );
+
+      // Check if any element in the path is a menu trigger or menu content
+      const isMenuElement = path.some((element) => {
+        const role = element.getAttribute?.('role');
+        return role === 'button' || role === 'menu';
+      });
+
+      if (isMenuElement) {
+        return;
+      }
+
+      // Check if click is outside
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+
+      // Add small delay to prevent race condition
+      setTimeout(() => {
+        handler();
+      }, 0);
+    };
+
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+
+    return () => {
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, [ref, handler]);
+}
+
 export default function TrendsPage() {
   const [trendingStations, setTrendingStations] = useState([]);
   const [displayedStations, setDisplayedStations] = useState([]);
@@ -30,6 +73,12 @@ export default function TrendsPage() {
   const { stations } = useStations();
   const stationsPerPage = 20;
   const containerRef = useRef(null);
+  const [activeMenu, setActiveMenu] = useState(null);
+  const likesMenuRef = useRef(null);
+  const commentsMenuRef = useRef(null);
+
+  useClickOutside(likesMenuRef, () => setActiveMenu(null));
+  useClickOutside(commentsMenuRef, () => setActiveMenu(null));
 
   useEffect(() => {
     const fetchTrendingStations = async () => {
@@ -215,6 +264,18 @@ export default function TrendsPage() {
     );
   };
 
+  const handleMenuOpen = (menuId) => {
+    // If the same menu is clicked, close it after a small delay
+    if (activeMenu === menuId) {
+      setTimeout(() => {
+        setActiveMenu(null);
+      }, 100);
+    } else {
+      // If a different menu is clicked, update immediately
+      setActiveMenu(menuId);
+    }
+  };
+
   return (
     <Box
       w="100%"
@@ -264,9 +325,17 @@ export default function TrendsPage() {
             <Box mt={4}>
               <Box fontSize="sm" display="flex" alignItems="center" gap={2}>
                 {station.favoriteCount > 0 && (
-                  <MenuRoot>
+                  <MenuRoot
+                    open={activeMenu === `likes-${station.id}`}
+                    onOpenChange={(open) => {
+                      if (!open) {
+                        setActiveMenu(null);
+                      }
+                    }}
+                  >
                     <MenuTrigger asChild>
                       <Badge
+                        ref={likesMenuRef}
                         display="flex"
                         alignItems="center"
                         bg="gray.100"
@@ -277,6 +346,7 @@ export default function TrendsPage() {
                         fontWeight="bold"
                         cursor="pointer"
                         _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
+                        onClick={() => handleMenuOpen(`likes-${station.id}`)}
                       >
                         <AiOutlineHeart
                           size={16}
@@ -295,9 +365,17 @@ export default function TrendsPage() {
                 )}
 
                 {station.commentCount > 0 && (
-                  <MenuRoot>
+                  <MenuRoot
+                    open={activeMenu === `comments-${station.id}`}
+                    onOpenChange={(open) => {
+                      if (!open) {
+                        setActiveMenu(null);
+                      }
+                    }}
+                  >
                     <MenuTrigger asChild>
                       <Badge
+                        ref={commentsMenuRef}
                         display="flex"
                         alignItems="center"
                         bg="gray.100"
@@ -308,6 +386,7 @@ export default function TrendsPage() {
                         fontWeight="bold"
                         cursor="pointer"
                         _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
+                        onClick={() => handleMenuOpen(`comments-${station.id}`)}
                       >
                         <AiOutlineComment
                           color="currentColor"
