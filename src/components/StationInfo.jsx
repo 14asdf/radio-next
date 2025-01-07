@@ -30,6 +30,7 @@ import Share from './Share';
 import _ from 'lodash';
 
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
+import Comments from './Comments';
 
 const StationInfo = ({ audioId }) => {
   const { playerState, togglePlay, currentStation } = useAudioPlayer();
@@ -274,6 +275,9 @@ const StationInfo = ({ audioId }) => {
             )}
           </Box>
         </Box>
+      </Box>
+      <Box position="relative" maxWidth="1200px" margin="0 auto" px={4} py={8}>
+        <Comments stationId={audioId} />
       </Box>
     </Box>
   );
