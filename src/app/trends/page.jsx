@@ -55,6 +55,22 @@ export default function TrendsPage() {
       const commentsByStation = new Map();
       const commentCountByStation = new Map();
 
+      // Process favorites data more efficiently
+      Object.entries(favoritesData).forEach(([userId, userData]) => {
+        const favorites = userData.favorites || [];
+        favorites.forEach((stationId) => {
+          if (!usersByStation.has(stationId)) {
+            usersByStation.set(stationId, new Set());
+          }
+          usersByStation.get(stationId).add(userId);
+        });
+      });
+
+      // Convert Sets to arrays and get counts
+      usersByStation.forEach((userSet, stationId) => {
+        stationCounts.set(stationId, userSet.size);
+      });
+
       // Process comments data
       Object.entries(commentsData).forEach(([stationId, stationData]) => {
         const { commentCount, ...comments } = stationData;
@@ -65,49 +81,35 @@ export default function TrendsPage() {
             key,
           }));
         commentsByStation.set(stationId, commentsList);
-        if (commentCount) {
-          commentCountByStation.set(stationId, commentCount);
-        }
+        commentCountByStation.set(stationId, commentCount || 0);
       });
 
-      // Process favorites data
-      Object.entries(favoritesData).forEach(([userId, userData]) => {
-        const favorites = userData.favorites || [];
-        const user = usersData[userId] || {};
-
-        favorites.forEach((stationId) => {
-          stationCounts.set(stationId, (stationCounts.get(stationId) || 0) + 1);
-          if (!usersByStation.has(stationId)) {
-            usersByStation.set(stationId, []);
-          }
-          usersByStation.get(stationId).push({
-            userId,
-            userPhotoURL: user.photoURL || null,
-            displayName: user.name || `User ${userId.slice(0, 4)}`,
-          });
-        });
-      });
-
-      // Filter stations with 1 or more favorites
-      const trendingStationIds = Array.from(stationCounts.entries())
-        .filter(([_, count]) => count > 0)
-        .sort((a, b) => b[1] - a[1])
-        .map(([stationId]) => stationId);
-
-      // Convert stations array to a map of url -> station
+      // Convert stations array to a map
       const stationsMap = stations.reduce((acc, station) => {
         const encodedUrl = encodeUrl(station.streamUrl);
         acc[encodedUrl] = station;
         return acc;
       }, {});
 
+      // Get trending stations
+      const trendingStationIds = Array.from(stationCounts.keys()).sort(
+        (a, b) => stationCounts.get(b) - stationCounts.get(a)
+      );
+
       const filteredStations = trendingStationIds
         .filter((id) => stationsMap[id])
         .map((id) => ({
           id,
           ...stationsMap[id],
-          users: usersByStation.get(id) || [],
-          favoriteCount: stationCounts.get(id),
+          users: Array.from(usersByStation.get(id) || new Set()).map(
+            (userId) => ({
+              userId,
+              userPhotoURL: usersData[userId]?.photoURL || null,
+              displayName:
+                usersData[userId]?.name || `User ${userId.slice(0, 4)}`,
+            })
+          ),
+          favoriteCount: stationCounts.get(id) || 0,
           commentCount: commentCountByStation.get(id) || 0,
           comments: commentsByStation.get(id) || [],
         }));
