@@ -193,7 +193,7 @@ export default function TrendsPage() {
                 color="gray.600"
                 _dark={{ color: 'gray.300' }}
               >
-                Favorited by {station.favoriteCount} users
+                Liked by {station.favoriteCount} users
               </Text>
               <AvatarGroup size="sm" max={3} mt={2}>
                 {station.users.map((user, index) => (
