@@ -185,10 +185,6 @@ const StationSearch = () => {
     debouncedSearch(searchTerm, newType);
   };
 
-  const handleCancel = () => {
-    router.push('/');
-  };
-
   return (
     <Box mx="auto" ref={containerRef}>
       <Box
@@ -235,16 +231,6 @@ const StationSearch = () => {
               </InputRightElement>
             )}
           </InputGroup>
-          <Box
-            onClick={handleCancel}
-            minW="80px"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            cursor="pointer"
-          >
-            Cancel
-          </Box>
         </Box>
 
         <Tabs.Root
