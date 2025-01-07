@@ -18,12 +18,15 @@ import { useStations } from '@/contexts/StationsContext';
 import { AvatarGroup, Avatar } from '@/components/ui/avatar';
 import { encodeUrl } from '@/utils';
 import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
+import { MenuRoot, MenuTrigger, MenuContent } from '@/components/ui/menu';
+import { sampleSize } from 'lodash';
 
 export default function TrendsPage() {
   const [trendingStations, setTrendingStations] = useState([]);
   const [displayedStations, setDisplayedStations] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
+  const [usersData, setUsersData] = useState({});
   const { stations } = useStations();
   const stationsPerPage = 20;
   const containerRef = useRef(null);
@@ -39,21 +42,31 @@ export default function TrendsPage() {
       const usersRef = ref(db, 'users');
       const usersSnapshot = await get(usersRef);
       const usersData = usersSnapshot.val() || {};
+      setUsersData(usersData);
 
-      // Get all comment counts
+      // Get all comments data
       const commentsRef = ref(db, 'comments');
       const commentsSnapshot = await get(commentsRef);
       const commentsData = commentsSnapshot.val() || {};
 
-      // Create a map to count favorites per station
+      // Create maps for data
       const stationCounts = new Map();
       const usersByStation = new Map();
+      const commentsByStation = new Map();
       const commentCountByStation = new Map();
 
       // Process comments data
       Object.entries(commentsData).forEach(([stationId, stationData]) => {
-        if (stationData.commentCount) {
-          commentCountByStation.set(stationId, stationData.commentCount);
+        const { commentCount, ...comments } = stationData;
+        const commentsList = Object.entries(comments || {})
+          .filter(([key]) => key !== 'commentCount')
+          .map(([key, value]) => ({
+            ...value,
+            key,
+          }));
+        commentsByStation.set(stationId, commentsList);
+        if (commentCount) {
+          commentCountByStation.set(stationId, commentCount);
         }
       });
 
@@ -96,6 +109,7 @@ export default function TrendsPage() {
           users: usersByStation.get(id) || [],
           favoriteCount: stationCounts.get(id),
           commentCount: commentCountByStation.get(id) || 0,
+          comments: commentsByStation.get(id) || [],
         }));
 
       setTrendingStations(filteredStations);
@@ -157,6 +171,35 @@ export default function TrendsPage() {
     setHasMore(initialStations.length === stationsPerPage);
   }, [trendingStations]);
 
+  const renderAvatarStack = (users, label) => {
+    const maxAvatars = 5;
+    const sampleUsers = sampleSize(users, maxAvatars);
+
+    return (
+      <Box p={2}>
+        <Text fontSize="sm" color="gray.500" mb={2}>
+          {label}
+        </Text>
+        <AvatarGroup size="sm" max={maxAvatars}>
+          {sampleUsers.map((user) => (
+            <Avatar
+              key={user.userId}
+              src={user.userPhotoURL}
+              name={user.displayName}
+            />
+          ))}
+          {users.length > maxAvatars && (
+            <Avatar
+              name={`+${users.length - maxAvatars}`}
+              bg="gray.100"
+              _dark={{ bg: 'gray.700' }}
+            />
+          )}
+        </AvatarGroup>
+      </Box>
+    );
+  };
+
   return (
     <Box
       w="100%"
@@ -205,37 +248,84 @@ export default function TrendsPage() {
             <StationSearchRow station={station} />
             <Box mt={4}>
               <Box fontSize="sm" display="flex" alignItems="center" gap={2}>
-                <Badge
-                  display="flex"
-                  alignItems="center"
-                  bg="gray.100"
-                  _dark={{ bg: 'gray.800' }}
-                  px={3}
-                  py={1}
-                  borderRadius="full"
-                  fontWeight="bold"
-                >
-                  <AiOutlineHeart size={16} style={{ marginRight: '6px' }} />
-                  {station.favoriteCount}
-                </Badge>
-                {station.commentCount > 0 && (
-                  <Badge
-                    display="flex"
-                    alignItems="center"
-                    bg="gray.100"
-                    _dark={{ bg: 'gray.800' }}
-                    px={3}
-                    py={1}
-                    borderRadius="full"
-                    fontWeight="bold"
+                <MenuRoot>
+                  <MenuTrigger asChild>
+                    <Badge
+                      display="flex"
+                      alignItems="center"
+                      bg="gray.100"
+                      _dark={{ bg: 'gray.800' }}
+                      px={3}
+                      py={1}
+                      borderRadius="full"
+                      fontWeight="bold"
+                      cursor="pointer"
+                      _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
+                    >
+                      <AiOutlineHeart
+                        size={16}
+                        style={{ marginRight: '6px' }}
+                      />
+                      {station.favoriteCount}
+                    </Badge>
+                  </MenuTrigger>
+                  <MenuContent
+                    style={{
+                      padding: '8px',
+                      width: 'auto',
+                      minWidth: '200px',
+                    }}
                   >
-                    <AiOutlineComment
-                      color="currentColor"
-                      size={16}
-                      style={{ marginRight: '6px' }}
-                    />
-                    {station.commentCount}
-                  </Badge>
+                    {renderAvatarStack(station.users, 'Liked by')}
+                  </MenuContent>
+                </MenuRoot>
+
+                {station.commentCount > 0 && (
+                  <MenuRoot>
+                    <MenuTrigger asChild>
+                      <Badge
+                        display="flex"
+                        alignItems="center"
+                        bg="gray.100"
+                        _dark={{ bg: 'gray.800' }}
+                        px={3}
+                        py={1}
+                        borderRadius="full"
+                        fontWeight="bold"
+                        cursor="pointer"
+                        _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
+                      >
+                        <AiOutlineComment
+                          color="currentColor"
+                          size={16}
+                          style={{ marginRight: '6px' }}
+                        />
+                        {station.commentCount}
+                      </Badge>
+                    </MenuTrigger>
+                    <MenuContent
+                      style={{
+                        padding: '8px',
+                        width: 'auto',
+                        minWidth: '200px',
+                      }}
+                    >
+                      {renderAvatarStack(
+                        Array.from(
+                          new Set(
+                            (station.comments || [])
+                              .filter((comment) => comment.userId)
+                              .map((comment) => comment.userId)
+                          )
+                        ).map((userId) => ({
+                          userId,
+                          userPhotoURL: usersData[userId]?.photoURL,
+                          displayName: usersData[userId]?.name || 'Anonymous',
+                        })),
+                        'Commented by'
+                      )}
+                    </MenuContent>
+                  </MenuRoot>
                 )}
               </Box>
             </Box>
