@@ -188,22 +188,27 @@ export default function TrendsPage() {
           <Box key={station.id} overflow="hidden" p={4} transition="all 0.2s">
             <StationSearchRow station={station} />
             <Box mt={4}>
-              <Text
+              <Box
                 fontSize="sm"
                 color="gray.600"
                 _dark={{ color: 'gray.300' }}
+                display="flex"
+                alignItems="center"
+                gap={2}
               >
-                Liked by {station.favoriteCount} users
-              </Text>
-              <AvatarGroup size="sm" max={3} mt={2}>
-                {station.users.map((user, index) => (
-                  <Avatar
-                    key={index}
-                    src={user.userPhotoURL}
-                    name={user.displayName}
-                  />
-                ))}
-              </AvatarGroup>
+                {station.favoriteCount}{' '}
+                {station.favoriteCount === 1 ? 'like' : 'likes'}
+                <AvatarGroup size="sm" max={3}>
+                  {station.users.map((user, index) => (
+                    <Avatar
+                      size="xs"
+                      key={index}
+                      src={user.userPhotoURL}
+                      name={user.displayName}
+                    />
+                  ))}
+                </AvatarGroup>
+              </Box>
             </Box>
           </Box>
         ))}
