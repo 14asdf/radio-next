@@ -103,7 +103,7 @@ const GenrePage = () => {
   }, [genreStations, stationsPerPage]);
 
   return (
-    <Box w="100%" minH="100vh" bg="gray.900">
+    <Box w="100%" minH="100vh" bg="gray.50" _dark={{ bg: 'gray.900' }}>
       <Box
         position="relative"
         h="300px"
@@ -119,7 +119,10 @@ const GenrePage = () => {
           left="0"
           right="0"
           bottom="0"
-          bg="linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.95) 100%)"
+          bg="linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%)"
+          _dark={{
+            bg: 'linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.95) 100%)',
+          }}
           pointerEvents="none"
         />
 
@@ -153,7 +156,9 @@ const GenrePage = () => {
 
       <Container maxW="container.xl" py={6} ref={containerRef}>
         {genreStations.length === 0 ? (
-          <Text color="gray.300">No stations found for this genre.</Text>
+          <Text color="gray.600" _dark={{ color: 'gray.300' }}>
+            No stations found for this genre.
+          </Text>
         ) : (
           <>
             <VStack gap={4} align="stretch">
