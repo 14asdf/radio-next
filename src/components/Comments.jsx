@@ -86,7 +86,7 @@ const Comments = ({ stationId }) => {
                 src={usersData[comment.userId]?.photoURL}
                 bg="brand.500"
               />
-              <Text fontWeight="bold">{comment.userName}</Text>
+              {/* <Text fontWeight="bold">{comment.userName}</Text> */}
             </HStack>
             <Text>{comment.text}</Text>
             <Text fontSize="sm" color="gray.500">
