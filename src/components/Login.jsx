@@ -29,6 +29,7 @@ const Login = () => {
       await set(ref(db, `users/${result.user.uid}`), {
         email: result.user.email,
         name: result.user.displayName,
+        photoURL: result.user.photoURL,
         favorites: [],
         createdAt: Date.now(),
       });

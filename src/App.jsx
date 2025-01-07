@@ -13,6 +13,8 @@ import {
   RiSearchLine,
   RiUserLine,
   RiUserFill,
+  RiBarChartFill,
+  RiBarChartLine,
 } from 'react-icons/ri';
 import Link from 'next/link';
 
@@ -146,6 +148,24 @@ const App = ({ children }) => {
               )}
               <Text>Profile</Text>
             </Button>
+            <Button
+              as={Link}
+              href="/trends"
+              variant="ghost"
+              size="lg"
+              width="full"
+              display="flex"
+              gap="3"
+              justifyContent="flex-start"
+              borderRadius="full"
+            >
+              {pathname === '/trends' ? (
+                <RiBarChartFill size={24} />
+              ) : (
+                <RiBarChartLine size={24} />
+              )}
+              <Text>Trends</Text>
+            </Button>
             <ColorModeButton size="lg" width="full" borderRadius="full" />
           </Box>
         </Box>
@@ -210,6 +230,19 @@ const App = ({ children }) => {
                   <RiUserFill size={24} />
                 ) : (
                   <RiUserLine size={24} />
+                )}
+              </IconButton>
+              <IconButton
+                as={Link}
+                href="/trends"
+                variant="ghost"
+                borderRadius="full"
+                aria-label="Trends"
+              >
+                {pathname === '/trends' ? (
+                  <RiBarChartFill size={24} />
+                ) : (
+                  <RiBarChartLine size={24} />
                 )}
               </IconButton>
               <ColorModeButton borderRadius="full" />
