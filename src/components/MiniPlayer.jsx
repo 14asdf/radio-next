@@ -32,6 +32,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { useStations } from '@/contexts/StationsContext';
+import { debounce } from 'lodash';
 
 const VolumeIcon = ({ volume }) => {
   if (volume === 0) return <IoVolumeMuteOutline />;
@@ -72,9 +73,12 @@ const MiniPlayer = ({ audioId }) => {
     }
   }, [station]);
 
-  const setVolume = (value) => {
-    handleVolumeChange(value / 100);
-  };
+  const debouncedSetVolume = React.useCallback(
+    debounce((value) => {
+      handleVolumeChange(value / 100);
+    }, 50),
+    []
+  );
 
   const handleNextTrack = () => {
     const currentIndex = stations.findIndex((s) => s.streamUrl === audioSrc);
@@ -151,7 +155,7 @@ const MiniPlayer = ({ audioId }) => {
                     min={0}
                     max={100}
                     step={1}
-                    onValueChange={(e) => setVolume(e.value)}
+                    onValueChange={(e) => debouncedSetVolume(e.value)}
                     orientation="vertical"
                   />
                 </Box>
