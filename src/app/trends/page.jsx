@@ -66,9 +66,6 @@ export default function TrendsPage() {
         .sort((a, b) => b[1] - a[1])
         .map(([stationId]) => stationId);
 
-      console.log('Trending station IDs:', trendingStationIds);
-      console.log('Available stations:', stations);
-
       // Convert stations array to a map of url -> station
       const stationsMap = stations.reduce((acc, station) => {
         const encodedUrl = encodeUrl(station.streamUrl);
@@ -85,7 +82,6 @@ export default function TrendsPage() {
           favoriteCount: stationCounts.get(id),
         }));
 
-      console.log('Filtered stations:', filteredStations);
       setTrendingStations(filteredStations);
     };
 
