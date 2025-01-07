@@ -177,9 +177,6 @@ export default function TrendsPage() {
 
     return (
       <Box p={2}>
-        <Text fontSize="sm" color="gray.500" mb={2}>
-          {label}
-        </Text>
         <AvatarGroup size="sm" max={maxAvatars}>
           {sampleUsers.map((user) => (
             <Avatar
@@ -270,13 +267,10 @@ export default function TrendsPage() {
                     </Badge>
                   </MenuTrigger>
                   <MenuContent
-                    style={{
-                      padding: '8px',
-                      width: 'auto',
-                      minWidth: '200px',
-                    }}
+                    rounded="xl"
+                    style={{ width: 'fit-content', minWidth: 'auto' }}
                   >
-                    {renderAvatarStack(station.users, 'Liked by')}
+                    {renderAvatarStack(station.users)}
                   </MenuContent>
                 </MenuRoot>
 
@@ -304,11 +298,8 @@ export default function TrendsPage() {
                       </Badge>
                     </MenuTrigger>
                     <MenuContent
-                      style={{
-                        padding: '8px',
-                        width: 'auto',
-                        minWidth: '200px',
-                      }}
+                      rounded="xl"
+                      style={{ width: 'fit-content', minWidth: 'auto' }}
                     >
                       {renderAvatarStack(
                         Array.from(
@@ -321,8 +312,7 @@ export default function TrendsPage() {
                           userId,
                           userPhotoURL: usersData[userId]?.photoURL,
                           displayName: usersData[userId]?.name || 'Anonymous',
-                        })),
-                        'Commented by'
+                        }))
                       )}
                     </MenuContent>
                   </MenuRoot>
