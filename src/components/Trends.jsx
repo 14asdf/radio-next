@@ -22,6 +22,7 @@ import { MenuRoot, MenuTrigger, MenuContent } from '@/components/ui/menu';
 import { sampleSize } from 'lodash';
 import Link from 'next/link';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import { useTranslations } from 'next-intl';
 
 function useClickOutside(ref, handler) {
   useEffect(() => {
@@ -67,6 +68,7 @@ function useClickOutside(ref, handler) {
 }
 
 export default function Trends() {
+  const t = useTranslations('trends');
   const [trendingStations, setTrendingStations] = useState([]);
   const [displayedStations, setDisplayedStations] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -356,7 +358,7 @@ export default function Trends() {
             fontSize={{ base: '3xl', md: '4xl' }}
             fontWeight="bold"
           >
-            Trending Stations
+            {t('title')}
           </Heading>
         </Container>
       </Box>
@@ -489,7 +491,7 @@ export default function Trends() {
                     colorScheme="black"
                     borderRadius="full"
                   >
-                    Load More
+                    {t('loadMore')}
                   </Button>
                 )}
               </Box>

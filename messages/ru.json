@@ -48,5 +48,15 @@
   },
   "settings": {
     "changeTheme": "Сменить тему"
+  },
+  "trends": {
+    "title": "Популярные станции",
+    "loadMore": "Загрузить ещё"
+  },
+  "profile": {
+    "title": "Мой профиль",
+    "favoriteStations": "Ваши избранные станции",
+    "noFavorites": "Пока нет избранных станций",
+    "logout": "Выйти"
   }
 }

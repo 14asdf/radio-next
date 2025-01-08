@@ -1,11 +1,11 @@
 import { generatePageMetadata } from '@/utils/metadata';
 import Profile from '@/components/Profile';
+import { useTranslations } from 'next-intl';
 
 export async function generateMetadata() {
   return generatePageMetadata({
-    title: 'My Profile',
-    description:
-      'Manage your Radio Cloud profile, view your favorite stations, and customize your radio listening experience.',
+    title: 'metadata.profile.title',
+    description: 'metadata.profile.description',
   });
 }
 

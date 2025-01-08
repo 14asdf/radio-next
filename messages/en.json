@@ -48,5 +48,15 @@
   },
   "settings": {
     "changeTheme": "Change theme"
+  },
+  "trends": {
+    "title": "Trending Stations",
+    "loadMore": "Load More"
+  },
+  "profile": {
+    "title": "My Profile",
+    "favoriteStations": "Your favorite stations",
+    "noFavorites": "No favorite stations yet",
+    "logout": "Log out"
   }
 }

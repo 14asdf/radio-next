@@ -30,6 +30,7 @@ import {
   MenuItemText,
 } from '@/components/ui/menu';
 import { LuSettings, LuLogOut, LuMenu } from 'react-icons/lu';
+import { useTranslations } from 'next-intl';
 
 export default function Profile() {
   const { user, setUser } = useAuth();
@@ -37,6 +38,7 @@ export default function Profile() {
   const router = useRouter();
   const { getFavorites } = useFavorites();
   const [favoritesList, setFavoritesList] = useState([]);
+  const t = useTranslations('profile');
 
   useEffect(() => {
     if (!user) {
@@ -98,7 +100,7 @@ export default function Profile() {
               <MenuItem onClick={handleLogout} rounded="full" cursor="pointer">
                 <HStack spacing={2}>
                   <LuLogOut />
-                  <Text>Log out</Text>
+                  <Text>{t('logout')}</Text>
                 </HStack>
               </MenuItem>
             </MenuContent>
@@ -108,7 +110,7 @@ export default function Profile() {
 
       <Box>
         <Heading size="2xl" mb={6} mt={6}>
-          Your favorite stations
+          {t('favoriteStations')}
         </Heading>
         <SimpleGrid gap={8}>
           {favoritesList.map((stationId) => (
@@ -119,7 +121,7 @@ export default function Profile() {
             />
           ))}
           {favoritesList.length === 0 && (
-            <Text color="gray.500">No favorite stations yet</Text>
+            <Text color="gray.500">{t('noFavorites')}</Text>
           )}
         </SimpleGrid>
       </Box>

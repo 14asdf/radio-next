@@ -1,14 +1,14 @@
 import { generatePageMetadata } from '@/utils/metadata';
 import Trends from '@/components/Trends';
+import { useTranslations } from 'next-intl';
 
 export async function generateMetadata() {
   return generatePageMetadata({
-    title: 'Trending Radio Stations',
-    description:
-      'Discover the most popular and trending radio stations right now. Listen to what others are enjoying - from hit music to breaking news and live sports broadcasts.',
+    title: 'metadata.trends.title',
+    description: 'metadata.trends.description',
   });
 }
 
-export default function SearchPage() {
+export default function TrendsPage() {
   return <Trends />;
 }
