@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "default": {
+      "title": "Radio Cloud",
+      "description": "Écoutez vos stations de radio préférées en direct - radio en streaming gratuit"
+    },
+    "home": {
+      "title": "Radio Cloud - Écouter la Radio en Ligne",
+      "description": "Découvrez des milliers de stations de radio du monde entier. Écoutez gratuitement de la musique, des actualités, du sport et des émissions."
+    },
+    "search": {
+      "title": "Rechercher des Stations de Radio",
+      "description": "Recherchez et découvrez des milliers de stations de radio du monde entier. Trouvez vos stations de musique, d'actualités, de sport et d'émissions préférées."
+    },
+    "genre": {
+      "title": "Stations de Radio {genre}",
+      "description": "Écoutez les meilleures stations de radio {genre}. Écoutez de la musique {genre} en direct gratuitement."
+    },
+    "profile": {
+      "title": "Mon Profil",
+      "description": "Gérez votre profil Radio Cloud, consultez vos stations préférées et personnalisez votre expérience d'écoute."
+    },
+    "trends": {
+      "title": "Stations de Radio Tendances",
+      "description": "Découvrez les stations de radio les plus populaires du moment. Écoutez ce que les autres apprécient - des tubes aux actualités en passant par les diffusions sportives en direct."
+    },
+    "login": {
+      "title": "Connexion à Radio Cloud",
+      "description": "Connectez-vous à Radio Cloud pour accéder à vos stations de radio préférées et vos fonctionnalités personnalisées"
+    }
+  },
+  "home": {
+    "welcome": "Bienvenue sur Radio Cloud",
+    "trending": "Stations Tendances",
+    "allGenres": "Tous les Genres",
+    "searchPlaceholder": "Rechercher des stations...",
+    "featuredStations": "Stations en Vedette",
+    "recentlyPlayed": "Écoutées Récemment",
+    "exploreMore": "Explorer Plus"
+  },
+  "search": {
+    "placeholder": "Rechercher...",
+    "noResults": "Aucune station trouvée pour \"{term}\"",
+    "noResultsName": "Aucune station trouvée pour \"{term}\"",
+    "noResultsGenre": "Aucun genre trouvé pour \"{term}\"",
+    "findStations": "Trouvez des stations par nom ou genre",
+    "loadMore": "Charger Plus",
+    "tabs": {
+      "all": "Tout",
+      "name": "Nom",
+      "genre": "Genre"
+    }
+  },
+  "main": {
+    "navigation": {
+      "home": "Accueil",
+      "search": "Rechercher",
+      "profile": "Profil",
+      "trends": "Tendances",
+      "settings": "Paramètres"
+    },
+    "nowPlaying": "En Cours",
+    "noStation": "Aucune station sélectionnée",
+    "loading": "Chargement...",
+    "logo": "Radio Cloud"
+  },
+  "settings": {
+    "changeTheme": "Changer de thème",
+    "chooseLanguage": "Choisir la langue",
+    "title": "Paramètres",
+    "appearance": "Apparence",
+    "language": "Langue"
+  },
+  "trends": {
+    "title": "Stations Tendances",
+    "loadMore": "Charger Plus"
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "favoriteStations": "Stations favorites",
+    "noFavorites": "Pas encore de stations favorites",
+    "logout": "Déconnexion"
+  },
+  "genres": {
+    "ambient": "ambiant",
+    "classical": "classique",
+    "disco": "disco",
+    "jazz": "jazz",
+    "classic_hits": "tubes classiques",
+    "blues": "blues",
+    "80s": "années 80",
+    "70s": "années 70",
+    "classical_music": "musique classique",
+    "dance": "dance",
+    "easy_listening": "détente",
+    "chill": "chill",
+    "groove": "groove",
+    "classics": "classiques",
+    "funk": "funk",
+    "classic_rock": "rock classique",
+    "2000s": "années 2000",
+    "chillout": "détente",
+    "adult_contemporary": "contemporain adulte",
+    "pop": "pop",
+    "christmas_music": "musique de Noël",
+    "culture": "culture",
+    "classic_country": "country classique",
+    "folk": "folk",
+    "guitar": "guitare",
+    "alternative": "alternative",
+    "eclectic": "éclectique",
+    "techno": "techno",
+    "instrumental": "instrumental",
+    "choir": "chorale",
+    "crooner": "crooner",
+    "alternative_rock": "rock alternatif",
+    "classic": "classique",
+    "community_radio": "radio communautaire",
+    "commercial_free": "sans publicité",
+    "90s": "années 90",
+    "deep_house": "deep house",
+    "classic_jazz": "jazz classique",
+    "gospel": "gospel",
+    "00s": "années 2000",
+    "news": "actualités",
+    "afrobeats": "afrobeats",
+    "christian_contemporary": "chrétien contemporain",
+    "1990s": "années 90",
+    "relax": "détente",
+    "electronic": "électronique",
+    "hits": "hits",
+    "bible": "bible",
+    "cristiana": "chrétienne",
+    "christian": "chrétienne",
+    "reggae": "reggae",
+    "hiphop": "hip-hop",
+    "music": "musique",
+    "club": "club",
+    "rock": "rock",
+    "community": "communauté",
+    "current_affairs": "actualités",
+    "sports": "sports",
+    "oldies": "oldies",
+    "country": "country",
+    "variety": "variété",
+    "public_radio": "radio publique",
+    "commercial": "commercial",
+    "hot_adult_contemporary": "contemporain adulte hot",
+    "campus_radio": "radio campus",
+    "npr": "npr"
+  },
+  "time": {
+    "lessThanHour": "il y a moins d'une heure",
+    "hoursAgo": "il y a {hours} heure",
+    "hoursAgoPlural": "il y a {hours} heures",
+    "daysAgo": "il y a {days} jour",
+    "daysAgoPlural": "il y a {days} jours"
+  },
+  "comments": {
+    "placeholder": "Écrire un commentaire...",
+    "post": "Publier"
+  },
+  "auth": {
+    "loginTo": "Se connecter à",
+    "continueWithGoogle": "Continuer avec Google"
+  }
+}

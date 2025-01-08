@@ -36,6 +36,7 @@ export default function Settings() {
     ru: 'Русский',
     de: 'Deutsch',
     es: 'Español',
+    fr: 'Français',
   };
 
   useEffect(() => {
