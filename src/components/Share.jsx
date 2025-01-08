@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { MdOutlineShare } from 'react-icons/md';
 import { toaster } from './ui/toaster';
 import { FaTelegram, FaWhatsapp, FaVk } from 'react-icons/fa';
-import { Box, IconButton } from '@chakra-ui/react';
+import { Box, IconButton, Separator } from '@chakra-ui/react';
 import { RiTelegram2Fill, RiWhatsappFill } from 'react-icons/ri';
 import { FaLink } from 'react-icons/fa6';
 import { IoShareOutline, IoCloseOutline } from 'react-icons/io5';
@@ -100,6 +100,7 @@ const Share = () => {
               <IoCloseOutline />
             </DialogCloseTrigger>
           </DialogHeader>
+          <Separator />
           <DialogBody>
             <Box display="flex" justifyContent="center" gap={4}>
               <IconButton

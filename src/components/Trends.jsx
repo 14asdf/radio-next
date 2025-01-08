@@ -374,7 +374,7 @@ export default function Trends() {
               <Box
                 key={station.id}
                 overflow="hidden"
-                p={4}
+                py={4}
                 transition="all 0.2s"
               >
                 <StationSearchRow station={station} />

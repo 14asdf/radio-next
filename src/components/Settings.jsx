@@ -1,5 +1,5 @@
 'use client';
-import { Box, Text, HStack, Flex, Button } from '@chakra-ui/react';
+import { Box, Text, HStack, Flex, Button, Separator } from '@chakra-ui/react';
 import { ColorModeIcon } from './ui/color-mode';
 import { PiGlobeHemisphereEastThin } from 'react-icons/pi';
 import { useColorMode } from './ui/color-mode';
@@ -55,12 +55,11 @@ export default function Settings() {
         as="button"
         onClick={toggleColorMode}
         py={2}
-        px={4}
         justify="space-between"
         align="center"
-        width="100%"
         borderRadius="md"
         cursor="pointer"
+        width="fit-content"
       >
         <HStack spacing={2}>
           <ColorModeIcon />
@@ -72,12 +71,11 @@ export default function Settings() {
         as="button"
         onClick={() => setIsOpen(true)}
         py={2}
-        px={4}
         justify="space-between"
         align="center"
-        width="100%"
         borderRadius="md"
         cursor="pointer"
+        width="fit-content"
       >
         <HStack spacing={2}>
           <PiGlobeHemisphereEastThin size={24} />
@@ -95,6 +93,8 @@ export default function Settings() {
               <IoCloseOutline />
             </DialogCloseTrigger>
           </DialogHeader>
+          <Separator />
+
           <DialogBody>
             <Box display="flex" gap={4} mt="4" flexWrap="wrap">
               {Object.entries(languages).map(([locale, name]) => (
