@@ -21,8 +21,8 @@ async function getStations() {
 }
 
 export async function generateMetadata({ searchParams }) {
-  const stations = await getStations();
   const params = await Promise.resolve(searchParams);
+  const stations = await getStations();
   const audioId = params?.id ?? null;
 
   let title = 'Radio cloud';
