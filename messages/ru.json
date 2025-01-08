@@ -59,7 +59,8 @@
     "loading": "Загрузка..."
   },
   "settings": {
-    "changeTheme": "Сменить тему"
+    "changeTheme": "Сменить тему",
+    "chooseLanguage": "Выберите язык"
   },
   "trends": {
     "title": "Популярные станции",

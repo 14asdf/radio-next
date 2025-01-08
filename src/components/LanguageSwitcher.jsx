@@ -14,12 +14,14 @@ import {
   DialogBody,
   DialogCloseTrigger,
 } from './ui/dialog';
+import { useTranslations } from 'next-intl';
 
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const t = useTranslations('settings');
 
   const languages = {
     en: 'English',
@@ -82,7 +84,7 @@ export default function LanguageSwitcher() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle _dark={{ color: '#fff' }} fontSize="2xl">
-              Choose Language
+              {t('chooseLanguage')}
             </DialogTitle>
             <DialogCloseTrigger>
               <IoCloseOutline />

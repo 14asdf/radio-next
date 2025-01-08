@@ -59,7 +59,8 @@
     "loading": "Loading..."
   },
   "settings": {
-    "changeTheme": "Change theme"
+    "changeTheme": "Change theme",
+    "chooseLanguage": "Choose Language"
   },
   "trends": {
     "title": "Trending Stations",
