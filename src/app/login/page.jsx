@@ -1,18 +1,12 @@
-'use client';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Login from '@/components/Login';
-import { useAuth } from '@/contexts/AuthContext';
+import { generatePageMetadata } from '@/utils/metadata';
+
+export const metadata = generatePageMetadata({
+  title: 'Login',
+  description:
+    'Sign in to Radio Cloud to access your favorite radio stations and personalized features',
+});
 
 export default function LoginPage() {
-  const router = useRouter();
-  const { user } = useAuth();
-
-  useEffect(() => {
-    if (user) {
-      router.push('/profile');
-    }
-  }, [user, router]);
-
   return <Login />;
 }

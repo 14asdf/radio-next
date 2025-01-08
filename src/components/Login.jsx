@@ -16,9 +16,18 @@ import { useAuth } from '../contexts/AuthContext';
 import { auth, db } from '../firebase/config';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
-  const { setUser } = useAuth();
+  const router = useRouter();
+  const { user, setUser } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      router.push('/profile');
+    }
+  }, [user, router]);
 
   const handleGoogleLogin = async () => {
     try {

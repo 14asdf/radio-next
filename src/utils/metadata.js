@@ -1,4 +1,8 @@
-export function generatePageMetadata({ title: pageTitle, image: pageImage }) {
+export function generatePageMetadata({
+  title: pageTitle,
+  image: pageImage,
+  description: pageDescription,
+}) {
   const defaultTitle = 'Radio cloud';
   const defaultImage = '/android-chrome-192x192.png';
   const defaultDescription =
@@ -6,7 +10,7 @@ export function generatePageMetadata({ title: pageTitle, image: pageImage }) {
 
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
   const image = pageImage || defaultImage;
-  const description = defaultDescription;
+  const description = pageDescription || defaultDescription;
 
   return {
     title,

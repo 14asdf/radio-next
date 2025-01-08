@@ -7,6 +7,7 @@ export async function generateMetadata({ params }) {
 
   return generatePageMetadata({
     title: `${formattedTag} Radio Stations`,
+    description: `Listen to the best ${formattedTag.toLowerCase()} radio stations. Stream live ${formattedTag.toLowerCase()} music online for free.`,
   });
 }
 
