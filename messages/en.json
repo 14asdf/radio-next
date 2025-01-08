@@ -56,7 +56,8 @@
     },
     "nowPlaying": "Now Playing",
     "noStation": "No station selected",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "logo": "Radio Cloud"
   },
   "settings": {
     "changeTheme": "Change theme",

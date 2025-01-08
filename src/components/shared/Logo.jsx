@@ -1,14 +1,17 @@
 'use client';
 import { Box } from '@chakra-ui/react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 const Logo = () => {
+  const t = useTranslations('main');
+
   return (
     <Box display="inline-flex" cursor="pointer" as={Link} href="/">
       <svg
-        width="130"
+        width="140"
         height="32"
-        viewBox="0 0 130 32"
+        viewBox="0 0 140 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -33,7 +36,7 @@ const Logo = () => {
           fontSize="16"
           fontWeight="600"
         >
-          Radio cloud
+          {t('logo')}
         </text>
       </svg>
     </Box>
