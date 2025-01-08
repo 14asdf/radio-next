@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Text, Spinner, Badge, Image } from '@chakra-ui/react';
-import { RiPlayFill } from 'react-icons/ri';
+import { RiPlayFill, RiPauseFill } from 'react-icons/ri';
 import Link from 'next/link';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { createAvatarUrl, encodeUrl } from '../utils';
@@ -10,7 +10,14 @@ import { createAvatarUrl, encodeUrl } from '../utils';
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
   const [isLoading, setIsLoading] = useState(true);
-  const { togglePlay } = useAudioPlayer();
+  const { togglePlay, playerState } = useAudioPlayer();
+
+  const isPlaying = useMemo(() => {
+    return (
+      playerState.isPlaying &&
+      playerState.currentStation?.streamUrl === station.streamUrl
+    );
+  }, [playerState, station.streamUrl]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,7 +100,11 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
             _hover={{ opacity: 1 }}
             transition="opacity 0.2s"
           >
-            <RiPlayFill color="white" size="30px" />
+            {isPlaying ? (
+              <RiPauseFill color="white" size="30px" />
+            ) : (
+              <RiPlayFill color="white" size="30px" />
+            )}
           </Box>
         </Box>
       )}

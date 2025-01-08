@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Box, Text, Stack, Icon, useBreakpointValue } from '@chakra-ui/react';
-import { RiPlayFill } from 'react-icons/ri';
+import { RiPlayFill, RiPauseFill } from 'react-icons/ri';
 import Link from 'next/link';
 import { createAvatarUrl, encodeUrl } from '../utils';
 import _ from 'lodash';
@@ -14,13 +14,20 @@ import { getGenreColor } from '../utils/colors';
 const StationAvatar = React.memo(({ station }) => {
   const { playerState, togglePlay } = useAudioPlayer();
 
-  const handleClick = (e) => {
-    e.stopPropagation(); // Stop event bubbling
-    e.preventDefault(); // Prevent link navigation
+  const isPlaying = useMemo(() => {
+    return (
+      playerState.isPlaying &&
+      playerState.currentStation?.streamUrl === station.streamUrl
+    );
+  }, [playerState, station.streamUrl]);
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     const audioId = encodeUrl(station.streamUrl);
     togglePlay(audioId);
   };
+
   return (
     <Box position="relative" onClick={handleClick}>
       <Avatar
@@ -47,7 +54,11 @@ const StationAvatar = React.memo(({ station }) => {
         _hover={{ opacity: 1 }}
         transition="opacity 0.2s"
       >
-        <RiPlayFill color="white" size="20px" />
+        {isPlaying ? (
+          <RiPauseFill color="white" size="20px" />
+        ) : (
+          <RiPlayFill color="white" size="20px" />
+        )}
       </Box>
     </Box>
   );
