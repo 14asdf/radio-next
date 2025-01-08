@@ -23,11 +23,13 @@ import { useStations } from '@/contexts/StationsContext';
 import StationSearchRow from '@/components/StationSearchRow';
 import { debounce } from 'lodash';
 import { useTranslations } from 'next-intl';
+import genres from '../../messages/ru.json';
 
 const SearchResults = React.memo(
   () => {
     const { stations } = useStations();
     const searchParams = useSearchParams();
+    const t = useTranslations('search');
     const searchTerm = searchParams.get('q') || '';
     const searchType = searchParams.get('type') || 'all';
 
@@ -37,6 +39,9 @@ const SearchResults = React.memo(
 
     const searchTermLower = searchTerm.toLowerCase().trim();
 
+    // Get all genre keys and their translations
+    const genreMap = genres.genres;
+
     const filteredStations = React.useMemo(() => {
       if (!searchTerm) return [];
 
@@ -45,15 +50,30 @@ const SearchResults = React.memo(
           case 'name':
             return station.title.toLowerCase().includes(searchTermLower);
           case 'genre':
-            return station.tags?.toLowerCase().includes(searchTermLower);
+            return station.tags?.split(',').some((tag) => {
+              const trimmedTag = tag.trim();
+              // Check if the search term matches either the original tag or its translation
+              return (
+                genreMap[trimmedTag]?.toLowerCase().includes(searchTermLower) ||
+                trimmedTag.toLowerCase().includes(searchTermLower)
+              );
+            });
           default: // 'all'
             return (
               station.title.toLowerCase().includes(searchTermLower) ||
-              station.tags?.toLowerCase().includes(searchTermLower)
+              station.tags?.split(',').some((tag) => {
+                const trimmedTag = tag.trim();
+                return (
+                  genreMap[trimmedTag]
+                    ?.toLowerCase()
+                    .includes(searchTermLower) ||
+                  trimmedTag.toLowerCase().includes(searchTermLower)
+                );
+              })
             );
         }
       });
-    }, [stations, searchTermLower, searchType]);
+    }, [stations, searchTermLower, searchType, genreMap]);
 
     const handleLoadMore = useCallback(() => {
       if (!isLoading && filteredStations.length > visibleItems) {
@@ -94,8 +114,6 @@ const SearchResults = React.memo(
 
       return () => observer.disconnect();
     }, [handleLoadMore, isLoading, filteredStations.length, visibleItems]);
-
-    const t = useTranslations('search');
 
     return (
       <Box key={searchTerm} ref={containerRef}>
