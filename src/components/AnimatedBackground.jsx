@@ -121,9 +121,10 @@ export default function AnimatedBackground() {
     function createCanvas() {
       canvas = {
         a: document.createElement('canvas'),
-        b: document.createElement('canvas'),
       };
-      canvas.b.style = `
+
+      // Основной canvas
+      canvas.a.style = `
         position: absolute;
         top: 0;
         left: 0;
@@ -131,16 +132,27 @@ export default function AnimatedBackground() {
         height: 100%;
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
-        overflow: hidden;
       `;
-      canvas.a.style = `
+
+      // Создаем div для blur эффекта
+      const blurOverlay = document.createElement('div');
+      blurOverlay.style = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
       `;
-      containerRef.current.appendChild(canvas.b);
+
+      containerRef.current.appendChild(canvas.a);
+      containerRef.current.appendChild(blurOverlay);
+
       ctx = {
         a: canvas.a.getContext('2d'),
-        b: canvas.b.getContext('2d'),
       };
     }
 
@@ -151,13 +163,6 @@ export default function AnimatedBackground() {
 
       canvas.a.width = width;
       canvas.a.height = height;
-
-      ctx.a.drawImage(canvas.b, 0, 0);
-
-      canvas.b.width = width;
-      canvas.b.height = height;
-
-      ctx.b.drawImage(canvas.a, 0, 0);
     }
 
     function render() {
@@ -169,10 +174,7 @@ export default function AnimatedBackground() {
 
     function draw() {
       ctx.a.clearRect(0, 0, canvas.a.width, canvas.a.height);
-      ctx.b.fillStyle = backgroundColor;
-      ctx.b.fillRect(0, 0, canvas.b.width, canvas.b.height);
       updateCircles();
-      render();
     }
 
     // Setup
