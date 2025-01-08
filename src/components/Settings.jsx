@@ -94,7 +94,7 @@ export default function Settings() {
             </DialogCloseTrigger>
           </DialogHeader>
           <DialogBody>
-            <Box display="flex" gap={4} mt="4">
+            <Box display="flex" gap={4} mt="4" flexWrap="wrap">
               {Object.entries(languages).map(([locale, name]) => (
                 <Button
                   key={locale}
