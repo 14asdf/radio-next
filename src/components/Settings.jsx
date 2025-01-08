@@ -114,17 +114,26 @@ export default function Settings() {
           <Separator />
 
           <DialogBody>
-            <Box display="flex" gap={4} mt="4" flexWrap="wrap">
-              {Object.entries(languages).map(([locale, name]) => (
-                <Button
-                  key={locale}
-                  size="2xl"
-                  variant="ghost"
-                  onClick={() => handleLocaleChange(locale)}
-                >
-                  <Text>{name}</Text>
-                </Button>
-              ))}
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <Box
+                display="grid"
+                gridTemplateColumns="repeat(3, 1fr)"
+                gap={4}
+                mt="4"
+                width="fit-content"
+              >
+                {Object.entries(languages).map(([locale, name]) => (
+                  <Button
+                    key={locale}
+                    size="2xl"
+                    variant="ghost"
+                    onClick={() => handleLocaleChange(locale)}
+                    width="120px"
+                  >
+                    <Text>{name}</Text>
+                  </Button>
+                ))}
+              </Box>
             </Box>
           </DialogBody>
         </DialogContent>
