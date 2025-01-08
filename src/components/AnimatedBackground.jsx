@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
 import { Box } from '@chakra-ui/react';
+import gsap from 'gsap';
 
 const TAU = Math.PI * 2;
 const rand = (n) => Math.random() * n;
@@ -12,7 +13,7 @@ const fadeInOut = (t, m) => {
 
 export default function AnimatedBackground() {
   const containerRef = useRef(null);
-  const animationFrameRef = useRef(null);
+  const tickerRef = useRef(null);
 
   useEffect(() => {
     const circleCount = 150;
@@ -170,14 +171,14 @@ export default function AnimatedBackground() {
       ctx.b.fillRect(0, 0, canvas.b.width, canvas.b.height);
       updateCircles();
       render();
-      animationFrameRef.current = window.requestAnimationFrame(draw);
     }
 
     // Setup
     createCanvas();
     resize();
     initCircles();
-    draw();
+
+    tickerRef.current = gsap.ticker.add(draw);
 
     window.addEventListener('resize', resize);
 
@@ -186,8 +187,8 @@ export default function AnimatedBackground() {
       if (containerRef.current) {
         containerRef.current.innerHTML = '';
       }
-      if (animationFrameRef.current) {
-        window.cancelAnimationFrame(animationFrameRef.current);
+      if (tickerRef.current) {
+        gsap.ticker.remove(tickerRef.current);
       }
     };
   }, []);
