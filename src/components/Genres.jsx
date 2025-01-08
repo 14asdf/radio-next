@@ -40,7 +40,7 @@ const Genre = () => {
   const bgColor = useMemo(() => getGenreColor(tag), []);
 
   const handleBack = () => {
-    router.back();
+    router.push('/');
   };
 
   const [displayedStations, setDisplayedStations] = useState([]);
