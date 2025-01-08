@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { Box, Text, Stack } from '@chakra-ui/react';
 import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import Link from 'next/link';
-import { createAvatarUrl, encodeUrl } from '../utils';
+import { createAvatarUrl, encodeUrl } from '../utils/stations';
 import _ from 'lodash';
 import { AvatarGroup, Avatar } from '../components/ui/avatar';
 import { sampleSize } from 'lodash';

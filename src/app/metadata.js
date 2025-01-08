@@ -1,8 +1,6 @@
-import { findStation, decodeUrl } from '../utils/stations';
-import './styles.css';
+import { findStation } from '../utils/stations';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
-import Stations from '@/components/Stations';
 
 let stationsCache = null;
 
@@ -20,10 +18,12 @@ async function getStations() {
   }
 }
 
-export async function generateMetadata({ searchParams }) {
-  const params = await Promise.resolve(searchParams);
+export async function generateMetadata(
+  { params, searchParams } = {},
+  customTitle = null
+) {
   const stations = await getStations();
-  const audioId = params?.id ?? null;
+  const audioId = searchParams?.id || null;
 
   let title = 'Radio cloud';
   let image = '/android-chrome-192x192.png';
@@ -34,6 +34,8 @@ export async function generateMetadata({ searchParams }) {
       title = `${station.title} | Radio cloud`;
       image = station.img || image;
     }
+  } else if (customTitle) {
+    title = `${customTitle} | Radio cloud`;
   }
 
   const description =
@@ -61,8 +63,4 @@ export async function generateMetadata({ searchParams }) {
       'telegram-channel:description': description,
     },
   };
-}
-
-export default function HomePage() {
-  return <Stations />;
 }

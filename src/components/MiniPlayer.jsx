@@ -20,7 +20,12 @@ import {
   IoPlaySkipForwardOutline,
 } from 'react-icons/io5';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
-import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
+import {
+  createAvatarUrl,
+  decodeUrl,
+  findStation,
+  encodeUrl,
+} from '@/utils/stations';
 import Link from 'next/link';
 
 import { Slider } from '@/components/ui/slider';

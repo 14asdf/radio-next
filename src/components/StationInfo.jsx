@@ -24,7 +24,7 @@ import {
   findStation,
   generateUUID,
   createAvatarUrl,
-} from '../utils'; // Assuming utility functions are in utils.js
+} from '../utils/stations'; // Assuming utility functions are in utils.js
 import Share from './Share';
 import _ from 'lodash';
 

@@ -7,7 +7,7 @@ import React, {
   useState,
   useCallback,
 } from 'react';
-import { findStation, decodeUrl, encodeUrl } from '../utils';
+import { findStation, decodeUrl, encodeUrl } from '../utils/stations';
 import { useStations } from './StationsContext';
 
 const AudioPlayerContext = createContext();

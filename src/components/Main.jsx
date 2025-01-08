@@ -18,7 +18,7 @@ import {
 } from 'react-icons/ri';
 import Link from 'next/link';
 
-import { decodeUrl, encodeUrl } from '../utils';
+import { decodeUrl, encodeUrl } from '../utils/stations';
 
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import MiniPlayer from './MiniPlayer';

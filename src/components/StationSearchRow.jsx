@@ -5,7 +5,7 @@ import { Box, Text, Spinner, Badge, Image } from '@chakra-ui/react';
 import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import Link from 'next/link';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
-import { createAvatarUrl, encodeUrl } from '../utils';
+import { createAvatarUrl, encodeUrl } from '../utils/stations';
 
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));

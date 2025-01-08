@@ -1,7 +1,7 @@
 import { Box, Image, Text, VStack } from '@chakra-ui/react';
 import { RiPlayFill } from 'react-icons/ri';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
-import { createAvatarUrl, encodeUrl } from '../utils';
+import { createAvatarUrl, encodeUrl } from '../utils/stations';
 
 const StationCard = ({ station }) => {
   const { playerState, togglePlay } = useAudioPlayer();

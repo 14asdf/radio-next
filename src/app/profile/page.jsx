@@ -19,7 +19,7 @@ import { db, auth } from '@/firebase/config';
 import { useRouter } from 'next/navigation';
 import StationSearchRow from '@/components/StationSearchRow';
 import { useStations } from '@/contexts/StationsContext';
-import { findStation } from '@/utils';
+import { findStation } from '@/utils/stations';
 import { AvatarGroup, Avatar } from '@/components/ui/avatar';
 import { useFavorites } from '@/hooks/useFavorites';
 import {

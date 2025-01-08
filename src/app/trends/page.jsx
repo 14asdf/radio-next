@@ -16,7 +16,7 @@ import { db } from '@/firebase/config';
 import StationSearchRow from '@/components/StationSearchRow';
 import { useStations } from '@/contexts/StationsContext';
 import { AvatarGroup, Avatar } from '@/components/ui/avatar';
-import { encodeUrl } from '@/utils';
+import { encodeUrl } from '@/utils/stations';
 import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
 import { MenuRoot, MenuTrigger, MenuContent } from '@/components/ui/menu';
 import { sampleSize } from 'lodash';

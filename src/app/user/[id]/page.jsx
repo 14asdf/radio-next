@@ -4,7 +4,7 @@ import { ref, onValue } from 'firebase/database';
 import { db } from '@/firebase/config';
 import { Box, VStack, Heading, Text, SimpleGrid } from '@chakra-ui/react';
 import { useStations } from '@/contexts/StationsContext';
-import { decodeUrl, findStation } from '@/utils';
+import { decodeUrl, findStation } from '@/utils/stations';
 import { Avatar } from '@/components/ui/avatar';
 import StationSearchRow from '@/components/StationSearchRow';
 
