@@ -34,5 +34,16 @@
       "name": "Название",
       "genre": "Жанр"
     }
+  },
+  "main": {
+    "navigation": {
+      "home": "Главная",
+      "search": "Поиск",
+      "favorites": "Избранное",
+      "settings": "Настройки"
+    },
+    "nowPlaying": "Сейчас играет",
+    "noStation": "Станция не выбрана",
+    "loading": "Загрузка..."
   }
 }

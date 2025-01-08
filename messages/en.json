@@ -34,5 +34,16 @@
       "name": "Name",
       "genre": "Genre"
     }
+  },
+  "main": {
+    "navigation": {
+      "home": "Home",
+      "search": "Search",
+      "favorites": "Favorites",
+      "settings": "Settings"
+    },
+    "nowPlaying": "Now Playing",
+    "noStation": "No station selected",
+    "loading": "Loading..."
   }
 }

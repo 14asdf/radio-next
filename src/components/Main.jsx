@@ -25,8 +25,10 @@ import MiniPlayer from './MiniPlayer';
 import Logo from './shared/Logo';
 import { useAuth } from '../contexts/AuthContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslations } from 'next-intl';
 
 const Main = ({ children }) => {
+  const t = useTranslations('main.navigation');
   // Accept children prop
   const { playerState, togglePlay } = useAudioPlayer();
   const { isPlaying, currentStation } = playerState;
@@ -111,7 +113,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiHomeLine size={24} />
               )}
-              <Text>Home</Text>
+              <Text>{t('home')}</Text>
             </Button>
             <Button
               as={Link}
@@ -129,7 +131,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiSearchLine size={24} />
               )}
-              <Text>Search</Text>
+              <Text>{t('search')}</Text>
             </Button>
             <Button
               as={Link}
@@ -147,7 +149,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiUserLine size={24} />
               )}
-              <Text>Profile</Text>
+              <Text>{t('favorites')}</Text>
             </Button>
             <Button
               as={Link}
@@ -165,7 +167,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiBarChartLine size={24} />
               )}
-              <Text>Trends</Text>
+              <Text>{t('settings')}</Text>
             </Button>
             <ColorModeButton size="lg" width="full" borderRadius="full" />
 
@@ -201,7 +203,7 @@ const Main = ({ children }) => {
                 href="/"
                 variant="ghost"
                 borderRadius="full"
-                aria-label="Home"
+                aria-label={t('home')}
               >
                 {pathname === '/' && !searchParams.get('id') ? (
                   <RiHomeFill size={24} />
@@ -214,7 +216,7 @@ const Main = ({ children }) => {
                 href="/search"
                 variant="ghost"
                 borderRadius="full"
-                aria-label="Search"
+                aria-label={t('search')}
               >
                 {pathname === '/search' ? (
                   <RiSearchFill size={24} />
@@ -227,7 +229,7 @@ const Main = ({ children }) => {
                 href="/profile"
                 variant="ghost"
                 borderRadius="full"
-                aria-label="Profile"
+                aria-label={t('favorites')}
               >
                 {pathname === '/profile' ? (
                   <RiUserFill size={24} />
@@ -240,7 +242,7 @@ const Main = ({ children }) => {
                 href="/trends"
                 variant="ghost"
                 borderRadius="full"
-                aria-label="Trends"
+                aria-label={t('settings')}
               >
                 {pathname === '/trends' ? (
                   <RiBarChartFill size={24} />
