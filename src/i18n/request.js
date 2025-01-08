@@ -13,15 +13,18 @@ import { getRequestConfig } from 'next-intl/server';
  *   - messages: Loaded translations for the detected locale
  */
 export default getRequestConfig(async () => {
-  let locale = 'en';
+  let locale = 'en'; // Default locale
 
   try {
-    const headersList = headers();
-    const acceptLanguage = headersList.get('accept-language');
+    // Get headers asynchronously
+    const headersList = await headers();
 
-    // console.log('Headers available:', headersList.entries());
-    // locale = acceptLanguage?.split(',')[0].split('-')[0] || 'en';
-    // console.log('Detected locale:', locale);
+    // Try to get locale from headers one at a time
+    const xLocale = headersList.get('x-locale');
+    const xNextLocale = headersList.get('x-next-locale');
+
+    // Use the first available locale value
+    locale = xLocale || xNextLocale || 'en';
   } catch (error) {
     console.error('Error accessing headers:', error);
   }
