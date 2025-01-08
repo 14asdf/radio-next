@@ -23,6 +23,10 @@
     "trends": {
       "title": "Trending Radio Stations",
       "description": "Discover the most popular and trending radio stations right now. Listen to what others are enjoying - from hit music to breaking news and live sports broadcasts."
+    },
+    "login": {
+      "title": "Login to Radio Cloud",
+      "description": "Sign in to Radio Cloud to access your favorite radio stations and personalized features"
     }
   },
   "home": {
@@ -155,5 +159,9 @@
   "comments": {
     "placeholder": "Write a comment...",
     "post": "Post"
+  },
+  "auth": {
+    "loginTo": "Login to",
+    "continueWithGoogle": "Continue with Google"
   }
 }

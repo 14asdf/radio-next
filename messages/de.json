@@ -23,6 +23,10 @@
     "trends": {
       "title": "Beliebte Radiosender",
       "description": "Entdecken Sie die aktuell beliebtesten Radiosender. Hören Sie, was andere hören - von Hitmusik bis zu aktuellen Nachrichten und Live-Sportübertragungen."
+    },
+    "login": {
+      "title": "Anmelden bei Radio Cloud",
+      "description": "Melden Sie sich bei Radio Cloud an, um auf Ihre Lieblingssender und personalisierten Funktionen zuzugreifen"
     }
   },
   "home": {
@@ -155,5 +159,9 @@
     "hot_adult_contemporary": "hot adult contemporary",
     "campus_radio": "campus radio",
     "npr": "npr"
+  },
+  "auth": {
+    "loginTo": "Anmelden bei",
+    "continueWithGoogle": "Weiter mit Google"
   }
 }

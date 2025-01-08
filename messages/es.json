@@ -23,6 +23,10 @@
     "trends": {
       "title": "Emisoras Tendencia",
       "description": "Descubre las emisoras de radio más populares del momento. Escucha lo que otros disfrutan - desde música de éxito hasta noticias y transmisiones deportivas en vivo."
+    },
+    "login": {
+      "title": "Iniciar sesión en Radio Cloud",
+      "description": "Inicia sesión en Radio Cloud para acceder a tus emisoras favoritas y funciones personalizadas"
     }
   },
   "home": {
@@ -155,5 +159,9 @@
     "hot_adult_contemporary": "contemporánea adulta actual",
     "campus_radio": "radio universitaria",
     "npr": "npr"
+  },
+  "auth": {
+    "loginTo": "Iniciar sesión en",
+    "continueWithGoogle": "Continuar con Google"
   }
 }

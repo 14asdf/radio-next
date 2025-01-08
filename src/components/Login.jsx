@@ -18,10 +18,12 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 const Login = () => {
   const router = useRouter();
   const { user, setUser } = useAuth();
+  const t = useTranslations('auth');
 
   useEffect(() => {
     if (user) {
@@ -63,7 +65,7 @@ const Login = () => {
           >
             {/* Logo */}
             <Center gap="2">
-              <Text fontSize="xl">Login to</Text>
+              <Text fontSize="xl">{t('loginTo')}</Text>
               <Logo />
             </Center>
 
@@ -78,7 +80,7 @@ const Login = () => {
                 w="100%"
               >
                 <FcGoogle size={20} />
-                Continue with Google
+                {t('continueWithGoogle')}
               </Button>
             </VStack>
           </VStack>
