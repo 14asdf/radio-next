@@ -14,12 +14,14 @@ import {
   DialogBody,
   DialogCloseTrigger,
 } from './ui/dialog';
+import { useRouter } from 'next/navigation';
 
 export default function Settings() {
   const t = useTranslations('settings');
   const { toggleColorMode } = useColorMode();
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
+  const router = useRouter();
 
   const languages = {
     en: 'English',
@@ -38,7 +40,7 @@ export default function Settings() {
 
   const handleLocaleChange = (newLocale) => {
     document.cookie = `NEXT_LOCALE=${newLocale};path=/;sameSite=strict`;
-    window.location.reload();
+    router.refresh();
     setIsOpen(false);
   };
 

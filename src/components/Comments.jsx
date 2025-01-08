@@ -114,7 +114,7 @@ const Comments = ({ stationId }) => {
     <Box>
       {/* Comment Input */}
       {user && (
-        <HStack spacing={3} m="6">
+        <HStack spacing={3} m={{ base: '6', sm: '2' }}>
           <form onSubmit={handleCommentSubmit} style={{ width: '100%' }}>
             <HStack w="100%">
               <Textarea
