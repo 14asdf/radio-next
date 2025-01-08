@@ -18,80 +18,143 @@ export function AudioPlayerProvider({ children }) {
     isPlaying: false,
     currentStation: null,
     volume: 1,
+    isLoading: false,
   });
 
   const audioRef = useRef(null);
 
-  const handlePlay = useCallback(async (station) => {
-    if (audioRef.current) {
+  const handlePlay = useCallback(
+    async (station) => {
+      if (!audioRef.current || playerState.isLoading) return;
+
+      // Validate station and streamUrl
+      if (!station || !station.streamUrl) {
+        console.error('Invalid station or URL:', station);
+        setPlayerState((prev) => ({
+          ...prev,
+          isPlaying: false,
+          isLoading: false,
+          error: 'Invalid station URL',
+        }));
+        return;
+      }
+
       try {
-        await audioRef.current.play();
+        // Set loading state and current station immediately
+        setPlayerState((prev) => ({
+          ...prev,
+          isLoading: true,
+          currentStation: station, // Set current station before loading
+          error: null,
+        }));
+
+        // Reset audio element completely
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current.load();
+
+        // Set new source directly
+        console.log('Attempting to play URL:', station.streamUrl);
+        audioRef.current.src = station.streamUrl;
+
+        // Create a promise that resolves when audio is ready or errors
+        const loadPromise = new Promise((resolve, reject) => {
+          const loadTimeout = setTimeout(() => {
+            reject(new Error('Audio load timeout'));
+          }, 10000);
+
+          const handleCanPlay = () => {
+            clearTimeout(loadTimeout);
+            resolve();
+          };
+
+          const handleError = (error) => {
+            clearTimeout(loadTimeout);
+            console.error('Audio load error:', error);
+            const errorDetails =
+              audioRef.current?.error?.message ||
+              error.message ||
+              'Unknown error';
+            reject(new Error(`Failed to load audio: ${errorDetails}`));
+          };
+
+          audioRef.current.addEventListener('canplay', handleCanPlay, {
+            once: true,
+          });
+          audioRef.current.addEventListener('error', handleError, {
+            once: true,
+          });
+        });
+
+        await loadPromise;
+
+        try {
+          await audioRef.current.play();
+        } catch (playError) {
+          throw new Error(`Playback failed: ${playError.message}`);
+        }
+
         setPlayerState((prev) => ({
           ...prev,
           isPlaying: true,
           currentStation: station,
+          isLoading: false,
+          error: null,
         }));
-
-        if ('mediaSession' in navigator && station) {
-          navigator.mediaSession.metadata = new MediaMetadata({
-            title: station.title || 'Unknown Station',
-            artist: 'Radio cloud',
-            album: 'Live Streaming',
-            artwork: [
-              {
-                src:
-                  station?.img ||
-                  'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album',
-                sizes: '512x512',
-                type: 'image/png',
-              },
-            ],
-          });
-        }
       } catch (error) {
-        console.warn('Playback failed:', error);
-        setPlayerState((prev) => ({ ...prev, isPlaying: false }));
+        console.error('Playback failed:', error);
+
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.src = '';
+          audioRef.current.load();
+        }
+
+        setPlayerState((prev) => ({
+          ...prev,
+          isPlaying: false,
+          isLoading: false,
+          error: error.message || 'Failed to play audio',
+        }));
       }
-    }
-  }, []);
+    },
+    [playerState.isLoading]
+  );
 
   const handlePause = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
+    if (!audioRef.current || playerState.isLoading) return;
+
+    audioRef.current.pause();
     setPlayerState((prev) => ({ ...prev, isPlaying: false }));
-  }, []);
+  }, [playerState.isLoading]);
 
   const togglePlay = async (audioId) => {
-    const audioSrc = decodeUrl(audioId);
-    const station = findStation(audioId, stations);
-    const isNewStation =
-      playerState.currentStation === null ||
-      encodeUrl(playerState.currentStation.streamUrl) !== audioId;
+    if (playerState.isLoading) return;
 
-    if (audioRef.current) {
-      try {
-        if (isNewStation) {
-          // Update player state before changing audio source
-          setPlayerState((prev) => ({
-            ...prev,
-            currentStation: station,
-            isPlaying: true,
-          }));
-          await audioRef.current.pause();
-          audioRef.current.src = audioSrc;
-          handlePlay(station);
+    try {
+      const station = findStation(audioId, stations);
+      const isNewStation =
+        playerState.currentStation === null ||
+        encodeUrl(playerState.currentStation.streamUrl) !== audioId;
+
+      if (!audioRef.current) return;
+
+      if (isNewStation) {
+        await handlePlay(station);
+      } else {
+        if (playerState.isPlaying) {
+          handlePause();
         } else {
-          if (playerState.isPlaying) {
-            handlePause();
-          } else {
-            handlePlay(station);
-          }
+          await handlePlay(station);
         }
-      } catch (error) {
-        console.warn('Toggle play failed:', error);
-        setPlayerState((prev) => ({ ...prev, isPlaying: false }));
       }
+    } catch (error) {
+      console.error('Toggle play error:', error);
+      setPlayerState((prev) => ({
+        ...prev,
+        isPlaying: false,
+        isLoading: false,
+      }));
     }
   };
 
@@ -117,10 +180,25 @@ export function AudioPlayerProvider({ children }) {
     >
       <audio
         ref={audioRef}
-        onPlay={() => handlePlay(playerState.currentStation)}
-        onPause={handlePause}
-        onError={(e) => console.error('Audio playback error:', e)}
+        onPlay={() =>
+          !playerState.isLoading && handlePlay(playerState.currentStation)
+        }
+        onPause={() => !playerState.isLoading && handlePause()}
+        onError={(e) => {
+          console.error('Audio error:', e);
+          setPlayerState((prev) => ({
+            ...prev,
+            isPlaying: false,
+            isLoading: false,
+            error: 'Audio playback error',
+          }));
+        }}
+        onStalled={() => {
+          console.warn('Audio stalled');
+          handlePlay(playerState.currentStation);
+        }}
         volume={playerState.volume}
+        preload="auto"
       />
       {children}
     </AudioPlayerContext.Provider>

@@ -177,7 +177,13 @@ const MiniPlayer = ({ audioId }) => {
             size="sm"
             cursor="pointer"
           >
-            {playerState.isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+            {playerState.isLoading ? (
+              <Spinner size="sm" />
+            ) : playerState.isPlaying ? (
+              <IoPauseOutline />
+            ) : (
+              <IoPlayOutline />
+            )}
           </IconButton>
 
           <IconButton
