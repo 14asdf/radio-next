@@ -44,7 +44,7 @@ const GenrePage = () => {
   const [displayedStations, setDisplayedStations] = useState([]);
   const stationsPerPage = 20;
 
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(true);
   const [hasMore, setHasMore] = useState(true);
 
   const handleLoadMore = useCallback(() => {
@@ -96,10 +96,12 @@ const GenrePage = () => {
   useEffect(() => {
     setDisplayedStations([]);
     setHasMore(true);
+    setIsLoadingMore(true);
 
     const initialStations = genreStations.slice(0, stationsPerPage);
     setDisplayedStations(initialStations);
     setHasMore(initialStations.length === stationsPerPage);
+    setIsLoadingMore(false);
   }, [genreStations, stationsPerPage]);
 
   return (
