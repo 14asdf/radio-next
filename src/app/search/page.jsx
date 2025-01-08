@@ -96,8 +96,12 @@ const SearchResults = React.memo(
 
     return (
       <Box key={searchTerm} ref={containerRef}>
-        {!searchTerm ? null : filteredStations.length === 0 ? (
-          <Text fontSize={25} textAlign="center" mt={4}>
+        {!searchTerm ? (
+          <Text fontSize={25} textAlign="center" mt={6}>
+            Find stations by name or genre
+          </Text>
+        ) : filteredStations.length === 0 ? (
+          <Text fontSize={25} textAlign="center" mt={6}>
             No
             {searchType === 'all'
               ? ' stations '
