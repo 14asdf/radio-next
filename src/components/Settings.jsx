@@ -17,7 +17,7 @@ export default function Settings() {
         <Text mb={2} fontWeight="semibold">
           {t('appearance')}
         </Text>
-        <ColorModeButton size="lg" width="full" borderRadius="full" />
+        <ColorModeButton borderRadius="full" />
       </Box>
 
       <Box>

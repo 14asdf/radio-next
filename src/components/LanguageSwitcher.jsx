@@ -66,17 +66,25 @@ export default function LanguageSwitcher() {
 
   return (
     <>
+      <IconButton
+        display={{ base: 'flex', xl: 'none' }}
+        variant="ghost"
+        borderRadius="full"
+        aria-label={t('language')}
+        onClick={() => setIsOpen(true)}
+      >
+        <PiGlobeHemisphereEastThin size={24} />
+      </IconButton>
       <Button
         variant="ghost"
         display={{ base: 'none', xl: 'flex' }}
         size="lg"
-        width="full"
         gap="3"
         justifyContent="flex-start"
         borderRadius="full"
         onClick={() => setIsOpen(true)}
       >
-        <PiGlobeHemisphereEastThin />
+        <PiGlobeHemisphereEastThin size={24} />
         <Text>{languages[currentLang]}</Text>
       </Button>
 
