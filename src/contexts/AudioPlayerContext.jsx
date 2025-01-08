@@ -22,32 +22,36 @@ export function AudioPlayerProvider({ children }) {
 
   const audioRef = useRef(null);
 
-  const handlePlay = useCallback((station) => {
+  const handlePlay = useCallback(async (station) => {
     if (audioRef.current) {
-      audioRef.current.play();
-    }
+      try {
+        await audioRef.current.play();
+        setPlayerState((prev) => ({
+          ...prev,
+          isPlaying: true,
+          currentStation: station,
+        }));
 
-    setPlayerState((prev) => ({
-      ...prev,
-      isPlaying: true,
-      currentStation: station,
-    }));
-
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: station.title,
-        artist: 'Radio cloud',
-        album: 'Live Streaming',
-        artwork: [
-          {
-            src:
-              station.img ||
-              'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      });
+        if ('mediaSession' in navigator && station) {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: station.title || 'Unknown Station',
+            artist: 'Radio cloud',
+            album: 'Live Streaming',
+            artwork: [
+              {
+                src:
+                  station?.img ||
+                  'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album',
+                sizes: '512x512',
+                type: 'image/png',
+              },
+            ],
+          });
+        }
+      } catch (error) {
+        console.warn('Playback failed:', error);
+        setPlayerState((prev) => ({ ...prev, isPlaying: false }));
+      }
     }
   }, []);
 
@@ -58,7 +62,7 @@ export function AudioPlayerProvider({ children }) {
     setPlayerState((prev) => ({ ...prev, isPlaying: false }));
   }, []);
 
-  const togglePlay = (audioId) => {
+  const togglePlay = async (audioId) => {
     const audioSrc = decodeUrl(audioId);
     const station = findStation(audioId, stations);
     const isNewStation =
@@ -66,17 +70,27 @@ export function AudioPlayerProvider({ children }) {
       encodeUrl(playerState.currentStation.streamUrl) !== audioId;
 
     if (audioRef.current) {
-      if (isNewStation) {
-        // New station - always play
-        audioRef.current.src = audioSrc;
-        handlePlay(station);
-      } else {
-        // Same station - toggle play state
-        if (playerState.isPlaying) {
-          handlePause();
-        } else {
+      try {
+        if (isNewStation) {
+          // Update player state before changing audio source
+          setPlayerState((prev) => ({
+            ...prev,
+            currentStation: station,
+            isPlaying: true,
+          }));
+          await audioRef.current.pause();
+          audioRef.current.src = audioSrc;
           handlePlay(station);
+        } else {
+          if (playerState.isPlaying) {
+            handlePause();
+          } else {
+            handlePlay(station);
+          }
         }
+      } catch (error) {
+        console.warn('Toggle play failed:', error);
+        setPlayerState((prev) => ({ ...prev, isPlaying: false }));
       }
     }
   };
