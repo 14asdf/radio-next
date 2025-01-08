@@ -279,7 +279,6 @@ export default function TrendsPage() {
                   src={user.userPhotoURL}
                   name={user.displayName}
                   cursor="pointer"
-                  _hover={{ opacity: 0.8 }}
                 />
               </Link>
             ))}

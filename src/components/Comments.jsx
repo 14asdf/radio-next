@@ -19,6 +19,7 @@ import {
   MenuItem,
 } from '@/components/ui/menu';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import Link from 'next/link';
 
 const Comments = ({ stationId }) => {
   const [comments, setComments] = useState([]);
@@ -143,11 +144,14 @@ const Comments = ({ stationId }) => {
         {comments.map((comment, index) => (
           <Box key={comment.key} mb={4}>
             <HStack align="start" spacing={3}>
-              <Avatar
-                size="sm"
-                src={usersData[comment.userId]?.photoURL}
-                name={comment.userName}
-              />
+              <Link href={`/user/${comment.userId}`}>
+                <Avatar
+                  size="sm"
+                  name={comment.userName}
+                  src={usersData[comment.userId]?.photoURL}
+                  cursor="pointer"
+                />
+              </Link>
               <Box flex="1">
                 <Box
                   bg="gray.100"
