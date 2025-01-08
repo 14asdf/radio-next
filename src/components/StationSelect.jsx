@@ -9,6 +9,7 @@ import { sampleSize } from 'lodash';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { useStations } from '../contexts/StationsContext';
 import { getGenreColor } from '../utils/colors';
+import { useTranslations } from 'next-intl';
 
 // Custom Avatar component with play icon on hover
 const StationAvatar = React.memo(({ station }) => {
@@ -66,6 +67,11 @@ const StationAvatar = React.memo(({ station }) => {
 
 // Genre Card component
 const GenreCard = React.memo(({ tag, stations }) => {
+  const t = useTranslations('genres');
+
+  // Convert tag to translation key format
+  const translationKey = tag.toLowerCase().replace(/[^a-z0-9]/g, '_');
+
   const [maxAvatars, setMaxAvatars] = useState(() =>
     window.innerWidth > 768 ? 5 : 3
   );
@@ -144,7 +150,7 @@ const GenreCard = React.memo(({ tag, stations }) => {
             width="100%"
             wordWrap="normal"
           >
-            {tag}
+            {t(translationKey)}
           </Text>
           <Box>{avatarGroup}</Box>
         </Stack>
