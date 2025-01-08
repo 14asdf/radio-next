@@ -6,6 +6,8 @@ import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import Link from 'next/link';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { createAvatarUrl, encodeUrl } from '../utils/stations';
+import { useTranslations } from 'next-intl';
+import genres from '../../messages/ru.json';
 
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
@@ -44,6 +46,9 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
     const audioId = encodeUrl(station.streamUrl);
     togglePlay(audioId);
   };
+
+  // Get genre translations
+  const genreMap = genres.genres;
 
   return (
     <Box
@@ -118,16 +123,20 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
               .split(',')
               .filter((tag) => tag.trim().length <= 10 && tag.length > 3)
               .slice(0, 3)
-              .map((tag) => (
-                <Badge
-                  key={tag}
-                  colorScheme="gray"
-                  variant="subtle"
-                  rounded={'full'}
-                >
-                  {tag.trim()}
-                </Badge>
-              ))}
+              .map((tag) => {
+                const trimmedTag = tag.trim();
+                const translatedTag = genreMap[trimmedTag] || trimmedTag;
+                return (
+                  <Badge
+                    key={tag}
+                    colorScheme="gray"
+                    variant="subtle"
+                    rounded={'full'}
+                  >
+                    {translatedTag}
+                  </Badge>
+                );
+              })}
           </Box>
         )}
       </Box>

@@ -30,6 +30,7 @@ import _ from 'lodash';
 
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import Comments from './Comments';
+import genres from '../../messages/ru.json';
 
 const StationInfo = ({ audioId }) => {
   const { playerState, togglePlay, currentStation } = useAudioPlayer();
@@ -44,6 +45,7 @@ const StationInfo = ({ audioId }) => {
   const { user } = useAuth();
   const { toggleFavorite, getFavorites } = useFavorites();
   const [isFavorite, setIsFavorite] = useState(false);
+  const genreMap = genres.genres;
 
   useEffect(() => {
     setIsLoading(true);
@@ -207,19 +209,23 @@ const StationInfo = ({ audioId }) => {
                     .map((tag) => tag.trim())
                     .filter((tag) => tag.length >= 3 && tag.length <= 10)
                     .slice(0, 3)
-                    .map((tag) => (
-                      <Badge
-                        key={generateUUID()}
-                        colorScheme="whiteAlpha"
-                        variant="solid"
-                        fontSize="sm"
-                        borderRadius="full"
-                        px={3}
-                        py={1}
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
+                    .map((tag) => {
+                      const trimmedTag = tag.trim();
+                      const translatedTag = genreMap[trimmedTag] || trimmedTag;
+                      return (
+                        <Badge
+                          key={generateUUID()}
+                          colorScheme="whiteAlpha"
+                          variant="solid"
+                          fontSize="sm"
+                          borderRadius="full"
+                          px={3}
+                          py={1}
+                        >
+                          {translatedTag}
+                        </Badge>
+                      );
+                    })}
                 </HStack>
 
                 {/* Share Button */}
