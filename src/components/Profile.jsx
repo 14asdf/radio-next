@@ -82,24 +82,39 @@ export default function Profile() {
         position="relative"
         h="300px"
         w="100%"
-        bg="purple.500"
-        _dark={{ bg: 'purple.800' }}
         borderTopRadius={16}
         display="flex"
         alignItems="center"
         justifyContent="center"
+        overflow="hidden"
       >
+        <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+          <defs>
+            <filter
+              id="blur-filter"
+              x="-100%"
+              y="-100%"
+              width="300%"
+              height="300%"
+              colorInterpolationFilters="sRGB"
+            >
+              <feGaussianBlur stdDeviation="300" edgeMode="none" />
+              <fePadding left="50%" right="50%" top="50%" bottom="50%" />
+            </filter>
+          </defs>
+        </svg>
+
         <Box
           position="absolute"
-          top="0"
-          left="0"
-          right="0"
-          bottom="0"
-          bg="linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%)"
-          _dark={{
-            bg: 'linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.95) 100%)',
-          }}
-          pointerEvents="none"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          style={{ filter: 'url(#blur-filter)' }}
+          backgroundImage={`url(${user?.photoURL})`}
+          backgroundSize="cover"
+          backgroundRepeat="no-repeat"
+          backgroundColor="gray.900"
         />
 
         <Box position="relative" zIndex={1}>
@@ -144,6 +159,7 @@ export default function Profile() {
           fontSize={{ base: '3xl', md: '4xl' }}
           fontWeight="bold"
           zIndex={1}
+          color="white"
         >
           {t('favoriteStations')}
         </Heading>
