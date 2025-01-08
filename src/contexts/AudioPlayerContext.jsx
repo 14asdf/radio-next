@@ -97,6 +97,24 @@ export function AudioPlayerProvider({ children }) {
 
       await audioRef.current.play();
 
+      // Add MediaSession API support
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: station.title,
+          artist: 'Radio cloud',
+          album: 'Live Streaming',
+          artwork: [
+            {
+              src:
+                station.img ||
+                'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album',
+              sizes: '512x512',
+              type: 'image/png',
+            },
+          ],
+        });
+      }
+
       setPlayerState((prev) => ({
         ...prev,
         isPlaying: true,
