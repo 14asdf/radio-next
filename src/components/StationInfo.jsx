@@ -12,8 +12,7 @@ import {
   HStack,
   Spinner,
 } from '@chakra-ui/react';
-import { IoPlayOutline } from 'react-icons/io5';
-import { IoPauseOutline } from 'react-icons/io5';
+import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import { useStations } from '@/contexts/StationsContext';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useAuth } from '../contexts/AuthContext';

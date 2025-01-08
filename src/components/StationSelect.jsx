@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { Box, Text, Stack, Icon, useBreakpointValue } from '@chakra-ui/react';
-import { RiPlayFill, RiPauseFill } from 'react-icons/ri';
+import { Box, Text, Stack } from '@chakra-ui/react';
+import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import Link from 'next/link';
 import { createAvatarUrl, encodeUrl } from '../utils';
 import _ from 'lodash';
@@ -55,9 +55,9 @@ const StationAvatar = React.memo(({ station }) => {
         transition="opacity 0.2s"
       >
         {isPlaying ? (
-          <RiPauseFill color="white" size="20px" />
+          <IoPauseOutline color="white" size="20px" />
         ) : (
-          <RiPlayFill color="white" size="20px" />
+          <IoPlayOutline color="white" size="20px" />
         )}
       </Box>
     </Box>

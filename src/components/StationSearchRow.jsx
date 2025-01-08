@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { Box, Text, Spinner, Badge, Image } from '@chakra-ui/react';
-import { RiPlayFill, RiPauseFill } from 'react-icons/ri';
+import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
 import Link from 'next/link';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { createAvatarUrl, encodeUrl } from '../utils';
@@ -101,9 +101,9 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
             transition="opacity 0.2s"
           >
             {isPlaying ? (
-              <RiPauseFill color="white" size="30px" />
+              <IoPauseOutline color="white" size="30px" />
             ) : (
-              <RiPlayFill color="white" size="30px" />
+              <IoPlayOutline color="white" size="30px" />
             )}
           </Box>
         </Box>
