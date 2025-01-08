@@ -28,6 +28,7 @@ const Comments = ({ stationId }) => {
   const [usersData, setUsersData] = useState({});
   const { user } = useAuth();
   const t = useTranslations('time');
+  const c = useTranslations('comments');
 
   // Fetch users data
   useEffect(() => {
@@ -119,7 +120,7 @@ const Comments = ({ stationId }) => {
               <Textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Write a comment..."
+                placeholder={c('placeholder')}
                 bg="whiteAlpha.100"
                 rounded="lg"
                 minH="60px"
@@ -135,7 +136,7 @@ const Comments = ({ stationId }) => {
                 rounded="full"
                 size="sm"
               >
-                Post
+                {c('post')}
               </Button>
             </HStack>
           </form>

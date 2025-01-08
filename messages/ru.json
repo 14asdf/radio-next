@@ -151,5 +151,9 @@
     "hoursAgoPlural": "{hours} часов назад",
     "daysAgo": "{days} день назад",
     "daysAgoPlural": "{days} дней назад"
+  },
+  "comments": {
+    "placeholder": "Написать комментарий...",
+    "post": "Отправить"
   }
 }

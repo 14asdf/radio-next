@@ -151,5 +151,9 @@
     "hoursAgoPlural": "{hours} hours ago",
     "daysAgo": "{days} day ago",
     "daysAgoPlural": "{days} days ago"
+  },
+  "comments": {
+    "placeholder": "Write a comment...",
+    "post": "Post"
   }
 }
