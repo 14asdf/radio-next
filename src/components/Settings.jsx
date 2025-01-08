@@ -42,6 +42,7 @@ export default function Settings() {
     document.cookie = `NEXT_LOCALE=${newLocale};path=/;sameSite=strict`;
     router.refresh();
     setIsOpen(false);
+    setCurrentLang(newLocale);
   };
 
   return (
