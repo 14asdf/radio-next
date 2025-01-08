@@ -11,6 +11,14 @@
     "search": {
       "title": "Search Radio Stations",
       "description": "Search and discover thousands of radio stations from around the world. Find your favorite music, news, sports, and talk radio stations."
+    },
+    "genre": {
+      "title": "{genre} Radio Stations",
+      "description": "Listen to the best {genre} radio stations. Stream live {genre} music online for free."
+    },
+    "profile": {
+      "title": "My Profile",
+      "description": "Manage your Radio Cloud profile, view your favorite stations, and customize your radio listening experience."
     }
   },
   "home": {

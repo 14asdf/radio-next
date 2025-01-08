@@ -1,11 +1,12 @@
 import { generatePageMetadata } from '@/utils/metadata';
 import Trends from '@/components/Trends';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata() {
+  const t = await getTranslations();
   return generatePageMetadata({
-    title: 'metadata.trends.title',
-    description: 'metadata.trends.description',
+    title: t('metadata.trends.title'),
+    description: t('metadata.trends.description'),
   });
 }
 

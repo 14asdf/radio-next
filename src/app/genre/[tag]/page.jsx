@@ -1,13 +1,15 @@
 import { generatePageMetadata } from '@/utils/metadata';
 import Genre from '@/components/Genres';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }) {
-  const { tag } = await Promise.resolve(params);
+  const { tag } = params;
   const formattedTag = tag.charAt(0).toUpperCase() + tag.slice(1);
+  const t = await getTranslations('metadata.genre');
 
   return generatePageMetadata({
-    title: `${formattedTag} Radio Stations`,
-    description: `Listen to the best ${formattedTag.toLowerCase()} radio stations. Stream live ${formattedTag.toLowerCase()} music online for free.`,
+    title: t('title', { genre: formattedTag }),
+    description: t('description', { genre: formattedTag.toLowerCase() }),
   });
 }
 

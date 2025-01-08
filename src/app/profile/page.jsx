@@ -1,11 +1,13 @@
 import { generatePageMetadata } from '@/utils/metadata';
 import Profile from '@/components/Profile';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata() {
+  const t = await getTranslations();
+
   return generatePageMetadata({
-    title: 'metadata.profile.title',
-    description: 'metadata.profile.description',
+    title: t('metadata.profile.title'),
+    description: t('metadata.profile.description'),
   });
 }
 
