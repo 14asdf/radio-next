@@ -238,30 +238,60 @@ export default function TrendsPage() {
     setHasMore(initialStations.length === stationsPerPage);
   }, [trendingStations]);
 
-  const renderAvatarStack = useCallback((users, label) => {
+  // Memoize sampled users for all stations
+  const sampledUsersMap = useMemo(() => {
     const maxAvatars = 5;
+    return displayedStations.reduce((acc, station) => {
+      // Handle likes users
+      acc[`likes-${station.id}`] = sampleSize(station.users || [], maxAvatars);
 
-    return (
-      <Box p={2}>
-        <AvatarGroup size="sm" max={maxAvatars}>
-          {users.slice(0, maxAvatars).map((user) => (
-            <Avatar
-              key={user.userId}
-              src={user.userPhotoURL}
-              name={user.displayName}
-            />
-          ))}
-          {users.length > maxAvatars && (
-            <Avatar
-              name={`+${users.length - maxAvatars}`}
-              bg="gray.100"
-              _dark={{ bg: 'gray.700' }}
-            />
-          )}
-        </AvatarGroup>
-      </Box>
-    );
-  }, []);
+      // Handle comments users
+      acc[`comments-${station.id}`] = Array.from(
+        new Set(
+          (station.comments || [])
+            .filter((comment) => comment.userId)
+            .map((comment) => comment.userId)
+        )
+      )
+        .slice(0, maxAvatars)
+        .map((userId) => ({
+          userId,
+          userPhotoURL: usersData[userId]?.photoURL,
+          displayName: usersData[userId]?.name || 'Anonymous',
+        }));
+
+      return acc;
+    }, {});
+  }, [displayedStations, usersData]);
+
+  const renderAvatarStack = useCallback(
+    (menuId) => {
+      const maxAvatars = 5;
+      const users = sampledUsersMap[menuId] || [];
+
+      return (
+        <Box p={2}>
+          <AvatarGroup size="sm" max={maxAvatars}>
+            {users.map((user) => (
+              <Avatar
+                key={user.userId}
+                src={user.userPhotoURL}
+                name={user.displayName}
+              />
+            ))}
+            {users.length > maxAvatars && (
+              <Avatar
+                name={`+${users.length - maxAvatars}`}
+                bg="gray.100"
+                _dark={{ bg: 'gray.700' }}
+              />
+            )}
+          </AvatarGroup>
+        </Box>
+      );
+    },
+    [sampledUsersMap]
+  );
 
   const handleMenuOpen = (menuId) => {
     // If the same menu is clicked, close it after a small delay
@@ -358,7 +388,7 @@ export default function TrendsPage() {
                       rounded="xl"
                       style={{ width: 'fit-content', minWidth: 'auto' }}
                     >
-                      {renderAvatarStack(sampleSize(station.users, 5))}
+                      {renderAvatarStack(`likes-${station.id}`)}
                     </MenuContent>
                   </MenuRoot>
                 )}
@@ -399,19 +429,7 @@ export default function TrendsPage() {
                       rounded="xl"
                       style={{ width: 'fit-content', minWidth: 'auto' }}
                     >
-                      {renderAvatarStack(
-                        Array.from(
-                          new Set(
-                            (station.comments || [])
-                              .filter((comment) => comment.userId)
-                              .map((comment) => comment.userId)
-                          )
-                        ).map((userId) => ({
-                          userId,
-                          userPhotoURL: usersData[userId]?.photoURL,
-                          displayName: usersData[userId]?.name || 'Anonymous',
-                        }))
-                      )}
+                      {renderAvatarStack(`comments-${station.id}`)}
                     </MenuContent>
                   </MenuRoot>
                 )}
