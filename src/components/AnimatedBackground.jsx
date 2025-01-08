@@ -145,15 +145,17 @@ export default function AnimatedBackground() {
     }
 
     function resize() {
-      const { innerWidth, innerHeight } = window;
+      const parentElement = containerRef.current;
+      const width = parentElement.clientWidth;
+      const height = parentElement.clientHeight;
 
-      canvas.a.width = innerWidth;
-      canvas.a.height = innerHeight;
+      canvas.a.width = width;
+      canvas.a.height = height;
 
       ctx.a.drawImage(canvas.b, 0, 0);
 
-      canvas.b.width = innerWidth;
-      canvas.b.height = innerHeight;
+      canvas.b.width = width;
+      canvas.b.height = height;
 
       ctx.b.drawImage(canvas.a, 0, 0);
     }
