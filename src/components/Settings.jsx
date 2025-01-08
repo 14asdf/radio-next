@@ -55,7 +55,12 @@ export default function Settings() {
 
   return (
     <Box display="flex" flexDirection="column" gap={6} maxW="xl" mx="auto">
-      <Heading fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" mb="10">
+      <Heading
+        fontSize={{ base: '3xl', md: '4xl' }}
+        fontWeight="bold"
+        mb="6"
+        mt="6"
+      >
         {t('title')}
       </Heading>
 
