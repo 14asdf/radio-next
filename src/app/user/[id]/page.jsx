@@ -1,90 +1,26 @@
-'use client';
-import { useEffect, useState, use } from 'react';
-import { ref, onValue } from 'firebase/database';
-import { db } from '@/firebase/config';
-import { Box, VStack, Heading, Text, SimpleGrid } from '@chakra-ui/react';
-import { useStations } from '@/contexts/StationsContext';
-import { decodeUrl, findStation } from '@/utils/stations';
-import { Avatar } from '@/components/ui/avatar';
-import StationSearchRow from '@/components/StationSearchRow';
+import { generatePageMetadata } from '@/utils/metadata';
+import User from '@/components/User';
+import { ref, get } from 'firebase/database';
+import { db } from '@/utils/firebase';
 
-export default function UserProfilePage({ params }) {
-  const unwrappedParams = use(params);
-  const id = unwrappedParams.id;
-  const [userData, setUserData] = useState(null);
-  const [favorites, setFavorites] = useState([]);
-  const { stations } = useStations();
+export async function generateMetadata({ params }) {
+  const { id } = await Promise.resolve(params);
 
-  useEffect(() => {
-    if (!id) return;
+  console.log(id);
+  // Fetch user data from Firebase RTDB
+  const userRef = ref(db, `users/${id}`);
+  const snapshot = await get(userRef);
+  const userData = snapshot.val();
+  const userName = userData?.name || 'User';
 
-    // Fetch user data
-    const userRef = ref(db, `users/${id}`);
-    const unsubscribeUser = onValue(userRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        setUserData(data);
-      }
-    });
-
-    // Fetch user's favorites
-    const favoritesRef = ref(db, `favorites/${id}`);
-    const unsubscribeFavorites = onValue(favoritesRef, (snapshot) => {
-      const data = snapshot.val();
-
-      // Extract the favorites array from the nested structure
-      const favoritesList = data?.favorites || [];
-
-      setFavorites(favoritesList);
-    });
-
-    return () => {
-      unsubscribeUser();
-      unsubscribeFavorites();
-    };
-  }, [id]);
-
-  if (!userData || !stations || !stations.length) {
-    return null;
-  }
-
-  // Only render favorites if we have valid stations data
-  const validFavorites = favorites.filter((stationId) => {
-    try {
-      return findStation(stationId, stations) !== undefined;
-    } catch (e) {
-      return false; // Skip any station IDs that cause decoding errors
-    }
+  return generatePageMetadata({
+    title: `${userName}'s Profile`,
+    description: `Check out ${userName}'s radio station collection and listening activity on Radio Cloud.`,
   });
+}
 
-  return (
-    <>
-      <Box display="flex" justifyContent="center">
-        <Avatar
-          size="2xl"
-          name={userData.displayName}
-          src={userData.photoURL}
-          bg="gray.400"
-        />
-      </Box>
+export default async function UserProfilePage({ params }) {
+  const { id } = await Promise.resolve(params);
 
-      <Box>
-        <Heading size="2xl" mb={6} mt={6}>
-          Favorite stations
-        </Heading>
-        <SimpleGrid gap={8}>
-          {validFavorites.map((stationId) => (
-            <StationSearchRow
-              key={stationId}
-              station={findStation(stationId, stations)}
-              searchTerm=""
-            />
-          ))}
-          {validFavorites.length === 0 && (
-            <Text color="gray.500">No favorite stations yet</Text>
-          )}
-        </SimpleGrid>
-      </Box>
-    </>
-  );
+  return <User id={id} />;
 }

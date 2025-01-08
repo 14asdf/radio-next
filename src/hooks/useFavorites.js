@@ -1,5 +1,5 @@
 import { ref, update, get } from 'firebase/database';
-import { db } from '../firebase/config';
+import { db } from '../utils/firebase';
 import { useAuth } from '../contexts/AuthContext';
 
 export function useFavorites() {

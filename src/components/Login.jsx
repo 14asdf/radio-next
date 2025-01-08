@@ -13,7 +13,7 @@ import {
 import { FcGoogle } from 'react-icons/fc';
 import Logo from '../components/shared/Logo';
 import { useAuth } from '../contexts/AuthContext';
-import { auth, db } from '../firebase/config';
+import { auth, db } from '../utils/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 import { useEffect } from 'react';

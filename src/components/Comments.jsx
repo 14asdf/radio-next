@@ -9,7 +9,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import { ref, push, onValue, get, remove, set } from 'firebase/database';
-import { db } from '@/firebase/config';
+import { db } from '@/utils/firebase';
 import { useAuth } from '@/contexts/AuthContext';
 import { Avatar, AvatarGroup } from './ui/avatar';
 import {
