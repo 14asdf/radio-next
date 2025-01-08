@@ -128,7 +128,7 @@ const Comments = ({ stationId }) => {
               />
               <Button
                 type="submit"
-                isDisabled={!newComment.trim()}
+                disabled={!newComment.trim()}
                 colorScheme="brand"
                 rounded="full"
                 size="sm"
