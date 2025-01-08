@@ -1,9 +1,9 @@
 'use client';
 
 import { Box, Text, IconButton, Button } from '@chakra-ui/react';
-import { Toaster } from './components/ui/toaster';
+import { Toaster } from './ui/toaster';
 
-import { ColorModeButton } from './components/ui/color-mode';
+import { ColorModeButton } from './ui/color-mode';
 import { useSearchParams } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import {
@@ -18,14 +18,14 @@ import {
 } from 'react-icons/ri';
 import Link from 'next/link';
 
-import { decodeUrl, encodeUrl } from './utils';
+import { decodeUrl, encodeUrl } from '../utils';
 
-import { useAudioPlayer } from './contexts/AudioPlayerContext';
-import MiniPlayer from './components/MiniPlayer';
-import Logo from './components/shared/Logo';
-import { useAuth } from './contexts/AuthContext';
+import { useAudioPlayer } from '../contexts/AudioPlayerContext';
+import MiniPlayer from './MiniPlayer';
+import Logo from './shared/Logo';
+import { useAuth } from '../contexts/AuthContext';
 
-const App = ({ children }) => {
+const Main = ({ children }) => {
   // Accept children prop
   const { playerState, togglePlay } = useAudioPlayer();
   const { isPlaying, currentStation } = playerState;
@@ -254,4 +254,4 @@ const App = ({ children }) => {
   );
 };
 
-export default App;
+export default Main;
