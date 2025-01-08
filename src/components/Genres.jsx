@@ -16,12 +16,14 @@ import StationSearchRow from '@/components/StationSearchRow';
 import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { IoArrowBackSharp } from 'react-icons/io5';
 import { getGenreColor } from '@/utils/colors';
+import { useTranslations } from 'next-intl';
 
 const Genre = () => {
   const params = useParams();
   const router = useRouter();
   const { tag } = params;
   const { stations } = useStations();
+  const t = useTranslations('genres');
 
   const genreStations = useMemo(() => {
     if (!stations || !tag) return [];
@@ -104,6 +106,11 @@ const Genre = () => {
     setIsLoadingMore(false);
   }, [genreStations, stationsPerPage]);
 
+  const translationKey = useMemo(() => {
+    const decodedTag = decodeURIComponent(tag || '');
+    return decodedTag.toLowerCase().replace(/[^a-z0-9]/g, '_');
+  }, [tag]);
+
   return (
     <Box
       w="100%"
@@ -155,7 +162,7 @@ const Genre = () => {
             fontWeight="bold"
             textTransform="capitalize"
           >
-            {decodeURIComponent(tag || '')}
+            {t(translationKey)}
           </Heading>
         </Container>
       </Box>
