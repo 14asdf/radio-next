@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next dev",
+    "start": "next dev --turbo",
     "build": "next build",
     "lint": "next lint",
     "commit": "git add . && git commit -m \"Changes: $(git diff --cached --numstat | awk '{files += 1; insertions += $1; deletions += $2} END {print files \"f \" insertions \"+\" deletions \"-\"}')\""
