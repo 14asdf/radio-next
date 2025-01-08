@@ -32,11 +32,9 @@ const Logo = () => {
           x="38"
           y="20"
           fill="currentColor"
-          fontFamily="system-ui"
-          fontSize="16"
-          fontWeight="600"
+          style={{ fontSize: '12px', fontWeight: '800' }}
         >
-          {t('logo')}
+          SOUND CLOUD
         </text>
       </svg>
     </Box>
