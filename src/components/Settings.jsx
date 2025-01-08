@@ -1,5 +1,13 @@
 'use client';
-import { Box, Text, HStack, Flex, Button, Separator } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  HStack,
+  Flex,
+  Button,
+  Separator,
+  Heading,
+} from '@chakra-ui/react';
 import { ColorModeIcon } from './ui/color-mode';
 import { PiGlobeHemisphereEastThin } from 'react-icons/pi';
 import { useColorMode } from './ui/color-mode';
@@ -47,9 +55,9 @@ export default function Settings() {
 
   return (
     <Box display="flex" flexDirection="column" gap={6} maxW="xl" mx="auto">
-      <Text fontSize="2xl" fontWeight="bold" mb={4}>
+      <Heading fontSize={{ base: '3xl', md: '4xl' }} fontWeight="bold" mb="10">
         {t('title')}
-      </Text>
+      </Heading>
 
       <Flex
         as="button"
