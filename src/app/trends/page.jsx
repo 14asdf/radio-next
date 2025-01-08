@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import {
   Box,
   Heading,
@@ -238,9 +238,12 @@ export default function TrendsPage() {
     setHasMore(initialStations.length === stationsPerPage);
   }, [trendingStations]);
 
-  const renderAvatarStack = (users, label) => {
+  const renderAvatarStack = useCallback((users, label) => {
     const maxAvatars = 5;
-    const sampleUsers = sampleSize(users, maxAvatars);
+    const sampleUsers = useMemo(
+      () => sampleSize(users, maxAvatars),
+      [users, maxAvatars]
+    );
 
     return (
       <Box p={2}>
@@ -262,7 +265,7 @@ export default function TrendsPage() {
         </AvatarGroup>
       </Box>
     );
-  };
+  }, []);
 
   const handleMenuOpen = (menuId) => {
     // If the same menu is clicked, close it after a small delay
