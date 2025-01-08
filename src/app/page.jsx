@@ -4,28 +4,40 @@ import { join } from 'path';
 import { readFile } from 'fs/promises';
 import { RouteHandler } from './routes';
 
-export async function generateMetadata(props) {
-  const [params, searchParams] = await Promise.all([
-    props.params,
-    props.searchParams,
-  ]);
+let stationsCache = null;
 
-  let stations = [];
+async function getStations() {
+  if (stationsCache) return stationsCache;
+
   try {
-    stations = JSON.parse(
+    stationsCache = JSON.parse(
       await readFile(join(process.cwd(), 'public', 'stations.json'), 'utf8')
     );
+    return stationsCache;
   } catch (error) {
     console.error('Error reading stations.json:', error);
+    return [];
   }
+}
 
+export async function generateMetadata(props, customTitle = null) {
+  const stations = await getStations();
+  const searchParams = props?.searchParams;
   const audioId = searchParams?.id || null;
 
-  const audioSrc = audioId ? decodeUrl(audioId) : null;
-  const station = audioSrc ? findStation(audioId, stations) : null;
+  let title = 'Radio cloud';
+  let image = '/android-chrome-192x192.png';
 
-  const title = station ? `${station.title} | Radio cloud` : 'Radio cloud';
-  const image = station?.img || '/android-chrome-192x192.png';
+  if (audioId) {
+    const station = findStation(audioId, stations);
+    if (station) {
+      title = `${station.title} | Radio cloud`;
+      image = station.img || image;
+    }
+  } else if (customTitle) {
+    title = `${customTitle} | Radio cloud`;
+  }
+
   const description =
     'Listen to your favorite radio stations live online - free streaming radio';
 
