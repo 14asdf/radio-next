@@ -15,7 +15,13 @@ import { useTranslations } from 'next-intl';
 
 export function ColorModeProvider(props) {
   return (
-    <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      storageKey="NEXT_THEME"
+      disableTransitionOnChange
+      {...props}
+    />
   );
 }
 

@@ -3,8 +3,11 @@ import Negotiator from 'negotiator';
 import { match } from '@formatjs/intl-localematcher';
 
 const COOKIE_LOCALE_NAME = 'NEXT_LOCALE';
+const COOKIE_THEME_NAME = 'NEXT_THEME';
 const defaultLocale = 'en';
+const defaultTheme = 'system';
 const locales = ['en', 'ru', 'es', 'de'];
+const themes = ['light', 'dark', 'system'];
 
 function getAcceptLanguageLocale(requestHeaders, locales, defaultLocale) {
   let locale;
@@ -42,9 +45,23 @@ function resolveLocale(locales, defaultLocale, requestHeaders, requestCookies) {
   return locale || defaultLocale;
 }
 
+function resolveTheme(requestCookies) {
+  // Check cookie first
+  if (requestCookies.has(COOKIE_THEME_NAME)) {
+    const value = requestCookies.get(COOKIE_THEME_NAME)?.value;
+    if (value && themes.includes(value)) {
+      return value;
+    }
+  }
+
+  // Fallback to system theme
+  return defaultTheme;
+}
+
 export async function middleware(request) {
   const response = NextResponse.next();
 
+  // Handle locale
   const locale = resolveLocale(
     locales,
     defaultLocale,
@@ -52,9 +69,18 @@ export async function middleware(request) {
     request.cookies
   );
 
-  // Update cookie if needed
+  // Handle theme
+  const theme = resolveTheme(request.cookies);
+
+  // Update cookies if needed
   if (request.cookies.get(COOKIE_LOCALE_NAME)?.value !== locale) {
     response.cookies.set(COOKIE_LOCALE_NAME, locale, {
+      sameSite: 'strict',
+    });
+  }
+
+  if (request.cookies.get(COOKIE_THEME_NAME)?.value !== theme) {
+    response.cookies.set(COOKIE_THEME_NAME, theme, {
       sameSite: 'strict',
     });
   }
