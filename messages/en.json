@@ -19,6 +19,10 @@
     "profile": {
       "title": "My Profile",
       "description": "Manage your Radio Cloud profile, view your favorite stations, and customize your radio listening experience."
+    },
+    "trends": {
+      "title": "Trending Radio Stations",
+      "description": "Discover the most popular and trending radio stations right now. Listen to what others are enjoying - from hit music to breaking news and live sports broadcasts."
     }
   },
   "home": {
