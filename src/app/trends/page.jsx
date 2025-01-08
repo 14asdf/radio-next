@@ -21,6 +21,7 @@ import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
 import { MenuRoot, MenuTrigger, MenuContent } from '@/components/ui/menu';
 import { sampleSize } from 'lodash';
 import Link from 'next/link';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 function useClickOutside(ref, handler) {
   useEffect(() => {
@@ -325,6 +326,7 @@ export default function TrendsPage() {
         backgroundPosition="center"
         borderTopRadius={16}
       >
+        <AnimatedBackground />
         <Box
           position="absolute"
           top="0"
