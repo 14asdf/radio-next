@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Button, IconButton, Box } from '@chakra-ui/react';
+import { Button, IconButton, Box, Separator } from '@chakra-ui/react';
 import { PiGlobeHemisphereEastThin } from 'react-icons/pi';
 import { Text } from '@chakra-ui/react';
 import { IoCloseOutline } from 'react-icons/io5';
@@ -61,12 +61,21 @@ export default function LanguageSwitcher() {
               <IoCloseOutline />
             </DialogCloseTrigger>
           </DialogHeader>
+          <Separator />
           <DialogBody>
-            <Box display="flex" gap={4}>
-              <Button size="2xl" onClick={() => handleLocaleChange('en')}>
+            <Box display="flex" gap={4} mt="4">
+              <Button
+                size="2xl"
+                variant="ghost"
+                onClick={() => handleLocaleChange('en')}
+              >
                 <Text>English</Text>
               </Button>
-              <Button size="2xl" onClick={() => handleLocaleChange('ru')}>
+              <Button
+                size="2xl"
+                variant="ghost"
+                onClick={() => handleLocaleChange('ru')}
+              >
                 <Text>Русский</Text>
               </Button>
             </Box>
