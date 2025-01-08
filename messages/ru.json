@@ -144,5 +144,12 @@
     "hot_adult_contemporary": "современная популярная",
     "campus_radio": "студенческое радио",
     "npr": "npr"
+  },
+  "time": {
+    "lessThanHour": "менее часа назад",
+    "hoursAgo": "{hours} час назад",
+    "hoursAgoPlural": "{hours} часов назад",
+    "daysAgo": "{days} день назад",
+    "daysAgoPlural": "{days} дней назад"
   }
 }

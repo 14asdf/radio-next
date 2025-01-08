@@ -144,5 +144,12 @@
     "hot_adult_contemporary": "hot adult contemporary",
     "campus_radio": "campus radio",
     "npr": "npr"
+  },
+  "time": {
+    "lessThanHour": "less than an hour ago",
+    "hoursAgo": "{hours} hour ago",
+    "hoursAgoPlural": "{hours} hours ago",
+    "daysAgo": "{days} day ago",
+    "daysAgoPlural": "{days} days ago"
   }
 }

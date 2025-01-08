@@ -20,12 +20,14 @@ import {
 } from '@/components/ui/menu';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const Comments = ({ stationId }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [usersData, setUsersData] = useState({});
   const { user } = useAuth();
+  const t = useTranslations('time');
 
   // Fetch users data
   useEffect(() => {
@@ -179,10 +181,15 @@ const Comments = ({ stationId }) => {
                       const hours = Math.floor(diff / (1000 * 60 * 60));
                       const days = Math.floor(hours / 24);
 
-                      if (hours < 1) return 'less than an hour ago';
-                      if (hours < 24)
-                        return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
-                      return `${days} ${days === 1 ? 'day' : 'days'} ago`;
+                      if (hours < 1) return t('lessThanHour');
+                      if (hours < 24) {
+                        return hours === 1
+                          ? t('hoursAgo', { hours })
+                          : t('hoursAgoPlural', { hours });
+                      }
+                      return days === 1
+                        ? t('daysAgo', { days })
+                        : t('daysAgoPlural', { days });
                     })()}
                   </Text>
                   {user && user.uid === comment.userId && (
