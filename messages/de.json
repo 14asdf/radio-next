@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "default": {
+      "title": "Radio Cloud",
+      "description": "Hören Sie Ihre Lieblings-Radiosender live online - kostenloses Streaming-Radio"
+    },
+    "home": {
+      "title": "Radio Cloud - Online Radio hören",
+      "description": "Entdecken Sie tausende Radiosender aus der ganzen Welt. Hören Sie kostenlos Musik, Nachrichten, Sport und Talkradio."
+    },
+    "search": {
+      "title": "Radiosender suchen",
+      "description": "Suchen und entdecken Sie tausende Radiosender aus der ganzen Welt. Finden Sie Ihre Lieblingssender für Musik, Nachrichten, Sport und Talk."
+    },
+    "genre": {
+      "title": "{genre} Radiosender",
+      "description": "Hören Sie die besten {genre} Radiosender. Streamen Sie {genre} Musik kostenlos online."
+    },
+    "profile": {
+      "title": "Mein Profil",
+      "description": "Verwalten Sie Ihr Radio Cloud-Profil, sehen Sie Ihre Lieblingssender und passen Sie Ihr Hörerlebnis an."
+    },
+    "trends": {
+      "title": "Beliebte Radiosender",
+      "description": "Entdecken Sie die aktuell beliebtesten Radiosender. Hören Sie, was andere hören - von Hitmusik bis zu aktuellen Nachrichten und Live-Sportübertragungen."
+    }
+  },
+  "home": {
+    "welcome": "Willkommen bei Radio Cloud",
+    "trending": "Beliebte Sender",
+    "allGenres": "Alle Genres",
+    "searchPlaceholder": "Radiosender suchen...",
+    "featuredStations": "Empfohlene Sender",
+    "recentlyPlayed": "Zuletzt gehört",
+    "exploreMore": "Mehr entdecken"
+  },
+  "search": {
+    "placeholder": "Suchen...",
+    "noResults": "Keine Sender gefunden für \"{term}\"",
+    "noResultsName": "Keine Sendernamen gefunden für \"{term}\"",
+    "noResultsGenre": "Keine Genres gefunden für \"{term}\"",
+    "findStations": "Finden Sie Sender nach Name oder Genre",
+    "loadMore": "Mehr laden",
+    "tabs": {
+      "all": "Alle",
+      "name": "Name",
+      "genre": "Genre"
+    }
+  },
+  "main": {
+    "navigation": {
+      "home": "Start",
+      "search": "Suche",
+      "profile": "Profil",
+      "trends": "Trends",
+      "settings": "Einstellungen"
+    },
+    "nowPlaying": "Jetzt läuft",
+    "noStation": "Kein Sender ausgewählt",
+    "loading": "Lädt...",
+    "logo": "Radio Cloud"
+  },
+  "settings": {
+    "changeTheme": "Theme ändern",
+    "chooseLanguage": "Sprache wählen",
+    "appearance": "Erscheinungsbild",
+    "language": "Sprache",
+    "title": "Einstellungen"
+  },
+  "trends": {
+    "title": "Beliebte Sender",
+    "loadMore": "Mehr laden"
+  },
+  "profile": {
+    "title": "Mein Profil",
+    "favoriteStations": "Ihre Lieblingssender",
+    "noFavorites": "Noch keine Lieblingssender",
+    "logout": "Abmelden"
+  },
+  "time": {
+    "lessThanHour": "vor weniger als einer Stunde",
+    "hoursAgo": "vor {hours} Stunde",
+    "hoursAgoPlural": "vor {hours} Stunden",
+    "daysAgo": "vor {days} Tag",
+    "daysAgoPlural": "vor {days} Tagen"
+  },
+  "comments": {
+    "placeholder": "Kommentar schreiben...",
+    "post": "Senden"
+  }
+}

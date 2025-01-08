@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "default": {
+      "title": "Radio Cloud",
+      "description": "Escucha tus emisoras de radio favoritas en línea - radio streaming gratuita"
+    },
+    "home": {
+      "title": "Radio Cloud - Escucha Radio en Línea",
+      "description": "Descubre miles de emisoras de radio de todo el mundo. Escucha música, noticias, deportes y programas de radio gratis."
+    },
+    "search": {
+      "title": "Buscar Emisoras de Radio",
+      "description": "Busca y descubre miles de emisoras de radio de todo el mundo. Encuentra tus emisoras favoritas de música, noticias, deportes y programas."
+    },
+    "genre": {
+      "title": "Emisoras de Radio {genre}",
+      "description": "Escucha las mejores emisoras de radio {genre}. Transmite música {genre} en línea gratis."
+    },
+    "profile": {
+      "title": "Mi Perfil",
+      "description": "Gestiona tu perfil de Radio Cloud, visualiza tus emisoras favoritas y personaliza tu experiencia de radio."
+    },
+    "trends": {
+      "title": "Emisoras Tendencia",
+      "description": "Descubre las emisoras de radio más populares del momento. Escucha lo que otros disfrutan - desde música de éxito hasta noticias y transmisiones deportivas en vivo."
+    }
+  },
+  "home": {
+    "welcome": "Bienvenido a Radio Cloud",
+    "trending": "Emisoras Tendencia",
+    "allGenres": "Todos los Géneros",
+    "searchPlaceholder": "Buscar emisoras de radio...",
+    "featuredStations": "Emisoras Destacadas",
+    "recentlyPlayed": "Reproducidas Recientemente",
+    "exploreMore": "Explorar Más"
+  },
+  "search": {
+    "placeholder": "Buscar...",
+    "noResults": "No se encontraron emisoras para \"{term}\"",
+    "noResultsName": "No se encontraron nombres de emisoras para \"{term}\"",
+    "noResultsGenre": "No se encontraron géneros para \"{term}\"",
+    "findStations": "Encuentra emisoras por nombre o género",
+    "loadMore": "Cargar Más",
+    "tabs": {
+      "all": "Todo",
+      "name": "Nombre",
+      "genre": "Género"
+    }
+  },
+  "main": {
+    "navigation": {
+      "home": "Inicio",
+      "search": "Buscar",
+      "profile": "Perfil",
+      "trends": "Tendencias",
+      "settings": "Ajustes"
+    },
+    "nowPlaying": "Reproduciendo",
+    "noStation": "Ninguna emisora seleccionada",
+    "loading": "Cargando...",
+    "logo": "Radio Cloud"
+  },
+  "settings": {
+    "changeTheme": "Cambiar tema",
+    "chooseLanguage": "Elegir Idioma",
+    "appearance": "Apariencia",
+    "language": "Idioma",
+    "title": "Ajustes"
+  },
+  "trends": {
+    "title": "Emisoras Tendencia",
+    "loadMore": "Cargar Más"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "favoriteStations": "Tus emisoras favoritas",
+    "noFavorites": "Aún no hay emisoras favoritas",
+    "logout": "Cerrar sesión"
+  },
+  "time": {
+    "lessThanHour": "hace menos de una hora",
+    "hoursAgo": "hace {hours} hora",
+    "hoursAgoPlural": "hace {hours} horas",
+    "daysAgo": "hace {days} día",
+    "daysAgoPlural": "hace {days} días"
+  },
+  "comments": {
+    "placeholder": "Escribe un comentario...",
+    "post": "Publicar"
+  }
+}

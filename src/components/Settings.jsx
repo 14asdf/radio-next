@@ -24,6 +24,8 @@ export default function Settings() {
   const languages = {
     en: 'English',
     ru: 'Русский',
+    de: 'Deutsch',
+    es: 'Español',
   };
 
   useEffect(() => {
