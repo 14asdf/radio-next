@@ -144,7 +144,7 @@ const Comments = ({ stationId }) => {
       )}
 
       {/* Comments List */}
-      <Box>
+      <Box mt="8">
         {comments.map((comment, index) => (
           <Box key={comment.key} mb={4}>
             <HStack align="start" spacing={3}>
