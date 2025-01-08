@@ -20,9 +20,8 @@ async function getStations() {
   }
 }
 
-export async function generateMetadata(props, customTitle = null) {
+export async function generateMetadata({ searchParams }) {
   const stations = await getStations();
-  const searchParams = props?.searchParams;
   const audioId = searchParams?.id || null;
 
   let title = 'Radio cloud';
@@ -34,8 +33,6 @@ export async function generateMetadata(props, customTitle = null) {
       title = `${station.title} | Radio cloud`;
       image = station.img || image;
     }
-  } else if (customTitle) {
-    title = `${customTitle} | Radio cloud`;
   }
 
   const description =
