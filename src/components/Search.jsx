@@ -167,12 +167,24 @@ export default function Search() {
   // Debounced search function
   const debouncedSearch = useCallback(
     debounce((term, type) => {
-      const params = new URLSearchParams();
-      if (term) params.set('q', term);
-      if (type !== 'all') params.set('type', type);
-      router.push(`/search?${params.toString()}`);
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+
+      // Update search params while preserving others (like lang)
+      if (term) {
+        newSearchParams.set('q', term);
+      } else {
+        newSearchParams.delete('q');
+      }
+
+      if (type !== 'all') {
+        newSearchParams.set('type', type);
+      } else {
+        newSearchParams.delete('type');
+      }
+
+      router.push(`/search?${newSearchParams.toString()}`);
     }, 300),
-    [router]
+    [router, searchParams]
   );
 
   // Handle search input change

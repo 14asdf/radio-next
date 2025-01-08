@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button, IconButton, Box, Separator } from '@chakra-ui/react';
 import { PiGlobeHemisphereEastThin } from 'react-icons/pi';
@@ -34,6 +34,32 @@ export default function LanguageSwitcher() {
   };
 
   const currentLang = searchParams.get('lang') || 'en';
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      const link = e.target.closest('a');
+      if (!link || link.getAttribute('href').startsWith('http')) return;
+
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      const currentLang = searchParams.get('lang');
+
+      if (currentLang) {
+        // Parse the new URL's search params
+        const [path, search] = href.split('?');
+        const newSearchParams = new URLSearchParams(search || '');
+        newSearchParams.set('lang', currentLang);
+
+        const newUrl = `${path}?${newSearchParams.toString()}`;
+        router.push(newUrl);
+      } else {
+        router.push(href);
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [router, searchParams]);
 
   return (
     <>
