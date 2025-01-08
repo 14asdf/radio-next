@@ -70,9 +70,38 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <>
-      <Box display="flex" justifyContent="center">
-        <Box position="relative">
+    <Box
+      w="100%"
+      minH="100vh"
+      bg="gray.50"
+      _dark={{ bg: 'gray.900' }}
+      borderBottomRadius={16}
+    >
+      <Box
+        position="relative"
+        h="300px"
+        w="100%"
+        bg="purple.500"
+        _dark={{ bg: 'purple.800' }}
+        borderTopRadius={16}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Box
+          position="absolute"
+          top="0"
+          left="0"
+          right="0"
+          bottom="0"
+          bg="linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%)"
+          _dark={{
+            bg: 'linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.95) 100%)',
+          }}
+          pointerEvents="none"
+        />
+
+        <Box position="relative" zIndex={1}>
           <Avatar
             size="2xl"
             name={user?.displayName}
@@ -106,12 +135,20 @@ export default function Profile() {
             </MenuContent>
           </MenuRoot>
         </Box>
-      </Box>
 
-      <Box>
-        <Heading size="2xl" mb={6} mt={6}>
+        <Heading
+          position="absolute"
+          bottom="40px"
+          left="24px"
+          fontSize={{ base: '3xl', md: '4xl' }}
+          fontWeight="bold"
+          zIndex={1}
+        >
           {t('favoriteStations')}
         </Heading>
+      </Box>
+
+      <Box p={6}>
         <SimpleGrid gap={8}>
           {favoritesList.map((stationId) => (
             <StationSearchRow
@@ -125,6 +162,6 @@ export default function Profile() {
           )}
         </SimpleGrid>
       </Box>
-    </>
+    </Box>
   );
 }

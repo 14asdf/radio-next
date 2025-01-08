@@ -77,7 +77,7 @@
   },
   "profile": {
     "title": "Mein Profil",
-    "favoriteStations": "Ihre Lieblingssender",
+    "favoriteStations": "Lieblingssender",
     "noFavorites": "Noch keine Lieblingssender",
     "logout": "Abmelden"
   },

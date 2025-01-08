@@ -77,7 +77,7 @@
   },
   "profile": {
     "title": "Мой профиль",
-    "favoriteStations": "Ваши избранные станции",
+    "favoriteStations": "Избранные станции",
     "noFavorites": "Пока нет избранных станций",
     "logout": "Выйти"
   },

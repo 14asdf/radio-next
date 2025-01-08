@@ -77,7 +77,7 @@
   },
   "profile": {
     "title": "Mi Perfil",
-    "favoriteStations": "Tus emisoras favoritas",
+    "favoriteStations": "Emisoras favoritas",
     "noFavorites": "Aún no hay emisoras favoritas",
     "logout": "Cerrar sesión"
   },
