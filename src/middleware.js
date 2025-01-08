@@ -1,26 +1,66 @@
-import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
+import Negotiator from 'negotiator';
+import { match } from '@formatjs/intl-localematcher';
 
-// Export the combined middleware
-export default async function middleware(request) {
-  console.log('Middleware running');
-  console.log('Request URL:', request.url);
+const COOKIE_LOCALE_NAME = 'NEXT_LOCALE';
+const defaultLocale = 'en';
+const locales = ['en', 'ru'];
 
-  // Get the locale from search params
-  const { searchParams } = new URL(request.url);
-  const lang = searchParams.get('lang') || 'en';
-  console.log('Selected language:', lang);
-
-  const newResponse = NextResponse.next({
-    request: {
-      headers: new Headers({
-        'x-next-intl-locale': lang,
-        ...Object.fromEntries(request.headers),
-      }),
+function getAcceptLanguageLocale(requestHeaders, locales, defaultLocale) {
+  let locale;
+  const languages = new Negotiator({
+    headers: {
+      'accept-language': requestHeaders.get('accept-language') || undefined,
     },
-  });
+  }).languages();
 
-  return newResponse;
+  try {
+    locale = match(languages, locales, defaultLocale);
+  } catch (e) {
+    // Invalid language
+  }
+  return locale;
+}
+
+function resolveLocale(locales, defaultLocale, requestHeaders, requestCookies) {
+  let locale;
+
+  // Check cookie first
+  if (requestCookies.has(COOKIE_LOCALE_NAME)) {
+    const value = requestCookies.get(COOKIE_LOCALE_NAME)?.value;
+    if (value && locales.includes(value)) {
+      locale = value;
+    }
+  }
+
+  // Fallback to accept-language header
+  if (!locale) {
+    locale = getAcceptLanguageLocale(requestHeaders, locales, defaultLocale);
+  }
+
+  // Final fallback to default
+  return locale || defaultLocale;
+}
+
+export async function middleware(request) {
+  const response = NextResponse.next();
+
+  const locale = resolveLocale(
+    locales,
+    defaultLocale,
+    request.headers,
+    request.cookies
+  );
+
+  // Update cookie if needed
+  if (request.cookies.get(COOKIE_LOCALE_NAME)?.value !== locale) {
+    response.cookies.set(COOKIE_LOCALE_NAME, locale, {
+      sameSite: 'strict',
+    });
+  }
+
+  response.headers.set('x-next-intl-locale', locale);
+  return response;
 }
 
 // Update matcher to catch more routes

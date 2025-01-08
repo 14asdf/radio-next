@@ -19,8 +19,6 @@ import { useTranslations } from 'next-intl';
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const t = useTranslations('settings');
 
   const languages = {
@@ -29,40 +27,21 @@ export default function LanguageSwitcher() {
   };
 
   const handleLocaleChange = (newLocale) => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('lang', newLocale);
-    const newUrl = `${pathname}?${newSearchParams.toString()}`;
-    window.location.href = newUrl;
+    document.cookie = `NEXT_LOCALE=${newLocale};path=/;sameSite=strict`;
+    window.location.reload();
     setIsOpen(false);
   };
 
-  const currentLang = searchParams.get('lang') || 'en';
+  // Get current language from cookie
+  const [currentLang, setCurrentLang] = useState('en');
 
   useEffect(() => {
-    const handleClick = (e) => {
-      const link = e.target.closest('a');
-      if (!link || link.getAttribute('href').startsWith('http')) return;
-
-      e.preventDefault();
-      const href = link.getAttribute('href');
-      const currentLang = searchParams.get('lang');
-
-      if (currentLang) {
-        // Parse the new URL's search params
-        const [path, search] = href.split('?');
-        const newSearchParams = new URLSearchParams(search || '');
-        newSearchParams.set('lang', currentLang);
-
-        const newUrl = `${path}?${newSearchParams.toString()}`;
-        router.push(newUrl);
-      } else {
-        router.push(href);
-      }
-    };
-
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, [router, searchParams]);
+    const localeCookie = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('NEXT_LOCALE='));
+    const locale = localeCookie ? localeCookie.split('=')[1] : 'en';
+    setCurrentLang(locale);
+  }, []);
 
   return (
     <>
