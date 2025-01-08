@@ -321,7 +321,8 @@ export default function TrendsPage() {
         position="relative"
         h="300px"
         w="100%"
-        bg="purple.500"
+        bg="gray.50"
+        _dark={{ bg: 'gray.900' }}
         backgroundSize="cover"
         backgroundPosition="center"
         borderTopRadius={16}
