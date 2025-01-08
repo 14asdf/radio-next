@@ -18,6 +18,9 @@ import {
   RiSettings4Line,
   RiSettings4Fill,
 } from 'react-icons/ri';
+
+import { IoSettingsOutline, IoSettingsOutline } from 'react-icons/io5';
+
 import Link from 'next/link';
 
 import { decodeUrl, encodeUrl } from '../utils/stations';

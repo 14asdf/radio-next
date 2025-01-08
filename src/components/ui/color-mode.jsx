@@ -68,7 +68,7 @@ export const ColorModeButton = ({ ...props }) => {
         {...props}
       >
         <ColorModeIcon />
-        <Text>{t('changeTheme')}</Text>
+        <Text fontSize="16px">{t('changeTheme')}</Text>
       </Button>
     </>
   );
