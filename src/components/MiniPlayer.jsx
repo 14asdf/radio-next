@@ -22,7 +22,6 @@ import {
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { createAvatarUrl, decodeUrl, findStation, encodeUrl } from '@/utils';
 import Link from 'next/link';
-// import { Link } from 'react-router-dom';
 
 import { Slider } from '@/components/ui/slider';
 import {
@@ -151,9 +150,15 @@ const MiniPlayer = ({ audioId }) => {
                 <VolumeIcon volume={playerState.volume} />
               </IconButton>
             </PopoverTrigger>
-            <PopoverContent w="50px" h="175px">
-              <PopoverBody p="3">
-                <Box w="auto">
+            <PopoverContent w="50px" h="180px">
+              <PopoverBody p="3" h="100%" display="flex" alignItems="center">
+                <Box
+                  w="auto"
+                  h="100%"
+                  alignItems="center"
+                  display="flex"
+                  justifyContent="center"
+                >
                   <Slider
                     w="25px"
                     h="150px"
