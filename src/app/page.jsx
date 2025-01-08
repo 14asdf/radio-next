@@ -3,6 +3,7 @@ import './styles.css';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
 import Stations from '@/components/Stations';
+import { generatePageMetadata } from '../utils/metadata';
 
 let stationsCache = null;
 
@@ -25,42 +26,17 @@ export async function generateMetadata({ searchParams }) {
   const stations = await getStations();
   const audioId = params?.id ?? null;
 
-  let title = 'Radio cloud';
-  let image = '/android-chrome-192x192.png';
-
   if (audioId) {
     const station = findStation(audioId, stations);
     if (station) {
-      title = `${station.title} | Radio cloud`;
-      image = station.img || image;
+      return generatePageMetadata({
+        title: station.title,
+        image: station.img,
+      });
     }
   }
 
-  const description =
-    'Listen to your favorite radio stations live online - free streaming radio';
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: [image],
-      type: 'website',
-      siteName: 'Radio cloud',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [image],
-    },
-    other: {
-      'telegram-channel:image': image,
-      'telegram-channel:title': title,
-      'telegram-channel:description': description,
-    },
-  };
+  return generatePageMetadata({});
 }
 
 export default function HomePage() {
