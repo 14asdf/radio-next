@@ -27,7 +27,8 @@ body {
   position: fixed;
   overflow: hidden;
   /* overscroll-behavior-y: none; */
-  font-family: helvetica neue, helvetica, arial, sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   color: black;
   -webkit-font-smoothing: antialiased;
 }
