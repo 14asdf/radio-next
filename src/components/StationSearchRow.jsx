@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { createAvatarUrl, encodeUrl } from '../utils/stations';
 import { useTranslations } from 'next-intl';
-import genres from '../../messages/ru.json';
+import { useGenreTranslations } from '../utils/genres';
 
 const StationSearchRow = React.memo(({ station, searchTerm }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
@@ -48,7 +48,7 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
   };
 
   // Get genre translations
-  const genreMap = genres.genres;
+  const translateGenre = useGenreTranslations();
 
   return (
     <Box
@@ -125,7 +125,7 @@ const StationSearchRow = React.memo(({ station, searchTerm }) => {
               .slice(0, 3)
               .map((tag) => {
                 const trimmedTag = tag.trim();
-                const translatedTag = genreMap[trimmedTag] || trimmedTag;
+                const translatedTag = translateGenre(trimmedTag) || trimmedTag;
                 return (
                   <Badge
                     key={tag}
