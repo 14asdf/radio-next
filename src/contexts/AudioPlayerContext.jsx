@@ -51,7 +51,7 @@ export function AudioPlayerProvider({ children }) {
         const timeoutId = setTimeout(() => {
           cleanup();
           reject(new Error('Loading timeout'));
-        }, 5000);
+        }, 10000);
 
         const errorHandler = (e) => {
           cleanup();
