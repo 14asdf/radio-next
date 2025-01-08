@@ -22,7 +22,8 @@ async function getStations() {
 
 export async function generateMetadata({ searchParams }) {
   const stations = await getStations();
-  const audioId = searchParams?.id || null;
+  const params = await Promise.resolve(searchParams);
+  const audioId = params?.id ?? null;
 
   let title = 'Radio cloud';
   let image = '/android-chrome-192x192.png';
