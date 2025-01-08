@@ -24,6 +24,7 @@ import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import MiniPlayer from './MiniPlayer';
 import Logo from './shared/Logo';
 import { useAuth } from '../contexts/AuthContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Main = ({ children }) => {
   // Accept children prop
@@ -167,6 +168,8 @@ const Main = ({ children }) => {
               <Text>Trends</Text>
             </Button>
             <ColorModeButton size="lg" width="full" borderRadius="full" />
+
+            <LanguageSwitcher />
           </Box>
         </Box>
 

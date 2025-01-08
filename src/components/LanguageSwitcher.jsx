@@ -1,37 +1,35 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
-import { useEffect } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export default function LanguageSwitcher() {
   const router = useRouter();
-  const currentLocale = useLocale();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  useEffect(() => {
-    // Initialize localStorage with current locale if not set
-    if (!localStorage.getItem('NEXT_LOCALE')) {
-      localStorage.setItem('NEXT_LOCALE', currentLocale);
-    }
-  }, [currentLocale]);
+  const handleLocaleChange = (newLocale) => {
+    // Create new URLSearchParams object to modify
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('lang', newLocale);
 
-  const handleLanguageChange = (newLocale) => {
-    // Store the selected language
-    localStorage.setItem('NEXT_LOCALE', newLocale);
-
-    // Refresh the page with new locale
-    router.refresh();
+    // Navigate to the same path but with new locale
+    router.push(`${pathname}?${newSearchParams.toString()}`);
   };
 
   return (
-    <select
-      value={currentLocale}
-      onChange={(e) => handleLanguageChange(e.target.value)}
-    >
-      <option value="en">English</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
-      {/* Add more languages as needed */}
-    </select>
+    <div className="flex gap-2">
+      <button
+        onClick={() => handleLocaleChange('en')}
+        className="px-2 py-1 rounded hover:bg-gray-100"
+      >
+        EN
+      </button>
+      <button
+        onClick={() => handleLocaleChange('ru')}
+        className="px-2 py-1 rounded hover:bg-gray-100"
+      >
+        RU
+      </button>
+    </div>
   );
 }
