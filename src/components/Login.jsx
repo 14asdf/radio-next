@@ -65,7 +65,7 @@ const Login = () => {
           >
             {/* Logo */}
             <Center gap="2">
-              <Text fontSize="xl">{t('loginTo')}</Text>
+              <Text fontSize="lg">{t('loginTo')}</Text>
               <Logo />
             </Center>
 
