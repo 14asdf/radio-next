@@ -7,11 +7,7 @@ export function useGenreTranslations() {
     if (!genre) return '';
     const key = genre.toLowerCase();
 
-    try {
-      return t.raw(key) ? t(key) : genre;
-    } catch (error) {
-      return genre;
-    }
+    return t.has(key) ? t(key) : genre;
   };
 
   return translateGenre;
