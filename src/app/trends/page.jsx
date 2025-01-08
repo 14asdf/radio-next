@@ -240,15 +240,11 @@ export default function TrendsPage() {
 
   const renderAvatarStack = useCallback((users, label) => {
     const maxAvatars = 5;
-    const sampleUsers = useMemo(
-      () => sampleSize(users, maxAvatars),
-      [users, maxAvatars]
-    );
 
     return (
       <Box p={2}>
         <AvatarGroup size="sm" max={maxAvatars}>
-          {sampleUsers.map((user) => (
+          {users.slice(0, maxAvatars).map((user) => (
             <Avatar
               key={user.userId}
               src={user.userPhotoURL}
@@ -362,7 +358,7 @@ export default function TrendsPage() {
                       rounded="xl"
                       style={{ width: 'fit-content', minWidth: 'auto' }}
                     >
-                      {renderAvatarStack(station.users)}
+                      {renderAvatarStack(sampleSize(station.users, 5))}
                     </MenuContent>
                   </MenuRoot>
                 )}
