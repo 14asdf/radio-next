@@ -78,110 +78,118 @@ export default function TrendsPage() {
   const [activeMenu, setActiveMenu] = useState(null);
   const likesMenuRef = useRef(null);
   const commentsMenuRef = useRef(null);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   useClickOutside(likesMenuRef, () => setActiveMenu(null));
   useClickOutside(commentsMenuRef, () => setActiveMenu(null));
 
   useEffect(() => {
     const fetchTrendingStations = async () => {
-      // Get all favorites from RTDB
-      const favoritesRef = ref(db, 'favorites');
-      const favoritesSnapshot = await get(favoritesRef);
-      const favoritesData = favoritesSnapshot.val() || {};
+      setIsInitialLoading(true);
+      try {
+        // Get all favorites from RTDB
+        const favoritesRef = ref(db, 'favorites');
+        const favoritesSnapshot = await get(favoritesRef);
+        const favoritesData = favoritesSnapshot.val() || {};
 
-      // Get all users data
-      const usersRef = ref(db, 'users');
-      const usersSnapshot = await get(usersRef);
-      const usersData = usersSnapshot.val() || {};
-      setUsersData(usersData);
+        // Get all users data
+        const usersRef = ref(db, 'users');
+        const usersSnapshot = await get(usersRef);
+        const usersData = usersSnapshot.val() || {};
+        setUsersData(usersData);
 
-      // Get all comments data
-      const commentsRef = ref(db, 'comments');
-      const commentsSnapshot = await get(commentsRef);
-      const commentsData = commentsSnapshot.val() || {};
+        // Get all comments data
+        const commentsRef = ref(db, 'comments');
+        const commentsSnapshot = await get(commentsRef);
+        const commentsData = commentsSnapshot.val() || {};
 
-      // Create maps for data
-      const stationCounts = new Map();
-      const usersByStation = new Map();
-      const commentsByStation = new Map();
-      const commentCountByStation = new Map();
+        // Create maps for data
+        const stationCounts = new Map();
+        const usersByStation = new Map();
+        const commentsByStation = new Map();
+        const commentCountByStation = new Map();
 
-      // Process favorites data
-      Object.entries(favoritesData).forEach(([userId, userData]) => {
-        const favorites = userData.favorites || [];
-        favorites.forEach((stationId) => {
-          if (!usersByStation.has(stationId)) {
-            usersByStation.set(stationId, new Set());
-          }
-          usersByStation.get(stationId).add(userId);
+        // Process favorites data
+        Object.entries(favoritesData).forEach(([userId, userData]) => {
+          const favorites = userData.favorites || [];
+          favorites.forEach((stationId) => {
+            if (!usersByStation.has(stationId)) {
+              usersByStation.set(stationId, new Set());
+            }
+            usersByStation.get(stationId).add(userId);
+          });
         });
-      });
 
-      // Convert Sets to arrays and get counts
-      usersByStation.forEach((userSet, stationId) => {
-        stationCounts.set(stationId, userSet.size);
-      });
+        // Convert Sets to arrays and get counts
+        usersByStation.forEach((userSet, stationId) => {
+          stationCounts.set(stationId, userSet.size);
+        });
 
-      // Process comments data and ensure stations with only comments are included
-      Object.entries(commentsData).forEach(([stationId, stationData]) => {
-        const { commentCount, ...comments } = stationData;
-        const commentsList = Object.entries(comments || {})
-          .filter(([key]) => key !== 'commentCount')
-          .map(([key, value]) => ({
-            ...value,
-            key,
+        // Process comments data and ensure stations with only comments are included
+        Object.entries(commentsData).forEach(([stationId, stationData]) => {
+          const { commentCount, ...comments } = stationData;
+          const commentsList = Object.entries(comments || {})
+            .filter(([key]) => key !== 'commentCount')
+            .map(([key, value]) => ({
+              ...value,
+              key,
+            }));
+          commentsByStation.set(stationId, commentsList);
+          commentCountByStation.set(stationId, commentCount || 0);
+
+          // Add station to stationCounts if it's not already there
+          if (!stationCounts.has(stationId)) {
+            stationCounts.set(stationId, 0);
+          }
+        });
+
+        // Convert stations array to a map
+        const stationsMap = stations.reduce((acc, station) => {
+          const encodedUrl = encodeUrl(station.streamUrl);
+          acc[encodedUrl] = station;
+          return acc;
+        }, {});
+
+        // Get trending stations
+        const trendingStationIds = Array.from(stationCounts.keys()).sort(
+          (a, b) => {
+            const likesA = stationCounts.get(a) || 0;
+            const likesB = stationCounts.get(b) || 0;
+            const commentsA = commentCountByStation.get(a) || 0;
+            const commentsB = commentCountByStation.get(b) || 0;
+
+            // Calculate total engagement (likes + comments)
+            const totalEngagementA = likesA + commentsA;
+            const totalEngagementB = likesB + commentsB;
+
+            return totalEngagementB - totalEngagementA;
+          }
+        );
+
+        const filteredStations = trendingStationIds
+          .filter((id) => stationsMap[id])
+          .map((id) => ({
+            id,
+            ...stationsMap[id],
+            users: Array.from(usersByStation.get(id) || new Set()).map(
+              (userId) => ({
+                userId,
+                userPhotoURL: usersData[userId]?.photoURL || null,
+                displayName:
+                  usersData[userId]?.name || `User ${userId.slice(0, 4)}`,
+              })
+            ),
+            favoriteCount: stationCounts.get(id) || 0,
+            commentCount: commentCountByStation.get(id) || 0,
+            comments: commentsByStation.get(id) || [],
           }));
-        commentsByStation.set(stationId, commentsList);
-        commentCountByStation.set(stationId, commentCount || 0);
 
-        // Add station to stationCounts if it's not already there
-        if (!stationCounts.has(stationId)) {
-          stationCounts.set(stationId, 0);
-        }
-      });
-
-      // Convert stations array to a map
-      const stationsMap = stations.reduce((acc, station) => {
-        const encodedUrl = encodeUrl(station.streamUrl);
-        acc[encodedUrl] = station;
-        return acc;
-      }, {});
-
-      // Get trending stations
-      const trendingStationIds = Array.from(stationCounts.keys()).sort(
-        (a, b) => {
-          const likesA = stationCounts.get(a) || 0;
-          const likesB = stationCounts.get(b) || 0;
-          const commentsA = commentCountByStation.get(a) || 0;
-          const commentsB = commentCountByStation.get(b) || 0;
-
-          // Calculate total engagement (likes + comments)
-          const totalEngagementA = likesA + commentsA;
-          const totalEngagementB = likesB + commentsB;
-
-          return totalEngagementB - totalEngagementA;
-        }
-      );
-
-      const filteredStations = trendingStationIds
-        .filter((id) => stationsMap[id])
-        .map((id) => ({
-          id,
-          ...stationsMap[id],
-          users: Array.from(usersByStation.get(id) || new Set()).map(
-            (userId) => ({
-              userId,
-              userPhotoURL: usersData[userId]?.photoURL || null,
-              displayName:
-                usersData[userId]?.name || `User ${userId.slice(0, 4)}`,
-            })
-          ),
-          favoriteCount: stationCounts.get(id) || 0,
-          commentCount: commentCountByStation.get(id) || 0,
-          comments: commentsByStation.get(id) || [],
-        }));
-
-      setTrendingStations(filteredStations);
+        setTrendingStations(filteredStations);
+      } catch (error) {
+        console.error('Error fetching trending stations:', error);
+      } finally {
+        setIsInitialLoading(false);
+      }
     };
 
     fetchTrendingStations();
@@ -354,116 +362,139 @@ export default function TrendsPage() {
       </Box>
 
       <Container maxW="container.xl" py={6} ref={containerRef}>
-        {displayedStations.map((station) => (
-          <Box key={station.id} overflow="hidden" p={4} transition="all 0.2s">
-            <StationSearchRow station={station} />
-            <Box mt={4}>
-              <Box fontSize="sm" display="flex" alignItems="center" gap={2}>
-                {station.favoriteCount > 0 && (
-                  <MenuRoot
-                    open={activeMenu === `likes-${station.id}`}
-                    onOpenChange={(open) => {
-                      if (!open) {
-                        setActiveMenu(null);
-                      }
-                    }}
-                  >
-                    <MenuTrigger asChild>
-                      <Badge
-                        ref={likesMenuRef}
-                        display="flex"
-                        alignItems="center"
-                        bg="gray.100"
-                        _dark={{ bg: 'gray.800' }}
-                        px={3}
-                        py={1}
-                        borderRadius="full"
-                        fontWeight="bold"
-                        cursor="pointer"
-                        _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
-                        onClick={() => handleMenuOpen(`likes-${station.id}`)}
+        {isInitialLoading ? (
+          <Box display="flex" justifyContent="center" mt={4}>
+            <Spinner size="md" color="gray.500" />
+          </Box>
+        ) : (
+          <>
+            {displayedStations.map((station) => (
+              <Box
+                key={station.id}
+                overflow="hidden"
+                p={4}
+                transition="all 0.2s"
+              >
+                <StationSearchRow station={station} />
+                <Box mt={4}>
+                  <Box fontSize="sm" display="flex" alignItems="center" gap={2}>
+                    {station.favoriteCount > 0 && (
+                      <MenuRoot
+                        open={activeMenu === `likes-${station.id}`}
+                        onOpenChange={(open) => {
+                          if (!open) {
+                            setActiveMenu(null);
+                          }
+                        }}
                       >
-                        <AiOutlineHeart
-                          size={16}
-                          style={{ marginRight: '6px' }}
-                        />
-                        {station.favoriteCount}
-                      </Badge>
-                    </MenuTrigger>
-                    <MenuContent
-                      rounded="xl"
-                      style={{ width: 'fit-content', minWidth: 'auto' }}
-                    >
-                      {renderAvatarStack(`likes-${station.id}`)}
-                    </MenuContent>
-                  </MenuRoot>
-                )}
+                        <MenuTrigger asChild>
+                          <Badge
+                            ref={likesMenuRef}
+                            display="flex"
+                            alignItems="center"
+                            bg="gray.100"
+                            _dark={{ bg: 'gray.800' }}
+                            px={3}
+                            py={1}
+                            borderRadius="full"
+                            fontWeight="bold"
+                            cursor="pointer"
+                            _hover={{
+                              bg: 'gray.200',
+                              _dark: { bg: 'gray.700' },
+                            }}
+                            onClick={() =>
+                              handleMenuOpen(`likes-${station.id}`)
+                            }
+                          >
+                            <AiOutlineHeart
+                              size={16}
+                              style={{ marginRight: '6px' }}
+                            />
+                            {station.favoriteCount}
+                          </Badge>
+                        </MenuTrigger>
+                        <MenuContent
+                          rounded="xl"
+                          style={{ width: 'fit-content', minWidth: 'auto' }}
+                        >
+                          {renderAvatarStack(`likes-${station.id}`)}
+                        </MenuContent>
+                      </MenuRoot>
+                    )}
 
-                {station.commentCount > 0 && (
-                  <MenuRoot
-                    open={activeMenu === `comments-${station.id}`}
-                    onOpenChange={(open) => {
-                      if (!open) {
-                        setActiveMenu(null);
-                      }
-                    }}
-                  >
-                    <MenuTrigger asChild>
-                      <Badge
-                        ref={commentsMenuRef}
-                        display="flex"
-                        alignItems="center"
-                        bg="gray.100"
-                        _dark={{ bg: 'gray.800' }}
-                        px={3}
-                        py={1}
-                        borderRadius="full"
-                        fontWeight="bold"
-                        cursor="pointer"
-                        _hover={{ bg: 'gray.200', _dark: { bg: 'gray.700' } }}
-                        onClick={() => handleMenuOpen(`comments-${station.id}`)}
+                    {station.commentCount > 0 && (
+                      <MenuRoot
+                        open={activeMenu === `comments-${station.id}`}
+                        onOpenChange={(open) => {
+                          if (!open) {
+                            setActiveMenu(null);
+                          }
+                        }}
                       >
-                        <AiOutlineComment
-                          color="currentColor"
-                          size={16}
-                          style={{ marginRight: '6px' }}
-                        />
-                        {station.commentCount}
-                      </Badge>
-                    </MenuTrigger>
-                    <MenuContent
-                      rounded="xl"
-                      style={{ width: 'fit-content', minWidth: 'auto' }}
-                    >
-                      {renderAvatarStack(`comments-${station.id}`)}
-                    </MenuContent>
-                  </MenuRoot>
+                        <MenuTrigger asChild>
+                          <Badge
+                            ref={commentsMenuRef}
+                            display="flex"
+                            alignItems="center"
+                            bg="gray.100"
+                            _dark={{ bg: 'gray.800' }}
+                            px={3}
+                            py={1}
+                            borderRadius="full"
+                            fontWeight="bold"
+                            cursor="pointer"
+                            _hover={{
+                              bg: 'gray.200',
+                              _dark: { bg: 'gray.700' },
+                            }}
+                            onClick={() =>
+                              handleMenuOpen(`comments-${station.id}`)
+                            }
+                          >
+                            <AiOutlineComment
+                              color="currentColor"
+                              size={16}
+                              style={{ marginRight: '6px' }}
+                            />
+                            {station.commentCount}
+                          </Badge>
+                        </MenuTrigger>
+                        <MenuContent
+                          rounded="xl"
+                          style={{ width: 'fit-content', minWidth: 'auto' }}
+                        >
+                          {renderAvatarStack(`comments-${station.id}`)}
+                        </MenuContent>
+                      </MenuRoot>
+                    )}
+                  </Box>
+                </Box>
+              </Box>
+            ))}
+
+            {!isInitialLoading && (hasMore || isLoadingMore) && (
+              <Box
+                display="flex"
+                justifyContent="center"
+                mt={4}
+                data-loading-trigger
+              >
+                {isLoadingMore ? (
+                  <Spinner size="md" color="gray.500" />
+                ) : (
+                  <Button
+                    onClick={handleLoadMore}
+                    size="sm"
+                    colorScheme="black"
+                    borderRadius="full"
+                  >
+                    Load More
+                  </Button>
                 )}
               </Box>
-            </Box>
-          </Box>
-        ))}
-
-        {(hasMore || isLoadingMore) && (
-          <Box
-            display="flex"
-            justifyContent="center"
-            mt={4}
-            data-loading-trigger
-          >
-            {isLoadingMore ? (
-              <Spinner size="md" color="gray.500" />
-            ) : (
-              <Button
-                onClick={handleLoadMore}
-                size="sm"
-                colorScheme="black"
-                borderRadius="full"
-              >
-                Load More
-              </Button>
             )}
-          </Box>
+          </>
         )}
       </Container>
     </Box>
