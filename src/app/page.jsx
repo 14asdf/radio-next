@@ -2,7 +2,7 @@ import { findStation, decodeUrl } from '../utils';
 import './styles.css';
 import { join } from 'path';
 import { readFile } from 'fs/promises';
-import { RouteHandler } from './routes';
+import Stations from '@/components/Stations';
 
 let stationsCache = null;
 
@@ -64,5 +64,5 @@ export async function generateMetadata({ searchParams }) {
 }
 
 export default function HomePage() {
-  return <RouteHandler />;
+  return <Stations />;
 }
