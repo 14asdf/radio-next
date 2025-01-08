@@ -2,7 +2,6 @@
 import { useSearchParams } from 'next/navigation';
 import StationInfo from '../components/StationInfo';
 import StationSelect from '../components/StationSelect';
-import StationSearch from '../components/StationSearch';
 import { useStations } from '@/contexts/StationsContext';
 
 // Custom RouteHandler component
