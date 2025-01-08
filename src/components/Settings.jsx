@@ -78,9 +78,8 @@ export default function Settings() {
       >
         <HStack spacing={2}>
           <PiGlobeHemisphereEastThin size={24} />
-          <Text fontWeight="bold">{t('language')}</Text>
+          <Text fontWeight="bold">{languages[currentLang]}</Text>
         </HStack>
-        <Text>{languages[currentLang]}</Text>
       </Flex>
 
       <DialogRoot open={isOpen} onOpenChange={(e) => setIsOpen(e.open)}>
