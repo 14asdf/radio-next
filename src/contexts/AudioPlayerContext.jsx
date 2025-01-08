@@ -28,6 +28,13 @@ export function AudioPlayerProvider({ children }) {
   const handlePlay = useCallback(async (station, retryCount = 0) => {
     if (!audioRef.current) return;
 
+    // Abort previous loading if exists
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    // Create new AbortController for this request
+    abortControllerRef.current = new AbortController();
+
     try {
       setPlayerState((prev) => ({
         ...prev,
@@ -42,7 +49,17 @@ export function AudioPlayerProvider({ children }) {
       audioRef.current.load();
 
       // Wait a bit before setting new source
-      await new Promise((resolve) => setTimeout(resolve, 200));
+      await new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(resolve, 200);
+        abortControllerRef.current.signal.addEventListener('abort', () => {
+          clearTimeout(timeoutId);
+          reject(new Error('Aborted'));
+        });
+      });
+
+      if (abortControllerRef.current.signal.aborted) {
+        throw new Error('Aborted');
+      }
 
       audioRef.current.src = station.streamUrl;
 
@@ -69,6 +86,11 @@ export function AudioPlayerProvider({ children }) {
           audioRef.current.removeEventListener('error', errorHandler);
         };
 
+        abortControllerRef.current.signal.addEventListener('abort', () => {
+          cleanup();
+          reject(new Error('Aborted'));
+        });
+
         audioRef.current.addEventListener('canplay', canPlayHandler);
         audioRef.current.addEventListener('error', errorHandler);
       });
@@ -90,7 +112,8 @@ export function AudioPlayerProvider({ children }) {
       }
 
       // Ignore AbortError when switching stations quickly
-      if (error.name === 'AbortError') {
+      if (error.name === 'AbortError' || error.message === 'Aborted') {
+        console.log('Loading aborted - switching to another station');
         return;
       }
 
@@ -119,11 +142,7 @@ export function AudioPlayerProvider({ children }) {
   }, [playerState.isLoading]);
 
   const togglePlay = async (audioId) => {
-    if (isLoadingRef.current) return;
-
     try {
-      isLoadingRef.current = true;
-
       const station = findStation(audioId, stations);
       const isNewStation =
         playerState.currentStation === null ||
