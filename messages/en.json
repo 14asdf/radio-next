@@ -77,7 +77,7 @@
   },
   "profile": {
     "title": "My Profile",
-    "favoriteStations": "Your favorite stations",
+    "favoriteStations": "Favorite stations",
     "noFavorites": "No favorite stations yet",
     "logout": "Log out"
   },
