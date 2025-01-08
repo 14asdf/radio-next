@@ -35,8 +35,6 @@ const Login = () => {
       });
 
       setUser(result.user);
-
-      console.log(result.user);
     } catch (error) {
       console.error('Google login error:', error);
     }

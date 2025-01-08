@@ -50,7 +50,6 @@ export default function UserProfilePage({ params }) {
 
   // Only render favorites if we have valid stations data
   const validFavorites = favorites.filter((stationId) => {
-    console.log(stationId);
     try {
       return findStation(stationId, stations) !== undefined;
     } catch (e) {

@@ -123,6 +123,7 @@ const Comments = ({ stationId }) => {
                 minH="60px"
                 resize="vertical"
                 maxH="200px"
+                maxLength={300}
                 mr="6"
               />
               <Button
