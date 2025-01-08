@@ -149,7 +149,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiUserLine size={24} />
               )}
-              <Text>{t('favorites')}</Text>
+              <Text>{t('profile')}</Text>
             </Button>
             <Button
               as={Link}
@@ -167,7 +167,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiBarChartLine size={24} />
               )}
-              <Text>{t('settings')}</Text>
+              <Text>{t('trends')}</Text>
             </Button>
             <ColorModeButton size="lg" width="full" borderRadius="full" />
 
@@ -229,7 +229,7 @@ const Main = ({ children }) => {
                 href="/profile"
                 variant="ghost"
                 borderRadius="full"
-                aria-label={t('favorites')}
+                aria-label={t('profile')}
               >
                 {pathname === '/profile' ? (
                   <RiUserFill size={24} />
@@ -242,7 +242,7 @@ const Main = ({ children }) => {
                 href="/trends"
                 variant="ghost"
                 borderRadius="full"
-                aria-label={t('settings')}
+                aria-label={t('trends')}
               >
                 {pathname === '/trends' ? (
                   <RiBarChartFill size={24} />

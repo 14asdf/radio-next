@@ -9,9 +9,9 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { ThemeProvider, useTheme } from 'next-themes';
-
 import * as React from 'react';
 import { PiMoonThin, PiSunThin } from 'react-icons/pi';
+import { useTranslations } from 'next-intl';
 
 export function ColorModeProvider(props) {
   return (
@@ -47,6 +47,7 @@ export function ColorModeIcon() {
 
 export const ColorModeButton = ({ ...props }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const t = useTranslations('settings');
 
   return (
     <>
@@ -67,7 +68,7 @@ export const ColorModeButton = ({ ...props }) => {
         {...props}
       >
         <ColorModeIcon />
-        <Text>Change theme</Text>
+        <Text>{t('changeTheme')}</Text>
       </Button>
     </>
   );

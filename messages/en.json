@@ -39,11 +39,14 @@
     "navigation": {
       "home": "Home",
       "search": "Search",
-      "favorites": "Favorites",
-      "settings": "Settings"
+      "profile": "Profile",
+      "trends": "Trends"
     },
     "nowPlaying": "Now Playing",
     "noStation": "No station selected",
     "loading": "Loading..."
+  },
+  "settings": {
+    "changeTheme": "Change theme"
   }
 }

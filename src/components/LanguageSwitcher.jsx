@@ -29,7 +29,8 @@ export default function LanguageSwitcher() {
   const handleLocaleChange = (newLocale) => {
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set('lang', newLocale);
-    router.push(`${pathname}?${newSearchParams.toString()}`);
+    const newUrl = `${pathname}?${newSearchParams.toString()}`;
+    window.location.href = newUrl;
     setIsOpen(false);
   };
 

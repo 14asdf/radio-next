@@ -39,11 +39,14 @@
     "navigation": {
       "home": "Главная",
       "search": "Поиск",
-      "favorites": "Избранное",
-      "settings": "Настройки"
+      "profile": "Профиль",
+      "trends": "Тренды"
     },
     "nowPlaying": "Сейчас играет",
     "noStation": "Станция не выбрана",
     "loading": "Загрузка..."
+  },
+  "settings": {
+    "changeTheme": "Сменить тему"
   }
 }
