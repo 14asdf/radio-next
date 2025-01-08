@@ -63,7 +63,9 @@ export default function Settings() {
       >
         <HStack spacing={2}>
           <ColorModeIcon />
-          <Text fontWeight="bold">{t('appearance')}</Text>
+          <Text fontWeight="bold" ml="3">
+            {t('appearance')}
+          </Text>
         </HStack>
       </Flex>
 
@@ -79,7 +81,9 @@ export default function Settings() {
       >
         <HStack spacing={2}>
           <PiGlobeHemisphereEastThin size={24} />
-          <Text fontWeight="bold">{languages[currentLang]}</Text>
+          <Text fontWeight="bold" ml="3">
+            {languages[currentLang]}
+          </Text>
         </HStack>
       </Flex>
 
