@@ -4,7 +4,7 @@ import { match } from '@formatjs/intl-localematcher';
 
 const COOKIE_LOCALE_NAME = 'NEXT_LOCALE';
 const defaultLocale = 'en';
-const locales = ['en', 'ru'];
+const locales = ['en', 'ru', 'es', 'de'];
 
 function getAcceptLanguageLocale(requestHeaders, locales, defaultLocale) {
   let locale;
