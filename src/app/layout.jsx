@@ -4,6 +4,9 @@ import { AudioPlayerProvider } from '../contexts/AudioPlayerContext';
 import { StationsProvider } from '../contexts/StationsContext';
 import { Suspense } from 'react';
 import { AuthProvider } from '../contexts/AuthContext';
+import { NextIntlClientProvider } from 'next-intl';
+import { headers } from 'next/headers';
+import { getLocale, getMessages } from 'next-intl/server';
 
 // Static viewport configuration
 export const viewport = {
@@ -24,22 +27,32 @@ export const metadata = {
   manifest: '/manifest.json',
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const headersList = headers();
+  const locale = await getLocale();
+  console.log(locale);
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages(locale);
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body suppressHydrationWarning>
         <div id="root">
-          <AuthProvider>
-            <StationsProvider>
-              <ChakraProvider>
-                <AudioPlayerProvider>
-                  <Suspense>
-                    <Main>{children}</Main>
-                  </Suspense>
-                </AudioPlayerProvider>
-              </ChakraProvider>
-            </StationsProvider>
-          </AuthProvider>
+          <NextIntlClientProvider messages={messages}>
+            <AuthProvider>
+              <StationsProvider>
+                <ChakraProvider>
+                  <AudioPlayerProvider>
+                    <Suspense>
+                      <Main>{children}</Main>
+                    </Suspense>
+                  </AudioPlayerProvider>
+                </ChakraProvider>
+              </StationsProvider>
+            </AuthProvider>
+          </NextIntlClientProvider>
         </div>
       </body>
     </html>

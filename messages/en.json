@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "default": {
+      "title": "Radio Cloud",
+      "description": "Listen to your favorite radio stations live online - free streaming radio"
+    },
+    "home": {
+      "title": "Radio Cloud - Listen to Radio Online",
+      "description": "Discover thousands of radio stations from around the world. Listen to music, news, sports, and talk radio stations for free."
+    }
+  },
+  "home": {
+    "welcome": "Welcome to Radio Cloud",
+    "trending": "Trending Stations",
+    "allGenres": "All Genres",
+    "searchPlaceholder": "Search radio stations...",
+    "featuredStations": "Featured Stations",
+    "recentlyPlayed": "Recently Played",
+    "exploreMore": "Explore More"
+  }
+}

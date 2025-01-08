@@ -1,14 +1,20 @@
-export function generatePageMetadata({
+import { getTranslations } from 'next-intl/server';
+
+export async function generatePageMetadata({
   title: pageTitle,
   image: pageImage,
   description: pageDescription,
 }) {
-  const defaultTitle = 'Radio cloud';
-  const defaultImage = '/android-chrome-192x192.png';
-  const defaultDescription =
-    'Listen to your favorite radio stations live online - free streaming radio';
+  const t = await getTranslations('metadata.default');
 
-  const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
+  const defaultTitle = t('title');
+  const defaultImage = '/android-chrome-192x192.png';
+  const defaultDescription = t('description');
+
+  const title =
+    pageTitle && pageTitle !== defaultTitle
+      ? `${pageTitle} | ${defaultTitle}`
+      : defaultTitle;
   const image = pageImage || defaultImage;
   const description = pageDescription || defaultDescription;
 
@@ -20,7 +26,7 @@ export function generatePageMetadata({
       description,
       images: [image],
       type: 'website',
-      siteName: 'Radio cloud',
+      siteName: defaultTitle,
     },
     twitter: {
       card: 'summary_large_image',
