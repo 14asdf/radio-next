@@ -326,6 +326,7 @@ export default function Trends() {
       bg="gray.50"
       _dark={{ bg: 'gray.900' }}
       borderBottomRadius={16}
+      borderTopRadius={16}
     >
       <Box
         position="relative"
