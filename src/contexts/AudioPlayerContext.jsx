@@ -22,104 +22,94 @@ export function AudioPlayerProvider({ children }) {
   });
 
   const audioRef = useRef(null);
+  const abortControllerRef = useRef(null);
+  const isLoadingRef = useRef(false);
 
-  const handlePlay = useCallback(
-    async (station) => {
-      if (!audioRef.current || playerState.isLoading) return;
+  const handlePlay = useCallback(async (station, retryCount = 0) => {
+    if (!audioRef.current) return;
 
-      // Validate station and streamUrl
-      if (!station || !station.streamUrl) {
-        console.error('Invalid station or URL:', station);
-        setPlayerState((prev) => ({
-          ...prev,
-          isPlaying: false,
-          isLoading: false,
-          error: 'Invalid station URL',
-        }));
+    try {
+      setPlayerState((prev) => ({
+        ...prev,
+        isLoading: true,
+        currentStation: station,
+        error: null,
+      }));
+
+      // Reset current audio
+      audioRef.current.pause();
+      audioRef.current.removeAttribute('src');
+      audioRef.current.load();
+
+      // Wait a bit before setting new source
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      audioRef.current.src = station.streamUrl;
+
+      // Wait for canplay or error event
+      await new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+          cleanup();
+          reject(new Error('Loading timeout'));
+        }, 5000);
+
+        const errorHandler = (e) => {
+          cleanup();
+          reject(new Error(e.target.error?.message || 'Audio loading failed'));
+        };
+
+        const canPlayHandler = () => {
+          cleanup();
+          resolve();
+        };
+
+        const cleanup = () => {
+          clearTimeout(timeoutId);
+          audioRef.current.removeEventListener('canplay', canPlayHandler);
+          audioRef.current.removeEventListener('error', errorHandler);
+        };
+
+        audioRef.current.addEventListener('canplay', canPlayHandler);
+        audioRef.current.addEventListener('error', errorHandler);
+      });
+
+      await audioRef.current.play();
+
+      setPlayerState((prev) => ({
+        ...prev,
+        isPlaying: true,
+        currentStation: station,
+        isLoading: false,
+        error: null,
+      }));
+    } catch (error) {
+      // If it's the first error, try once more
+      if (retryCount === 0) {
+        console.warn('First attempt failed, retrying...');
+        return handlePlay(station, retryCount + 1);
+      }
+
+      // Ignore AbortError when switching stations quickly
+      if (error.name === 'AbortError') {
         return;
       }
 
-      try {
-        // Set loading state and current station immediately
-        setPlayerState((prev) => ({
-          ...prev,
-          isLoading: true,
-          currentStation: station, // Set current station before loading
-          error: null,
-        }));
+      console.error('Playback failed:', error);
 
-        // Reset audio element completely
+      if (audioRef.current) {
         audioRef.current.pause();
-        audioRef.current.src = '';
+        audioRef.current.removeAttribute('src');
         audioRef.current.load();
-
-        // Set new source directly
-        console.log('Attempting to play URL:', station.streamUrl);
-        audioRef.current.src = station.streamUrl;
-
-        // Create a promise that resolves when audio is ready or errors
-        const loadPromise = new Promise((resolve, reject) => {
-          const loadTimeout = setTimeout(() => {
-            reject(new Error('Audio load timeout'));
-          }, 10000);
-
-          const handleCanPlay = () => {
-            clearTimeout(loadTimeout);
-            resolve();
-          };
-
-          const handleError = (error) => {
-            clearTimeout(loadTimeout);
-            console.error('Audio load error:', error);
-            const errorDetails =
-              audioRef.current?.error?.message ||
-              error.message ||
-              'Unknown error';
-            reject(new Error(`Failed to load audio: ${errorDetails}`));
-          };
-
-          audioRef.current.addEventListener('canplay', handleCanPlay, {
-            once: true,
-          });
-          audioRef.current.addEventListener('error', handleError, {
-            once: true,
-          });
-        });
-
-        await loadPromise;
-
-        try {
-          await audioRef.current.play();
-        } catch (playError) {
-          throw new Error(`Playback failed: ${playError.message}`);
-        }
-
-        setPlayerState((prev) => ({
-          ...prev,
-          isPlaying: true,
-          currentStation: station,
-          isLoading: false,
-          error: null,
-        }));
-      } catch (error) {
-        console.error('Playback failed:', error);
-
-        if (audioRef.current) {
-          audioRef.current.pause();
-          audioRef.current.src = '';
-          audioRef.current.load();
-        }
-
-        setPlayerState((prev) => ({
-          ...prev,
-          isPlaying: false,
-          isLoading: false,
-          error: error.message || 'Failed to play audio',
-        }));
       }
-    },
-    [playerState.isLoading]
-  );
+
+      setPlayerState((prev) => ({
+        ...prev,
+        isPlaying: false,
+        isLoading: false,
+        error: error.message || 'Failed to play audio',
+      }));
+    }
+  }, []);
 
   const handlePause = useCallback(() => {
     if (!audioRef.current || playerState.isLoading) return;
@@ -129,9 +119,11 @@ export function AudioPlayerProvider({ children }) {
   }, [playerState.isLoading]);
 
   const togglePlay = async (audioId) => {
-    if (playerState.isLoading) return;
+    if (isLoadingRef.current) return;
 
     try {
+      isLoadingRef.current = true;
+
       const station = findStation(audioId, stations);
       const isNewStation =
         playerState.currentStation === null ||
@@ -155,6 +147,8 @@ export function AudioPlayerProvider({ children }) {
         isPlaying: false,
         isLoading: false,
       }));
+    } finally {
+      isLoadingRef.current = false;
     }
   };
 
@@ -180,22 +174,33 @@ export function AudioPlayerProvider({ children }) {
     >
       <audio
         ref={audioRef}
-        onPlay={() =>
-          !playerState.isLoading && handlePlay(playerState.currentStation)
-        }
-        onPause={() => !playerState.isLoading && handlePause()}
         onError={(e) => {
-          console.error('Audio error:', e);
-          setPlayerState((prev) => ({
-            ...prev,
-            isPlaying: false,
-            isLoading: false,
-            error: 'Audio playback error',
-          }));
+          // Only handle errors if we're not already loading or retrying
+          if (!playerState.isLoading && e.target.error?.code !== 20) {
+            console.error('Audio error:', e.target.error);
+            // Only attempt recovery if we're supposed to be playing
+            if (playerState.isPlaying && playerState.currentStation) {
+              handlePlay(playerState.currentStation);
+            } else {
+              setPlayerState((prev) => ({
+                ...prev,
+                isPlaying: false,
+                isLoading: false,
+                error: 'Audio playback error',
+              }));
+            }
+          }
         }}
         onStalled={() => {
-          console.warn('Audio stalled');
-          handlePlay(playerState.currentStation);
+          // Only attempt recovery if we're supposed to be playing
+          if (
+            playerState.isPlaying &&
+            playerState.currentStation &&
+            !playerState.isLoading
+          ) {
+            console.warn('Audio stalled, attempting recovery');
+            handlePlay(playerState.currentStation);
+          }
         }}
         volume={playerState.volume}
         preload="auto"
