@@ -20,6 +20,7 @@ import { encodeUrl } from '@/utils';
 import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
 import { MenuRoot, MenuTrigger, MenuContent } from '@/components/ui/menu';
 import { sampleSize } from 'lodash';
+import Link from 'next/link';
 
 function useClickOutside(ref, handler) {
   useEffect(() => {
@@ -273,11 +274,14 @@ export default function TrendsPage() {
         <Box p={2}>
           <AvatarGroup size="sm" max={maxAvatars}>
             {users.map((user) => (
-              <Avatar
-                key={user.userId}
-                src={user.userPhotoURL}
-                name={user.displayName}
-              />
+              <Link key={user.userId} href={`/user/${user.userId}`}>
+                <Avatar
+                  src={user.userPhotoURL}
+                  name={user.displayName}
+                  cursor="pointer"
+                  _hover={{ opacity: 0.8 }}
+                />
+              </Link>
             ))}
             {users.length > maxAvatars && (
               <Avatar
