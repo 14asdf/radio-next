@@ -15,6 +15,8 @@ import {
   RiUserFill,
   RiBarChartFill,
   RiBarChartLine,
+  RiSettings4Line,
+  RiSettings4Fill,
 } from 'react-icons/ri';
 import Link from 'next/link';
 
@@ -169,9 +171,24 @@ const Main = ({ children }) => {
               )}
               <Text>{t('trends')}</Text>
             </Button>
-            <ColorModeButton size="lg" width="full" borderRadius="full" />
-
-            <LanguageSwitcher />
+            <Button
+              as={Link}
+              href="/settings"
+              variant="ghost"
+              size="lg"
+              width="full"
+              display="flex"
+              gap="3"
+              justifyContent="flex-start"
+              borderRadius="full"
+            >
+              {pathname === '/settings' ? (
+                <RiSettings4Fill size={24} />
+              ) : (
+                <RiSettings4Line size={24} />
+              )}
+              <Text>{t('settings')}</Text>
+            </Button>
           </Box>
         </Box>
 
@@ -250,7 +267,19 @@ const Main = ({ children }) => {
                   <RiBarChartLine size={24} />
                 )}
               </IconButton>
-              <ColorModeButton borderRadius="full" />
+              <IconButton
+                as={Link}
+                href="/settings"
+                variant="ghost"
+                borderRadius="full"
+                aria-label={t('settings')}
+              >
+                {pathname === '/settings' ? (
+                  <RiSettings4Fill size={24} />
+                ) : (
+                  <RiSettings4Line size={24} />
+                )}
+              </IconButton>
             </Box>
           </Box>
         </Box>

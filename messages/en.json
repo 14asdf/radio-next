@@ -52,7 +52,8 @@
       "home": "Home",
       "search": "Search",
       "profile": "Profile",
-      "trends": "Trends"
+      "trends": "Trends",
+      "settings": "Settings"
     },
     "nowPlaying": "Now Playing",
     "noStation": "No station selected",
@@ -61,7 +62,10 @@
   },
   "settings": {
     "changeTheme": "Change theme",
-    "chooseLanguage": "Choose Language"
+    "chooseLanguage": "Choose Language",
+    "title": "Settings",
+    "appearance": "Appearance",
+    "language": "Language"
   },
   "trends": {
     "title": "Trending Stations",

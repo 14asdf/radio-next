@@ -52,7 +52,8 @@
       "home": "Главная",
       "search": "Поиск",
       "profile": "Профиль",
-      "trends": "Тренды"
+      "trends": "Тренды",
+      "settings": "Настройки"
     },
     "nowPlaying": "Сейчас играет",
     "noStation": "Станция не выбрана",
@@ -61,7 +62,10 @@
   },
   "settings": {
     "changeTheme": "Сменить тему",
-    "chooseLanguage": "Выберите язык"
+    "chooseLanguage": "Выберите язык",
+    "appearance": "Внешний вид",
+    "language": "Язык",
+    "title": "Настройки"
   },
   "trends": {
     "title": "Популярные станции",
