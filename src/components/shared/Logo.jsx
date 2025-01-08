@@ -1,9 +1,10 @@
 'use client';
 import { Box } from '@chakra-ui/react';
+import Link from 'next/link';
 
 const Logo = () => {
   return (
-    <Box display="inline-flex">
+    <Box display="inline-flex" cursor="pointer" as={Link} href="/">
       <svg
         width="130"
         height="32"
