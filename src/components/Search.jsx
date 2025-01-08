@@ -22,6 +22,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useStations } from '@/contexts/StationsContext';
 import StationSearchRow from '@/components/StationSearchRow';
 import { debounce } from 'lodash';
+import { useTranslations } from 'next-intl';
 
 const SearchResults = React.memo(
   () => {
@@ -94,21 +95,21 @@ const SearchResults = React.memo(
       return () => observer.disconnect();
     }, [handleLoadMore, isLoading, filteredStations.length, visibleItems]);
 
+    const t = useTranslations('search');
+
     return (
       <Box key={searchTerm} ref={containerRef}>
         {!searchTerm ? (
           <Text fontSize={25} textAlign="center" mt={6}>
-            Find stations by name or genre
+            {t('findStations')}
           </Text>
         ) : filteredStations.length === 0 ? (
           <Text fontSize={25} textAlign="center" mt={6}>
-            No
             {searchType === 'all'
-              ? ' stations '
+              ? t('noResults', { term: searchTerm })
               : searchType === 'name'
-              ? ' station names '
-              : ' genres '}
-            found for "{searchTerm}"
+              ? t('noResultsName', { term: searchTerm })
+              : t('noResultsGenre', { term: searchTerm })}
           </Text>
         ) : (
           <>
@@ -132,7 +133,7 @@ const SearchResults = React.memo(
                     borderRadius="full"
                     onClick={handleLoadMore}
                   >
-                    Load More
+                    {t('loadMore')}
                   </Button>
                 )}
               </Box>
@@ -200,6 +201,8 @@ export default function Search() {
     debouncedSearch(searchTerm, newType);
   };
 
+  const t = useTranslations('search');
+
   return (
     <Box mx="auto" ref={containerRef}>
       <Box
@@ -221,7 +224,7 @@ export default function Search() {
             </InputLeftElement>
             <Input
               variant="subtle"
-              placeholder="Search..."
+              placeholder={t('placeholder')}
               value={searchTerm}
               onChange={handleSearchChange}
               paddingLeft="10"
@@ -270,7 +273,7 @@ export default function Search() {
                 justifyContent: 'center',
               }}
             >
-              All
+              {t('tabs.all')}
             </Tabs.Trigger>
             <Tabs.Trigger
               value="name"
@@ -281,7 +284,7 @@ export default function Search() {
                 justifyContent: 'center',
               }}
             >
-              Name
+              {t('tabs.name')}
             </Tabs.Trigger>
             <Tabs.Trigger
               value="genre"
@@ -292,7 +295,7 @@ export default function Search() {
                 justifyContent: 'center',
               }}
             >
-              Genre
+              {t('tabs.genre')}
             </Tabs.Trigger>
           </Tabs.List>
         </Tabs.Root>

@@ -7,6 +7,10 @@
     "home": {
       "title": "Radio Cloud - Listen to Radio Online",
       "description": "Discover thousands of radio stations from around the world. Listen to music, news, sports, and talk radio stations for free."
+    },
+    "search": {
+      "title": "Search Radio Stations",
+      "description": "Search and discover thousands of radio stations from around the world. Find your favorite music, news, sports, and talk radio stations."
     }
   },
   "home": {
@@ -17,5 +21,18 @@
     "featuredStations": "Featured Stations",
     "recentlyPlayed": "Recently Played",
     "exploreMore": "Explore More"
+  },
+  "search": {
+    "placeholder": "Search...",
+    "noResults": "No stations found for \"{term}\"",
+    "noResultsName": "No station names found for \"{term}\"",
+    "noResultsGenre": "No genres found for \"{term}\"",
+    "findStations": "Find stations by name or genre",
+    "loadMore": "Load More",
+    "tabs": {
+      "all": "All",
+      "name": "Name",
+      "genre": "Genre"
+    }
   }
 }

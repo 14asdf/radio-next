@@ -21,5 +21,18 @@
     "featuredStations": "Избранные станции",
     "recentlyPlayed": "Недавно прослушанные",
     "exploreMore": "Исследовать больше"
+  },
+  "search": {
+    "placeholder": "Поиск...",
+    "noResults": "Ничего не найдено по запросу \"{term}\"",
+    "noResultsName": "Станции с таким названием не найдены \"{term}\"",
+    "noResultsGenre": "Жанры не найдены \"{term}\"",
+    "findStations": "Найдите станции по названию или жанру",
+    "loadMore": "Загрузить ещё",
+    "tabs": {
+      "all": "Все",
+      "name": "Название",
+      "genre": "Жанр"
+    }
   }
 }
