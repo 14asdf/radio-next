@@ -1,4 +1,6 @@
 import { locales } from '@/utils/alternates';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://radio.baron.pw';
@@ -74,6 +76,21 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // Return the routes in the format Next.js expects
-  return [...staticRoutes, ...genreRoutes];
+  // Read and parse stations.json
+  const stationsFile = await fs.readFile(
+    path.join(process.cwd(), '/stations.json'),
+    'utf8'
+  );
+  const stations = JSON.parse(stationsFile);
+
+  // Add station routes
+  const stationRoutes = stations.map((station) => ({
+    url: `${baseUrl}/station/${encodeURIComponent(station.streamUrl)}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.6,
+  }));
+
+  // Return all routes
+  return [...staticRoutes, ...genreRoutes, ...stationRoutes];
 }
