@@ -3,6 +3,7 @@ import User from '@/components/User';
 import { ref, get } from 'firebase/database';
 import { db } from '@/utils/firebase';
 import { getTranslations } from 'next-intl/server';
+import { generateAlternates } from '@/utils/alternates';
 
 export async function generateMetadata({ params }) {
   const { id } = await Promise.resolve(params);
@@ -18,6 +19,7 @@ export async function generateMetadata({ params }) {
   return generatePageMetadata({
     title: t('user.title', { userName }),
     description: t('user.description', { userName }),
+    alternates: generateAlternates(`/user/${id}`),
   });
 }
 

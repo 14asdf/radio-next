@@ -1,6 +1,7 @@
 import { generatePageMetadata } from '@/utils/metadata';
 import Genre from '@/components/Genres';
 import { getTranslations } from 'next-intl/server';
+import { generateAlternates } from '@/utils/alternates';
 
 export async function generateMetadata({ params }) {
   const { tag } = params;
@@ -10,6 +11,7 @@ export async function generateMetadata({ params }) {
   return generatePageMetadata({
     title: t('title', { genre: formattedTag }),
     description: t('description', { genre: formattedTag.toLowerCase() }),
+    alternates: generateAlternates(`/genre/${tag}`),
   });
 }
 

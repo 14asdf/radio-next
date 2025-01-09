@@ -25,10 +25,22 @@ function getAcceptLanguageLocale(requestHeaders, locales, defaultLocale) {
   return locale;
 }
 
-function resolveLocale(locales, defaultLocale, requestHeaders, requestCookies) {
+function resolveLocale(
+  locales,
+  defaultLocale,
+  requestHeaders,
+  requestCookies,
+  searchParams
+) {
   let locale;
 
-  // Check cookie first
+  // Check URL query parameter first (highest priority)
+  const langParam = searchParams.get('lang');
+  if (langParam && locales.includes(langParam)) {
+    return langParam;
+  }
+
+  // Check cookie second
   if (requestCookies.has(COOKIE_LOCALE_NAME)) {
     const value = requestCookies.get(COOKIE_LOCALE_NAME)?.value;
     if (value && locales.includes(value)) {
@@ -61,12 +73,13 @@ function resolveTheme(requestCookies) {
 export async function middleware(request) {
   const response = NextResponse.next();
 
-  // Handle locale
+  // Handle locale with URL search params
   const locale = resolveLocale(
     locales,
     defaultLocale,
     request.headers,
-    request.cookies
+    request.cookies,
+    request.nextUrl.searchParams
   );
 
   // Handle theme

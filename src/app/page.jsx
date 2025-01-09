@@ -5,6 +5,7 @@ import { readFile } from 'fs/promises';
 import Stations from '@/components/Stations';
 import { generatePageMetadata } from '../utils/metadata';
 import { getTranslations } from 'next-intl/server';
+import { generateAlternates } from '@/utils/alternates';
 
 let stationsCache = null;
 
@@ -34,6 +35,7 @@ export async function generateMetadata({ searchParams }) {
       return generatePageMetadata({
         title: station.title,
         image: station.img,
+        alternates: generateAlternates('/'),
       });
     }
   }
@@ -41,6 +43,7 @@ export async function generateMetadata({ searchParams }) {
   return generatePageMetadata({
     title: t('default.title'),
     description: t('default.description'),
+    alternates: generateAlternates('/'),
   });
 }
 
