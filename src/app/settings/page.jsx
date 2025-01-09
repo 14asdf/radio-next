@@ -5,11 +5,15 @@ import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata() {
   const t = await getTranslations('metadata');
+  const alternates = generateAlternates('/settings');
 
   return generatePageMetadata({
     title: t('settings.title'),
     description: t('settings.description'),
-    alternates: generateAlternates('/settings'),
+    alternates: {
+      canonical: alternates.canonical,
+      languages: alternates.languages,
+    },
   });
 }
 

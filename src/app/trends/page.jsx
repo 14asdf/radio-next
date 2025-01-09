@@ -3,13 +3,18 @@ import { generateAlternates } from '@/utils/alternates';
 import Trends from '@/components/Trends';
 import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata() {
+export async function generateMetadata({ searchParams }) {
   const t = await getTranslations();
-  return generatePageMetadata({
+  const alternates = generateAlternates('/trends');
+
+  return {
     title: t('metadata.trends.title'),
     description: t('metadata.trends.description'),
-    alternates: generateAlternates('/trends'),
-  });
+    alternates: {
+      canonical: alternates.canonical,
+      languages: alternates.languages,
+    },
+  };
 }
 
 export default function TrendsPage() {

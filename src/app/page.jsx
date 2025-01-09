@@ -28,6 +28,7 @@ export async function generateMetadata({ searchParams }) {
   const params = await Promise.resolve(searchParams);
   const stations = await getStations();
   const audioId = params?.id ?? null;
+  const alternates = generateAlternates('/');
 
   if (audioId) {
     const station = findStation(audioId, stations);
@@ -35,7 +36,10 @@ export async function generateMetadata({ searchParams }) {
       return generatePageMetadata({
         title: station.title,
         image: station.img,
-        alternates: generateAlternates('/'),
+        alternates: {
+          canonical: alternates.canonical,
+          languages: alternates.languages,
+        },
       });
     }
   }

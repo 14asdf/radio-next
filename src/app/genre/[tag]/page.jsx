@@ -7,11 +7,15 @@ export async function generateMetadata({ params }) {
   const { tag } = params;
   const formattedTag = tag.charAt(0).toUpperCase() + tag.slice(1);
   const t = await getTranslations('metadata.genre');
+  const alternates = generateAlternates(`/genre/${tag}`);
 
   return generatePageMetadata({
     title: t('title', { genre: formattedTag }),
     description: t('description', { genre: formattedTag.toLowerCase() }),
-    alternates: generateAlternates(`/genre/${tag}`),
+    alternates: {
+      canonical: alternates.canonical,
+      languages: alternates.languages,
+    },
   });
 }
 

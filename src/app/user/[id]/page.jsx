@@ -8,6 +8,7 @@ import { generateAlternates } from '@/utils/alternates';
 export async function generateMetadata({ params }) {
   const { id } = await Promise.resolve(params);
   const t = await getTranslations('metadata');
+  const alternates = generateAlternates(`/user/${id}`);
 
   console.log(id);
   // Fetch user data from Firebase RTDB
@@ -19,7 +20,10 @@ export async function generateMetadata({ params }) {
   return generatePageMetadata({
     title: t('user.title', { userName }),
     description: t('user.description', { userName }),
-    alternates: generateAlternates(`/user/${id}`),
+    alternates: {
+      canonical: alternates.canonical,
+      languages: alternates.languages,
+    },
   });
 }
 
