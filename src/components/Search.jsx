@@ -118,11 +118,27 @@ const SearchResults = React.memo(
     return (
       <Box key={searchTerm} ref={containerRef}>
         {!searchTerm ? (
-          <Text fontSize={25} textAlign="center" mt={6}>
+          <Text
+            fontSize={{
+              base: '18px',
+              md: '22px',
+              xl: '25px',
+            }}
+            textAlign="center"
+            mt={6}
+          >
             {t('findStations')}
           </Text>
         ) : filteredStations.length === 0 ? (
-          <Text fontSize={25} textAlign="center" mt={6}>
+          <Text
+            fontSize={{
+              base: '18px',
+              md: '22px',
+              xl: '25px',
+            }}
+            textAlign="center"
+            mt={6}
+          >
             {searchType === 'all'
               ? t('noResults', { term: searchTerm })
               : searchType === 'name'
