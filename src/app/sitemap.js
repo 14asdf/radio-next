@@ -76,12 +76,9 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // Read and parse stations.json
-  const stationsFile = await fs.readFile(
-    path.join(process.cwd(), '/stations.json'),
-    'utf8'
-  );
-  const stations = JSON.parse(stationsFile);
+  // Fetch stations.json from public URL
+  const stationsResponse = await fetch(`${baseUrl}/stations.json`);
+  const stations = await stationsResponse.json();
 
   // Add station routes
   const stationRoutes = stations.map((station) => ({
