@@ -72,13 +72,19 @@ const GenreCard = React.memo(({ tag, stations }) => {
   // Convert tag to translation key format
   const translationKey = tag.toLowerCase().replace(/[^a-z0-9]/g, '_');
 
-  const [maxAvatars, setMaxAvatars] = useState(() =>
-    window.innerWidth > 768 ? 5 : 3
-  );
+  const [maxAvatars, setMaxAvatars] = useState(() => {
+    const width = window.innerWidth;
+    if (width >= 1536) return 5; // 2xl breakpoint (1536px)
+    if (width >= 768) return 4; // md breakpoint (768px)
+    return 3; // base
+  });
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxAvatars(window.innerWidth > 768 ? 5 : 3);
+      const width = window.innerWidth;
+      if (width >= 1536) setMaxAvatars(5);
+      else if (width >= 768) setMaxAvatars(4);
+      else setMaxAvatars(3);
     };
 
     window.addEventListener('resize', handleResize);
@@ -197,7 +203,8 @@ const StationSelect = () => {
       gridTemplateColumns={{
         base: 'repeat(2, 1fr)',
         md: 'repeat(3, 1fr)',
-        '2xl': 'repeat(4, 1fr)',
+        xl: 'repeat(4, 1fr)',
+        '2xl': 'repeat(5, 1fr)',
       }}
       gap={{ base: 4, md: 6 }}
       width="100%"
