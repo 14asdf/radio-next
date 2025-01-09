@@ -1,24 +1,19 @@
-import { getTranslations } from 'next-intl/server';
-
-export async function generatePageMetadata({
+export function generatePageMetadata({
   title: pageTitle,
   image: pageImage,
   description: pageDescription,
+  alternates,
 }) {
-  const t = await getTranslations('metadata.default');
-
-  const defaultTitle = t('title');
+  const defaultTitle = 'Radio cloud';
   const defaultImage = '/android-chrome-192x192.png';
-  const defaultDescription = t('description');
+  const defaultDescription =
+    'Listen to your favorite radio stations live online - free streaming radio';
 
-  const title =
-    pageTitle && pageTitle !== defaultTitle
-      ? `${pageTitle} | ${defaultTitle}`
-      : defaultTitle;
+  const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
   const image = pageImage || defaultImage;
   const description = pageDescription || defaultDescription;
 
-  return {
+  const metadata = {
     title,
     description,
     openGraph: {
@@ -26,7 +21,7 @@ export async function generatePageMetadata({
       description,
       images: [image],
       type: 'website',
-      siteName: defaultTitle,
+      siteName: 'Radio cloud',
     },
     twitter: {
       card: 'summary_large_image',
@@ -40,4 +35,10 @@ export async function generatePageMetadata({
       'telegram-channel:description': description,
     },
   };
+
+  if (alternates) {
+    metadata.alternates = alternates;
+  }
+
+  return metadata;
 }
