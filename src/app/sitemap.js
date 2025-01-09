@@ -1,4 +1,5 @@
 import { locales } from '@/utils/alternates';
+import { encodeUrl } from '@/utils/stations';
 import { promises as fs } from 'fs';
 import path from 'path';
 
@@ -82,7 +83,7 @@ export default async function sitemap() {
 
   // Add station routes
   const stationRoutes = stations.map((station) => ({
-    url: `${baseUrl}/station/${encodeURIComponent(station.streamUrl)}`,
+    url: `${baseUrl}/station/${encodeUrl(station.streamUrl)}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.6,
