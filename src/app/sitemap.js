@@ -60,68 +60,21 @@ export default async function sitemap() {
     'npr',
   ];
 
-  // Create XML content
-  let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">`;
+  // Transform routes into the required format
+  const staticRoutes = routes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: route === '' ? 1.0 : 0.8,
+  }));
 
-  // Add static routes with language alternatives
-  routes.forEach((route) => {
-    xml += `
-  <url>
-    <loc>${baseUrl}${route}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>${route === '' ? '1.0' : '0.8'}</priority>`;
+  const genreRoutes = genres.map((genre) => ({
+    url: `${baseUrl}/genre/${genre}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.7,
+  }));
 
-    locales.forEach((locale) => {
-      xml += `
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="${locale}" 
-      href="${baseUrl}${route}?lang=${locale}"/>`;
-    });
-
-    xml += `
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="x-default" 
-      href="${baseUrl}${route}"/>
-  </url>`;
-  });
-
-  // Add genre routes with language alternatives
-  genres.forEach((genre) => {
-    xml += `
-  <url>
-    <loc>${baseUrl}/genre/${genre}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>`;
-
-    locales.forEach((locale) => {
-      xml += `
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="${locale}" 
-      href="${baseUrl}/genre/${genre}?lang=${locale}"/>`;
-    });
-
-    xml += `
-    <xhtml:link 
-      rel="alternate" 
-      hreflang="x-default" 
-      href="${baseUrl}/genre/${genre}"/>
-  </url>`;
-  });
-
-  xml += '\n</urlset>';
-
-  // Return XML with proper headers
-  return new Response(xml, {
-    headers: {
-      'Content-Type': 'application/xml',
-      'Cache-Control': 'public, max-age=3600',
-    },
-  });
+  // Return the routes in the format Next.js expects
+  return [...staticRoutes, ...genreRoutes];
 }
