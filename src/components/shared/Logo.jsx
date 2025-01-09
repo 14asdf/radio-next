@@ -34,7 +34,7 @@ const Logo = () => {
           fill="currentColor"
           style={{ fontSize: '12px', fontWeight: '800' }}
         >
-          RADIO CLOUD
+          Radio Cloud
         </text>
       </svg>
     </Box>
