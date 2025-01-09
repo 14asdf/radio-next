@@ -1,8 +1,7 @@
 import { locales } from '@/utils/alternates';
 
 export default async function sitemap() {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || 'https://radio-next-sigma.vercel.app';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://radio.baron.pw';
 
   // Define all static routes
   const routes = [
