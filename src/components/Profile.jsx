@@ -11,6 +11,7 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  Spinner,
 } from '@chakra-ui/react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useEffect, useState } from 'react';
@@ -38,6 +39,7 @@ export default function Profile() {
   const router = useRouter();
   const { getFavorites } = useFavorites();
   const [favoritesList, setFavoritesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const t = useTranslations('profile');
 
   useEffect(() => {
@@ -47,11 +49,13 @@ export default function Profile() {
     }
 
     const loadFavorites = async () => {
+      setIsLoading(true);
       const favorites = (await getFavorites()) || [];
       const favList = Array.isArray(favorites)
         ? favorites
         : Object.keys(favorites);
       setFavoritesList(favList);
+      setIsLoading(false);
     };
 
     loadFavorites();
@@ -174,8 +178,13 @@ export default function Profile() {
               searchTerm=""
             />
           ))}
-          {favoritesList.length === 0 && (
+          {favoritesList.length === 0 && !isLoading && (
             <Text color="gray.500">{t('noFavorites')}</Text>
+          )}
+          {isLoading && (
+            <Box display="flex" justifyContent="center" mt={4}>
+              <Spinner size="md" color="gray.500" />
+            </Box>
           )}
         </SimpleGrid>
       </Box>

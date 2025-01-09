@@ -2,7 +2,14 @@
 import { useEffect, useState, use } from 'react';
 import { ref, onValue } from 'firebase/database';
 import { db } from '@/utils/firebase';
-import { Box, VStack, Heading, Text, SimpleGrid } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Heading,
+  Text,
+  SimpleGrid,
+  Spinner,
+} from '@chakra-ui/react';
 import { useStations } from '@/contexts/StationsContext';
 import { decodeUrl, findStation } from '@/utils/stations';
 import { Avatar } from '@/components/ui/avatar';
@@ -12,6 +19,7 @@ import { useTranslations } from 'next-intl';
 export default function User({ id }) {
   const [userData, setUserData] = useState(null);
   const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { stations } = useStations();
   const t = useTranslations('profile');
 
@@ -25,6 +33,7 @@ export default function User({ id }) {
       if (data) {
         setUserData(data);
       }
+      setIsLoading(false);
     });
 
     // Fetch user's favorites
@@ -140,8 +149,13 @@ export default function User({ id }) {
               searchTerm=""
             />
           ))}
-          {validFavorites.length === 0 && (
+          {validFavorites.length === 0 && !isLoading && (
             <Text color="gray.500">{t('noFavorites')}</Text>
+          )}
+          {isLoading && (
+            <Box display="flex" justifyContent="center" mt={4}>
+              <Spinner size="md" color="gray.500" />
+            </Box>
           )}
         </SimpleGrid>
       </Box>
