@@ -18,10 +18,9 @@ import { IoArrowBackSharp } from 'react-icons/io5';
 import { getGenreColor } from '@/utils/colors';
 import { useTranslations } from 'next-intl';
 
-const Genre = () => {
-  const params = useParams();
+const Genre = async ({ params }) => {
+  const { tag } = await params;
   const router = useRouter();
-  const { tag } = params;
   const { stations } = useStations();
   const t = useTranslations('genres');
 

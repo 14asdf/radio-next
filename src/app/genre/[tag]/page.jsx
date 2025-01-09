@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { generateAlternates } from '@/utils/alternates';
 
 export async function generateMetadata({ params }) {
-  const { tag } = params;
+  const { tag } = await params;
   const formattedTag = tag.charAt(0).toUpperCase() + tag.slice(1);
   const t = await getTranslations('metadata.genre');
   const alternates = generateAlternates(`/genre/${tag}`);
