@@ -1,11 +1,11 @@
 {
   "metadata": {
     "default": {
-      "title": "Radio Cloud",
+      "title": "Radio Baron",
       "description": "Hören Sie Ihre Lieblings-Radiosender live online - kostenloses Streaming-Radio"
     },
     "home": {
-      "title": "Radio Cloud - Online Radio hören",
+      "title": "Radio Baron - Online Radio hören",
       "description": "Entdecken Sie tausende Radiosender aus der ganzen Welt. Hören Sie kostenlos Musik, Nachrichten, Sport und Talkradio."
     },
     "search": {
@@ -18,27 +18,27 @@
     },
     "profile": {
       "title": "Mein Profil",
-      "description": "Verwalten Sie Ihr Radio Cloud-Profil, sehen Sie Ihre Lieblingssender und passen Sie Ihr Hörerlebnis an."
+      "description": "Verwalten Sie Ihr Radio Baron-Profil, sehen Sie Ihre Lieblingssender und passen Sie Ihr Hörerlebnis an."
     },
     "trends": {
       "title": "Beliebte Radiosender",
       "description": "Entdecken Sie die aktuell beliebtesten Radiosender. Hören Sie, was andere hören - von Hitmusik bis zu aktuellen Nachrichten und Live-Sportübertragungen."
     },
     "login": {
-      "title": "Anmelden bei Radio Cloud",
-      "description": "Melden Sie sich bei Radio Cloud an, um auf Ihre Lieblingssender und personalisierten Funktionen zuzugreifen"
+      "title": "Anmelden bei Radio Baron",
+      "description": "Melden Sie sich bei Radio Baron an, um auf Ihre Lieblingssender und personalisierten Funktionen zuzugreifen"
     },
     "user": {
       "title": "Profil von {userName}",
-      "description": "Sehen Sie sich die Radiosammlung und Hörgewohnheiten von {userName} auf Radio Cloud an."
+      "description": "Sehen Sie sich die Radiosammlung und Hörgewohnheiten von {userName} auf Radio Baron an."
     },
     "settings": {
-      "title": "Einstellungen - Radio Cloud",
-      "description": "Passen Sie Ihr Radio Cloud-Erlebnis an. Ändern Sie Theme, Sprache und andere Einstellungen."
+      "title": "Einstellungen - Radio Baron",
+      "description": "Passen Sie Ihr Radio Baron-Erlebnis an. Ändern Sie Theme, Sprache und andere Einstellungen."
     }
   },
   "home": {
-    "welcome": "Willkommen bei Radio Cloud",
+    "welcome": "Willkommen bei Radio Baron",
     "trending": "Beliebte Sender",
     "allGenres": "Alle Genres",
     "searchPlaceholder": "Radiosender suchen...",
@@ -70,7 +70,7 @@
     "nowPlaying": "Jetzt läuft",
     "noStation": "Kein Sender ausgewählt",
     "loading": "Lädt...",
-    "logo": "Radio Cloud"
+    "logo": "Radio Baron"
   },
   "settings": {
     "changeTheme": "Theme ändern",

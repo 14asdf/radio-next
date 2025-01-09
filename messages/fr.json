@@ -1,11 +1,11 @@
 {
   "metadata": {
     "default": {
-      "title": "Radio Cloud",
+      "title": "Radio Baron",
       "description": "Écoutez vos stations de radio préférées en direct - radio en streaming gratuit"
     },
     "home": {
-      "title": "Radio Cloud - Écouter la Radio en Ligne",
+      "title": "Radio Baron - Écouter la Radio en Ligne",
       "description": "Découvrez des milliers de stations de radio du monde entier. Écoutez gratuitement de la musique, des actualités, du sport et des émissions."
     },
     "search": {
@@ -18,27 +18,27 @@
     },
     "profile": {
       "title": "Mon Profil",
-      "description": "Gérez votre profil Radio Cloud, consultez vos stations préférées et personnalisez votre expérience d'écoute."
+      "description": "Gérez votre profil Radio Baron, consultez vos stations préférées et personnalisez votre expérience d'écoute."
     },
     "trends": {
       "title": "Stations de Radio Tendances",
       "description": "Découvrez les stations de radio les plus populaires du moment. Écoutez ce que les autres apprécient - des tubes aux actualités en passant par les diffusions sportives en direct."
     },
     "login": {
-      "title": "Connexion à Radio Cloud",
-      "description": "Connectez-vous à Radio Cloud pour accéder à vos stations de radio préférées et vos fonctionnalités personnalisées"
+      "title": "Connexion à Radio Baron",
+      "description": "Connectez-vous à Radio Baron pour accéder à vos stations de radio préférées et vos fonctionnalités personnalisées"
     },
     "user": {
       "title": "Profil de {userName}",
-      "description": "Consultez la collection de stations de radio et l'activité d'écoute de {userName} sur Radio Cloud."
+      "description": "Consultez la collection de stations de radio et l'activité d'écoute de {userName} sur Radio Baron."
     },
     "settings": {
-      "title": "Paramètres - Radio Cloud",
-      "description": "Personnalisez votre expérience Radio Cloud. Changez le thème, la langue et d'autres préférences."
+      "title": "Paramètres - Radio Baron",
+      "description": "Personnalisez votre expérience Radio Baron. Changez le thème, la langue et d'autres préférences."
     }
   },
   "home": {
-    "welcome": "Bienvenue sur Radio Cloud",
+    "welcome": "Bienvenue sur Radio Baron",
     "trending": "Stations Tendances",
     "allGenres": "Tous les Genres",
     "searchPlaceholder": "Rechercher des stations...",
@@ -70,7 +70,7 @@
     "nowPlaying": "En Cours",
     "noStation": "Aucune station sélectionnée",
     "loading": "Chargement...",
-    "logo": "Radio Cloud"
+    "logo": "Radio Baron"
   },
   "settings": {
     "changeTheme": "Changer de thème",

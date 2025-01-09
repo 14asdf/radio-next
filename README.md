@@ -1,55 +1,85 @@
-# Radio Cloud
-
-A modern web application built with Next.js and React, featuring a dynamic user interface with Chakra UI.
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (Latest LTS version recommended)
-- npm or yarn package manager
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies
-
-bash
-npm install
-or
-yarn install
-
-3. Start the development server
-
-bash
-npm start
-or
-yarn start
-
-The application will start in development mode with Turbo enabled. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-## Available Scripts
-
-- `npm start` - Runs the development server with Turbo
-- `npm run build` - Creates a production build
-- `npm run lint` - Runs the linter
-- `npm run commit` - Custom commit script that automatically adds files and includes change statistics
-
-## Built With
-
-- [Next.js](https://nextjs.org/) - The React framework for production
-- [React](https://reactjs.org/) - JavaScript library for building user interfaces
-- [Chakra UI](https://chakra-ui.com/) - Component library for building accessible React applications
-- [Firebase](https://firebase.google.com/) - Backend services and hosting
-- [GSAP](https://greensock.com/gsap/) - Professional-grade animation library
-- [Swiper](https://swiperjs.com/) - Modern mobile touch slider
-- [React Window](https://react-window.vercel.app/) - Virtualized list and grid components
-- [next-themes](https://github.com/pacocoursey/next-themes) - Theme management for Next.js
-
-## License
-
-This project is private and proprietary.
-
-## Version
-
-Current version: 0.1.0
+<p align="center">
+    <a href="https://radio.baron.pw">
+      <img src="public/android-chrome-192x192.png" alt="Radio Baron" width="96">
+    </a>
+  </p>
+  
+  <h1 align="center">Radio Baron</h1>
+  
+  <p align="center">
+    <a href="https://radio.baron.pw"><strong>radio.baron.pw</strong></a> &mdash; listen to radio stations online
+  </p>
+  
+  <p align="center">
+    Online radio streaming built with Next.js, React, and Chakra UI.
+  </p>
+  
+  ## Getting Started
+  
+  ### Prerequisites
+  
+  - Node.js (LTS recommended)
+  - npm or yarn
+  
+  ### Installation
+  
+  1. Clone the repository
+  2. Copy environment variables:
+  
+  ```bash
+  cp .env.example .env.local
+  ```
+  
+  Fill in Firebase credentials in `.env.local` (see `.env.example`).
+  
+  3. Install dependencies and start the dev server:
+  
+  ```bash
+  npm install
+  npm start
+  ```
+  
+  Open [http://localhost:3000](http://localhost:3000) in your browser.
+  
+  ## Available Scripts
+  
+  - `npm start` - Development server with Turbo
+  - `npm run build` - Production build
+  - `npm run lint` - Run linter
+  - `npm run generate-icons` - Generate favicons from SVG logo
+  
+  ## Built With
+  
+  - [Next.js](https://nextjs.org/) - React framework
+  - [React](https://reactjs.org/) - UI library
+  - [Chakra UI](https://chakra-ui.com/) - Component library
+  - [Firebase](https://firebase.google.com/) - Auth and realtime database
+  - [next-intl](https://next-intl-docs.vercel.app/) - Internationalization
+  - [GSAP](https://greensock.com/gsap/) - Animations
+  - [Swiper](https://swiperjs.com/) - Touch slider
+  
+  ## Icon Generation
+  
+  ```bash
+  npm run generate-icons
+  ```
+  
+  Generates favicons and PWA icons in the `public` directory.
+  
+  ## Environment Variables
+  
+  Copy `.env.example` to `.env.local` and set:
+  
+  | Variable | Description |
+  |----------|-------------|
+  | `NEXT_PUBLIC_FIREBASE_API_KEY` | Firebase API key |
+  | `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | Firebase auth domain |
+  | `NEXT_PUBLIC_FIREBASE_DATABASE_URL` | Firebase Realtime Database URL |
+  | `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | Firebase project ID |
+  | `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET` | Firebase storage bucket |
+  | `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | Firebase messaging sender ID |
+  | `NEXT_PUBLIC_FIREBASE_APP_ID` | Firebase app ID |
+  | `NEXT_PUBLIC_BASE_URL` | Site URL (default: https://radio.baron.pw) |
+  
+  For production, set the same variables in your Vercel project settings.
+  

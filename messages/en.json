@@ -1,11 +1,11 @@
 {
   "metadata": {
     "default": {
-      "title": "Radio Cloud",
+      "title": "Radio Baron",
       "description": "Listen to your favorite radio stations live online - free streaming radio"
     },
     "home": {
-      "title": "Radio Cloud - Listen to Radio Online",
+      "title": "Radio Baron - Listen to Radio Online",
       "description": "Discover thousands of radio stations from around the world. Listen to music, news, sports, and talk radio stations for free."
     },
     "search": {
@@ -18,27 +18,27 @@
     },
     "profile": {
       "title": "My Profile",
-      "description": "Manage your Radio Cloud profile, view your favorite stations, and customize your radio listening experience."
+      "description": "Manage your Radio Baron profile, view your favorite stations, and customize your radio listening experience."
     },
     "trends": {
       "title": "Trending Radio Stations",
       "description": "Discover the most popular and trending radio stations right now. Listen to what others are enjoying - from hit music to breaking news and live sports broadcasts."
     },
     "login": {
-      "title": "Login to Radio Cloud",
-      "description": "Sign in to Radio Cloud to access your favorite radio stations and personalized features"
+      "title": "Login to Radio Baron",
+      "description": "Sign in to Radio Baron to access your favorite radio stations and personalized features"
     },
     "user": {
       "title": "{userName}'s Profile",
-      "description": "View {userName}'s radio station collection and listening activity on Radio Cloud."
+      "description": "View {userName}'s radio station collection and listening activity on Radio Baron."
     },
     "settings": {
-      "title": "Settings - Radio Cloud",
-      "description": "Customize your Radio Cloud experience. Change theme, language, and other preferences."
+      "title": "Settings - Radio Baron",
+      "description": "Customize your Radio Baron experience. Change theme, language, and other preferences."
     }
   },
   "home": {
-    "welcome": "Welcome to Radio Cloud",
+    "welcome": "Welcome to Radio Baron",
     "trending": "Trending Stations",
     "allGenres": "All Genres",
     "searchPlaceholder": "Search radio stations...",
@@ -70,7 +70,7 @@
     "nowPlaying": "Now Playing",
     "noStation": "No station selected",
     "loading": "Loading...",
-    "logo": "Radio Cloud"
+    "logo": "Radio Baron"
   },
   "settings": {
     "changeTheme": "Change theme",

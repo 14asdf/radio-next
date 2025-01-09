@@ -1,11 +1,11 @@
 {
   "metadata": {
     "default": {
-      "title": "Radio Cloud",
+      "title": "Radio Baron",
       "description": "Escucha tus emisoras de radio favoritas en línea - radio streaming gratuita"
     },
     "home": {
-      "title": "Radio Cloud - Escucha Radio en Línea",
+      "title": "Radio Baron - Escucha Radio en Línea",
       "description": "Descubre miles de emisoras de radio de todo el mundo. Escucha música, noticias, deportes y programas de radio gratis."
     },
     "search": {
@@ -18,27 +18,27 @@
     },
     "profile": {
       "title": "Mi Perfil",
-      "description": "Gestiona tu perfil de Radio Cloud, visualiza tus emisoras favoritas y personaliza tu experiencia de radio."
+      "description": "Gestiona tu perfil de Radio Baron, visualiza tus emisoras favoritas y personaliza tu experiencia de radio."
     },
     "trends": {
       "title": "Emisoras Tendencia",
       "description": "Descubre las emisoras de radio más populares del momento. Escucha lo que otros disfrutan - desde música de éxito hasta noticias y transmisiones deportivas en vivo."
     },
     "login": {
-      "title": "Iniciar sesión en Radio Cloud",
-      "description": "Inicia sesión en Radio Cloud para acceder a tus emisoras favoritas y funciones personalizadas"
+      "title": "Iniciar sesión en Radio Baron",
+      "description": "Inicia sesión en Radio Baron para acceder a tus emisoras favoritas y funciones personalizadas"
     },
     "user": {
       "title": "Perfil de {userName}",
-      "description": "Explora la colección de emisoras y actividad de escucha de {userName} en Radio Cloud."
+      "description": "Explora la colección de emisoras y actividad de escucha de {userName} en Radio Baron."
     },
     "settings": {
-      "title": "Ajustes - Radio Cloud",
-      "description": "Personaliza tu experiencia en Radio Cloud. Cambia el tema, el idioma y otras preferencias."
+      "title": "Ajustes - Radio Baron",
+      "description": "Personaliza tu experiencia en Radio Baron. Cambia el tema, el idioma y otras preferencias."
     }
   },
   "home": {
-    "welcome": "Bienvenido a Radio Cloud",
+    "welcome": "Bienvenido a Radio Baron",
     "trending": "Emisoras Tendencia",
     "allGenres": "Todos los Géneros",
     "searchPlaceholder": "Buscar emisoras de radio...",
@@ -70,7 +70,7 @@
     "nowPlaying": "Reproduciendo",
     "noStation": "Ninguna emisora seleccionada",
     "loading": "Cargando...",
-    "logo": "Radio Cloud"
+    "logo": "Radio Baron"
   },
   "settings": {
     "changeTheme": "Cambiar tema",

@@ -38,7 +38,7 @@ const Logo = () => {
             textTransform: 'uppercase',
           }}
         >
-          Radio Cloud
+          Radio Baron
         </text>
       </svg>
     </Box>
