@@ -32,7 +32,11 @@ const Logo = () => {
           x="38"
           y="20"
           fill="currentColor"
-          style={{ fontSize: '12px', fontWeight: '800' }}
+          style={{
+            fontSize: '12px',
+            fontWeight: '800',
+            textTransform: 'uppercase',
+          }}
         >
           Radio Cloud
         </text>

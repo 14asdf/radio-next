@@ -25,7 +25,7 @@ import { decodeUrl, encodeUrl } from '../utils/stations';
 
 import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import MiniPlayer from './MiniPlayer';
-import Logo from './shared/Logo';
+import Logo from './Logo';
 import { useTranslations } from 'next-intl';
 
 const Main = ({ children }) => {

@@ -11,7 +11,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { FcGoogle } from 'react-icons/fc';
-import Logo from '../components/shared/Logo';
+import Logo from './Logo';
 import { useAuth } from '../contexts/AuthContext';
 import { auth, db } from '../utils/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
