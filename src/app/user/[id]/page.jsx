@@ -2,9 +2,11 @@ import { generatePageMetadata } from '@/utils/metadata';
 import User from '@/components/User';
 import { ref, get } from 'firebase/database';
 import { db } from '@/utils/firebase';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }) {
   const { id } = await Promise.resolve(params);
+  const t = await getTranslations('metadata');
 
   console.log(id);
   // Fetch user data from Firebase RTDB
@@ -14,8 +16,8 @@ export async function generateMetadata({ params }) {
   const userName = userData?.name || 'User';
 
   return generatePageMetadata({
-    title: `${userName}'s Profile`,
-    description: `Check out ${userName}'s radio station collection and listening activity on Radio Cloud.`,
+    title: t('user.title', { userName }),
+    description: t('user.description', { userName }),
   });
 }
 

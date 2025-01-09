@@ -27,6 +27,14 @@
     "login": {
       "title": "Iniciar sesión en Radio Cloud",
       "description": "Inicia sesión en Radio Cloud para acceder a tus emisoras favoritas y funciones personalizadas"
+    },
+    "user": {
+      "title": "Perfil de {userName}",
+      "description": "Explora la colección de emisoras y actividad de escucha de {userName} en Radio Cloud."
+    },
+    "settings": {
+      "title": "Ajustes - Radio Cloud",
+      "description": "Personaliza tu experiencia en Radio Cloud. Cambia el tema, el idioma y otras preferencias."
     }
   },
   "home": {

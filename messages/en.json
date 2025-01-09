@@ -27,6 +27,14 @@
     "login": {
       "title": "Login to Radio Cloud",
       "description": "Sign in to Radio Cloud to access your favorite radio stations and personalized features"
+    },
+    "user": {
+      "title": "{userName}'s Profile",
+      "description": "View {userName}'s radio station collection and listening activity on Radio Cloud."
+    },
+    "settings": {
+      "title": "Settings - Radio Cloud",
+      "description": "Customize your Radio Cloud experience. Change theme, language, and other preferences."
     }
   },
   "home": {

@@ -27,6 +27,14 @@
     "login": {
       "title": "Connexion à Radio Cloud",
       "description": "Connectez-vous à Radio Cloud pour accéder à vos stations de radio préférées et vos fonctionnalités personnalisées"
+    },
+    "user": {
+      "title": "Profil de {userName}",
+      "description": "Consultez la collection de stations de radio et l'activité d'écoute de {userName} sur Radio Cloud."
+    },
+    "settings": {
+      "title": "Paramètres - Radio Cloud",
+      "description": "Personnalisez votre expérience Radio Cloud. Changez le thème, la langue et d'autres préférences."
     }
   },
   "home": {

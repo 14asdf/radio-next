@@ -27,6 +27,14 @@
     "login": {
       "title": "Вход в Radio Cloud",
       "description": "Войдите в Radio Cloud, чтобы получить доступ к избранным радиостанциям и персонализированным функциям"
+    },
+    "user": {
+      "title": "Профиль {userName}",
+      "description": "Посмотрите коллекцию радиостанций и активность прослушивания {userName} на Radio Cloud."
+    },
+    "settings": {
+      "title": "Настройки - Radio Cloud",
+      "description": "Настройте свой опыт работы с Radio Cloud. Измените тему, язык и другие параметры."
     }
   },
   "home": {
