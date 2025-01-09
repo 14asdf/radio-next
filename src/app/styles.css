@@ -42,6 +42,8 @@ body {
 }
 
 :root {
-  --chakra-fonts-heading: 'Gilroy', 'Circular Std', 'Circular Std Book';
-  --chakra-fonts-body: 'Gilroy', 'Circular Std', 'Circular Std Book';
+  --chakra-fonts-heading: apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  --chakra-fonts-body: apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
 }
