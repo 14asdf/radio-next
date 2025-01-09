@@ -38,6 +38,15 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang={locale}>
+      <head>
+        <link
+          rel="preload"
+          href="/font-Gilroy/Gilroy-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body suppressHydrationWarning>
         <div id="root">
           <NextIntlClientProvider messages={messages}>
