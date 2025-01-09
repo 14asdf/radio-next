@@ -114,7 +114,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiHomeLine size={24} />
               )}
-              <Text>{t('home')}</Text>
+              <Text fontWeight="bold">{t('home')}</Text>
             </Button>
             <Button
               as={Link}
@@ -132,7 +132,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiSearchLine size={24} />
               )}
-              <Text>{t('search')}</Text>
+              <Text fontWeight="bold">{t('search')}</Text>
             </Button>
             <Button
               as={Link}
@@ -150,7 +150,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiUserLine size={24} />
               )}
-              <Text>{t('profile')}</Text>
+              <Text fontWeight="bold">{t('profile')}</Text>
             </Button>
             <Button
               as={Link}
@@ -168,7 +168,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiBarChartLine size={24} />
               )}
-              <Text>{t('trends')}</Text>
+              <Text fontWeight="bold">{t('trends')}</Text>
             </Button>
             <Button
               as={Link}
@@ -186,7 +186,7 @@ const Main = ({ children }) => {
               ) : (
                 <RiSettings4Line size={24} />
               )}
-              <Text>{t('settings')}</Text>
+              <Text fontWeight="bold">{t('settings')}</Text>
             </Button>
           </Box>
         </Box>
