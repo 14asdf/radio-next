@@ -1,12 +1,15 @@
 export default function robots() {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || 'https://radio-next-sigma.vercel.app';
+
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/profile/', '/login'], // add any private routes you want to block
+        disallow: ['/private/', '/admin/', '/login'],
       },
     ],
-    sitemap: `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml`, // This will link to your sitemap
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
