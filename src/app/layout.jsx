@@ -38,6 +38,9 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang={locale}>
+      <head>
+        <meta name="yandex-verification" content="ee7e9085c739e9a7" />
+      </head>
       <body suppressHydrationWarning>
         <div id="root">
           <NextIntlClientProvider messages={messages}>
