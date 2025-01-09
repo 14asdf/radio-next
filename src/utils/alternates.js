@@ -1,4 +1,4 @@
-const locales = ['en', 'ru', 'es', 'de', 'fr'];
+export const locales = ['en', 'ru', 'es', 'de', 'fr'];
 
 export function generateAlternates(path) {
   const languages = {
