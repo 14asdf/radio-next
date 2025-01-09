@@ -1,7 +1,8 @@
 import { locales } from '@/utils/alternates';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://yoursite.com';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || 'https://radio-next-sigma.vercel.app/';
 
   // Define all static routes
   const routes = [
