@@ -145,7 +145,12 @@ const GenreCard = React.memo(({ tag, stations }) => {
       >
         <Stack spacing={4} height="100%" justifyContent="space-between">
           <Text
-            fontSize={{ base: 'xl', md: '2xl' }}
+            fontSize={{
+              base: 'xl', // 2 columns
+              md: 'xl', // 3 columns
+              xl: 'xl', // 4 columns
+              '2xl': 'xl', // 5 columns
+            }}
             fontWeight="bold"
             textTransform="capitalize"
             color="#fff"
