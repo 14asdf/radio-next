@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import Negotiator from 'negotiator';
 import { match } from '@formatjs/intl-localematcher';
+import { locales } from '@/utils/alternates';
 
 const COOKIE_LOCALE_NAME = 'NEXT_LOCALE';
 const COOKIE_THEME_NAME = 'NEXT_THEME';
 const defaultLocale = 'en';
 const defaultTheme = 'system';
-const locales = ['en', 'ru', 'es', 'de', 'fr'];
 const themes = ['light', 'dark', 'system'];
 
 function getAcceptLanguageLocale(requestHeaders, locales, defaultLocale) {
