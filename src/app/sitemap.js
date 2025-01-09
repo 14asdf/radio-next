@@ -83,7 +83,7 @@ export default async function sitemap() {
 
   // Add station routes
   const stationRoutes = stations.map((station) => ({
-    url: `${baseUrl}/station/${encodeUrl(station.streamUrl)}`,
+    url: `${baseUrl}/?id=${encodeUrl(station.streamUrl)}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.6,
