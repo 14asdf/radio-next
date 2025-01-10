@@ -14,6 +14,7 @@ export function generatePageMetadata({
       ? pageTitle
       : `${pageTitle} | ${defaultTitle}`
     : defaultTitle;
+
   const image = pageImage || defaultImage;
   const description = pageDescription || defaultDescription;
 
