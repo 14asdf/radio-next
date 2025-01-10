@@ -99,17 +99,41 @@ export function AudioPlayerProvider({ children }) {
 
       // Add MediaSession API support
       if ('mediaSession' in navigator) {
+        const artwork = [];
+        const defaultArtwork = {
+          src: '/media-session.png',
+          sizes: '512x512',
+          type: 'image/png',
+        };
+
+        if (station.img) {
+          // Test if the station image loads correctly
+          const img = new Image();
+          img.onload = () => {
+            // Only use station image if it's large enough
+            if (img.width >= 192 && img.height >= 192) {
+              navigator.mediaSession.metadata.artwork = [
+                {
+                  src: station.img,
+                  sizes: `${img.width}x${img.height}`,
+                  type: 'image/png',
+                },
+              ];
+            } else {
+              navigator.mediaSession.metadata.artwork = [defaultArtwork];
+            }
+          };
+          img.onerror = () => {
+            navigator.mediaSession.metadata.artwork = [defaultArtwork];
+          };
+          img.src = station.img;
+        }
+
         navigator.mediaSession.metadata = new MediaMetadata({
           title: station.title,
           artist: 'Radio Baron',
           album: 'Live Streaming',
-          artwork: [
-            {
-              src: station.img || '/media-session.png',
-              sizes: '512x512',
-              type: 'image/png',
-            },
-          ],
+          artwork: station.img ? [] : [defaultArtwork], // Start with empty artwork if we're loading station image
         });
       }
 
