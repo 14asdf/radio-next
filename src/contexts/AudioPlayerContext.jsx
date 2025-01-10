@@ -108,7 +108,7 @@ export function AudioPlayerProvider({ children }) {
         if (station.img) {
           // Check file extension
           const fileExtension = station.img.split('.').pop().toLowerCase();
-          const validFormats = ['png', 'jpg', 'jpeg', 'webp'];
+          const validFormats = ['png', 'jpg', 'jpeg'];
 
           if (!validFormats.includes(fileExtension)) {
             navigator.mediaSession.metadata = new MediaMetadata({
