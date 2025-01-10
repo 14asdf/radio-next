@@ -42,11 +42,6 @@ const sizes = [
   { size: 256, name: 'favicon-256x256' },
   { size: 512, name: 'android-chrome-512x512' },
   { size: 180, name: 'apple-touch-icon' },
-  {
-    size: { width: 1280, height: 720 }, // 16:9 ratio
-    name: 'media-thumbnail',
-    special: true, // Flag to handle different aspect ratio
-  },
   { size: 512, name: 'media-session', special: true },
 ];
 
@@ -78,11 +73,7 @@ Promise.all([
         .png()
         .toFile(`public/${config.name}.png`);
     }),
-  // Media thumbnail
-  sharp('temp-media-thumbnail.svg')
-    .resize(1280, 720)
-    .png()
-    .toFile('public/media-thumbnail.png'),
+
   // Media session icon
   sharp('temp-media-logo.svg')
     .resize(512, 512)
