@@ -45,8 +45,8 @@ export async function generateMetadata({ searchParams }) {
   }
 
   return generatePageMetadata({
-    title: t('default.title'),
-    description: t('default.description'),
+    title: t('home.title'),
+    description: t('home.description'),
     alternates: generateAlternates('/'),
   });
 }
