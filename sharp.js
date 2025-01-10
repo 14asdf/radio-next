@@ -5,10 +5,10 @@ const toIco = require('png-to-ico');
 // Создаем SVG строку с логотипом (только иконка без текста)
 const svgString = `
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="16" cy="16" r="16" fill="white"/>
+  <circle cx="16" cy="16" r="16" fill="#32CD32"/>
   <path
     d="M10 10c4 0 8 0 12 2M12 16c3 0 5 0 8 2M14 22c2 0 2 0 4 2"
-    stroke="black"
+    stroke="white"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
