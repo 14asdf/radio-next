@@ -105,9 +105,7 @@ export function AudioPlayerProvider({ children }) {
           album: 'Live Streaming',
           artwork: [
             {
-              src:
-                station.img ||
-                'https://sun9-67.userapi.com/impg/VMeLVKW007WoGlxbwzFWPTpgqibq6gf_xebhfA/_4cpdXADUbA.jpg?size=500x500&quality=96&sign=50831e64c37110086e0203474f6f643a&type=album',
+              src: station.img || '/android-chrome-512x512.png',
               sizes: '512x512',
               type: 'image/png',
             },
