@@ -18,8 +18,6 @@ export const viewport = {
 
 // Updated metadata configuration
 export const metadata = {
-  title: 'Radio Baron',
-  description: 'Listen to your favorite radio stations',
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
