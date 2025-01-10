@@ -9,7 +9,7 @@ const svgString = `
   <path
     d="M160 160c64 0 128 0 192 32M192 256c48 0 80 0 128 32M224 352c32 0 32 0 64 32"
     stroke="black"
-    strokeWidth="32"
+    stroke-width="32"
     strokeLinecap="round"
     strokeLinejoin="round"
   />
@@ -23,7 +23,7 @@ const mediaSessionSvg = `
   <path
     d="M160 160c64 0 128 0 192 32M192 256c48 0 80 0 128 32M224 352c32 0 32 0 64 32"
     stroke="#ffffff"
-    strokeWidth="32"
+    stroke-width="32"
     strokeLinecap="round"
     strokeLinejoin="round"
   />
@@ -44,23 +44,6 @@ const sizes = [
   { size: 180, name: 'apple-touch-icon' },
   { size: 512, name: 'media-session', special: true },
 ];
-
-// Modified SVG for media thumbnail (rectangular, different background)
-const mediaThumbnailSvg = `
-<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1280" height="720" fill="#1a1a1a"/>
-  <path
-    d="M540 310c160 0 320 0 480 80M620 460c120 0 200 0 320 80M700 610c80 0 80 0 160 80"
-    stroke="#ffffff"
-    strokeWidth="40"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-</svg>
-`;
-
-// Write media thumbnail SVG
-fs.writeFileSync('temp-media-thumbnail.svg', mediaThumbnailSvg);
 
 // Генерируем все иконки
 Promise.all([
@@ -88,7 +71,6 @@ Promise.all([
     fs.writeFileSync('public/favicon.ico', buf);
     // Удаляем временный файл
     fs.unlinkSync('temp-logo.svg');
-    fs.unlinkSync('temp-media-thumbnail.svg');
     fs.unlinkSync('temp-media-logo.svg');
     console.log('All icons generated successfully!');
   })
