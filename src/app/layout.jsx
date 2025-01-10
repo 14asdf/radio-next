@@ -40,6 +40,7 @@ export default async function RootLayout({ children }) {
     <html lang={locale}>
       <head>
         <meta name="yandex-verification" content="ee7e9085c739e9a7" />
+        <meta name="msvalidate.01" content="301D34290CADE681F25EBB82B2E4DBC8" />
       </head>
       <body suppressHydrationWarning>
         <div id="root">
