@@ -4,7 +4,7 @@ export function generatePageMetadata({
   description: pageDescription,
   alternates,
 }) {
-  const defaultTitle = 'Radio cloud';
+  const defaultTitle = 'Radio Baron';
   const defaultImage = '/android-chrome-192x192.png';
   const defaultDescription =
     'Listen to your favorite radio stations live online - free streaming radio';
@@ -21,7 +21,7 @@ export function generatePageMetadata({
       description,
       images: [image],
       type: 'website',
-      siteName: 'Radio cloud',
+      siteName: 'Radio Baron',
     },
     twitter: {
       card: 'summary_large_image',
