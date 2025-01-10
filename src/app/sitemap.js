@@ -62,18 +62,18 @@ export default async function sitemap() {
     'npr',
   ];
 
-  // Transform routes into the required format
+  // Transform routes into the required format with proper XML formatting
   const staticRoutes = routes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
+    lastModified: new Date().toISOString(),
+    changefreq: 'daily',
     priority: route === '' ? 1.0 : 0.8,
   }));
 
   const genreRoutes = genres.map((genre) => ({
     url: `${baseUrl}/genre/${genre}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
+    lastModified: new Date().toISOString(),
+    changefreq: 'daily',
     priority: 0.7,
   }));
 
@@ -84,8 +84,8 @@ export default async function sitemap() {
   // Add station routes
   const stationRoutes = stations.map((station) => ({
     url: `${baseUrl}/?id=${encodeUrl(station.streamUrl)}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
+    lastModified: new Date().toISOString(),
+    changefreq: 'weekly',
     priority: 0.6,
   }));
 
