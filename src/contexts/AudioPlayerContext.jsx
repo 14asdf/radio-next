@@ -105,8 +105,8 @@ export function AudioPlayerProvider({ children }) {
           album: 'Live Streaming',
           artwork: [
             {
-              src: station.img || '/android-chrome-512x512.png',
-              sizes: '512x512',
+              src: station.img || '/media-thumbnail.png',
+              sizes: '1280x720',
               type: 'image/png',
             },
           ],

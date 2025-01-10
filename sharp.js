@@ -28,18 +28,47 @@ const sizes = [
   { size: 256, name: 'favicon-256x256' },
   { size: 512, name: 'android-chrome-512x512' },
   { size: 180, name: 'apple-touch-icon' },
+  {
+    size: { width: 1280, height: 720 }, // 16:9 ratio
+    name: 'media-thumbnail',
+    special: true, // Flag to handle different aspect ratio
+  },
 ];
 
+// Modified SVG for media thumbnail (rectangular, different background)
+const mediaThumbnailSvg = `
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#1a1a1a"/>
+  <path
+    d="M540 310c160 0 320 0 480 80M620 460c120 0 200 0 320 80M700 610c80 0 80 0 160 80"
+    stroke="#ffffff"
+    strokeWidth="40"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+`;
+
+// Write media thumbnail SVG
+fs.writeFileSync('temp-media-thumbnail.svg', mediaThumbnailSvg);
+
 // Генерируем все иконки
-Promise.all(
-  // Генерация PNG иконок
-  sizes.map((config) => {
-    return sharp('temp-logo.svg')
-      .resize(config.size, config.size)
-      .png()
-      .toFile(`public/${config.name}.png`);
-  })
-)
+Promise.all([
+  // Regular icons
+  ...sizes
+    .filter((config) => !config.special)
+    .map((config) => {
+      return sharp('temp-logo.svg')
+        .resize(config.size, config.size)
+        .png()
+        .toFile(`public/${config.name}.png`);
+    }),
+  // Media thumbnail
+  sharp('temp-media-thumbnail.svg')
+    .resize(1280, 720)
+    .png()
+    .toFile('public/media-thumbnail.png'),
+])
   .then(() => {
     // Создаем favicon.ico из PNG файлов
     return toIco(['public/favicon-16x16.png', 'public/favicon-32x32.png']);
@@ -48,6 +77,7 @@ Promise.all(
     fs.writeFileSync('public/favicon.ico', buf);
     // Удаляем временный файл
     fs.unlinkSync('temp-logo.svg');
+    fs.unlinkSync('temp-media-thumbnail.svg');
     console.log('All icons generated successfully!');
   })
   .catch((err) => {
