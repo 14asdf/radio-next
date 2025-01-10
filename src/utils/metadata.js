@@ -9,7 +9,11 @@ export function generatePageMetadata({
   const defaultDescription =
     'Listen to your favorite radio stations live online - free streaming radio';
 
-  const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
+  const title = pageTitle
+    ? pageTitle.includes(defaultTitle)
+      ? pageTitle
+      : `${pageTitle} | ${defaultTitle}`
+    : defaultTitle;
   const image = pageImage || defaultImage;
   const description = pageDescription || defaultDescription;
 
