@@ -1,17 +1,17 @@
-import { getTranslations } from 'next-intl/server';
-
-export async function generatePageMetadata({
+export function generatePageMetadata({
   title: pageTitle,
   image: pageImage,
   description: pageDescription,
   alternates,
 }) {
-  const t = getTranslations('metadata');
+  const defaultTitle = 'Radio Baron';
   const defaultImage = '/android-chrome-192x192.png';
-  const image = pageImage || defaultImage;
+  const defaultDescription =
+    'Listen to your favorite radio stations live online - free streaming radio';
 
-  const title = pageTitle || t('default.title');
-  const description = pageDescription || t('default.description');
+  const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
+  const image = pageImage || defaultImage;
+  const description = pageDescription || defaultDescription;
 
   const metadata = {
     title,
@@ -21,7 +21,7 @@ export async function generatePageMetadata({
       description,
       images: [image],
       type: 'website',
-      siteName: title || t('default.title'),
+      siteName: 'Radio Baron',
     },
     twitter: {
       card: 'summary_large_image',
