@@ -15,9 +15,11 @@ const Logo = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <circle cx="16" cy="16" r="16" fill="white" />
+
         <path
-          d="M12 12c4 0 8 0 12 2M14 16c3 0 5 0 8 2M16 20c2 0 2 0 4 2"
-          stroke="currentColor"
+          d="M10 10c4 0 8 0 12 2M12 16c3 0 5 0 8 2M14 22c2 0 2 0 4 2"
+          stroke="black"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -25,7 +27,7 @@ const Logo = () => {
         <text
           x="38"
           y="20"
-          fill="currentColor"
+          fill="currentcolor"
           style={{
             fontSize: '12px',
             fontWeight: '800',
