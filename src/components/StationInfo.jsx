@@ -173,7 +173,7 @@ const StationInfo = ({ audioId }) => {
                   justify={{ base: 'space-between', md: 'flex-start' }}
                   width="100%"
                 >
-                  <Text fontSize={{ base: 'xl', md: '4xl' }} fontWeight="bold">
+                  <Text fontSize={{ base: 'xl', md: '3xl' }} fontWeight="bold">
                     {station.title}
                   </Text>
 
@@ -202,6 +202,7 @@ const StationInfo = ({ audioId }) => {
                   wrap="wrap"
                   justify={{ base: 'flex-start', md: 'flex-start' }}
                   width="100%"
+                  mt="2"
                 >
                   {station.tags
                     ?.split(',')
