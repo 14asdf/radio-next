@@ -21,6 +21,7 @@ import {
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { TbSend } from 'react-icons/tb';
 
 const Comments = ({ stationId }) => {
   const [comments, setComments] = useState([]);
@@ -136,7 +137,7 @@ const Comments = ({ stationId }) => {
                 rounded="full"
                 size="sm"
               >
-                {c('post')}
+                <TbSend />
               </Button>
             </HStack>
           </form>
