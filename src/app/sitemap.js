@@ -67,7 +67,7 @@ export default async function sitemap() {
   // Transform routes into the required format with language alternates
   const staticRoutes = routes.flatMap((route) =>
     locales.map((locale) => ({
-      url: `${baseUrl}${route}${route === '' ? '?' : '%26'}lang=${locale}`,
+      url: `${baseUrl}${route}${route === '' ? '?' : '&amp;'}lang=${locale}`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: route === '' ? 1.0 : 0.8,
@@ -87,13 +87,15 @@ export default async function sitemap() {
   const stationsResponse = await fetch(`${baseUrl}/stations.json`);
   const stations = await stationsResponse.json();
 
-  // Add station routes
-  const stationRoutes = stations.map((station) => ({
-    url: `${baseUrl}/?id=${encodeUrl(station.streamUrl)}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.6,
-  }));
+  // Add station routes with language versions
+  const stationRoutes = stations.flatMap((station) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/?id=${encodeUrl(station.streamUrl)}&amp;lang=${locale}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    }))
+  );
 
   // Return all routes
   return [...staticRoutes, ...genreRoutes, ...stationRoutes];
