@@ -16,10 +16,11 @@ const Logo = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M8 18v-4M12 20v-8M16 22V10M20 20v-8M24 18v-4"
+          d="M12 12c4 0 8 0 12 2M14 16c3 0 5 0 8 2M16 20c2 0 2 0 4 2"
           stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <text
           x="38"
