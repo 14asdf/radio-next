@@ -64,20 +64,24 @@ export default async function sitemap() {
     'npr',
   ];
 
-  // Transform routes into the required format
-  const staticRoutes = routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: route === '' ? 1.0 : 0.8,
-  }));
+  // Transform routes into the required format with language alternates
+  const staticRoutes = routes.flatMap((route) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}${route}${route === '' ? '?' : '%26'}lang=${locale}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: route === '' ? 1.0 : 0.8,
+    }))
+  );
 
-  const genreRoutes = genres.map((genre) => ({
-    url: `${baseUrl}/genre/${genre}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.7,
-  }));
+  const genreRoutes = genres.flatMap((genre) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/genre/${genre}?lang=${locale}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.7,
+    }))
+  );
 
   // Fetch stations.json from public URL
   const stationsResponse = await fetch(`${baseUrl}/stations.json`);
