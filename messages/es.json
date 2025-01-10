@@ -166,7 +166,9 @@
     "commercial": "comercial",
     "hot_adult_contemporary": "contemporánea adulta actual",
     "campus_radio": "radio universitaria",
-    "npr": "npr"
+    "npr": "npr",
+    "loadMore": "Cargar Más",
+    "stationCount": "{count} emisoras"
   },
   "auth": {
     "loginTo": "Iniciar sesión en",

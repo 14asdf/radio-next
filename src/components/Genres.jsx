@@ -155,15 +155,18 @@ const Genre = () => {
             <IoArrowBackSharp size={24} />
           </IconButton>
 
-          <Heading
-            position="absolute"
-            bottom="40px"
-            fontSize={{ base: '3xl', md: '4xl' }}
-            fontWeight="bold"
-            textTransform="capitalize"
-          >
-            {t(translationKey)}
-          </Heading>
+          <Box position="absolute" bottom="40px">
+            <Heading
+              fontSize={{ base: '3xl', md: '4xl' }}
+              fontWeight="bold"
+              textTransform="capitalize"
+            >
+              {t(translationKey)}
+            </Heading>
+            <Text mt={2} fontWeight="bold" fontSize={{ base: 'sm', md: 'md' }}>
+              {t('stationCount', { count: genreStations.length })}
+            </Text>
+          </Box>
         </Container>
       </Box>
 
@@ -199,7 +202,7 @@ const Genre = () => {
                     colorScheme="black"
                     borderRadius="full"
                   >
-                    Load More
+                    {t('loadMore')}
                   </Button>
                 )}
               </Box>

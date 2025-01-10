@@ -155,7 +155,9 @@
     "commercial": "commercial",
     "hot_adult_contemporary": "hot adult contemporary",
     "campus_radio": "campus radio",
-    "npr": "npr"
+    "npr": "npr",
+    "loadMore": "Load More",
+    "stationCount": "{count} stations"
   },
   "time": {
     "lessThanHour": "less than an hour ago",

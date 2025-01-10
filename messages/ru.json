@@ -155,7 +155,9 @@
     "commercial": "коммерческое",
     "hot_adult_contemporary": "современная популярная",
     "campus_radio": "студенческое радио",
-    "npr": "npr"
+    "npr": "npr",
+    "loadMore": "Загрузить ещё",
+    "stationCount": "{count} станций"
   },
   "time": {
     "lessThanHour": "менее часа назад",
