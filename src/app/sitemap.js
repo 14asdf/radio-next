@@ -3,6 +3,8 @@ import { encodeUrl } from '@/utils/stations';
 import { promises as fs } from 'fs';
 import path from 'path';
 
+export const contentType = 'text/xml; charset=UTF-8';
+
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://radio.baron.pw';
 
