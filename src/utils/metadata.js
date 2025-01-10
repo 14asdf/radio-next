@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 export async function generatePageMetadata({
   title: pageTitle,
@@ -6,7 +6,7 @@ export async function generatePageMetadata({
   description: pageDescription,
   alternates,
 }) {
-  const t = useTranslations('metadata');
+  const t = getTranslations('metadata');
   const defaultImage = '/android-chrome-192x192.png';
   const image = pageImage || defaultImage;
 
