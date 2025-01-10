@@ -16,8 +16,22 @@ const svgString = `
 </svg>
 `;
 
-// Создаем временный SVG файл
+// Add new SVG for media session (non-rounded, dark background)
+const mediaSessionSvg = `
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#1a1a1a"/>
+  <path
+    d="M160 160c64 0 128 0 192 32M192 256c48 0 80 0 128 32M224 352c32 0 32 0 64 32"
+    stroke="#ffffff"
+    strokeWidth="32"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>`;
+
+// Write both SVG files
 fs.writeFileSync('temp-logo.svg', svgString);
+fs.writeFileSync('temp-media-logo.svg', mediaSessionSvg);
 
 // Расширенный массив размеров для всех типов иконок
 const sizes = [
@@ -33,6 +47,7 @@ const sizes = [
     name: 'media-thumbnail',
     special: true, // Flag to handle different aspect ratio
   },
+  { size: 512, name: 'media-session', special: true },
 ];
 
 // Modified SVG for media thumbnail (rectangular, different background)
@@ -68,6 +83,11 @@ Promise.all([
     .resize(1280, 720)
     .png()
     .toFile('public/media-thumbnail.png'),
+  // Media session icon
+  sharp('temp-media-logo.svg')
+    .resize(512, 512)
+    .png()
+    .toFile('public/media-session.png'),
 ])
   .then(() => {
     // Создаем favicon.ico из PNG файлов
@@ -78,6 +98,7 @@ Promise.all([
     // Удаляем временный файл
     fs.unlinkSync('temp-logo.svg');
     fs.unlinkSync('temp-media-thumbnail.svg');
+    fs.unlinkSync('temp-media-logo.svg');
     console.log('All icons generated successfully!');
   })
   .catch((err) => {
