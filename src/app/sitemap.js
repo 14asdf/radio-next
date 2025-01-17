@@ -67,7 +67,7 @@ export default async function sitemap() {
   // Transform routes into the required format with language alternates
   const staticRoutes = routes.flatMap((route) =>
     locales.map((locale) => ({
-      url: `${baseUrl}${route}${route === '' ? '?' : '&amp;'}lang=${locale}`,
+      url: `${baseUrl}${route}${route === '' ? '?' : '?'}lang=${locale}`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: route === '' ? 1.0 : 0.8,
