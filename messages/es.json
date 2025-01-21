@@ -98,7 +98,8 @@
   },
   "comments": {
     "placeholder": "Escribe un comentario...",
-    "post": "Publicar"
+    "post": "Publicar",
+    "delete": "Eliminar"
   },
   "genres": {
     "ambient": "ambiental",

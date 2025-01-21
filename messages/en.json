@@ -168,7 +168,8 @@
   },
   "comments": {
     "placeholder": "Write a comment...",
-    "post": "Post"
+    "post": "Post",
+    "delete": "Delete"
   },
   "auth": {
     "loginTo": "Login to",

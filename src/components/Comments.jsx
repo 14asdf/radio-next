@@ -218,7 +218,7 @@ const Comments = ({ stationId }) => {
                           display="flex"
                           style={{ width: 'fit-content', minWidth: 'auto' }}
                         >
-                          <Text>Delete</Text>
+                          <Text>{c('delete')}</Text>
                         </MenuItem>
                       </MenuContent>
                     </MenuRoot>

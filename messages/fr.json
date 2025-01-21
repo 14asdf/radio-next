@@ -167,7 +167,8 @@
   },
   "comments": {
     "placeholder": "Écrire un commentaire...",
-    "post": "Publier"
+    "post": "Publier",
+    "delete": "Supprimer"
   },
   "auth": {
     "loginTo": "Se connecter à",
