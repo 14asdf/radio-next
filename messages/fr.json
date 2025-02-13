@@ -156,7 +156,17 @@
     "hot_adult_contemporary": "contemporain adulte hot",
     "campus_radio": "radio campus",
     "npr": "npr",
-    "stationCount": "{count} stations"
+    "stationCount": "{count} stations",
+    "rap": "rap",
+    "indie": "indie",
+    "banda": "banda",
+    "greek": "grec",
+    "80_s": "années 80",
+    "black": "black",
+    "contemporary": "contemporain",
+    "mediaset": "mediaset",
+    "italian_pop": "pop italienne",
+    "pop_rock": "pop rock"
   },
   "time": {
     "lessThanHour": "il y a moins d'une heure",

@@ -169,7 +169,17 @@
     "campus_radio": "radio universitaria",
     "npr": "npr",
     "loadMore": "Cargar Más",
-    "stationCount": "{count} emisoras"
+    "stationCount": "{count} emisoras",
+    "rap": "rap",
+    "indie": "indie",
+    "banda": "banda",
+    "greek": "griego",
+    "80_s": "80s",
+    "black": "black",
+    "contemporary": "contemporánea",
+    "mediaset": "mediaset",
+    "italian_pop": "pop italiano",
+    "pop_rock": "pop rock"
   },
   "auth": {
     "loginTo": "Iniciar sesión en",

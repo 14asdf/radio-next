@@ -157,7 +157,17 @@
     "campus_radio": "студенческое радио",
     "npr": "npr",
     "loadMore": "Загрузить ещё",
-    "stationCount": "{count} станций"
+    "stationCount": "{count} станций",
+    "rap": "рэп",
+    "indie": "инди",
+    "banda": "банда",
+    "greek": "греческая",
+    "80_s": "80-е",
+    "black": "блэк",
+    "contemporary": "современная",
+    "mediaset": "медиасет",
+    "italian_pop": "итальянская поп",
+    "pop_rock": "поп-рок"
   },
   "time": {
     "lessThanHour": "менее часа назад",
