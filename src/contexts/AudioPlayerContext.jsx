@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
   useCallback,
+  useEffect,
 } from 'react';
 import { findStation, decodeUrl, encodeUrl } from '../utils/stations';
 import { useStations } from './StationsContext';
@@ -21,12 +22,31 @@ export function AudioPlayerProvider({ children }) {
     isLoading: false,
   });
 
+  // Use useEffect to set the initial station once stations are loaded
+  useEffect(() => {
+    const lastStationUrl = localStorage.getItem('lastPlayedStation');
+
+    if (lastStationUrl && stations.length > 0) {
+      const lastStation = findStation(lastStationUrl, stations);
+
+      if (lastStation) {
+        setPlayerState((prev) => ({
+          ...prev,
+          currentStation: lastStation,
+        }));
+      }
+    }
+  }, [stations]);
+
   const audioRef = useRef(null);
   const abortControllerRef = useRef(null);
   const isLoadingRef = useRef(false);
 
   const handlePlay = useCallback(async (station, retryCount = 0) => {
     if (!audioRef.current) return;
+
+    // Store station ID in localStorage when playing
+    localStorage.setItem('lastPlayedStation', encodeUrl(station.streamUrl));
 
     // Abort previous loading if exists
     if (abortControllerRef.current) {
