@@ -167,7 +167,14 @@
     "contemporary": "современная",
     "mediaset": "медиасет",
     "italian_pop": "итальянская поп",
-    "pop_rock": "поп-рок"
+    "pop_rock": "поп-рок",
+    "beats": "биты",
+    "electro": "электро",
+    "charts": "чарты",
+    "hip_hop": "хип-хоп",
+    "pop_music": "поп-музыка",
+    "local_news": "местные новости",
+    "contemporary_hit_radio": "современное хитовое радио"
   },
   "time": {
     "lessThanHour": "менее часа назад",

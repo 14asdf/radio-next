@@ -179,7 +179,14 @@
     "contemporary": "contemporánea",
     "mediaset": "mediaset",
     "italian_pop": "pop italiano",
-    "pop_rock": "pop rock"
+    "pop_rock": "pop rock",
+    "beats": "beats",
+    "electro": "electro",
+    "charts": "listas",
+    "hip_hop": "hip-hop",
+    "pop_music": "música pop",
+    "local_news": "noticias locales",
+    "contemporary_hit_radio": "radio de éxitos contemporáneos"
   },
   "auth": {
     "loginTo": "Iniciar sesión en",

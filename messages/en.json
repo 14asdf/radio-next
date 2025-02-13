@@ -166,7 +166,14 @@
     "contemporary": "contemporary",
     "mediaset": "mediaset",
     "italian_pop": "italian pop",
-    "pop_rock": "pop rock"
+    "pop_rock": "pop rock",
+    "beats": "beats",
+    "electro": "electro",
+    "charts": "charts",
+    "hip_hop": "hip-hop",
+    "pop_music": "pop music",
+    "local_news": "local news",
+    "contemporary_hit_radio": "contemporary hit radio"
   },
   "time": {
     "lessThanHour": "less than an hour ago",
