@@ -18,7 +18,7 @@ export function AudioPlayerProvider({ children }) {
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     currentStation: null,
-    volume: 1,
+    volume: Number(localStorage.getItem('volume')) || 1,
     isLoading: false,
   });
 
@@ -134,7 +134,6 @@ export function AudioPlayerProvider({ children }) {
             navigator.mediaSession.metadata = new MediaMetadata({
               title: station.title,
               artist: 'Radio Baron',
-              album: 'Live Streaming',
               artwork: [defaultArtwork],
             });
             return;
@@ -165,7 +164,6 @@ export function AudioPlayerProvider({ children }) {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: station.title,
           artist: 'Radio Baron',
-          album: 'Live Streaming',
           artwork: station.img ? [] : [defaultArtwork], // Start with empty artwork if we're loading station image
         });
       }
@@ -247,6 +245,9 @@ export function AudioPlayerProvider({ children }) {
   const handleVolumeChange = useCallback((newVolume) => {
     // Ensure volume is a number and within valid range (0-1)
     const validVolume = Math.min(Math.max(Number(newVolume) || 0, 0), 1);
+
+    // Save volume to localStorage
+    localStorage.setItem('volume', validVolume);
 
     setPlayerState((prev) => ({ ...prev, volume: validVolume }));
     if (audioRef.current) {
