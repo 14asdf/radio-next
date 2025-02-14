@@ -42,168 +42,176 @@ export function AudioPlayerProvider({ children }) {
   const abortControllerRef = useRef(null);
   const isLoadingRef = useRef(false);
 
-  const handlePlay = useCallback(async (station, retryCount = 0) => {
-    if (!audioRef.current) return;
+  const handlePlay = useCallback(
+    async (station, retryCount = 0) => {
+      if (!audioRef.current) return;
 
-    // Store station ID in localStorage when playing
-    localStorage.setItem('lastPlayedStation', encodeUrl(station.streamUrl));
+      // Store station ID in localStorage when playing
+      localStorage.setItem('lastPlayedStation', encodeUrl(station.streamUrl));
 
-    // Abort previous loading if exists
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
-    // Create new AbortController for this request
-    abortControllerRef.current = new AbortController();
-
-    try {
-      setPlayerState((prev) => ({
-        ...prev,
-        isLoading: true,
-        currentStation: station,
-        error: null,
-      }));
-
-      // Reset current audio
-      audioRef.current.pause();
-      audioRef.current.removeAttribute('src');
-      audioRef.current.load();
-
-      // Wait a bit before setting new source
-      await new Promise((resolve, reject) => {
-        const timeoutId = setTimeout(resolve, 200);
-        abortControllerRef.current.signal.addEventListener('abort', () => {
-          clearTimeout(timeoutId);
-          reject(new Error('Aborted'));
-        });
-      });
-
-      if (abortControllerRef.current.signal.aborted) {
-        throw new Error('Aborted');
+      // Abort previous loading if exists
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
+      // Create new AbortController for this request
+      abortControllerRef.current = new AbortController();
 
-      audioRef.current.src = station.streamUrl;
+      try {
+        setPlayerState((prev) => ({
+          ...prev,
+          isLoading: true,
+          currentStation: station,
+          error: null,
+        }));
 
-      // Wait for canplay or error event
-      await new Promise((resolve, reject) => {
-        const timeoutId = setTimeout(() => {
-          cleanup();
-          reject(new Error('Loading timeout'));
-        }, 10000);
-
-        const errorHandler = (e) => {
-          cleanup();
-          reject(new Error(e.target.error?.message || 'Audio loading failed'));
-        };
-
-        const canPlayHandler = () => {
-          cleanup();
-          resolve();
-        };
-
-        const cleanup = () => {
-          clearTimeout(timeoutId);
-          audioRef.current.removeEventListener('canplay', canPlayHandler);
-          audioRef.current.removeEventListener('error', errorHandler);
-        };
-
-        abortControllerRef.current.signal.addEventListener('abort', () => {
-          cleanup();
-          reject(new Error('Aborted'));
-        });
-
-        audioRef.current.addEventListener('canplay', canPlayHandler);
-        audioRef.current.addEventListener('error', errorHandler);
-      });
-
-      await audioRef.current.play();
-
-      // Add MediaSession API support
-      if ('mediaSession' in navigator) {
-        const defaultArtwork = {
-          src: '/media-session.png',
-          sizes: '512x512',
-          type: 'image/png',
-        };
-
-        if (station.img) {
-          // Check file extension
-          const fileExtension = station.img.split('.').pop().toLowerCase();
-          const validFormats = ['png', 'jpg', 'jpeg'];
-
-          if (!validFormats.includes(fileExtension)) {
-            navigator.mediaSession.metadata = new MediaMetadata({
-              title: station.title,
-              artist: 'Radio Baron',
-              artwork: [defaultArtwork],
-            });
-            return;
-          }
-
-          // Test if the station image loads correctly
-          const img = new Image();
-          img.onload = () => {
-            // Only use station image if it's large enough
-            if (img.width >= 192 && img.height >= 192) {
-              navigator.mediaSession.metadata.artwork = [
-                {
-                  src: station.img,
-                  sizes: `${img.width}x${img.height}`,
-                  type: 'image/png',
-                },
-              ];
-            } else {
-              navigator.mediaSession.metadata.artwork = [defaultArtwork];
-            }
-          };
-          img.onerror = () => {
-            navigator.mediaSession.metadata.artwork = [defaultArtwork];
-          };
-          img.src = station.img;
-        }
-
-        navigator.mediaSession.metadata = new MediaMetadata({
-          title: station.title,
-          artist: 'Radio Baron',
-          artwork: station.img ? [] : [defaultArtwork], // Start with empty artwork if we're loading station image
-        });
-      }
-
-      setPlayerState((prev) => ({
-        ...prev,
-        isPlaying: true,
-        currentStation: station,
-        isLoading: false,
-        error: null,
-      }));
-    } catch (error) {
-      // If it's the first error, try once more
-      if (retryCount === 0) {
-        console.warn('First attempt failed, retrying...');
-        return handlePlay(station, retryCount + 1);
-      }
-
-      // Ignore AbortError when switching stations quickly
-      if (error.name === 'AbortError' || error.message === 'Aborted') {
-        console.log('Loading aborted - switching to another station');
-        return;
-      }
-
-      console.error('Playback failed:', error);
-
-      if (audioRef.current) {
+        // Reset current audio
         audioRef.current.pause();
         audioRef.current.removeAttribute('src');
         audioRef.current.load();
-      }
 
-      setPlayerState((prev) => ({
-        ...prev,
-        isPlaying: false,
-        isLoading: false,
-        error: error.message || 'Failed to play audio',
-      }));
-    }
-  }, []);
+        // Set the volume before starting playback
+        audioRef.current.volume = playerState.volume;
+
+        // Wait a bit before setting new source
+        await new Promise((resolve, reject) => {
+          const timeoutId = setTimeout(resolve, 200);
+          abortControllerRef.current.signal.addEventListener('abort', () => {
+            clearTimeout(timeoutId);
+            reject(new Error('Aborted'));
+          });
+        });
+
+        if (abortControllerRef.current.signal.aborted) {
+          throw new Error('Aborted');
+        }
+
+        audioRef.current.src = station.streamUrl;
+
+        // Wait for canplay or error event
+        await new Promise((resolve, reject) => {
+          const timeoutId = setTimeout(() => {
+            cleanup();
+            reject(new Error('Loading timeout'));
+          }, 10000);
+
+          const errorHandler = (e) => {
+            cleanup();
+            reject(
+              new Error(e.target.error?.message || 'Audio loading failed')
+            );
+          };
+
+          const canPlayHandler = () => {
+            cleanup();
+            resolve();
+          };
+
+          const cleanup = () => {
+            clearTimeout(timeoutId);
+            audioRef.current.removeEventListener('canplay', canPlayHandler);
+            audioRef.current.removeEventListener('error', errorHandler);
+          };
+
+          abortControllerRef.current.signal.addEventListener('abort', () => {
+            cleanup();
+            reject(new Error('Aborted'));
+          });
+
+          audioRef.current.addEventListener('canplay', canPlayHandler);
+          audioRef.current.addEventListener('error', errorHandler);
+        });
+
+        await audioRef.current.play();
+
+        // Add MediaSession API support
+        if ('mediaSession' in navigator) {
+          const defaultArtwork = {
+            src: '/media-session.png',
+            sizes: '512x512',
+            type: 'image/png',
+          };
+
+          if (station.img) {
+            // Check file extension
+            const fileExtension = station.img.split('.').pop().toLowerCase();
+            const validFormats = ['png', 'jpg', 'jpeg'];
+
+            if (!validFormats.includes(fileExtension)) {
+              navigator.mediaSession.metadata = new MediaMetadata({
+                title: station.title,
+                artist: 'Radio Baron',
+                artwork: [defaultArtwork],
+              });
+              return;
+            }
+
+            // Test if the station image loads correctly
+            const img = new Image();
+            img.onload = () => {
+              // Only use station image if it's large enough
+              if (img.width >= 192 && img.height >= 192) {
+                navigator.mediaSession.metadata.artwork = [
+                  {
+                    src: station.img,
+                    sizes: `${img.width}x${img.height}`,
+                    type: 'image/png',
+                  },
+                ];
+              } else {
+                navigator.mediaSession.metadata.artwork = [defaultArtwork];
+              }
+            };
+            img.onerror = () => {
+              navigator.mediaSession.metadata.artwork = [defaultArtwork];
+            };
+            img.src = station.img;
+          }
+
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: station.title,
+            artist: 'Radio Baron',
+            artwork: station.img ? [] : [defaultArtwork], // Start with empty artwork if we're loading station image
+          });
+        }
+
+        setPlayerState((prev) => ({
+          ...prev,
+          isPlaying: true,
+          currentStation: station,
+          isLoading: false,
+          error: null,
+        }));
+      } catch (error) {
+        // If it's the first error, try once more
+        if (retryCount === 0) {
+          console.warn('First attempt failed, retrying...');
+          return handlePlay(station, retryCount + 1);
+        }
+
+        // Ignore AbortError when switching stations quickly
+        if (error.name === 'AbortError' || error.message === 'Aborted') {
+          console.log('Loading aborted - switching to another station');
+          return;
+        }
+
+        console.error('Playback failed:', error);
+
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.removeAttribute('src');
+          audioRef.current.load();
+        }
+
+        setPlayerState((prev) => ({
+          ...prev,
+          isPlaying: false,
+          isLoading: false,
+          error: error.message || 'Failed to play audio',
+        }));
+      }
+    },
+    [playerState.volume]
+  );
 
   const handlePause = useCallback(() => {
     if (!audioRef.current || playerState.isLoading) return;

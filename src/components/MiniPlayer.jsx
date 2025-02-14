@@ -167,7 +167,7 @@ const MiniPlayer = ({ audioId }) => {
                   <Slider
                     w="25px"
                     h="150px"
-                    defaultValue={[100]}
+                    defaultValue={[playerState.volume * 100]}
                     min={0}
                     max={100}
                     step={1}
