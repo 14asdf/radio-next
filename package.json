@@ -1,12 +1,11 @@
 {
-  "name": "radio-cloud",
-  "version": "1.0.1",
+  "name": "radio-baron",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "start": "next dev --turbo",
     "build": "next build",
     "lint": "next lint",
-    "commit": "git add . && git commit -m \"Changes: $(git diff --cached --numstat | awk '{files += 1; insertions += $1; deletions += $2} END {print files \"f \" insertions \"+\" deletions \"-\"}')\"",
     "generate-icons": "node sharp.js"
   },
   "dependencies": {
