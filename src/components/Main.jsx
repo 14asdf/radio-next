@@ -17,6 +17,8 @@ import {
   RiBarChartLine,
   RiSettings4Line,
   RiSettings4Fill,
+  RiFireLine,
+  RiFireFill,
 } from 'react-icons/ri';
 
 import Link from 'next/link';
@@ -125,6 +127,24 @@ const Main = ({ children }) => {
           >
             <Button
               as={Link}
+              href="/trends"
+              variant="ghost"
+              size="lg"
+              width="fit-content"
+              display="flex"
+              gap="3"
+              justifyContent="flex-start"
+              borderRadius="full"
+            >
+              {pathname === '/trends' ? (
+                <RiFireFill size={24} />
+              ) : (
+                <RiFireLine size={24} />
+              )}
+              <Text fontWeight="bold">{t('trends')}</Text>
+            </Button>
+            <Button
+              as={Link}
               href="/"
               variant="ghost"
               size="lg"
@@ -179,24 +199,6 @@ const Main = ({ children }) => {
             </Button>
             <Button
               as={Link}
-              href="/trends"
-              variant="ghost"
-              size="lg"
-              width="fit-content"
-              display="flex"
-              gap="3"
-              justifyContent="flex-start"
-              borderRadius="full"
-            >
-              {pathname === '/trends' ? (
-                <RiBarChartFill size={24} />
-              ) : (
-                <RiBarChartLine size={24} />
-              )}
-              <Text fontWeight="bold">{t('trends')}</Text>
-            </Button>
-            <Button
-              as={Link}
               href="/settings"
               variant="ghost"
               size="lg"
@@ -241,6 +243,19 @@ const Main = ({ children }) => {
             >
               <IconButton
                 as={Link}
+                href="/trends"
+                variant="ghost"
+                borderRadius="full"
+                aria-label={t('trends')}
+              >
+                {pathname === '/trends' ? (
+                  <RiBarChartFill size={24} />
+                ) : (
+                  <RiBarChartLine size={24} />
+                )}
+              </IconButton>
+              <IconButton
+                as={Link}
                 href="/"
                 variant="ghost"
                 borderRadius="full"
@@ -276,19 +291,6 @@ const Main = ({ children }) => {
                   <RiUserFill size={24} />
                 ) : (
                   <RiUserLine size={24} />
-                )}
-              </IconButton>
-              <IconButton
-                as={Link}
-                href="/trends"
-                variant="ghost"
-                borderRadius="full"
-                aria-label={t('trends')}
-              >
-                {pathname === '/trends' ? (
-                  <RiBarChartFill size={24} />
-                ) : (
-                  <RiBarChartLine size={24} />
                 )}
               </IconButton>
               <IconButton
