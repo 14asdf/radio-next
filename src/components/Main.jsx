@@ -13,8 +13,6 @@ import {
   RiSearchLine,
   RiUserLine,
   RiUserFill,
-  RiBarChartFill,
-  RiBarChartLine,
   RiSettings4Line,
   RiSettings4Fill,
   RiFireLine,
@@ -249,9 +247,9 @@ const Main = ({ children }) => {
                 aria-label={t('trends')}
               >
                 {pathname === '/trends' ? (
-                  <RiBarChartFill size={24} />
+                  <RiFireFill size={24} />
                 ) : (
-                  <RiBarChartLine size={24} />
+                  <RiFireLine size={24} />
                 )}
               </IconButton>
               <IconButton
