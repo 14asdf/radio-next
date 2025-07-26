@@ -41,10 +41,14 @@ export function AudioPlayerProvider({ children }) {
   const audioRef = useRef(null);
   const abortControllerRef = useRef(null);
   const isLoadingRef = useRef(false);
+  const userPausedRef = useRef(false);
 
   const handlePlay = useCallback(
     async (station, retryCount = 0) => {
       if (!audioRef.current) return;
+
+      // Clear user paused flag when starting playback
+      userPausedRef.current = false;
 
       // Store station ID in localStorage when playing
       localStorage.setItem('lastPlayedStation', encodeUrl(station.streamUrl));
@@ -142,36 +146,53 @@ export function AudioPlayerProvider({ children }) {
                 artist: 'Radio Baron',
                 artwork: [defaultArtwork],
               });
-              return;
+            } else {
+              // Test if the station image loads correctly
+              const img = new Image();
+              img.onload = () => {
+                // Only use station image if it's large enough
+                if (img.width >= 192 && img.height >= 192) {
+                  navigator.mediaSession.metadata = new MediaMetadata({
+                    title: station.title,
+                    artist: 'Radio Baron',
+                    artwork: [
+                      {
+                        src: station.img,
+                        sizes: `${img.width}x${img.height}`,
+                        type: 'image/png',
+                      },
+                    ],
+                  });
+                } else {
+                  navigator.mediaSession.metadata = new MediaMetadata({
+                    title: station.title,
+                    artist: 'Radio Baron',
+                    artwork: [defaultArtwork],
+                  });
+                }
+              };
+              img.onerror = () => {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                  title: station.title,
+                  artist: 'Radio Baron',
+                  artwork: [defaultArtwork],
+                });
+              };
+              img.src = station.img;
+
+              navigator.mediaSession.metadata = new MediaMetadata({
+                title: station.title,
+                artist: 'Radio Baron',
+                artwork: [], // Start with empty artwork if we're loading station image
+              });
             }
-
-            // Test if the station image loads correctly
-            const img = new Image();
-            img.onload = () => {
-              // Only use station image if it's large enough
-              if (img.width >= 192 && img.height >= 192) {
-                navigator.mediaSession.metadata.artwork = [
-                  {
-                    src: station.img,
-                    sizes: `${img.width}x${img.height}`,
-                    type: 'image/png',
-                  },
-                ];
-              } else {
-                navigator.mediaSession.metadata.artwork = [defaultArtwork];
-              }
-            };
-            img.onerror = () => {
-              navigator.mediaSession.metadata.artwork = [defaultArtwork];
-            };
-            img.src = station.img;
+          } else {
+            navigator.mediaSession.metadata = new MediaMetadata({
+              title: station.title,
+              artist: 'Radio Baron',
+              artwork: [defaultArtwork],
+            });
           }
-
-          navigator.mediaSession.metadata = new MediaMetadata({
-            title: station.title,
-            artist: 'Radio Baron',
-            artwork: station.img ? [] : [defaultArtwork], // Start with empty artwork if we're loading station image
-          });
         }
 
         setPlayerState((prev) => ({
@@ -216,10 +237,69 @@ export function AudioPlayerProvider({ children }) {
   const handlePause = useCallback(() => {
     if (!audioRef.current || playerState.isLoading) return;
 
+    // Mark as user-initiated pause
+    userPausedRef.current = true;
+
     audioRef.current.pause();
-    audioRef.current.removeAttribute('src');
-    audioRef.current.load();
     setPlayerState((prev) => ({ ...prev, isPlaying: false }));
+  }, [playerState.isLoading]);
+
+  // Setup Media Session API handlers
+  useEffect(() => {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', () => {
+        if (playerState.currentStation && !playerState.isPlaying) {
+          handlePlay(playerState.currentStation);
+        }
+      });
+
+      navigator.mediaSession.setActionHandler('pause', () => {
+        handlePause();
+      });
+
+      navigator.mediaSession.setActionHandler('stop', () => {
+        handlePause();
+      });
+    }
+
+    return () => {
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.setActionHandler('play', null);
+        navigator.mediaSession.setActionHandler('pause', null);
+        navigator.mediaSession.setActionHandler('stop', null);
+      }
+    };
+  }, [
+    playerState.currentStation,
+    playerState.isPlaying,
+    handlePlay,
+    handlePause,
+  ]);
+
+  // Listen to audio element events to sync state
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleAudioPlay = () => {
+      if (!playerState.isLoading) {
+        setPlayerState((prev) => ({ ...prev, isPlaying: true }));
+      }
+    };
+
+    const handleAudioPause = () => {
+      // Mark as user paused when audio element pauses
+      userPausedRef.current = true;
+      setPlayerState((prev) => ({ ...prev, isPlaying: false }));
+    };
+
+    audio.addEventListener('play', handleAudioPlay);
+    audio.addEventListener('pause', handleAudioPause);
+
+    return () => {
+      audio.removeEventListener('play', handleAudioPlay);
+      audio.removeEventListener('pause', handleAudioPause);
+    };
   }, [playerState.isLoading]);
 
   const togglePlay = async (audioId) => {
@@ -281,6 +361,13 @@ export function AudioPlayerProvider({ children }) {
           // Only handle errors if we're not already loading or retrying
           if (!playerState.isLoading && e.target.error?.code !== 20) {
             console.error('Audio error:', e.target.error);
+
+            // Don't attempt recovery if user explicitly paused
+            if (userPausedRef.current) {
+              console.log('User paused, ignoring audio error');
+              return;
+            }
+
             // Only attempt recovery if we're supposed to be playing
             if (playerState.isPlaying && playerState.currentStation) {
               handlePlay(playerState.currentStation);
@@ -295,6 +382,12 @@ export function AudioPlayerProvider({ children }) {
           }
         }}
         onStalled={() => {
+          // Don't attempt recovery if user explicitly paused
+          if (userPausedRef.current) {
+            console.log('User paused, ignoring stalled event');
+            return;
+          }
+
           // Only attempt recovery if we're supposed to be playing
           if (
             playerState.isPlaying &&
