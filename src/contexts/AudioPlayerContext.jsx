@@ -217,6 +217,8 @@ export function AudioPlayerProvider({ children }) {
     if (!audioRef.current || playerState.isLoading) return;
 
     audioRef.current.pause();
+    audioRef.current.removeAttribute('src');
+    audioRef.current.load();
     setPlayerState((prev) => ({ ...prev, isPlaying: false }));
   }, [playerState.isLoading]);
 
