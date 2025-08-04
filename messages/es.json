@@ -74,10 +74,13 @@
   },
   "settings": {
     "changeTheme": "Cambiar tema",
-    "chooseLanguage": "Elegir Idioma",
+    "chooseLanguage": "Elegir idioma",
+    "title": "Configuración",
     "appearance": "Apariencia",
     "language": "Idioma",
-    "title": "Ajustes"
+    "lightTheme": "Claro",
+    "darkTheme": "Oscuro",
+    "systemTheme": "Auto"
   },
   "trends": {
     "title": "Emisoras Tendencia",

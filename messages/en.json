@@ -77,7 +77,10 @@
     "chooseLanguage": "Choose Language",
     "title": "Settings",
     "appearance": "Appearance",
-    "language": "Language"
+    "language": "Language",
+    "lightTheme": "Light",
+    "darkTheme": "Dark",
+    "systemTheme": "Auto"
   },
   "trends": {
     "title": "Trending Stations",

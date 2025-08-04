@@ -7,6 +7,7 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { NextIntlClientProvider } from 'next-intl';
 import { headers } from 'next/headers';
 import { getLocale, getMessages } from 'next-intl/server';
+import { ManifestUpdater } from '../components/ManifestUpdater';
 
 // Static viewport configuration
 export const viewport = {
@@ -86,6 +87,7 @@ export default async function RootLayout({ children }) {
               <StationsProvider>
                 <ChakraProvider>
                   <AudioPlayerProvider>
+                    <ManifestUpdater />
                     <Suspense>
                       <Main>{children}</Main>
                     </Suspense>

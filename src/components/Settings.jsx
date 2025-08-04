@@ -23,11 +23,13 @@ import {
   DialogCloseTrigger,
 } from './ui/dialog';
 import { useRouter } from 'next/navigation';
+import { ThemeSelector } from './ThemeSelector';
 
 export default function Settings() {
   const t = useTranslations('settings');
-  const { toggleColorMode } = useColorMode();
-  const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useColorMode();
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
   const router = useRouter();
 
@@ -50,8 +52,20 @@ export default function Settings() {
   const handleLocaleChange = (newLocale) => {
     document.cookie = `NEXT_LOCALE=${newLocale};path=/;sameSite=strict`;
     router.refresh();
-    setIsOpen(false);
+    setIsLanguageOpen(false);
     setCurrentLang(newLocale);
+  };
+
+  const getThemeText = () => {
+    switch (theme) {
+      case 'light':
+        return t('lightTheme');
+      case 'dark':
+        return t('darkTheme');
+      case 'system':
+      default:
+        return t('systemTheme');
+    }
   };
 
   return (
@@ -67,7 +81,7 @@ export default function Settings() {
 
       <Flex
         as="button"
-        onClick={toggleColorMode}
+        onClick={() => setIsThemeOpen(true)}
         py={2}
         justify="space-between"
         align="center"
@@ -85,7 +99,7 @@ export default function Settings() {
 
       <Flex
         as="button"
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsLanguageOpen(true)}
         py={2}
         justify="space-between"
         align="center"
@@ -101,7 +115,10 @@ export default function Settings() {
         </HStack>
       </Flex>
 
-      <DialogRoot open={isOpen} onOpenChange={(e) => setIsOpen(e.open)}>
+      <DialogRoot
+        open={isLanguageOpen}
+        onOpenChange={(e) => setIsLanguageOpen(e.open)}
+      >
         <DialogContent>
           <DialogHeader>
             <DialogTitle _dark={{ color: '#fff' }} fontSize="2xl">
@@ -138,6 +155,11 @@ export default function Settings() {
           </DialogBody>
         </DialogContent>
       </DialogRoot>
+
+      <ThemeSelector
+        isOpen={isThemeOpen}
+        onOpenChange={(e) => setIsThemeOpen(e.open)}
+      />
     </Box>
   );
 }

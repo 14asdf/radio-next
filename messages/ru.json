@@ -73,11 +73,14 @@
     "logo": "Radio Baron"
   },
   "settings": {
-    "changeTheme": "Сменить тему",
-    "chooseLanguage": "Выберите язык",
+    "changeTheme": "Изменить тему",
+    "chooseLanguage": "Выбрать язык",
+    "title": "Настройки",
     "appearance": "Внешний вид",
     "language": "Язык",
-    "title": "Настройки"
+    "lightTheme": "Светлая",
+    "darkTheme": "Темная",
+    "systemTheme": "Авто"
   },
   "trends": {
     "title": "Популярные станции",

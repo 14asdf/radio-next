@@ -75,9 +75,12 @@
   "settings": {
     "changeTheme": "Theme ändern",
     "chooseLanguage": "Sprache wählen",
+    "title": "Einstellungen",
     "appearance": "Erscheinungsbild",
     "language": "Sprache",
-    "title": "Einstellungen"
+    "lightTheme": "Hell",
+    "darkTheme": "Dunkel",
+    "systemTheme": "Auto"
   },
   "trends": {
     "title": "Beliebte Sender",

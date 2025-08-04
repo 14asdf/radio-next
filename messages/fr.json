@@ -73,11 +73,14 @@
     "logo": "Radio Baron"
   },
   "settings": {
-    "changeTheme": "Changer de thème",
+    "changeTheme": "Changer le thème",
     "chooseLanguage": "Choisir la langue",
     "title": "Paramètres",
     "appearance": "Apparence",
-    "language": "Langue"
+    "language": "Langue",
+    "lightTheme": "Clair",
+    "darkTheme": "Sombre",
+    "systemTheme": "Auto"
   },
   "trends": {
     "title": "Stations Tendances",
