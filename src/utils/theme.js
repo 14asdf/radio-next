@@ -4,8 +4,8 @@ export const THEME_COLORS = {
     backgroundColor: '#ffffff',
   },
   dark: {
-    themeColor: '#1a1a1a',
-    backgroundColor: '#1a1a1a',
+    themeColor: '#09090B',
+    backgroundColor: '#09090B',
   },
   system: {
     themeColor: '#ffffff',
