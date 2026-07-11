@@ -20,7 +20,17 @@ const hasValidConfig = Boolean(
     firebaseConfig.appId
 );
 
-const app = hasValidConfig ? (getApps()[0] ?? initializeApp(firebaseConfig)) : null;
+let auth = null;
+let db = null;
 
-export const auth = app ? getAuth(app) : null;
-export const db = app ? getDatabase(app) : null;
+if (hasValidConfig) {
+  try {
+    const app = getApps()[0] ?? initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getDatabase(app);
+  } catch (error) {
+    console.error('Firebase initialization failed:', error);
+  }
+}
+
+export { auth, db };
