@@ -1,13 +1,13 @@
 'use client';
+
+import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
-import { Box } from '@chakra-ui/react';
-import gsap from 'gsap';
 
 const TAU = Math.PI * 2;
 const rand = (n) => Math.random() * n;
 const fadeInOut = (t, m) => {
-  let hm = 0.5 * m;
+  const hm = 0.5 * m;
   return Math.abs(((t + hm) % m) - hm) / hm;
 };
 
@@ -29,7 +29,6 @@ export default function AnimatedBackground() {
     const xOff = 0.0015;
     const yOff = 0.0015;
     const zOff = 0.0015;
-    const backgroundColor = 'hsla(0,0%,5%,0)';
 
     let canvas, ctx, circleProps, noise3D, baseHue;
 
@@ -44,19 +43,17 @@ export default function AnimatedBackground() {
     }
 
     function initCircle(i) {
-      let x, y, n, t, speed, vx, vy, life, ttl, radius, hue;
-
-      x = rand(canvas.a.width);
-      y = rand(canvas.a.height);
-      n = noise3D(x * xOff, y * yOff, baseHue * zOff);
-      t = rand(TAU);
-      speed = baseSpeed + rand(rangeSpeed);
-      vx = speed * Math.cos(t);
-      vy = speed * Math.sin(t);
-      life = 0;
-      ttl = baseTTL + rand(rangeTTL);
-      radius = baseRadius + rand(rangeRadius);
-      hue = baseHue + n * rangeHue;
+      const x = rand(canvas.a.width);
+      const y = rand(canvas.a.height);
+      const n = noise3D(x * xOff, y * yOff, baseHue * zOff);
+      const t = rand(TAU);
+      const speed = baseSpeed + rand(rangeSpeed);
+      const vx = speed * Math.cos(t);
+      const vy = speed * Math.sin(t);
+      const life = 0;
+      const ttl = baseTTL + rand(rangeTTL);
+      const radius = baseRadius + rand(rangeRadius);
+      const hue = baseHue + n * rangeHue;
 
       circleProps.set([x, y, vx, vy, life, ttl, radius, hue], i);
     }
@@ -70,23 +67,22 @@ export default function AnimatedBackground() {
     }
 
     function updateCircle(i) {
-      let i2 = 1 + i,
-        i3 = 2 + i,
-        i4 = 3 + i,
-        i5 = 4 + i,
-        i6 = 5 + i,
-        i7 = 6 + i,
-        i8 = 7 + i;
-      let x, y, vx, vy, life, ttl, radius, hue;
+      const i2 = 1 + i;
+      const i3 = 2 + i;
+      const i4 = 3 + i;
+      const i5 = 4 + i;
+      const i6 = 5 + i;
+      const i7 = 6 + i;
+      const i8 = 7 + i;
 
-      x = circleProps[i];
-      y = circleProps[i2];
-      vx = circleProps[i3];
-      vy = circleProps[i4];
-      life = circleProps[i5];
-      ttl = circleProps[i6];
-      radius = circleProps[i7];
-      hue = circleProps[i8];
+      const x = circleProps[i];
+      const y = circleProps[i2];
+      const vx = circleProps[i3];
+      const vy = circleProps[i4];
+      let life = circleProps[i5];
+      const ttl = circleProps[i6];
+      const radius = circleProps[i7];
+      const hue = circleProps[i8];
 
       drawCircle(x, y, life, ttl, radius, hue);
 
@@ -96,7 +92,7 @@ export default function AnimatedBackground() {
       circleProps[i2] = y + vy;
       circleProps[i5] = life;
 
-      (checkBounds(x, y, radius) || life > ttl) && initCircle(i);
+      if (checkBounds(x, y, radius) || life > ttl) initCircle(i);
     }
 
     function drawCircle(x, y, life, ttl, radius, hue) {
@@ -111,10 +107,7 @@ export default function AnimatedBackground() {
 
     function checkBounds(x, y, radius) {
       return (
-        x < -radius ||
-        x > canvas.a.width + radius ||
-        y < -radius ||
-        y > canvas.a.height + radius
+        x < -radius || x > canvas.a.width + radius || y < -radius || y > canvas.a.height + radius
       );
     }
 
@@ -123,8 +116,7 @@ export default function AnimatedBackground() {
         a: document.createElement('canvas'),
       };
 
-      // Основной canvas
-      canvas.a.style = `
+      canvas.a.style.cssText = `
         position: absolute;
         top: 0;
         left: 0;
@@ -134,9 +126,8 @@ export default function AnimatedBackground() {
         border-top-right-radius: 16px;
       `;
 
-      // Создаем div для blur эффекта
       const blurOverlay = document.createElement('div');
-      blurOverlay.style = `
+      blurOverlay.style.cssText = `
         position: absolute;
         top: 0;
         left: 0;
@@ -165,19 +156,11 @@ export default function AnimatedBackground() {
       canvas.a.height = height;
     }
 
-    function render() {
-      ctx.b.save();
-      ctx.b.filter = 'blur(50px)';
-      ctx.b.drawImage(canvas.a, 0, 0);
-      ctx.b.restore();
-    }
-
     function draw() {
       ctx.a.clearRect(0, 0, canvas.a.width, canvas.a.height);
       updateCircles();
     }
 
-    // Setup
     createCanvas();
     resize();
     initCircles();
@@ -198,16 +181,9 @@ export default function AnimatedBackground() {
   }, []);
 
   return (
-    <Box
+    <div
       ref={containerRef}
-      className="content--canvas"
-      position="absolute"
-      top={0}
-      left={0}
-      w="100%"
-      h="300px"
-      overflow="hidden"
-      borderTopRadius="16px"
+      className="content--canvas absolute left-0 top-0 h-[300px] w-full overflow-hidden rounded-t-2xl"
     />
   );
 }

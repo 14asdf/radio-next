@@ -1,0 +1,6 @@
+# Conventional Commits — type(scope): subject
+#
+# Types: feat | fix | refactor | chore | docs | style | test | build | ci | perf | revert
+# Example: refactor(ui): migrate from chakra to shadcn
+#
+# Lines starting with # are ignored.

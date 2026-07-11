@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
-import Negotiator from 'negotiator';
 import { match } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
+import { NextResponse } from 'next/server';
 import { locales } from '@/utils/alternates';
 
 const COOKIE_LOCALE_NAME = 'NEXT_LOCALE';
@@ -25,13 +25,7 @@ function getAcceptLanguageLocale(requestHeaders, locales, defaultLocale) {
   return locale;
 }
 
-function resolveLocale(
-  locales,
-  defaultLocale,
-  requestHeaders,
-  requestCookies,
-  searchParams
-) {
+function resolveLocale(locales, defaultLocale, requestHeaders, requestCookies, searchParams) {
   let locale;
 
   // Check URL query parameter first (highest priority)

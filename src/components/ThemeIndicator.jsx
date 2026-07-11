@@ -1,9 +1,8 @@
 'use client';
 
-import { Box, Text, HStack } from '@chakra-ui/react';
-import { useColorMode } from './ui/color-mode';
 import { useTranslations } from 'next-intl';
-import { PiSunThin, PiMoonThin, PiMonitorThin } from 'react-icons/pi';
+import { PiMonitorThin, PiMoonThin, PiSunThin } from 'react-icons/pi';
+import { useColorMode } from './ui/color-mode';
 
 export function ThemeIndicator() {
   const { theme } = useColorMode();
@@ -34,11 +33,9 @@ export function ThemeIndicator() {
   };
 
   return (
-    <HStack spacing={1} opacity={0.7}>
+    <div className="flex items-center gap-1 opacity-70">
       {getThemeIcon()}
-      <Text fontSize="xs" display={{ base: 'none', md: 'block' }}>
-        {getThemeText()}
-      </Text>
-    </HStack>
+      <span className="hidden text-xs md:block">{getThemeText()}</span>
+    </div>
   );
 }

@@ -1,108 +1,39 @@
-function _nullishCoalesce(lhs, rhsFn) {
-  if (lhs != null) {
-    return lhs;
-  } else {
-    return rhsFn();
-  }
-}
-function _optionalChain(ops) {
-  let lastAccessLHS = undefined;
-  let value = ops[0];
-  let i = 1;
-  while (i < ops.length) {
-    const op = ops[i];
-    const fn = ops[i + 1];
-    i += 2;
-    if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) {
-      return undefined;
-    }
-    if (op === 'access' || op === 'optionalAccess') {
-      lastAccessLHS = value;
-      value = fn(value);
-    } else if (op === 'call' || op === 'optionalCall') {
-      value = fn((...args) => value.call(lastAccessLHS, ...args));
-      lastAccessLHS = undefined;
-    }
-  }
-  return value;
-}
-import { Slider as ChakraSlider, For, HStack } from '@chakra-ui/react';
+'use client';
+
+import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 
-export const Slider = React.forwardRef(function Slider(props, ref) {
-  const { marks: marksProp, label, showValue, ...rest } = props;
-  const value = _nullishCoalesce(props.defaultValue, () => props.value);
-
-  const marks = _optionalChain([
-    marksProp,
-    'optionalAccess',
-    (_2) => _2.map,
-    'call',
-    (_3) =>
-      _3((mark) => {
-        if (typeof mark === 'number') return { value: mark, label: undefined };
-        return mark;
-      }),
-  ]);
-
-  const hasMarkLabel = !!_optionalChain([
-    marks,
-    'optionalAccess',
-    (_4) => _4.some,
-    'call',
-    (_5) => _5((mark) => mark.label),
-  ]);
-
-  return (
-    <ChakraSlider.Root ref={ref} thumbAlignment="center" {...rest}>
-      {label && !showValue && <ChakraSlider.Label>{label}</ChakraSlider.Label>}
-      {label && showValue && (
-        <HStack justify="space-between">
-          <ChakraSlider.Label>{label}</ChakraSlider.Label>
-          <ChakraSlider.ValueText />
-        </HStack>
-      )}
-      <ChakraSlider.Control data-has-mark-label={hasMarkLabel || undefined}>
-        <ChakraSlider.Track>
-          <ChakraSlider.Range />
-        </ChakraSlider.Track>
-        <SliderThumbs value={value} />
-        <SliderMarks marks={marks} />
-      </ChakraSlider.Control>
-    </ChakraSlider.Root>
+function Slider({ className, defaultValue, value, min = 0, max = 100, ...props }) {
+  const _values = React.useMemo(
+    () => (Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max]),
+    [value, defaultValue, min, max]
   );
-});
 
-function SliderThumbs(props) {
-  const { value } = props;
   return (
-    <For each={value}>
-      {(_, index) => (
-        <ChakraSlider.Thumb key={index} index={index}>
-          <ChakraSlider.HiddenInput />
-        </ChakraSlider.Thumb>
+    <SliderPrimitive.Root
+      data-slot="slider"
+      defaultValue={defaultValue}
+      value={value}
+      min={min}
+      max={max}
+      className={cn(
+        'relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col',
+        className
       )}
-    </For>
+      {...props}
+    >
+      <SliderPrimitive.Track className="relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1.5 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-1.5">
+        <SliderPrimitive.Range className="absolute bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full" />
+      </SliderPrimitive.Track>
+      {Array.from({ length: _values.length }, (_, index) => (
+        <SliderPrimitive.Thumb
+          key={index}
+          className="block size-4 shrink-0 rounded-full border border-primary bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+        />
+      ))}
+    </SliderPrimitive.Root>
   );
 }
 
-const SliderMarks = React.forwardRef(function SliderMarks(props, ref) {
-  const { marks } = props;
-  if (!_optionalChain([marks, 'optionalAccess', (_6) => _6.length]))
-    return null;
-
-  return (
-    <ChakraSlider.MarkerGroup ref={ref}>
-      {marks.map((mark, index) => {
-        const value = typeof mark === 'number' ? mark : mark.value;
-        const label = typeof mark === 'number' ? undefined : mark.label;
-        return (
-          <ChakraSlider.Marker key={index} value={value}>
-            <ChakraSlider.MarkerIndicator />
-            {label}
-          </ChakraSlider.Marker>
-        );
-      })}
-    </ChakraSlider.MarkerGroup>
-  );
-});
+export { Slider };

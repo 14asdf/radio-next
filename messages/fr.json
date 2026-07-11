@@ -90,6 +90,7 @@
     "title": "Mon Profil",
     "favoriteStations": "Stations favorites",
     "noFavorites": "Pas encore de stations favorites",
+    "loadMore": "Charger Plus",
     "logout": "Déconnexion"
   },
   "genres": {

@@ -90,6 +90,7 @@
     "title": "My Profile",
     "favoriteStations": "Favorite stations",
     "noFavorites": "No favorite stations yet",
+    "loadMore": "Load More",
     "logout": "Log out"
   },
   "genres": {

@@ -1,22 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MdOutlineShare } from 'react-icons/md';
-import { toaster } from './ui/toaster';
-import { FaTelegram, FaWhatsapp, FaVk } from 'react-icons/fa';
-import { Box, IconButton, Separator } from '@chakra-ui/react';
-import { RiTelegram2Fill, RiWhatsappFill } from 'react-icons/ri';
+import { FaVk } from 'react-icons/fa';
 import { FaLink } from 'react-icons/fa6';
-import { IoShareOutline, IoCloseOutline } from 'react-icons/io5';
-import { Dialog } from '@/components/ui/dialog';
-import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-} from './ui/dialog';
+import { IoShareOutline } from 'react-icons/io5';
+import { RiTelegram2Fill, RiWhatsappFill } from 'react-icons/ri';
+import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Separator } from '@/components/ui/separator';
 
 const Share = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,9 +18,7 @@ const Share = () => {
     navigator.clipboard
       .writeText(currentUrl)
       .then(() => {
-        toaster.create({
-          title: 'URL copied',
-        });
+        toast.success('URL copied');
       })
       .catch((err) => {
         console.error('Failed to copy: ', err);
@@ -36,7 +26,6 @@ const Share = () => {
   };
 
   const handleShare = async (platform) => {
-    // Use platform-specific sharing if platform is specified
     if (platform) {
       const currentUrl = encodeURIComponent(window.location.href);
       const urls = {
@@ -48,97 +37,79 @@ const Share = () => {
       return;
     }
 
-    // Otherwise try native sharing
-    if (!platform) {
-      try {
-        await navigator.share({
-          title: document.title,
-          url: window.location.href,
-        });
-      } catch (error) {
-        console.log('Error sharing:', error);
-      }
+    try {
+      await navigator.share({
+        title: document.title,
+        url: window.location.href,
+      });
+    } catch (error) {
+      console.log('Error sharing:', error);
     }
   };
 
-  // Use native share on mobile, custom share button on desktop
   if (typeof window !== 'undefined' && navigator.share) {
     return (
-      <IconButton
+      <Button
         aria-label="Share"
         onClick={() => handleShare()}
         variant="ghost"
-        size="lg"
-        rounded={'full'}
+        size="icon"
+        className="rounded-full"
       >
         <IoShareOutline />
-      </IconButton>
+      </Button>
     );
   }
 
-  // Original share button implementation for desktop
   return (
     <>
-      <IconButton
-        as="a"
-        variant="subtle"
-        size="lg"
-        rounded={'full'}
+      <Button
+        variant="secondary"
+        size="icon"
+        className="rounded-full"
         aria-label="Share this station"
         onClick={() => setIsOpen(true)}
       >
         <IoShareOutline />
-      </IconButton>
+      </Button>
 
-      <DialogRoot open={isOpen} onOpenChange={(e) => setIsOpen(e.open)}>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle _dark={{ color: '#fff' }} fontSize="2xl">
-              Share this station
-            </DialogTitle>
-            <DialogCloseTrigger>
-              <IoCloseOutline />
-            </DialogCloseTrigger>
+            <DialogTitle className="text-2xl">Share this station</DialogTitle>
           </DialogHeader>
           <Separator />
-          <DialogBody>
-            <Box display="flex" justifyContent="center" gap={4}>
-              <IconButton
-                variant="ghost"
-                size="lg"
-                rounded={'full'}
-                onClick={() => handleShare('telegram')}
-              >
-                <RiTelegram2Fill />
-              </IconButton>
-              <IconButton
-                variant="ghost"
-                size="lg"
-                rounded={'full'}
-                onClick={() => handleShare('whatsapp')}
-              >
-                <RiWhatsappFill />
-              </IconButton>
-              <IconButton
-                variant="ghost"
-                size="lg"
-                rounded={'full'}
-                onClick={() => handleShare('vk')}
-              >
-                <FaVk />
-              </IconButton>
-              <IconButton
-                variant="ghost"
-                size="lg"
-                rounded={'full'}
-                onClick={handleCopyUrl}
-              >
-                <FaLink />
-              </IconButton>
-            </Box>
-          </DialogBody>
+          <div className="flex justify-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+              onClick={() => handleShare('telegram')}
+            >
+              <RiTelegram2Fill />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+              onClick={() => handleShare('whatsapp')}
+            >
+              <RiWhatsappFill />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+              onClick={() => handleShare('vk')}
+            >
+              <FaVk />
+            </Button>
+            <Button variant="ghost" size="icon" className="rounded-full" onClick={handleCopyUrl}>
+              <FaLink />
+            </Button>
+          </div>
         </DialogContent>
-      </DialogRoot>
+      </Dialog>
     </>
   );
 };

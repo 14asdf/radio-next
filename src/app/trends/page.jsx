@@ -1,7 +1,7 @@
-import { generatePageMetadata } from '@/utils/metadata';
-import { generateAlternates } from '@/utils/alternates';
-import Trends from '@/components/Trends';
 import { getTranslations } from 'next-intl/server';
+import Trends from '@/components/Trends';
+import { generateAlternates } from '@/utils/alternates';
+import { generatePageMetadata } from '@/utils/metadata';
 
 export async function generateMetadata({ searchParams }) {
   const t = await getTranslations('metadata');

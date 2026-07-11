@@ -1,42 +1,24 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { debounce } from 'lodash';
+import Link from 'next/link';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
-  Box,
-  Image,
-  Text,
-  IconButton,
-  HStack,
-  Spinner,
-  Separator,
-} from '@chakra-ui/react';
-import {
-  IoPlayOutline,
   IoPauseOutline,
+  IoPlayOutline,
+  IoPlaySkipForwardOutline,
   IoVolumeHighOutline,
   IoVolumeLowOutline,
   IoVolumeMediumOutline,
   IoVolumeMuteOutline,
-  IoPlaySkipForwardOutline,
 } from 'react-icons/io5';
-import { useAudioPlayer } from '../contexts/AudioPlayerContext';
-import {
-  createAvatarUrl,
-  decodeUrl,
-  findStation,
-  encodeUrl,
-} from '@/utils/stations';
-import Link from 'next/link';
-
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Slider } from '@/components/ui/slider';
-import {
-  PopoverBody,
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
-} from '@/components/ui/popover';
+import { Spinner } from '@/components/ui/spinner';
 import { useStations } from '@/contexts/StationsContext';
-import { debounce } from 'lodash';
+import { createAvatarUrl, decodeUrl, encodeUrl, findStation } from '@/utils/stations';
+import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 
 const VolumeIcon = ({ volume }) => {
   if (volume === 0) return <IoVolumeMuteOutline />;
@@ -55,7 +37,7 @@ const MiniPlayer = ({ audioId }) => {
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
   const station = React.useMemo(
     () => (audioSrc ? findStation(audioId, stations) : null),
-    [audioId, audioSrc]
+    [audioId, audioSrc, stations]
   );
 
   useEffect(() => {
@@ -71,144 +53,104 @@ const MiniPlayer = ({ audioId }) => {
         setImgSrc(station.img);
         setIsLoading(false);
       };
-    } else {
+    } else if (station) {
       setImgSrc(createAvatarUrl(station.title));
       setIsLoading(false);
     }
   }, [station]);
 
-  const debouncedSetVolume = React.useCallback(
+  const debouncedSetVolume = useCallback(
     debounce((value) => {
       handleVolumeChange(value / 100);
     }, 50),
-    []
+    [handleVolumeChange]
   );
 
   const handleNextTrack = () => {
     const currentIndex = stations.findIndex((s) => s.streamUrl === audioSrc);
-    const nextIndex =
-      currentIndex === stations.length - 1 ? 0 : currentIndex + 1;
+    const nextIndex = currentIndex === stations.length - 1 ? 0 : currentIndex + 1;
     const nextStation = stations[nextIndex];
     togglePlay(encodeUrl(nextStation.streamUrl), true);
   };
 
+  if (!station) return null;
+
   return (
-    <Box bg="gray.100" _dark={{ bg: 'gray.700' }} pr="2">
-      <Box
-        display="grid"
-        gridTemplateColumns="60px minmax(0, 1fr) auto"
-        alignItems="center"
-        gap={3}
-      >
+    <div className="bg-gray-100 pr-2 dark:bg-zinc-700">
+      <div className="grid grid-cols-[60px_minmax(0,1fr)_auto] items-center gap-3">
         {isLoading ? (
-          <Box
-            width="60px"
-            height="60px"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
+          <div className="flex size-[60px] items-center justify-center">
             <Spinner />
-          </Box>
+          </div>
         ) : (
           <Link href={`/?id=${encodeUrl(station.streamUrl)}`}>
-            <Image
-              src={imgSrc}
-              alt={station.title}
-              width="60px"
-              height="60px"
-            />
+            <img src={imgSrc} alt={station.title} className="size-[60px] object-cover" />
           </Link>
         )}
 
-        <Box overflow="hidden">
-          <Text
-            fontSize="sm"
-            fontWeight="medium"
-            overflow="hidden"
-            textOverflow="ellipsis"
-            whiteSpace="nowrap"
-          >
-            <Link
-              href={`/?id=${encodeUrl(station.streamUrl)}`}
-              display="inline"
-              _hover={{ textDecoration: 'underline' }}
-            >
+        <div className="overflow-hidden">
+          <p className="truncate text-sm font-medium">
+            <Link href={`/?id=${encodeUrl(station.streamUrl)}`} className="hover:underline">
               {station.title}
             </Link>
-          </Text>
-        </Box>
+          </p>
+        </div>
 
-        <HStack>
-          <PopoverRoot
-            open={isVolumeOpen}
-            onOpenChange={(e) => setIsVolumeOpen(e.open)}
-          >
+        <div className="flex items-center gap-1">
+          <Popover open={isVolumeOpen} onOpenChange={setIsVolumeOpen}>
             <PopoverTrigger asChild>
-              <IconButton
-                variant="subtle"
-                borderRadius="full"
+              <Button
+                variant="secondary"
+                size="icon"
+                className="size-8 rounded-full"
                 aria-label="Volume"
-                size="sm"
-                cursor="pointer"
               >
                 <VolumeIcon volume={playerState.volume} />
-              </IconButton>
+              </Button>
             </PopoverTrigger>
-            <PopoverContent w="50px" h="180px">
-              <PopoverBody p="3" h="100%" display="flex" alignItems="center">
-                <Box
-                  w="auto"
-                  h="100%"
-                  alignItems="center"
-                  display="flex"
-                  justifyContent="center"
-                >
-                  <Slider
-                    w="25px"
-                    h="150px"
-                    defaultValue={[playerState.volume * 100]}
-                    min={0}
-                    max={100}
-                    step={1}
-                    onValueChange={(e) => debouncedSetVolume(e.value)}
-                    orientation="vertical"
-                  />
-                </Box>
-              </PopoverBody>
+            <PopoverContent className="h-[180px] w-[50px] p-3">
+              <div className="flex h-full items-center justify-center">
+                <Slider
+                  className="h-[150px] w-[25px]"
+                  defaultValue={[playerState.volume * 100]}
+                  min={0}
+                  max={100}
+                  step={1}
+                  orientation="vertical"
+                  onValueChange={(value) => debouncedSetVolume(value[0])}
+                />
+              </div>
             </PopoverContent>
-          </PopoverRoot>
+          </Popover>
 
-          <IconButton
-            variant="subtle"
-            borderRadius="full"
+          <Button
+            variant="secondary"
+            size="icon"
+            className="size-8 rounded-full"
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => togglePlay(audioId)}
-            size="sm"
-            cursor="pointer"
           >
             {playerState.isLoading ? (
-              <Spinner size="sm" />
+              <Spinner />
             ) : playerState.isPlaying ? (
               <IoPauseOutline />
             ) : (
               <IoPlayOutline />
             )}
-          </IconButton>
+          </Button>
 
-          <IconButton
-            variant="subtle"
-            borderRadius="full"
+          <Button
+            variant="secondary"
+            size="icon"
+            className="size-8 rounded-full"
             aria-label="Next station"
             onClick={handleNextTrack}
-            size="sm"
-            cursor="pointer"
           >
             <IoPlaySkipForwardOutline />
-          </IconButton>
-        </HStack>
-      </Box>
-    </Box>
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 };
 

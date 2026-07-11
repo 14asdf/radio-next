@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Text,
-  HStack,
-  Input,
-  Button,
-  Separator,
-  Textarea,
-} from '@chakra-ui/react';
-import { ref, push, onValue, get, remove, set } from 'firebase/database';
-import { db } from '@/utils/firebase';
-import { useAuth } from '@/contexts/AuthContext';
-import { Avatar, AvatarGroup } from './ui/avatar';
-import {
-  MenuRoot,
-  MenuTrigger,
-  MenuContent,
-  MenuItem,
-} from '@/components/ui/menu';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+'use client';
+
+import { get, onValue, push, ref, remove, set } from 'firebase/database';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import React, { useEffect, useState } from 'react';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import { TbSend } from 'react-icons/tb';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Separator } from '@/components/ui/separator';
+import { Textarea } from '@/components/ui/textarea';
+import { useAuth } from '@/contexts/AuthContext';
+import { db } from '@/utils/firebase';
 
 const Comments = ({ stationId }) => {
   const [comments, setComments] = useState([]);
@@ -31,13 +27,11 @@ const Comments = ({ stationId }) => {
   const t = useTranslations('time');
   const c = useTranslations('comments');
 
-  // Fetch users data
   useEffect(() => {
     const fetchUsersData = async () => {
       const usersRef = ref(db, 'users');
       const usersSnapshot = await get(usersRef);
-      const usersData = usersSnapshot.val() || {};
-      setUsersData(usersData);
+      setUsersData(usersSnapshot.val() || {});
     };
 
     fetchUsersData();
@@ -49,26 +43,22 @@ const Comments = ({ stationId }) => {
     const commentsRef = ref(db, `comments/${stationId}`);
     const unsubscribe = onValue(commentsRef, (snapshot) => {
       const data = snapshot.val() || {};
-      const { commentCount, ...commentsData } = data; // Separate commentCount from comments
-      const commentsArray = Object.entries(commentsData).map(
-        ([key, value]) => ({
-          ...value,
-          key,
-        })
-      );
+      const { commentCount: _commentCount, ...commentsData } = data;
+      const commentsArray = Object.entries(commentsData).map(([key, value]) => ({
+        ...value,
+        key,
+      }));
       setComments(commentsArray);
     });
 
     return () => unsubscribe();
   }, [stationId]);
 
-  // Update comment count in station data
   const updateCommentCount = async (change) => {
     try {
       const countRef = ref(db, `comments/${stationId}/commentCount`);
       const snapshot = await get(countRef);
       const currentCount = snapshot.val() || 0;
-
       await set(countRef, Math.max(0, currentCount + change));
     } catch (error) {
       console.error('Error updating comment count:', error);
@@ -88,12 +78,10 @@ const Comments = ({ stationId }) => {
         timestamp: Date.now(),
       });
 
-      // Increment comment count
       await updateCommentCount(1);
       setNewComment('');
     } catch (error) {
       console.error('Error posting comment:', error);
-      // Optionally show user feedback about the error
     }
   };
 
@@ -102,81 +90,47 @@ const Comments = ({ stationId }) => {
     try {
       const commentRef = ref(db, `comments/${stationId}/${commentKey}`);
       await remove(commentRef);
-
-      // Decrement comment count
       await updateCommentCount(-1);
     } catch (error) {
       console.error('Error deleting comment:', error);
-      // Optionally show user feedback about the error
     }
   };
 
   return (
-    <Box ml={{ md: '8', sm: '2' }} mr={{ md: '8', sm: '2' }}>
-      {/* Comment Input */}
+    <div className="mx-2 md:mx-8">
       {user && (
-        <HStack spacing={2}>
-          <form onSubmit={handleCommentSubmit} style={{ width: '100%' }}>
-            <HStack w="100%">
-              <Textarea
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder={c('placeholder')}
-                bg="whiteAlpha.100"
-                rounded="lg"
-                minH="60px"
-                resize="vertical"
-                maxH="200px"
-                maxLength={300}
-                mr="3"
-              />
-              <Button
-                type="submit"
-                disabled={!newComment.trim()}
-                colorScheme="brand"
-                rounded="full"
-                size="sm"
-              >
-                <TbSend />
-              </Button>
-            </HStack>
-          </form>
-        </HStack>
+        <form onSubmit={handleCommentSubmit} className="w-full">
+          <div className="flex w-full items-start gap-2">
+            <Textarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder={c('placeholder')}
+              className="mr-3 min-h-[60px] max-h-[200px] resize-y rounded-lg bg-muted"
+              maxLength={300}
+            />
+            <Button type="submit" disabled={!newComment.trim()} size="sm" className="rounded-full">
+              <TbSend />
+            </Button>
+          </div>
+        </form>
       )}
 
-      {/* Comments List */}
-      <Box mt="8">
+      <div className="mt-8">
         {comments.map((comment, index) => (
-          <Box key={comment.key} mb={4}>
-            <HStack align="start" spacing={3}>
+          <div key={comment.key} className="mb-4">
+            <div className="flex items-start gap-3">
               <Link href={`/user/${comment.userId}`}>
-                <Avatar
-                  size="sm"
-                  name={comment.userName}
-                  src={usersData[comment.userId]?.photoURL}
-                  cursor="pointer"
-                />
+                <Avatar className="size-8 cursor-pointer">
+                  <AvatarImage src={usersData[comment.userId]?.photoURL} alt={comment.userName} />
+                  <AvatarFallback>{comment.userName?.slice(0, 2)}</AvatarFallback>
+                </Avatar>
               </Link>
-              <Box flex="1">
-                <Box
-                  bg="gray.100"
-                  _dark={{ bg: 'whiteAlpha.100' }}
-                  p={3}
-                  rounded="lg"
-                  position="relative"
-                  display="inline-block"
-                  maxWidth="100%"
-                >
-                  <Text
-                    fontSize="sm"
-                    color="black"
-                    _dark={{ color: 'gray.300' }}
-                  >
-                    {comment.text}
-                  </Text>
-                </Box>
-                <HStack align="center" mt={1}>
-                  <Text fontSize="xs" color="gray.500">
+              <div className="flex-1">
+                <div className="inline-block max-w-full rounded-lg bg-muted p-3 dark:bg-white/10">
+                  <p className="text-sm dark:text-neutral-300">{comment.text}</p>
+                </div>
+                <div className="mt-1 flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">
                     {(() => {
                       const now = Date.now();
                       const diff = now - comment.timestamp;
@@ -189,50 +143,39 @@ const Comments = ({ stationId }) => {
                           ? t('hoursAgo', { hours })
                           : t('hoursAgoPlural', { hours });
                       }
-                      return days === 1
-                        ? t('daysAgo', { days })
-                        : t('daysAgoPlural', { days });
+                      return days === 1 ? t('daysAgo', { days }) : t('daysAgoPlural', { days });
                     })()}
-                  </Text>
+                  </span>
                   {user && user.uid === comment.userId && (
-                    <MenuRoot>
-                      <MenuTrigger asChild>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
                         <Button
                           variant="ghost"
-                          size="xsm"
-                          rounded="full"
+                          size="icon"
+                          className="size-6 rounded-full"
                           aria-label="More options"
-                          _hover={{ bg: 'whiteAlpha.200' }}
                         >
                           <BsThreeDotsVertical />
                         </Button>
-                      </MenuTrigger>
-                      <MenuContent
-                        rounded="full"
-                        style={{ width: 'fit-content', minWidth: 'auto' }}
-                      >
-                        <MenuItem
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-fit min-w-0 rounded-full">
+                        <DropdownMenuItem
                           onClick={() => handleDeleteComment(comment.key)}
-                          rounded="full"
-                          cursor="pointer"
-                          display="flex"
-                          style={{ width: 'fit-content', minWidth: 'auto' }}
+                          className="cursor-pointer rounded-full"
                         >
-                          <Text>{c('delete')}</Text>
-                        </MenuItem>
-                      </MenuContent>
-                    </MenuRoot>
+                          {c('delete')}
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   )}
-                </HStack>
-              </Box>
-            </HStack>
-            {index < comments.length - 1 && (
-              <Separator borderColor="whiteAlpha.200" my={4} />
-            )}
-          </Box>
+                </div>
+              </div>
+            </div>
+            {index < comments.length - 1 && <Separator className="my-4 opacity-20" />}
+          </div>
         ))}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

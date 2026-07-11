@@ -1,33 +1,17 @@
 'use client';
-import {
-  Box,
-  Text,
-  HStack,
-  Flex,
-  Button,
-  Separator,
-  Heading,
-} from '@chakra-ui/react';
-import { ColorModeIcon } from './ui/color-mode';
-import { PiGlobeHemisphereEastThin } from 'react-icons/pi';
-import { useColorMode } from './ui/color-mode';
-import { useTranslations } from 'next-intl';
-import { useState, useEffect } from 'react';
-import { IoCloseOutline } from 'react-icons/io5';
-import {
-  DialogRoot,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogBody,
-  DialogCloseTrigger,
-} from './ui/dialog';
+
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { PiGlobeHemisphereEastThin } from 'react-icons/pi';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Separator } from '@/components/ui/separator';
 import { ThemeSelector } from './ThemeSelector';
+import { ColorModeIcon } from './ui/color-mode';
 
 export default function Settings() {
   const t = useTranslations('settings');
-  const { theme } = useColorMode();
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
@@ -42,9 +26,7 @@ export default function Settings() {
   };
 
   useEffect(() => {
-    const localeCookie = document.cookie
-      .split('; ')
-      .find((row) => row.startsWith('NEXT_LOCALE='));
+    const localeCookie = document.cookie.split('; ').find((row) => row.startsWith('NEXT_LOCALE='));
     const locale = localeCookie ? localeCookie.split('=')[1] : 'en';
     setCurrentLang(locale);
   }, []);
@@ -56,110 +38,52 @@ export default function Settings() {
     setCurrentLang(newLocale);
   };
 
-  const getThemeText = () => {
-    switch (theme) {
-      case 'light':
-        return t('lightTheme');
-      case 'dark':
-        return t('darkTheme');
-      case 'system':
-      default:
-        return t('systemTheme');
-    }
-  };
-
   return (
-    <Box display="flex" flexDirection="column" gap={6} maxW="xl" mx="auto">
-      <Heading
-        fontSize={{ base: '3xl', md: '4xl' }}
-        fontWeight="bold"
-        mb="6"
-        mt="6"
-      >
-        {t('title')}
-      </Heading>
+    <div className="mx-auto flex max-w-xl flex-col gap-6">
+      <h1 className="mb-6 mt-6 text-3xl font-bold md:text-4xl">{t('title')}</h1>
 
-      <Flex
-        as="button"
+      <button
+        type="button"
         onClick={() => setIsThemeOpen(true)}
-        py={2}
-        justify="space-between"
-        align="center"
-        borderRadius="md"
-        cursor="pointer"
-        width="fit-content"
+        className="flex w-fit cursor-pointer items-center gap-2 rounded-md py-2"
       >
-        <HStack spacing={2}>
-          <ColorModeIcon />
-          <Text fontWeight="bold" ml="3">
-            {t('appearance')}
-          </Text>
-        </HStack>
-      </Flex>
+        <ColorModeIcon />
+        <span className="ml-3 font-bold">{t('appearance')}</span>
+      </button>
 
-      <Flex
-        as="button"
+      <button
+        type="button"
         onClick={() => setIsLanguageOpen(true)}
-        py={2}
-        justify="space-between"
-        align="center"
-        borderRadius="md"
-        cursor="pointer"
-        width="fit-content"
+        className="flex w-fit cursor-pointer items-center gap-2 rounded-md py-2"
       >
-        <HStack spacing={2}>
-          <PiGlobeHemisphereEastThin size={24} />
-          <Text fontWeight="bold" ml="3">
-            {languages[currentLang]}
-          </Text>
-        </HStack>
-      </Flex>
+        <PiGlobeHemisphereEastThin size={24} />
+        <span className="ml-3 font-bold">{languages[currentLang]}</span>
+      </button>
 
-      <DialogRoot
-        open={isLanguageOpen}
-        onOpenChange={(e) => setIsLanguageOpen(e.open)}
-      >
+      <Dialog open={isLanguageOpen} onOpenChange={setIsLanguageOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle _dark={{ color: '#fff' }} fontSize="2xl">
-              {t('chooseLanguage')}
-            </DialogTitle>
-            <DialogCloseTrigger>
-              <IoCloseOutline />
-            </DialogCloseTrigger>
+            <DialogTitle className="text-2xl">{t('chooseLanguage')}</DialogTitle>
           </DialogHeader>
           <Separator />
-
-          <DialogBody>
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <Box
-                display="grid"
-                gridTemplateColumns="repeat(3, 1fr)"
-                gap={4}
-                mt="4"
-                width="fit-content"
-              >
-                {Object.entries(languages).map(([locale, name]) => (
-                  <Button
-                    key={locale}
-                    size="2xl"
-                    variant="ghost"
-                    onClick={() => handleLocaleChange(locale)}
-                    width="120px"
-                  >
-                    <Text>{name}</Text>
-                  </Button>
-                ))}
-              </Box>
-            </Box>
-          </DialogBody>
+          <div className="flex items-center justify-center">
+            <div className="mt-4 grid w-fit grid-cols-3 gap-4">
+              {Object.entries(languages).map(([locale, name]) => (
+                <Button
+                  key={locale}
+                  variant="ghost"
+                  onClick={() => handleLocaleChange(locale)}
+                  className="w-[120px]"
+                >
+                  {name}
+                </Button>
+              ))}
+            </div>
+          </div>
         </DialogContent>
-      </DialogRoot>
+      </Dialog>
 
-      <ThemeSelector
-        isOpen={isThemeOpen}
-        onOpenChange={(e) => setIsThemeOpen(e.open)}
-      />
-    </Box>
+      <ThemeSelector isOpen={isThemeOpen} onOpenChange={setIsThemeOpen} />
+    </div>
   );
 }

@@ -1,46 +1,36 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Image,
-  Text,
-  IconButton,
-  Separator,
-  Badge,
-  Stack,
-  HStack,
-  Spinner,
-} from '@chakra-ui/react';
-import { IoPlayOutline, IoPauseOutline } from 'react-icons/io5';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { IoPauseOutline, IoPlayOutline } from 'react-icons/io5';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 import { useStations } from '@/contexts/StationsContext';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { cn } from '@/lib/utils';
+import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useFavorites } from '../hooks/useFavorites';
-
+import { useGenreTranslations } from '../utils/genres';
 import {
-  encodeUrl,
+  createAvatarUrl,
   decodeUrl,
+  encodeUrl,
   findStation,
   generateUUID,
-  createAvatarUrl,
-} from '../utils/stations'; // Assuming utility functions are in utils.js
-import Share from './Share';
-import _ from 'lodash';
-
-import { useAudioPlayer } from '../contexts/AudioPlayerContext';
+} from '../utils/stations';
 import Comments from './Comments';
-import { useGenreTranslations } from '../utils/genres';
+import Share from './Share';
 
 const StationInfo = ({ audioId }) => {
-  const { playerState, togglePlay, currentStation } = useAudioPlayer();
+  const { playerState, togglePlay } = useAudioPlayer();
   const [imgSrc, setImgSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const { stations } = useStations();
   const audioSrc = React.useMemo(() => decodeUrl(audioId), [audioId]);
   const station = React.useMemo(
     () => (audioSrc ? findStation(audioId, stations) : null),
-    [audioId, audioSrc]
+    [audioId, audioSrc, stations]
   );
   const { user } = useAuth();
   const { toggleFavorite, getFavorites } = useFavorites();
@@ -80,24 +70,37 @@ const StationInfo = ({ audioId }) => {
   }, [station?.streamUrl, getFavorites]);
 
   const handleFavoriteClick = async () => {
-    if (!user) {
-      // Redirect to login or show login prompt
-      return;
-    }
+    if (!user || !station?.streamUrl) return;
     await toggleFavorite(encodeUrl(station.streamUrl));
     setIsFavorite((prev) => !prev);
   };
 
+  const isCurrentlyPlaying =
+    playerState.isPlaying &&
+    playerState.currentStation &&
+    encodeUrl(playerState.currentStation.streamUrl) === audioId;
+
+  if (!station) return null;
+
+  const PlayButton = ({ className }) => (
+    <Button
+      aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
+      onClick={() => togglePlay(audioId)}
+      className={cn('rounded-full', className)}
+      size="icon"
+    >
+      {isCurrentlyPlaying ? (
+        <IoPauseOutline className="size-6 md:size-8" />
+      ) : (
+        <IoPlayOutline className="size-6 md:size-8" />
+      )}
+    </Button>
+  );
+
   return (
-    <Box width="100%">
-      <Box
-        position="relative"
-        width="100%"
-        overflow="hidden"
-        borderRadius="2em"
-      >
-        {/* SVG Filter Definition */}
-        <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+    <div className="w-full">
+      <div className="relative w-full overflow-hidden rounded-[2em]">
+        <svg className="absolute size-0">
           <defs>
             <filter
               id="blur-filter"
@@ -113,97 +116,26 @@ const StationInfo = ({ audioId }) => {
           </defs>
         </svg>
 
-        {/* Background Image */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          style={{ filter: 'url(#blur-filter)' }}
-          backgroundImage={`url(${imgSrc})`}
-          backgroundSize="cover"
-          backgroundRepeat="no-repeat"
-          backgroundColor="gray.900"
+        <div
+          className="absolute inset-0 bg-neutral-900 bg-cover bg-no-repeat"
+          style={{
+            filter: 'url(#blur-filter)',
+            backgroundImage: `url(${imgSrc})`,
+          }}
         />
 
-        {/* Main Content Container */}
-        <Box
-          position="relative"
-          maxWidth="1200px"
-          margin="0 auto"
-          px={4}
-          py={8}
-          display="flex"
-          flexDirection={{ base: 'column', md: 'row' }}
-          alignItems={{ base: 'center', md: 'center' }}
-          justifyContent={{ base: 'center', md: 'flex-start' }}
-          gap={{ base: 6, md: 8 }}
-        >
-          {/* Info Section with Play Button */}
-          <Box order={{ base: 2, md: 1 }} width="100%" zIndex={1}>
-            <HStack
-              spacing={{ base: 2, md: 6 }}
-              mb={4}
-              justify={{ base: 'space-between', md: 'flex-start' }}
-              width="100%"
-              alignItems="flex-start"
-            >
-              {/* Play Button - Desktop Only */}
-              <IconButton
-                aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
-                onClick={() => togglePlay(audioId)}
-                boxSize={{ base: '56px', md: '70px' }}
-                rounded="full"
-                colorScheme="brand"
-                display={{ base: 'none', md: 'flex' }}
-                m={4}
-              >
-                {playerState.isPlaying &&
-                encodeUrl(playerState.currentStation.streamUrl) === audioId ? (
-                  <IoPauseOutline size={{ base: '24px', md: '32px' }} />
-                ) : (
-                  <IoPlayOutline size={{ base: '24px', md: '32px' }} />
-                )}
-              </IconButton>
+        <div className="relative mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-6 px-4 py-8 md:flex-row md:items-center md:justify-start md:gap-8">
+          <div className="z-[1] order-2 w-full md:order-1">
+            <div className="mb-4 flex w-full items-start justify-between gap-2 md:justify-start md:gap-6">
+              <PlayButton className="m-4 hidden size-14 md:flex md:size-[70px]" />
 
-              {/* Title, Tags, and Share Stack */}
-              <Stack spacing={2} flex={1}>
-                <HStack
-                  justify={{ base: 'space-between', md: 'flex-start' }}
-                  width="100%"
-                >
-                  <Text fontSize={{ base: 'xl', md: '3xl' }} fontWeight="bold">
-                    {station.title}
-                  </Text>
+              <div className="flex flex-1 flex-col gap-2">
+                <div className="flex w-full items-center justify-between md:justify-start">
+                  <h1 className="text-xl font-bold md:text-3xl">{station.title}</h1>
+                  <PlayButton className="size-14 p-4 md:hidden" />
+                </div>
 
-                  {/* Play Button - Mobile Only */}
-                  <IconButton
-                    aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
-                    onClick={() => togglePlay(audioId)}
-                    boxSize="56px"
-                    rounded="full"
-                    colorScheme="brand"
-                    display={{ base: 'flex', md: 'none' }}
-                    p={4}
-                  >
-                    {playerState.isPlaying &&
-                    encodeUrl(playerState.currentStation.streamUrl) ===
-                      audioId ? (
-                      <IoPauseOutline size="24px" />
-                    ) : (
-                      <IoPlayOutline size="24px" />
-                    )}
-                  </IconButton>
-                </HStack>
-
-                <HStack
-                  spacing={2}
-                  wrap="wrap"
-                  justify={{ base: 'flex-start', md: 'flex-start' }}
-                  width="100%"
-                  mt="2"
-                >
+                <div className="mt-2 flex w-full flex-wrap gap-2">
                   {station.tags
                     ?.split(',')
                     .filter(Boolean)
@@ -212,81 +144,54 @@ const StationInfo = ({ audioId }) => {
                     .slice(0, 3)
                     .map((tag) => {
                       const trimmedTag = tag.trim();
-                      const translatedTag =
-                        translateGenre(trimmedTag) || trimmedTag;
+                      const translatedTag = translateGenre(trimmedTag) || trimmedTag;
                       return (
                         <Badge
                           key={generateUUID()}
-                          colorScheme="whiteAlpha"
-                          variant="solid"
-                          fontSize="sm"
-                          borderRadius="full"
-                          px={3}
-                          py={1}
+                          className="rounded-full bg-white/20 px-3 py-1 text-sm text-white"
                         >
                           {translatedTag}
                         </Badge>
                       );
                     })}
-                </HStack>
+                </div>
 
-                {/* Share Button */}
-                <Box pt={2}>
-                  <HStack spacing={2}>
+                <div className="pt-2">
+                  <div className="flex items-center gap-2">
                     {user && (
-                      <IconButton
+                      <Button
                         aria-label="Favorite"
                         onClick={handleFavoriteClick}
-                        colorScheme={isFavorite ? 'red' : 'gray'}
                         variant="ghost"
-                        size="lg"
-                        rounded="full"
+                        size="icon"
+                        className={cn('rounded-full', isFavorite && 'text-red-500')}
                       >
                         {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
-                      </IconButton>
+                      </Button>
                     )}
                     <Share />
-                  </HStack>
-                </Box>
-              </Stack>
-            </HStack>
-          </Box>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          {/* Image Section */}
-          <Box
-            order={{ base: 1, md: 2 }}
-            width={{ base: '240px', md: '320px' }}
-            height={{ base: '240px', md: '320px' }}
-            position="relative"
-            flexShrink={0}
-          >
+          <div className="relative z-[1] order-1 size-[240px] shrink-0 md:order-2 md:size-[320px]">
             {isLoading ? (
-              <Box
-                width="100%"
-                height="100%"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Spinner size="xl" color="white" />
-              </Box>
+              <div className="flex size-full items-center justify-center">
+                <Spinner className="size-8 text-white" />
+              </div>
             ) : (
-              <Image
-                src={imgSrc}
-                alt={station.title}
-                width="100%"
-                height="100%"
-                objectFit="cover"
-                borderRadius="lg"
-              />
+              <img src={imgSrc} alt={station.title} className="size-full rounded-lg object-cover" />
             )}
-          </Box>
-        </Box>
-      </Box>
-      <Box position="relative" maxWidth="1200px" margin="0 auto" px={4} py={8}>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto max-w-[1200px] px-4 py-8">
         <Comments stationId={audioId} />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

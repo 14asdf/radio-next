@@ -1,8 +1,8 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
+import { useStations } from '@/contexts/StationsContext';
 import StationInfo from '../components/StationInfo';
 import StationSelect from '../components/StationSelect';
-import { useStations } from '@/contexts/StationsContext';
 
 const Stations = () => {
   const searchParams = useSearchParams();

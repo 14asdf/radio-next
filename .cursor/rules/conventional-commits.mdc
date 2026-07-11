@@ -1,0 +1,52 @@
+---
+description: Conventional Commits format for git commits
+alwaysApply: true
+---
+
+# Conventional Commits
+
+All git commit messages MUST follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+type(scope): subject
+```
+
+## Types
+
+- `feat` — new feature
+- `fix` — bug fix
+- `refactor` — code change without feature/fix
+- `chore` — tooling, deps, config
+- `docs` — documentation only
+- `style` — formatting, no logic change
+- `test` — tests
+- `build` — build system
+- `ci` — CI config
+- `perf` — performance
+- `revert` — revert commit
+
+## Rules
+
+- Subject in **lowercase**, imperative mood, no trailing period
+- Max **100 characters** in header
+- Optional body after blank line for details
+- Scope is optional but recommended (`ui`, `player`, `i18n`, `deps`)
+
+## Examples
+
+```
+feat(ui): add genre cards on home page
+fix(profile): stop infinite scroll on favorite stations
+refactor(ui): migrate from chakra to shadcn
+chore(deps): add biome and commitlint
+```
+
+## Do NOT
+
+- Long prose summaries from change lists
+- `Changes: 5f 100+30-` format
+- Sentences like "Refactor project structure and update dependencies..."
+
+When the user asks to commit, draft a conventional message and run `git commit` with it.
+
+Note: Cursor Source Control "Generate commit message" (✨) reads `.cursorrules` at repo root, not this file. Keep both in sync.

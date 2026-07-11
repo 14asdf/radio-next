@@ -1,7 +1,7 @@
-import { generatePageMetadata } from '@/utils/metadata';
-import { generateAlternates } from '@/utils/alternates';
-import Profile from '@/components/Profile';
 import { getTranslations } from 'next-intl/server';
+import Profile from '@/components/Profile';
+import { generateAlternates } from '@/utils/alternates';
+import { generatePageMetadata } from '@/utils/metadata';
 
 export async function generateMetadata() {
   const t = await getTranslations();

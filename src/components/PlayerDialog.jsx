@@ -1,50 +1,21 @@
-import React from 'react';
-import { Box, Image, Spinner } from '@chakra-ui/react';
-import { IoCloseOutline } from 'react-icons/io5';
-import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-} from './ui/dialog';
+'use client';
 
-const PlayerDialog = ({ isOpen, onOpenChange, station, isLoading, imgSrc }) => {
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Spinner } from '@/components/ui/spinner';
+
+const PlayerDialog = ({ isOpen, onClose, imgSrc, station }) => {
   return (
-    <DialogRoot open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle _dark={{ color: '#fff' }}>{station.title}</DialogTitle>
-          <DialogCloseTrigger>
-            <IoCloseOutline />
-          </DialogCloseTrigger>
-        </DialogHeader>
-        <DialogBody>
-          {isLoading ? (
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              width="100%"
-              height="250px"
-            >
-              <Spinner size="md" color="gray.500" />
-            </Box>
-          ) : (
-            <Image
-              src={imgSrc}
-              alt={station.title}
-              width="100%"
-              height="auto"
-              borderRadius="lg"
-              cursor="pointer"
-              onClick={() => onOpenChange({ open: true })}
-            />
-          )}
-        </DialogBody>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-md">
+        {!imgSrc ? (
+          <div className="flex justify-center p-8">
+            <Spinner />
+          </div>
+        ) : (
+          <img src={imgSrc} alt={station?.title} className="w-full rounded-lg object-cover" />
+        )}
       </DialogContent>
-    </DialogRoot>
+    </Dialog>
   );
 };
 
