@@ -10,12 +10,13 @@ export async function generateMetadata({ params }) {
   const t = await getTranslations('metadata');
   const alternates = generateAlternates(`/user/${id}`);
 
-  console.log(id);
-  // Fetch user data from Firebase RTDB
-  const userRef = ref(db, `users/${id}`);
-  const snapshot = await get(userRef);
-  const userData = snapshot.val();
-  const userName = userData?.name || 'User';
+  let userName = 'User';
+
+  if (db) {
+    const userRef = ref(db, `users/${id}`);
+    const snapshot = await get(userRef);
+    userName = snapshot.val()?.name || userName;
+  }
 
   return generatePageMetadata({
     title: t('user.title', { userName }),
