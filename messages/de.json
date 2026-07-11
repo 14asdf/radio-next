@@ -90,6 +90,7 @@
     "title": "Mein Profil",
     "favoriteStations": "Lieblingssender",
     "noFavorites": "Noch keine Lieblingssender",
+    "loadMore": "Mehr laden",
     "logout": "Abmelden"
   },
   "time": {

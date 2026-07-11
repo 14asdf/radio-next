@@ -1,14 +1,7 @@
 'use client';
 
-import React, {
-  createContext,
-  useContext,
-  useRef,
-  useState,
-  useCallback,
-  useEffect,
-} from 'react';
-import { findStation, decodeUrl, encodeUrl } from '../utils/stations';
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { decodeUrl, encodeUrl, findStation } from '../utils/stations';
 import { useStations } from './StationsContext';
 
 const AudioPlayerContext = createContext();
@@ -100,9 +93,7 @@ export function AudioPlayerProvider({ children }) {
 
           const errorHandler = (e) => {
             cleanup();
-            reject(
-              new Error(e.target.error?.message || 'Audio loading failed')
-            );
+            reject(new Error(e.target.error?.message || 'Audio loading failed'));
           };
 
           const canPlayHandler = () => {
@@ -269,12 +260,7 @@ export function AudioPlayerProvider({ children }) {
         navigator.mediaSession.setActionHandler('stop', null);
       }
     };
-  }, [
-    playerState.currentStation,
-    playerState.isPlaying,
-    handlePlay,
-    handlePause,
-  ]);
+  }, [playerState.currentStation, playerState.isPlaying, handlePlay, handlePause]);
 
   // Listen to audio element events to sync state
   useEffect(() => {
@@ -389,11 +375,7 @@ export function AudioPlayerProvider({ children }) {
           }
 
           // Only attempt recovery if we're supposed to be playing
-          if (
-            playerState.isPlaying &&
-            playerState.currentStation &&
-            !playerState.isLoading
-          ) {
+          if (playerState.isPlaying && playerState.currentStation && !playerState.isLoading) {
             console.warn('Audio stalled, attempting recovery');
             handlePlay(playerState.currentStation);
           }

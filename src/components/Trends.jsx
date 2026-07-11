@@ -1,60 +1,39 @@
 'use client';
 
-import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
-import {
-  Box,
-  Heading,
-  Container,
-  SimpleGrid,
-  Text,
-  Spinner,
-  Button,
-  Badge,
-} from '@chakra-ui/react';
-import { ref, get } from 'firebase/database';
-import { db } from '@/utils/firebase';
-import StationSearchRow from '@/components/StationSearchRow';
-import { useStations } from '@/contexts/StationsContext';
-import { AvatarGroup, Avatar } from '@/components/ui/avatar';
-import { encodeUrl } from '@/utils/stations';
-import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai';
-import { MenuRoot, MenuTrigger, MenuContent } from '@/components/ui/menu';
+import { get, ref } from 'firebase/database';
 import { sampleSize } from 'lodash';
 import Link from 'next/link';
-import AnimatedBackground from '@/components/AnimatedBackground';
 import { useTranslations } from 'next-intl';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AiOutlineComment, AiOutlineHeart } from 'react-icons/ai';
+import AnimatedBackground from '@/components/AnimatedBackground';
+import StationSearchRow from '@/components/StationSearchRow';
+import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Spinner } from '@/components/ui/spinner';
+import { useStations } from '@/contexts/StationsContext';
+import { db } from '@/utils/firebase';
+import { encodeUrl } from '@/utils/stations';
 
 function useClickOutside(ref, handler) {
   useEffect(() => {
     const listener = (event) => {
-      // Get all elements in the event path
       const path =
         event.composedPath?.() ||
         event.path ||
-        (event.target.ownerDocument || document).elementsFromPoint(
-          event.clientX,
-          event.clientY
-        );
+        (event.target.ownerDocument || document).elementsFromPoint(event.clientX, event.clientY);
 
-      // Check if any element in the path is a menu trigger or menu content
       const isMenuElement = path.some((element) => {
         const role = element.getAttribute?.('role');
         return role === 'button' || role === 'menu';
       });
 
-      if (isMenuElement) {
-        return;
-      }
+      if (isMenuElement) return;
+      if (!ref.current || ref.current.contains(event.target)) return;
 
-      // Check if click is outside
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
-      }
-
-      // Add small delay to prevent race condition
-      setTimeout(() => {
-        handler();
-      }, 0);
+      setTimeout(() => handler(), 0);
     };
 
     document.addEventListener('mousedown', listener);
@@ -72,7 +51,7 @@ export default function Trends() {
   const [trendingStations, setTrendingStations] = useState([]);
   const [displayedStations, setDisplayedStations] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const loadingMoreRef = useRef(false);
   const [usersData, setUsersData] = useState({});
   const { stations } = useStations();
   const stationsPerPage = 20;
@@ -82,6 +61,8 @@ export default function Trends() {
   const commentsMenuRef = useRef(null);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
+  const hasMore = displayedStations.length < trendingStations.length;
+
   useClickOutside(likesMenuRef, () => setActiveMenu(null));
   useClickOutside(commentsMenuRef, () => setActiveMenu(null));
 
@@ -89,29 +70,24 @@ export default function Trends() {
     const fetchTrendingStations = async () => {
       setIsInitialLoading(true);
       try {
-        // Get all favorites from RTDB
         const favoritesRef = ref(db, 'favorites');
         const favoritesSnapshot = await get(favoritesRef);
         const favoritesData = favoritesSnapshot.val() || {};
 
-        // Get all users data
         const usersRef = ref(db, 'users');
         const usersSnapshot = await get(usersRef);
-        const usersData = usersSnapshot.val() || {};
-        setUsersData(usersData);
+        const usersDataLocal = usersSnapshot.val() || {};
+        setUsersData(usersDataLocal);
 
-        // Get all comments data
         const commentsRef = ref(db, 'comments');
         const commentsSnapshot = await get(commentsRef);
         const commentsData = commentsSnapshot.val() || {};
 
-        // Create maps for data
         const stationCounts = new Map();
         const usersByStation = new Map();
         const commentsByStation = new Map();
         const commentCountByStation = new Map();
 
-        // Process favorites data
         Object.entries(favoritesData).forEach(([userId, userData]) => {
           const favorites = userData.favorites || [];
           favorites.forEach((stationId) => {
@@ -122,12 +98,10 @@ export default function Trends() {
           });
         });
 
-        // Convert Sets to arrays and get counts
         usersByStation.forEach((userSet, stationId) => {
           stationCounts.set(stationId, userSet.size);
         });
 
-        // Process comments data and ensure stations with only comments are included
         Object.entries(commentsData).forEach(([stationId, stationData]) => {
           const { commentCount, ...comments } = stationData;
           const commentsList = Object.entries(comments || {})
@@ -139,48 +113,35 @@ export default function Trends() {
           commentsByStation.set(stationId, commentsList);
           commentCountByStation.set(stationId, commentCount || 0);
 
-          // Add station to stationCounts if it's not already there
           if (!stationCounts.has(stationId)) {
             stationCounts.set(stationId, 0);
           }
         });
 
-        // Convert stations array to a map
         const stationsMap = stations.reduce((acc, station) => {
           const encodedUrl = encodeUrl(station.streamUrl);
           acc[encodedUrl] = station;
           return acc;
         }, {});
 
-        // Get trending stations
-        const trendingStationIds = Array.from(stationCounts.keys()).sort(
-          (a, b) => {
-            const likesA = stationCounts.get(a) || 0;
-            const likesB = stationCounts.get(b) || 0;
-            const commentsA = commentCountByStation.get(a) || 0;
-            const commentsB = commentCountByStation.get(b) || 0;
-
-            // Calculate total engagement (likes + comments)
-            const totalEngagementA = likesA + commentsA;
-            const totalEngagementB = likesB + commentsB;
-
-            return totalEngagementB - totalEngagementA;
-          }
-        );
+        const trendingStationIds = Array.from(stationCounts.keys()).sort((a, b) => {
+          const likesA = stationCounts.get(a) || 0;
+          const likesB = stationCounts.get(b) || 0;
+          const commentsA = commentCountByStation.get(a) || 0;
+          const commentsB = commentCountByStation.get(b) || 0;
+          return likesB + commentsB - (likesA + commentsA);
+        });
 
         const filteredStations = trendingStationIds
           .filter((id) => stationsMap[id])
           .map((id) => ({
             id,
             ...stationsMap[id],
-            users: Array.from(usersByStation.get(id) || new Set()).map(
-              (userId) => ({
-                userId,
-                userPhotoURL: usersData[userId]?.photoURL || null,
-                displayName:
-                  usersData[userId]?.name || `User ${userId.slice(0, 4)}`,
-              })
-            ),
+            users: Array.from(usersByStation.get(id) || new Set()).map((userId) => ({
+              userId,
+              userPhotoURL: usersDataLocal[userId]?.photoURL || null,
+              displayName: usersDataLocal[userId]?.name || `User ${userId.slice(0, 4)}`,
+            })),
             favoriteCount: stationCounts.get(id) || 0,
             commentCount: commentCountByStation.get(id) || 0,
             comments: commentsByStation.get(id) || [],
@@ -198,26 +159,30 @@ export default function Trends() {
   }, [stations]);
 
   const handleLoadMore = useCallback(() => {
-    if (isLoadingMore || !hasMore) return;
+    if (loadingMoreRef.current || displayedStations.length >= trendingStations.length) {
+      return;
+    }
 
+    loadingMoreRef.current = true;
     setIsLoadingMore(true);
-    setTimeout(() => {
-      const nextStations = trendingStations.slice(
-        displayedStations.length,
-        displayedStations.length + stationsPerPage
-      );
 
-      if (nextStations.length > 0) {
-        setDisplayedStations((prev) => [...prev, ...nextStations]);
-      }
-      if (nextStations.length < stationsPerPage) {
-        setHasMore(false);
-      }
+    setTimeout(() => {
+      setDisplayedStations((prev) => {
+        if (prev.length >= trendingStations.length) return prev;
+
+        const nextStations = trendingStations.slice(prev.length, prev.length + stationsPerPage);
+
+        return nextStations.length > 0 ? [...prev, ...nextStations] : prev;
+      });
+
       setIsLoadingMore(false);
+      loadingMoreRef.current = false;
     }, 100);
-  }, [isLoadingMore, hasMore, trendingStations, displayedStations.length]);
+  }, [trendingStations, stationsPerPage]);
 
   useEffect(() => {
+    if (!hasMore) return;
+
     const options = {
       root: null,
       rootMargin: '100px',
@@ -226,38 +191,34 @@ export default function Trends() {
 
     const observer = new IntersectionObserver((entries) => {
       const lastEntry = entries[0];
-      if (lastEntry.isIntersecting && !isLoadingMore && hasMore) {
+      if (
+        lastEntry.isIntersecting &&
+        !loadingMoreRef.current &&
+        displayedStations.length < trendingStations.length
+      ) {
         handleLoadMore();
       }
     }, options);
 
-    const loadingTriggerElement = containerRef.current?.querySelector(
-      '[data-loading-trigger]'
-    );
+    const loadingTriggerElement = containerRef.current?.querySelector('[data-loading-trigger]');
     if (loadingTriggerElement) {
       observer.observe(loadingTriggerElement);
     }
 
     return () => observer.disconnect();
-  }, [handleLoadMore, isLoadingMore, hasMore]);
+  }, [handleLoadMore, hasMore, displayedStations.length, trendingStations.length]);
 
   useEffect(() => {
-    setDisplayedStations([]);
-    setHasMore(true);
+    loadingMoreRef.current = false;
+    setIsLoadingMore(false);
+    setDisplayedStations(trendingStations.slice(0, stationsPerPage));
+  }, [trendingStations, stationsPerPage]);
 
-    const initialStations = trendingStations.slice(0, stationsPerPage);
-    setDisplayedStations(initialStations);
-    setHasMore(initialStations.length === stationsPerPage);
-  }, [trendingStations]);
-
-  // Memoize sampled users for all stations
   const sampledUsersMap = useMemo(() => {
     const maxAvatars = 5;
     return displayedStations.reduce((acc, station) => {
-      // Handle likes users
       acc[`likes-${station.id}`] = sampleSize(station.users || [], maxAvatars);
 
-      // Handle comments users
       acc[`comments-${station.id}`] = Array.from(
         new Set(
           (station.comments || [])
@@ -282,224 +243,120 @@ export default function Trends() {
       const users = sampledUsersMap[menuId] || [];
 
       return (
-        <Box p={2}>
-          <AvatarGroup size="sm" max={maxAvatars}>
+        <div className="p-2">
+          <AvatarGroup max={maxAvatars}>
             {users.map((user) => (
               <Link key={user.userId} href={`/user/${user.userId}`}>
-                <Avatar
-                  src={user.userPhotoURL}
-                  name={user.displayName}
-                  cursor="pointer"
-                />
+                <Avatar className="size-8 cursor-pointer">
+                  <AvatarImage src={user.userPhotoURL} alt={user.displayName} />
+                  <AvatarFallback>{user.displayName?.slice(0, 2)}</AvatarFallback>
+                </Avatar>
               </Link>
             ))}
-            {users.length > maxAvatars && (
-              <Avatar
-                name={`+${users.length - maxAvatars}`}
-                bg="gray.100"
-                _dark={{ bg: 'gray.700' }}
-              />
-            )}
           </AvatarGroup>
-        </Box>
+        </div>
       );
     },
     [sampledUsersMap]
   );
 
   const handleMenuOpen = (menuId) => {
-    // If the same menu is clicked, close it after a small delay
     if (activeMenu === menuId) {
-      setTimeout(() => {
-        setActiveMenu(null);
-      }, 100);
+      setTimeout(() => setActiveMenu(null), 100);
     } else {
-      // If a different menu is clicked, update immediately
       setActiveMenu(menuId);
     }
   };
 
   return (
-    <Box
-      w="100%"
-      minH="100vh"
-      bg="gray.50"
-      _dark={{ bg: 'gray.900' }}
-      borderBottomRadius={16}
-      borderTopRadius={16}
-    >
-      <Box
-        position="relative"
-        h="300px"
-        w="100%"
-        bg="gray.50"
-        _dark={{ bg: 'gray.900' }}
-        backgroundSize="cover"
-        backgroundPosition="center"
-        borderTopRadius={16}
-      >
+    <div className="min-h-screen w-full rounded-2xl bg-muted dark:bg-neutral-900">
+      <div className="relative h-[300px] w-full rounded-t-2xl bg-muted bg-cover bg-center dark:bg-neutral-900">
         <AnimatedBackground />
-        <Box
-          position="absolute"
-          top="0"
-          left="0"
-          right="0"
-          bottom="0"
-          bg="linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%)"
-          _dark={{
-            bg: 'linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.95) 100%)',
-          }}
-          pointerEvents="none"
-        />
+        <div className="pointer-events-none absolute inset-0 rounded-t-2xl bg-gradient-to-b from-transparent to-background/95 dark:to-neutral-900/95" />
 
-        <Container maxW="container.xl" h="100%" position="relative">
-          <Heading
-            position="absolute"
-            bottom="40px"
-            fontSize={{ base: '3xl', md: '4xl' }}
-            fontWeight="bold"
-          >
-            {t('title')}
-          </Heading>
-        </Container>
-      </Box>
+        <div className="relative mx-auto h-full max-w-7xl px-4 md:px-8">
+          <h1 className="absolute bottom-10 text-3xl font-bold md:text-4xl">{t('title')}</h1>
+        </div>
+      </div>
 
-      <Container maxW="container.xl" py={6} ref={containerRef}>
+      <div className="mx-auto max-w-7xl px-4 py-6 md:px-8" ref={containerRef}>
         {isInitialLoading ? (
-          <Box display="flex" justifyContent="center" mt={4}>
-            <Spinner size="md" color="gray.500" />
-          </Box>
+          <div className="mt-4 flex justify-center">
+            <Spinner />
+          </div>
         ) : (
           <>
             {displayedStations.map((station) => (
-              <Box
-                key={station.id}
-                overflow="hidden"
-                py={4}
-                transition="all 0.2s"
-              >
+              <div key={station.id} className="overflow-hidden py-4 transition-all">
                 <StationSearchRow station={station} />
-                <Box mt={4}>
-                  <Box fontSize="sm" display="flex" alignItems="center" gap={2}>
+                <div className="mt-4">
+                  <div className="flex items-center gap-2 text-sm">
                     {station.favoriteCount > 0 && (
-                      <MenuRoot
+                      <Popover
                         open={activeMenu === `likes-${station.id}`}
                         onOpenChange={(open) => {
-                          if (!open) {
-                            setActiveMenu(null);
-                          }
+                          if (!open) setActiveMenu(null);
                         }}
                       >
-                        <MenuTrigger asChild>
+                        <PopoverTrigger asChild>
                           <Badge
                             ref={likesMenuRef}
-                            display="flex"
-                            alignItems="center"
-                            bg="gray.100"
-                            _dark={{ bg: 'gray.800' }}
-                            px={3}
-                            py={1}
-                            borderRadius="full"
-                            fontWeight="bold"
-                            cursor="pointer"
-                            _hover={{
-                              bg: 'gray.200',
-                              _dark: { bg: 'gray.700' },
-                            }}
-                            onClick={() =>
-                              handleMenuOpen(`likes-${station.id}`)
-                            }
+                            variant="secondary"
+                            className="flex cursor-pointer items-center rounded-full px-3 py-1 font-bold hover:bg-muted"
+                            onClick={() => handleMenuOpen(`likes-${station.id}`)}
                           >
-                            <AiOutlineHeart
-                              size={16}
-                              style={{ marginRight: '6px' }}
-                            />
+                            <AiOutlineHeart size={16} className="mr-1.5" />
                             {station.favoriteCount}
                           </Badge>
-                        </MenuTrigger>
-                        <MenuContent
-                          rounded="xl"
-                          style={{ width: 'fit-content', minWidth: 'auto' }}
-                        >
+                        </PopoverTrigger>
+                        <PopoverContent className="w-fit min-w-0 rounded-xl p-0">
                           {renderAvatarStack(`likes-${station.id}`)}
-                        </MenuContent>
-                      </MenuRoot>
+                        </PopoverContent>
+                      </Popover>
                     )}
 
                     {station.commentCount > 0 && (
-                      <MenuRoot
+                      <Popover
                         open={activeMenu === `comments-${station.id}`}
                         onOpenChange={(open) => {
-                          if (!open) {
-                            setActiveMenu(null);
-                          }
+                          if (!open) setActiveMenu(null);
                         }}
                       >
-                        <MenuTrigger asChild>
+                        <PopoverTrigger asChild>
                           <Badge
                             ref={commentsMenuRef}
-                            display="flex"
-                            alignItems="center"
-                            bg="gray.100"
-                            _dark={{ bg: 'gray.800' }}
-                            px={3}
-                            py={1}
-                            borderRadius="full"
-                            fontWeight="bold"
-                            cursor="pointer"
-                            _hover={{
-                              bg: 'gray.200',
-                              _dark: { bg: 'gray.700' },
-                            }}
-                            onClick={() =>
-                              handleMenuOpen(`comments-${station.id}`)
-                            }
+                            variant="secondary"
+                            className="flex cursor-pointer items-center rounded-full px-3 py-1 font-bold hover:bg-muted"
+                            onClick={() => handleMenuOpen(`comments-${station.id}`)}
                           >
-                            <AiOutlineComment
-                              color="currentColor"
-                              size={16}
-                              style={{ marginRight: '6px' }}
-                            />
+                            <AiOutlineComment size={16} className="mr-1.5" />
                             {station.commentCount}
                           </Badge>
-                        </MenuTrigger>
-                        <MenuContent
-                          rounded="xl"
-                          style={{ width: 'fit-content', minWidth: 'auto' }}
-                        >
+                        </PopoverTrigger>
+                        <PopoverContent className="w-fit min-w-0 rounded-xl p-0">
                           {renderAvatarStack(`comments-${station.id}`)}
-                        </MenuContent>
-                      </MenuRoot>
+                        </PopoverContent>
+                      </Popover>
                     )}
-                  </Box>
-                </Box>
-              </Box>
+                  </div>
+                </div>
+              </div>
             ))}
 
-            {!isInitialLoading && (hasMore || isLoadingMore) && (
-              <Box
-                display="flex"
-                justifyContent="center"
-                mt={4}
-                data-loading-trigger
-              >
+            {!isInitialLoading && hasMore && (
+              <div className="mt-4 flex justify-center" data-loading-trigger>
                 {isLoadingMore ? (
-                  <Spinner size="md" color="gray.500" />
+                  <Spinner />
                 ) : (
-                  <Button
-                    onClick={handleLoadMore}
-                    size="sm"
-                    colorScheme="black"
-                    borderRadius="full"
-                  >
+                  <Button onClick={handleLoadMore} size="sm" className="rounded-full">
                     {t('loadMore')}
                   </Button>
                 )}
-              </Box>
+              </div>
             )}
           </>
         )}
-      </Container>
-    </Box>
+      </div>
+    </div>
   );
 }

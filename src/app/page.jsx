@@ -1,11 +1,10 @@
-import { findStation } from '../utils/stations';
-import './styles.css';
-import { join } from 'path';
 import { readFile } from 'fs/promises';
-import Stations from '@/components/Stations';
-import { generatePageMetadata } from '../utils/metadata';
 import { getTranslations } from 'next-intl/server';
+import { join } from 'path';
+import Stations from '@/components/Stations';
 import { generateAlternates } from '@/utils/alternates';
+import { generatePageMetadata } from '../utils/metadata';
+import { findStation } from '../utils/stations';
 
 let stationsCache = null;
 

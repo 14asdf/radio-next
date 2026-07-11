@@ -1,24 +1,15 @@
 'use client';
-import {
-  Box,
-  IconButton,
-  Text,
-  Input,
-  VStack,
-  Center,
-  Image,
-  Separator,
-  Button,
-} from '@chakra-ui/react';
-import { FcGoogle } from 'react-icons/fc';
-import Logo from './Logo';
-import { useAuth } from '../contexts/AuthContext';
-import { auth, db } from '../utils/firebase';
+
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
+import { FcGoogle } from 'react-icons/fc';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '../contexts/AuthContext';
+import { auth, db } from '../utils/firebase';
+import Logo from './Logo';
 
 const Login = () => {
   const router = useRouter();
@@ -36,7 +27,6 @@ const Login = () => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
 
-      // Create user profile in RTDB if it doesn't exist
       await set(ref(db, `users/${result.user.uid}`), {
         email: result.user.email,
         name: result.user.displayName,
@@ -52,41 +42,25 @@ const Login = () => {
   };
 
   return (
-    <Box>
-      <Center py={8}>
-        <Box maxW="450px" w="100%" px={6}>
-          <VStack
-            spacing={8}
-            align="stretch"
-            p={8}
-            borderRadius="xl"
-            bg="gray.100"
-            _dark={{ bg: 'gray.800' }}
-          >
-            {/* Logo */}
-            <Center gap="2">
-              <Text fontSize="lg">{t('loginTo')}</Text>
+    <div>
+      <div className="flex justify-center py-8">
+        <div className="w-full max-w-[450px] px-6">
+          <div className="flex flex-col gap-8 rounded-xl bg-muted p-8 dark:bg-neutral-800">
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-lg">{t('loginTo')}</span>
               <Logo />
-            </Center>
+            </div>
 
-            {/* Social Login Buttons */}
-            <VStack spacing={3} mt="16" gap={6}>
-              <Button
-                onClick={handleGoogleLogin}
-                display="flex"
-                gap={2}
-                alignItems="center"
-                borderRadius="full"
-                w="100%"
-              >
+            <div className="mt-16 flex flex-col gap-6">
+              <Button onClick={handleGoogleLogin} className="w-full gap-2 rounded-full">
                 <FcGoogle size={20} />
                 {t('continueWithGoogle')}
               </Button>
-            </VStack>
-          </VStack>
-        </Box>
-      </Center>
-    </Box>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

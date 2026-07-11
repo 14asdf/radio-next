@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useColorMode } from './ui/color-mode';
 import { getResolvedTheme } from '@/utils/theme';
+import { useColorMode } from './ui/color-mode';
 
 export function ManifestUpdater() {
   const { theme } = useColorMode();
@@ -26,9 +26,7 @@ export function ManifestUpdater() {
           document.head.appendChild(link);
         }
 
-        const themeColorMeta = document.querySelector(
-          'meta[name="theme-color"]'
-        );
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
         if (themeColorMeta) {
           themeColorMeta.content = manifest.theme_color;
         } else {

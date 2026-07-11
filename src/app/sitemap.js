@@ -1,7 +1,7 @@
-import { locales } from '@/utils/alternates';
-import { encodeUrl } from '@/utils/stations';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { locales } from '@/utils/alternates';
+import { encodeUrl } from '@/utils/stations';
 
 export const contentType = 'text/xml; charset=UTF-8';
 

@@ -1,0 +1,30 @@
+# Git commit messages (Source Control → Generate)
+
+When Cursor auto-generates a Git commit message (sparkle ✨ in Source Control), output **one line only** in Conventional Commits format:
+
+```
+type(scope): subject
+```
+
+**Types:** feat, fix, refactor, chore, docs, style, test, build, ci, perf, revert
+
+**Rules:**
+- lowercase subject, imperative mood, no trailing period
+- max 100 characters total
+- optional scope: ui, player, i18n, deps, config
+
+**Examples:**
+```
+refactor(ui): migrate from chakra to shadcn
+fix(profile): stop infinite scroll on favorite stations
+chore(deps): add biome and commitlint
+feat(ui): add apple music genre cards
+```
+
+**Never:**
+- long prose summaries
+- multiple sentences or semicolons listing every change
+- `Changes: 5f 100+30-`
+- titles like "Refactor project structure and update dependencies..."
+
+Match the style of recent commits like `refactor(ui): ...`, not old `Update file.jsx` or `Changes: ...` messages.

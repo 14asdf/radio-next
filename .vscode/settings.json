@@ -1,21 +1,47 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "files.exclude": {},
+  "eslint.enable": false,
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
-  "[javascript, typescript]": {
+  "editor.formatOnSaveMode": "file",
+  "files.exclude": {},
+  "git.config": {
+    "commit.template": ".gitmessage"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "always",
+    "source.organizeImports.biome": "always"
+  },
+  "biome.requireConfiguration": true,
+  "biome.lspBin": "./node_modules/@biomejs/biome/bin/biome",
+  "[javascript]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescript]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[json]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "es5",
-  "json.format.enable": true,
-  "prettier.semi": true
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[css]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  }
 }

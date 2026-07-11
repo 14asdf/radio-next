@@ -1,19 +1,11 @@
 'use client';
 
-import {
-  ClientOnly,
-  IconButton,
-  Skeleton,
-  Box,
-  Text,
-  Button,
-} from '@chakra-ui/react';
-import { ThemeProvider, useTheme } from 'next-themes';
-import * as React from 'react';
-import { PiMoonThin, PiSunThin } from 'react-icons/pi';
 import { useTranslations } from 'next-intl';
-import { getResolvedTheme } from '@/utils/theme';
+import { ThemeProvider, useTheme } from 'next-themes';
+import { PiMoonThin, PiSunThin } from 'react-icons/pi';
 import { TbSunMoon } from 'react-icons/tb';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export function ColorModeProvider(props) {
   return (
@@ -22,6 +14,7 @@ export function ColorModeProvider(props) {
       defaultTheme="system"
       storageKey="NEXT_THEME"
       disableTransitionOnChange
+      enableSystem
       {...props}
     />
   );
@@ -68,7 +61,7 @@ export function ColorModeIcon() {
   }
 }
 
-export const ColorModeButton = ({ ...props }) => {
+export const ColorModeButton = ({ className, ...props }) => {
   const { theme, toggleColorMode } = useColorMode();
   const t = useTranslations('settings');
 
@@ -86,24 +79,24 @@ export const ColorModeButton = ({ ...props }) => {
 
   return (
     <>
-      <IconButton
-        onClick={toggleColorMode}
-        variant="ghost"
-        display={{ base: 'flex', xl: 'none' }}
-        {...props}
-      >
-        <ColorModeIcon />
-      </IconButton>
       <Button
         onClick={toggleColorMode}
         variant="ghost"
-        display={{ base: 'none', xl: 'flex' }}
-        gap="3"
-        justifyContent="flex-start"
+        size="icon"
+        className={cn('rounded-full xl:hidden', className)}
         {...props}
       >
         <ColorModeIcon />
-        <Text fontSize="16px">{getThemeText()}</Text>
+      </Button>
+      <Button
+        onClick={toggleColorMode}
+        variant="ghost"
+        size="lg"
+        className={cn('hidden w-fit justify-start gap-3 rounded-full xl:flex', className)}
+        {...props}
+      >
+        <ColorModeIcon />
+        <span className="text-base font-bold">{getThemeText()}</span>
       </Button>
     </>
   );

@@ -20,9 +20,7 @@ export const getThemeColors = (theme) => {
 export const getSystemTheme = () => {
   if (typeof window === 'undefined') return 'light';
 
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
 export const getResolvedTheme = (theme) => {
@@ -36,9 +34,7 @@ export const getServerSystemTheme = (userAgent) => {
   if (!userAgent) return 'light';
 
   const isDarkMode =
-    userAgent.includes('dark') ||
-    userAgent.includes('Dark') ||
-    userAgent.includes('DARK');
+    userAgent.includes('dark') || userAgent.includes('Dark') || userAgent.includes('DARK');
 
   return isDarkMode ? 'dark' : 'light';
 };

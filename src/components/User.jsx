@@ -1,20 +1,14 @@
 'use client';
-import { useEffect, useState, use } from 'react';
-import { ref, onValue } from 'firebase/database';
-import { db } from '@/utils/firebase';
-import {
-  Box,
-  VStack,
-  Heading,
-  Text,
-  SimpleGrid,
-  Spinner,
-} from '@chakra-ui/react';
-import { useStations } from '@/contexts/StationsContext';
-import { decodeUrl, findStation } from '@/utils/stations';
-import { Avatar } from '@/components/ui/avatar';
-import StationSearchRow from '@/components/StationSearchRow';
+
+import { onValue, ref } from 'firebase/database';
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import StationSearchRow from '@/components/StationSearchRow';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Spinner } from '@/components/ui/spinner';
+import { useStations } from '@/contexts/StationsContext';
+import { db } from '@/utils/firebase';
+import { findStation } from '@/utils/stations';
 
 export default function User({ id }) {
   const [userData, setUserData] = useState(null);
@@ -26,7 +20,6 @@ export default function User({ id }) {
   useEffect(() => {
     if (!id) return;
 
-    // Fetch user data
     const userRef = ref(db, `users/${id}`);
     const unsubscribeUser = onValue(userRef, (snapshot) => {
       const data = snapshot.val();
@@ -36,14 +29,10 @@ export default function User({ id }) {
       setIsLoading(false);
     });
 
-    // Fetch user's favorites
     const favoritesRef = ref(db, `favorites/${id}`);
     const unsubscribeFavorites = onValue(favoritesRef, (snapshot) => {
       const data = snapshot.val();
-
-      // Extract the favorites array from the nested structure
       const favoritesList = data?.favorites || [];
-
       setFavorites(favoritesList);
     });
 
@@ -57,39 +46,21 @@ export default function User({ id }) {
     return null;
   }
 
-  // Only render favorites if we have valid stations data
   const validFavorites = favorites.filter((stationId) => {
     try {
       return findStation(stationId, stations) !== undefined;
-    } catch (e) {
-      return false; // Skip any station IDs that cause decoding errors
+    } catch {
+      return false;
     }
   });
 
   return (
-    <Box
-      w="100%"
-      minH="100vh"
-      bg="gray.50"
-      _dark={{ bg: 'gray.900' }}
-      borderBottomRadius={16}
-      borderTopRadius={16}
-    >
-      <Box
-        position="relative"
-        h="300px"
-        w="100%"
-        borderTopRadius={16}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        overflow="hidden"
-      >
-        {/* Add SVG filter definition */}
-        <svg style={{ position: 'absolute', width: 0, height: 0 }}>
+    <div className="min-h-screen w-full rounded-2xl bg-muted dark:bg-neutral-900">
+      <div className="relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-t-2xl">
+        <svg className="absolute size-0">
           <defs>
             <filter
-              id="blur-filter"
+              id="blur-filter-user"
               x="-100%"
               y="-100%"
               width="300%"
@@ -102,63 +73,41 @@ export default function User({ id }) {
           </defs>
         </svg>
 
-        {/* Replace gradient overlay with blurred background */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          style={{ filter: 'url(#blur-filter)' }}
-          backgroundImage={`url(${userData?.photoURL})`}
-          backgroundSize="cover"
-          backgroundRepeat="no-repeat"
-          backgroundColor="gray.900"
+        <div
+          className="absolute inset-0 bg-neutral-900 bg-cover bg-no-repeat"
+          style={{
+            filter: 'url(#blur-filter-user)',
+            backgroundImage: `url(${userData?.photoURL})`,
+          }}
         />
 
-        {/* Avatar (updated to match Profile styling) */}
-        <Box position="relative" zIndex={1}>
-          <Avatar
-            size="2xl"
-            name={userData.displayName}
-            src={userData.photoURL}
-            bg="gray.400"
-          />
-        </Box>
+        <div className="relative z-[1]">
+          <Avatar className="size-24">
+            <AvatarImage src={userData.photoURL} alt={userData.displayName} />
+            <AvatarFallback>{userData.displayName?.slice(0, 2)}</AvatarFallback>
+          </Avatar>
+        </div>
 
-        {/* Heading (updated with white text) */}
-        <Heading
-          position="absolute"
-          bottom="40px"
-          left="24px"
-          fontSize={{ base: '3xl', md: '4xl' }}
-          fontWeight="bold"
-          zIndex={1}
-          color="white"
-        >
+        <h1 className="absolute bottom-10 left-6 z-[1] text-3xl font-bold text-white md:text-4xl">
           {t('favoriteStations')}
-        </Heading>
-      </Box>
+        </h1>
+      </div>
 
-      <Box p={6}>
-        <SimpleGrid gap={8}>
+      <div className="p-6">
+        <div className="flex flex-col gap-8">
           {validFavorites.map((stationId) => (
-            <StationSearchRow
-              key={stationId}
-              station={findStation(stationId, stations)}
-              searchTerm=""
-            />
+            <StationSearchRow key={stationId} station={findStation(stationId, stations)} />
           ))}
           {validFavorites.length === 0 && !isLoading && (
-            <Text color="gray.500">{t('noFavorites')}</Text>
+            <p className="text-muted-foreground">{t('noFavorites')}</p>
           )}
           {isLoading && (
-            <Box display="flex" justifyContent="center" mt={4}>
-              <Spinner size="md" color="gray.500" />
-            </Box>
+            <div className="mt-4 flex justify-center">
+              <Spinner />
+            </div>
           )}
-        </SimpleGrid>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 }

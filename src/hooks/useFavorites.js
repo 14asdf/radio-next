@@ -1,54 +1,54 @@
-import { ref, update, get } from 'firebase/database';
-import { db } from '../utils/firebase';
+import { get, ref, update } from 'firebase/database';
+import { useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { db } from '../utils/firebase';
 
 export function useFavorites() {
   const { user } = useAuth();
 
-  const toggleFavorite = async (stationId) => {
-    if (!user || !stationId) {
-      console.log('Toggle favorite failed:', { user, stationId });
-      return;
-    }
-
-    const favoritesRef = ref(db, `favorites/${user.uid}`);
-
-    try {
-      const snapshot = await get(favoritesRef);
-      let currentFavorites = snapshot.val()?.favorites || [];
-      console.log('Current favorites:', currentFavorites);
-
-      // Ensure currentFavorites is always an array
-      if (!Array.isArray(currentFavorites)) {
-        currentFavorites = [];
+  const toggleFavorite = useCallback(
+    async (stationId) => {
+      if (!user || !stationId) {
+        console.log('Toggle favorite failed:', { user, stationId });
+        return;
       }
 
-      const newFavorites = currentFavorites.includes(stationId)
-        ? currentFavorites.filter((id) => id !== stationId)
-        : [...currentFavorites, stationId];
+      const favoritesRef = ref(db, `favorites/${user.uid}`);
 
-      console.log('New favorites array:', newFavorites);
+      try {
+        const snapshot = await get(favoritesRef);
+        let currentFavorites = snapshot.val()?.favorites || [];
+        console.log('Current favorites:', currentFavorites);
 
-      // Create a proper object structure for the update
-      const updateData = {
-        favorites: newFavorites.length > 0 ? newFavorites : null, // Prevent empty array issues
-      };
+        if (!Array.isArray(currentFavorites)) {
+          currentFavorites = [];
+        }
 
-      // Update the database with the new structure
-      await update(favoritesRef, updateData);
+        const newFavorites = currentFavorites.includes(stationId)
+          ? currentFavorites.filter((id) => id !== stationId)
+          : [...currentFavorites, stationId];
 
-      console.log('Update successful');
+        console.log('New favorites array:', newFavorites);
 
-      // Verify the update
-      const verifySnapshot = await get(favoritesRef);
-      console.log('Updated favorites in DB:', verifySnapshot.val());
-    } catch (error) {
-      console.error('Error in toggleFavorite:', error);
-      throw error;
-    }
-  };
+        const updateData = {
+          favorites: newFavorites.length > 0 ? newFavorites : null,
+        };
 
-  const getFavorites = async () => {
+        await update(favoritesRef, updateData);
+
+        console.log('Update successful');
+
+        const verifySnapshot = await get(favoritesRef);
+        console.log('Updated favorites in DB:', verifySnapshot.val());
+      } catch (error) {
+        console.error('Error in toggleFavorite:', error);
+        throw error;
+      }
+    },
+    [user]
+  );
+
+  const getFavorites = useCallback(async () => {
     if (!user) return [];
 
     const favoritesRef = ref(db, `favorites/${user.uid}`);
@@ -56,7 +56,7 @@ export function useFavorites() {
     const favorites = snapshot.val()?.favorites || [];
 
     return Array.isArray(favorites) ? favorites : [];
-  };
+  }, [user]);
 
   return { toggleFavorite, getFavorites };
 }

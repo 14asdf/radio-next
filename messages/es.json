@@ -90,6 +90,7 @@
     "title": "Mi Perfil",
     "favoriteStations": "Emisoras favoritas",
     "noFavorites": "Aún no hay emisoras favoritas",
+    "loadMore": "Cargar Más",
     "logout": "Cerrar sesión"
   },
   "time": {

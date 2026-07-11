@@ -10,7 +10,7 @@ export function injectStoredLocale() {
 
     // Add locale to all subsequent fetch requests
     const originalFetch = window.fetch;
-    window.fetch = function (url, options = {}) {
+    window.fetch = (url, options = {}) => {
       options.headers = {
         ...options.headers,
         'x-locale': localStorage.getItem('NEXT_LOCALE') || 'en',

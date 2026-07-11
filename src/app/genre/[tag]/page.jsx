@@ -1,7 +1,7 @@
-import { generatePageMetadata } from '@/utils/metadata';
-import Genre from '@/components/Genres';
 import { getTranslations } from 'next-intl/server';
+import Genre from '@/components/Genres';
 import { generateAlternates } from '@/utils/alternates';
+import { generatePageMetadata } from '@/utils/metadata';
 
 export async function generateMetadata({ params }) {
   const { tag } = await params;

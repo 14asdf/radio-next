@@ -1,13 +1,13 @@
 'use client';
-import { Box } from '@chakra-ui/react';
-import { useTranslations } from 'next-intl';
+
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const Logo = () => {
-  const t = useTranslations('main');
+  useTranslations('main');
 
   return (
-    <Box display="inline-flex" cursor="pointer" as={Link} href="/">
+    <Link href="/" className="inline-flex cursor-pointer">
       <svg
         width="140"
         height="32"
@@ -35,7 +35,7 @@ const Logo = () => {
           Radio Baron
         </text>
       </svg>
-    </Box>
+    </Link>
   );
 };
 

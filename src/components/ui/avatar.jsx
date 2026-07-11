@@ -1,49 +1,46 @@
 'use client';
 
-import { Avatar as ChakraAvatar, Group } from '@chakra-ui/react';
+import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 
-export const Avatar = React.forwardRef(function Avatar(props, ref) {
-  const { name, src, srcSet, loading, icon, fallback, children, ...rest } =
-    props;
+function Avatar({ className, ...props }) {
   return (
-    <ChakraAvatar.Root ref={ref} {...rest}>
-      <AvatarFallback name={name} icon={icon}>
-        {fallback}
-      </AvatarFallback>
-      <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />
-      {children}
-    </ChakraAvatar.Root>
+    <AvatarPrimitive.Root
+      className={cn('relative flex size-10 shrink-0 overflow-hidden rounded-full', className)}
+      {...props}
+    />
   );
-});
-
-const AvatarFallback = React.forwardRef(function AvatarFallback(props, ref) {
-  const { name, icon, children, ...rest } = props;
-  return (
-    <ChakraAvatar.Fallback ref={ref} {...rest}>
-      {children}
-      {name != null && children == null && <>{getInitials(name)}</>}
-      {name == null && children == null && (
-        <ChakraAvatar.Icon asChild={!!icon}>{icon}</ChakraAvatar.Icon>
-      )}
-    </ChakraAvatar.Fallback>
-  );
-});
-
-function getInitials(name) {
-  const names = name.trim().split(' ');
-  const firstName = names[0] != null ? names[0] : '';
-  const lastName = names.length > 1 ? names[names.length - 1] : '';
-  return firstName && lastName
-    ? `${firstName.charAt(0)}${lastName.charAt(0)}`
-    : firstName.charAt(0);
 }
 
-export const AvatarGroup = React.forwardRef(function AvatarGroup(props, ref) {
-  const { size, variant, borderless, ...rest } = props;
+function AvatarImage({ className, ...props }) {
+  return <AvatarPrimitive.Image className={cn('aspect-square size-full', className)} {...props} />;
+}
+
+function AvatarFallback({ className, ...props }) {
   return (
-    <ChakraAvatar.PropsProvider value={{ size, variant, borderless }}>
-      <Group gap="0" spaceX="-3" ref={ref} {...rest} />
-    </ChakraAvatar.PropsProvider>
+    <AvatarPrimitive.Fallback
+      className={cn('flex size-full items-center justify-center rounded-full bg-muted', className)}
+      {...props}
+    />
   );
-});
+}
+
+function AvatarGroup({ className, children, max, ...props }) {
+  const childArray = React.Children.toArray(children);
+  const visible = max ? childArray.slice(0, max) : childArray;
+  const overflow = max && childArray.length > max ? childArray.length - max : 0;
+
+  return (
+    <div className={cn('flex -space-x-3', className)} {...props}>
+      {visible}
+      {overflow > 0 && (
+        <Avatar className="border-2 border-background">
+          <AvatarFallback>+{overflow}</AvatarFallback>
+        </Avatar>
+      )}
+    </div>
+  );
+}
+
+export { Avatar, AvatarFallback, AvatarGroup, AvatarImage };

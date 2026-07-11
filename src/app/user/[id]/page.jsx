@@ -1,9 +1,9 @@
-import { generatePageMetadata } from '@/utils/metadata';
-import User from '@/components/User';
-import { ref, get } from 'firebase/database';
-import { db } from '@/utils/firebase';
+import { get, ref } from 'firebase/database';
 import { getTranslations } from 'next-intl/server';
+import User from '@/components/User';
 import { generateAlternates } from '@/utils/alternates';
+import { db } from '@/utils/firebase';
+import { generatePageMetadata } from '@/utils/metadata';
 
 export async function generateMetadata({ params }) {
   const { id } = await Promise.resolve(params);

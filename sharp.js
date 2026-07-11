@@ -58,10 +58,7 @@ Promise.all([
     }),
 
   // Media session icon
-  sharp('temp-media-logo.svg')
-    .resize(512, 512)
-    .png()
-    .toFile('public/media-session.png'),
+  sharp('temp-media-logo.svg').resize(512, 512).png().toFile('public/media-session.png'),
 ])
   .then(() => {
     // Создаем favicon.ico из PNG файлов

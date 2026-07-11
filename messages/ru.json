@@ -90,6 +90,7 @@
     "title": "Мой профиль",
     "favoriteStations": "Избранные станции",
     "noFavorites": "Пока нет избранных станций",
+    "loadMore": "Загрузить ещё",
     "logout": "Выйти"
   },
   "genres": {

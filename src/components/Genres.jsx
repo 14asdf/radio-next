@@ -1,22 +1,14 @@
 'use client';
+
 import { useParams, useRouter } from 'next/navigation';
-import {
-  Box,
-  Heading,
-  Container,
-  Text,
-  IconButton,
-  VStack,
-  Button,
-  Spinner,
-  Center,
-} from '@chakra-ui/react';
-import { useStations } from '@/contexts/StationsContext';
-import StationSearchRow from '@/components/StationSearchRow';
-import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
-import { IoArrowBackSharp } from 'react-icons/io5';
-import { getGenreColor } from '@/utils/colors';
 import { useTranslations } from 'next-intl';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { IoArrowBackSharp } from 'react-icons/io5';
+import StationSearchRow from '@/components/StationSearchRow';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
+import { useStations } from '@/contexts/StationsContext';
+import { getGenreColor } from '@/utils/colors';
 
 const Genre = () => {
   const params = useParams();
@@ -37,7 +29,7 @@ const Genre = () => {
     );
   }, [stations, tag]);
 
-  const bgColor = useMemo(() => getGenreColor(tag), []);
+  const bgColor = useMemo(() => getGenreColor(tag), [tag]);
 
   const handleBack = () => {
     router.push('/');
@@ -46,32 +38,38 @@ const Genre = () => {
   const [displayedStations, setDisplayedStations] = useState([]);
   const stationsPerPage = 20;
 
-  const [isLoadingMore, setIsLoadingMore] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const loadingMoreRef = useRef(false);
+
+  const hasMore = displayedStations.length < genreStations.length;
 
   const handleLoadMore = useCallback(() => {
-    if (isLoadingMore || !hasMore) return;
+    if (loadingMoreRef.current || displayedStations.length >= genreStations.length) {
+      return;
+    }
 
+    loadingMoreRef.current = true;
     setIsLoadingMore(true);
-    setTimeout(() => {
-      const nextStations = genreStations.slice(
-        displayedStations.length,
-        displayedStations.length + stationsPerPage
-      );
 
-      if (nextStations.length > 0) {
-        setDisplayedStations((prev) => [...prev, ...nextStations]);
-      }
-      if (nextStations.length < stationsPerPage) {
-        setHasMore(false);
-      }
+    setTimeout(() => {
+      setDisplayedStations((prev) => {
+        if (prev.length >= genreStations.length) return prev;
+
+        const nextStations = genreStations.slice(prev.length, prev.length + stationsPerPage);
+
+        return nextStations.length > 0 ? [...prev, ...nextStations] : prev;
+      });
+
       setIsLoadingMore(false);
+      loadingMoreRef.current = false;
     }, 100);
-  }, [isLoadingMore, hasMore, genreStations, displayedStations.length]);
+  }, [genreStations, stationsPerPage]);
 
   const containerRef = useRef(null);
 
   useEffect(() => {
+    if (!hasMore) return;
+
     const options = {
       root: null,
       rootMargin: '100px',
@@ -80,30 +78,27 @@ const Genre = () => {
 
     const observer = new IntersectionObserver((entries) => {
       const lastEntry = entries[0];
-      if (lastEntry.isIntersecting && !isLoadingMore && hasMore) {
+      if (
+        lastEntry.isIntersecting &&
+        !loadingMoreRef.current &&
+        displayedStations.length < genreStations.length
+      ) {
         handleLoadMore();
       }
     }, options);
 
-    const loadingTriggerElement = containerRef.current?.querySelector(
-      '[data-loading-trigger]'
-    );
+    const loadingTriggerElement = containerRef.current?.querySelector('[data-loading-trigger]');
     if (loadingTriggerElement) {
       observer.observe(loadingTriggerElement);
     }
 
     return () => observer.disconnect();
-  }, [handleLoadMore, isLoadingMore, hasMore]);
+  }, [handleLoadMore, hasMore, displayedStations.length, genreStations.length]);
 
   useEffect(() => {
-    setDisplayedStations([]);
-    setHasMore(true);
-    setIsLoadingMore(true);
-
-    const initialStations = genreStations.slice(0, stationsPerPage);
-    setDisplayedStations(initialStations);
-    setHasMore(initialStations.length === stationsPerPage);
+    loadingMoreRef.current = false;
     setIsLoadingMore(false);
+    setDisplayedStations(genreStations.slice(0, stationsPerPage));
   }, [genreStations, stationsPerPage]);
 
   const translationKey = useMemo(() => {
@@ -112,105 +107,59 @@ const Genre = () => {
   }, [tag]);
 
   return (
-    <Box
-      w="100%"
-      minH="100vh"
-      bg="gray.50"
-      _dark={{ bg: 'gray.900' }}
-      borderBottomRadius={16}
-    >
-      <Box
-        position="relative"
-        h="300px"
-        w="100%"
-        bg={bgColor}
-        backgroundSize="cover"
-        backgroundPosition="center"
-        borderTopRadius={16}
+    <div className="min-h-screen w-full rounded-2xl bg-muted dark:bg-neutral-900">
+      <div
+        className="relative h-[300px] w-full rounded-t-2xl bg-cover bg-center"
+        style={{ backgroundColor: bgColor }}
       >
-        <Box
-          position="absolute"
-          top="0"
-          left="0"
-          right="0"
-          bottom="0"
-          bg="linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.95) 100%)"
-          _dark={{
-            bg: 'linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, rgba(17, 17, 17, 0.95) 100%)',
-          }}
-          pointerEvents="none"
-        />
+        <div className="pointer-events-none absolute inset-0 rounded-t-2xl bg-gradient-to-b from-transparent to-background/95 dark:to-neutral-900/95" />
 
-        <Container maxW="container.xl" h="100%" position="relative">
-          <IconButton
-            position="absolute"
-            top="40px"
-            left="20px"
-            onClick={handleBack}
+        <div className="relative mx-auto h-full max-w-7xl px-4 md:px-8">
+          <Button
             variant="ghost"
+            size="icon"
+            className="absolute left-4 top-10 rounded-full hover:bg-white/20 md:left-8"
+            onClick={handleBack}
             aria-label="Go back"
-            borderRadius="full"
-            _hover={{ bg: 'whiteAlpha.200' }}
           >
             <IoArrowBackSharp size={24} />
-          </IconButton>
+          </Button>
 
-          <Box position="absolute" bottom="40px">
-            <Heading
-              fontSize={{ base: '3xl', md: '4xl' }}
-              fontWeight="bold"
-              textTransform="capitalize"
-            >
-              {t(translationKey)}
-            </Heading>
-            <Text mt={2} fontWeight="bold" fontSize={{ base: 'sm', md: 'md' }}>
+          <div className="absolute bottom-10">
+            <h1 className="text-3xl font-bold capitalize md:text-4xl">{t(translationKey)}</h1>
+            <p className="mt-2 text-sm font-bold md:text-base">
               {t('stationCount', { count: genreStations.length })}
-            </Text>
-          </Box>
-        </Container>
-      </Box>
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <Container maxW="container.xl" py={6} ref={containerRef}>
+      <div className="mx-auto max-w-7xl px-4 py-6 md:px-8" ref={containerRef}>
         {genreStations.length === 0 ? (
-          <Text color="gray.600" _dark={{ color: 'gray.300' }}>
-            No stations found for this genre.
-          </Text>
+          <p className="text-muted-foreground">No stations found for this genre.</p>
         ) : (
           <>
-            <VStack gap={4} align="stretch">
+            <div className="flex flex-col gap-4">
               {displayedStations.map((station, index) => (
-                <StationSearchRow
-                  key={`${station.streamUrl}-${index}`}
-                  station={station}
-                />
+                <StationSearchRow key={`${station.streamUrl}-${index}`} station={station} />
               ))}
-            </VStack>
+            </div>
 
-            {(hasMore || isLoadingMore) && (
-              <Box
-                display="flex"
-                justifyContent="center"
-                mt={4}
-                data-loading-trigger
-              >
+            {hasMore && (
+              <div className="mt-4 flex justify-center" data-loading-trigger>
                 {isLoadingMore ? (
-                  <Spinner size="md" color="gray.500" />
+                  <Spinner />
                 ) : (
-                  <Button
-                    onClick={handleLoadMore}
-                    size="sm"
-                    colorScheme="black"
-                    borderRadius="full"
-                  >
+                  <Button onClick={handleLoadMore} size="sm" className="rounded-full">
                     {t('loadMore')}
                   </Button>
                 )}
-              </Box>
+              </div>
             )}
           </>
         )}
-      </Container>
-    </Box>
+      </div>
+    </div>
   );
 };
 

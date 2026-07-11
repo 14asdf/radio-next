@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getThemeColors, getServerSystemTheme } from '@/utils/theme';
+import { getServerSystemTheme, getThemeColors } from '@/utils/theme';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
