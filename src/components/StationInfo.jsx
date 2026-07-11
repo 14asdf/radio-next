@@ -86,7 +86,7 @@ const StationInfo = ({ audioId }) => {
     <Button
       aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
       onClick={() => togglePlay(audioId)}
-      className={cn('rounded-full', className)}
+      className={cn('size-14 shrink-0 rounded-full md:size-[70px]', className)}
       size="icon"
     >
       {isCurrentlyPlaying ? (
@@ -127,12 +127,12 @@ const StationInfo = ({ audioId }) => {
         <div className="relative mx-auto flex max-w-[1200px] flex-col items-center justify-center gap-6 px-4 py-8 md:flex-row md:items-center md:justify-start md:gap-8">
           <div className="z-[1] order-2 w-full md:order-1">
             <div className="mb-4 flex w-full items-start justify-between gap-2 md:justify-start md:gap-6">
-              <PlayButton className="m-4 hidden size-14 md:flex md:size-[70px]" />
+              <PlayButton className="m-4 hidden md:flex" />
 
-              <div className="flex flex-1 flex-col gap-2">
-                <div className="flex w-full items-center justify-between md:justify-start">
-                  <h1 className="text-xl font-bold md:text-3xl">{station.title}</h1>
-                  <PlayButton className="size-14 p-4 md:hidden" />
+              <div className="flex min-w-0 flex-1 flex-col gap-2">
+                <div className="flex w-full items-center justify-between gap-3 md:justify-start">
+                  <h1 className="min-w-0 flex-1 text-xl font-bold md:text-3xl">{station.title}</h1>
+                  <PlayButton className="md:hidden" />
                 </div>
 
                 <div className="mt-2 flex w-full flex-wrap gap-2">

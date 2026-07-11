@@ -103,14 +103,6 @@ body {
   @apply bg-background text-foreground;
 }
 
-.swiper-scrollbar-drag {
-  background: var(--muted-foreground) !important;
-}
-
-.dark .swiper-scrollbar-drag {
-  background: var(--muted-foreground);
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

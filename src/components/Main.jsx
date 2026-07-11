@@ -26,7 +26,7 @@ import MiniPlayer from './MiniPlayer';
 const NavButton = ({ href, isActive, icon, activeIcon, label, mobile }) => {
   if (mobile) {
     return (
-      <Button variant="ghost" size="icon" className="rounded-full" asChild>
+      <Button variant="ghost" size="icon" className="rounded-full [&_svg]:size-[18px]" asChild>
         <Link href={href} aria-label={label}>
           {isActive ? activeIcon : icon}
         </Link>
@@ -37,7 +37,7 @@ const NavButton = ({ href, isActive, icon, activeIcon, label, mobile }) => {
   return (
     <Button
       variant="ghost"
-      className="h-12 w-fit justify-start gap-3 rounded-full px-6 text-base"
+      className="h-12 w-fit justify-start gap-3 rounded-full px-6 text-base [&_svg]:size-6"
       asChild
     >
       <Link href={href}>

@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  Online radio streaming built with Next.js, React, and shadcn/ui.
+  Online radio streaming built with Next.js and shadcn/ui.
 </p>
 
 ## Getting Started
@@ -51,13 +51,11 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## Built With
 
 - [Next.js](https://nextjs.org/) - React framework
-- [React](https://reactjs.org/) - UI library
 - [shadcn/ui](https://ui.shadcn.com/) - Re-usable components built with Radix UI and Tailwind CSS
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 - [Firebase](https://firebase.google.com/) - Auth and realtime database
 - [next-intl](https://next-intl-docs.vercel.app/) - Internationalization
 - [GSAP](https://greensock.com/gsap/) - Animations
-- [Swiper](https://swiperjs.com/) - Touch slider
 
 ## Icon Generation
 

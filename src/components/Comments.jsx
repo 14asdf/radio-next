@@ -100,7 +100,7 @@ const Comments = ({ stationId }) => {
     <div className="mx-2 md:mx-8">
       {user && (
         <form onSubmit={handleCommentSubmit} className="w-full">
-          <div className="flex w-full items-start gap-2">
+          <div className="flex w-full items-center gap-2">
             <Textarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
@@ -108,7 +108,12 @@ const Comments = ({ stationId }) => {
               className="mr-3 min-h-[60px] max-h-[200px] resize-y rounded-lg bg-muted"
               maxLength={300}
             />
-            <Button type="submit" disabled={!newComment.trim()} size="sm" className="rounded-full">
+            <Button
+              type="submit"
+              disabled={!newComment.trim()}
+              size="icon"
+              className="size-10 shrink-0 rounded-full [&_svg]:size-5"
+            >
               <TbSend />
             </Button>
           </div>

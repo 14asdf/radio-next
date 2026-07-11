@@ -54,7 +54,7 @@ const GenreCard = React.memo(({ tag, stations }) => {
           <h3 className="line-clamp-4 w-full text-xl font-bold capitalize text-white">
             {t(translationKey)}
           </h3>
-          <AvatarGroup max={maxAvatars} className="-space-x-3">
+          <AvatarGroup className="-space-x-3">
             {randomStations.map((station) => (
               <StationAvatar key={station.streamUrl} station={station} />
             ))}
