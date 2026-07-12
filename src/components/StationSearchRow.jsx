@@ -9,6 +9,9 @@ import { useAudioPlayer } from '../contexts/AudioPlayerContext';
 import { useGenreTranslations } from '../utils/genres';
 import { createAvatarUrl, encodeUrl } from '../utils/stations';
 
+const genreChipClass =
+  'rounded-full border-transparent bg-[#e4e4e7] text-[#27272a] shadow-none hover:bg-[#e4e4e7] dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-800';
+
 const StationSearchRow = React.memo(({ station }) => {
   const [imgSrc, setImgSrc] = useState(createAvatarUrl(station.title));
   const [isLoading, setIsLoading] = useState(true);
@@ -82,7 +85,7 @@ const StationSearchRow = React.memo(({ station }) => {
                 const trimmedTag = tag.trim();
                 const translatedTag = translateGenre(trimmedTag) || trimmedTag;
                 return (
-                  <Badge key={tag} variant="secondary" className="rounded-full">
+                  <Badge key={tag} variant="outline" className={genreChipClass}>
                     {translatedTag}
                   </Badge>
                 );

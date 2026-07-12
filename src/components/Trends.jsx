@@ -17,6 +17,9 @@ import { useStations } from '@/contexts/StationsContext';
 import { db } from '@/utils/firebase';
 import { encodeUrl } from '@/utils/stations';
 
+const trendChipClass =
+  'flex cursor-pointer items-center rounded-full border-transparent bg-[#f4f4f5] px-3 py-1 font-bold text-[#27272a] shadow-none hover:bg-[#e4e4e7] dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700';
+
 function useClickOutside(ref, handler) {
   useEffect(() => {
     const listener = (event) => {
@@ -301,8 +304,8 @@ export default function Trends() {
                         <PopoverTrigger asChild>
                           <Badge
                             ref={likesMenuRef}
-                            variant="secondary"
-                            className="flex cursor-pointer items-center rounded-full px-3 py-1 font-bold hover:bg-muted"
+                            variant="outline"
+                            className={trendChipClass}
                             onClick={() => handleMenuOpen(`likes-${station.id}`)}
                           >
                             <AiOutlineHeart size={16} className="mr-1.5" />
@@ -325,8 +328,8 @@ export default function Trends() {
                         <PopoverTrigger asChild>
                           <Badge
                             ref={commentsMenuRef}
-                            variant="secondary"
-                            className="flex cursor-pointer items-center rounded-full px-3 py-1 font-bold hover:bg-muted"
+                            variant="outline"
+                            className={trendChipClass}
                             onClick={() => handleMenuOpen(`comments-${station.id}`)}
                           >
                             <AiOutlineComment size={16} className="mr-1.5" />

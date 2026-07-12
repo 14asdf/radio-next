@@ -27,6 +27,9 @@ const VolumeIcon = ({ volume }) => {
   return <IoVolumeHighOutline />;
 };
 
+const controlButtonClass =
+  'size-8 rounded-full bg-[#f4f4f5] text-[#27272a] shadow-none hover:bg-[#e4e4e7] dark:bg-secondary dark:text-secondary-foreground dark:hover:bg-secondary/80';
+
 const MiniPlayer = ({ audioId }) => {
   const { playerState, togglePlay, handleVolumeChange } = useAudioPlayer();
   const [imgSrc, setImgSrc] = useState('');
@@ -76,7 +79,7 @@ const MiniPlayer = ({ audioId }) => {
   if (!station) return null;
 
   return (
-    <div className="bg-gray-100 pr-2 dark:bg-zinc-700">
+    <div className="bg-[#F7FAFC] pr-2 dark:bg-zinc-700">
       <div className="grid grid-cols-[60px_minmax(0,1fr)_auto] items-center gap-3">
         {isLoading ? (
           <div className="flex size-[60px] items-center justify-center">
@@ -100,9 +103,9 @@ const MiniPlayer = ({ audioId }) => {
           <Popover open={isVolumeOpen} onOpenChange={setIsVolumeOpen}>
             <PopoverTrigger asChild>
               <Button
-                variant="secondary"
+                variant="ghost"
                 size="icon"
-                className="size-8 rounded-full"
+                className={controlButtonClass}
                 aria-label="Volume"
               >
                 <VolumeIcon volume={playerState.volume} />
@@ -124,9 +127,9 @@ const MiniPlayer = ({ audioId }) => {
           </Popover>
 
           <Button
-            variant="secondary"
+            variant="ghost"
             size="icon"
-            className="size-8 rounded-full"
+            className={controlButtonClass}
             aria-label={playerState.isPlaying ? 'Pause' : 'Play'}
             onClick={() => togglePlay(audioId)}
           >
@@ -140,9 +143,9 @@ const MiniPlayer = ({ audioId }) => {
           </Button>
 
           <Button
-            variant="secondary"
+            variant="ghost"
             size="icon"
-            className="size-8 rounded-full"
+            className={controlButtonClass}
             aria-label="Next station"
             onClick={handleNextTrack}
           >

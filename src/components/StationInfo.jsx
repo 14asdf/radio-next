@@ -148,7 +148,8 @@ const StationInfo = ({ audioId }) => {
                       return (
                         <Badge
                           key={generateUUID()}
-                          className="rounded-full bg-white/20 px-3 py-1 text-sm text-white"
+                          variant="outline"
+                          className="cursor-default rounded-full border-transparent bg-white/20 px-3 py-1 text-sm text-white hover:bg-white/20"
                         >
                           {translatedTag}
                         </Badge>
